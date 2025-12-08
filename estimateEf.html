@@ -1,0 +1,299 @@
+--- START OF FILE estimate.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimating & Costing Quiz - Self-Study Mode</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        
+        /* Info Bar - Adjusted for non-timer use */
+        .sticky-header { position: sticky; top: 0; background: white; z-index: 100; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        .info-bar { display: flex; justify-content: flex-start; align-items: center; background: #eef2f3; padding: 15px; border-radius: 5px; font-weight: bold; }
+        .info-bar div { margin-right: 20px; } /* Space out info items */
+
+        /* Questions */
+        .question-card { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .question-text { font-size: 1.1em; font-weight: 600; margin-bottom: 10px; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin: 8px 0; }
+        .options label { display: flex; align-items: center; cursor: pointer; padding: 10px; border: 1px solid #ddd; border-radius: 5px; transition: 0.2s; }
+        /* Hover only for unselected/unanswered options */
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { background-color: #f9f9f9; } 
+        .options input[type="radio"] { margin-right: 10px; transform: scale(1.2); }
+        
+        /* Result Highlights - KEPT for instant feedback */
+        .correct-opt { background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; }
+        .wrong-opt { background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }
+        
+        /* Removed styles for Timer, Submit Button, and Results Modal */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sticky-header">
+        <h1>Estimating & Costing Quiz</h1>
+        <div class="info-bar">
+            <!-- Total questions placeholder updated in JS -->
+            <div>Total Questions: <span id="total-q">165</span></div> 
+            <div>Mode: Instant Feedback</div>
+        </div>
+    </div>
+
+    <!-- Removed Form tag -->
+    <div id="quiz-container">
+        <!-- Questions will be loaded here -->
+    </div>
+    <!-- Removed Submit Button -->
+</div>
+
+<!-- Removed Results Modal -->
+
+<script>
+    // Quiz Data - 165 Questions from Estimating & Costing
+    const quizData = [
+        { id: 1, q: "Estimate is", options: ["calculation of quantity", "calculation of cost", "rough or detailed estimate", "all of the above"], a: 3 },
+        { id: 2, q: "Estimate gives", options: ["fair cost", "actual cost", "probable cost", "all of the above"], a: 2 },
+        { id: 3, q: "The main objective of the estimating is", options: ["to find the probable cost of the work", "to find the quantity of various materials and labour", "to find the time of completion of the work", "to help the checking the work done by the contractor"], a: 0 },
+        { id: 4, q: "Estimate is", options: ["the actual cost of construction of a structure", "the probable cost arrived at before commencement of the structure", "a random guess of the cost of the structure", "none of the above"], a: 1 },
+        { id: 5, q: "Which of the following is the most correct estimate?", options: ["plinth area estimate", "cube rate estimate", "detailed estimate", "supplementary estimate"], a: 2 },
+        { id: 6, q: "Estimate objected to be least accurate are", options: ["supplementary estimate", "plinth area estimate", "detailed estimate", "revised estimate"], a: 1 },
+        { id: 7, q: "The plinth area estimate method is also known as", options: ["square rate method", "rectangle rate method", "triangle rate method", "none of the above"], a: 0 },
+        { id: 8, q: "Plinth area estimate is approximate estimate mostly used for the estimation of", options: ["building", "bridge and culvert", "irrigation channel", "road and highway"], a: 0 },
+        { id: 9, q: "Unit rate is only for", options: ["preparing document", "finding cost", "contractor", "none"], a: 1 },
+        { id: 10, q: "Actual cost of the structure is obtained", options: ["after design", "after estimate", "after detail drawing", "only after completion of work"], a: 3 },
+        { id: 11, q: "The actual cost of supplementary and revised estimate is", options: ["less than estimated cost", "more than estimated cost", "equal to estimated cost", "all of the above"], a: 1 },
+        { id: 12, q: "Which one estimate is the best among all?", options: ["plinth area estimate", "lump sum estimate", "both (a) and (b)", "detailed estimate"], a: 3 },
+        { id: 13, q: "Evaluation of building is done based on", options: ["detailed estimate", "plinth area rate", "cube rate", "depreciation method"], a: 1 },
+        { id: 14, q: "Centre line method is specially adopted for estimating ... buildings.", options: ["circular buildings", "hexagonal building", "octagonal building", "all of the above"], a: 3 },
+        { id: 15, q: "Centre-line method is used for calculation of", options: ["building", "culvert", "well", "all of the above"], a: 3 },
+        { id: 16, q: "In long and short wall method of estimation, the length of long wall is the center to center space between walls plus", options: ["breadth of wall", "half of the breadth of wall on each side", "one forth of the breadth of wall on each side", "none of the above"], a: 1 },
+        { id: 17, q: "The essential requirements to prepare a good estimate are", options: ["a full dimensioned drawing to scale", "detailed specifications", "schedule of rates", "all of the above"], a: 3 },
+        { id: 18, q: "Which-method is easiest for the estimation of the quantity of material", options: ["centre line method", "long & short wall method", "both (a) and (b) of above", "none of the above"], a: 0 },
+        { id: 19, q: "The method of calculation of quantity is", options: ["long wall method", "short wall method", "long and short wall method", "all of the above"], a: 2 },
+        { id: 20, q: "Bill of quantity contains", options: ["description of work", "quantities of work", "rate of the items", "all of the above"], a: 3 },
+        { id: 21, q: "Rate column of bill of quantity is filled by", options: ["client", "client's engineer", "contractor", "none of the above"], a: 2 },
+        { id: 22, q: "\"Bill of quantities\" are prepared by", options: ["Quantity surveyors", "Vendors", "Geodetic surveyors", "Suppliers"], a: 0 },
+        { id: 23, q: "A document comprising detailed description of all the types of work (but their quantities are not mentioned) together with their current rates is called", options: ["tender", "schedule of rates", "analysis of rate", "abstract estimate"], a: 1 },
+        { id: 24, q: "A document showing the list of quantity of various items of works required for completion of any project is known as", options: ["schedule of quantity", "schedule of rates", "analysis of rate", "abstract estimate"], a: 0 },
+        { id: 25, q: "Working out the exact quantities of various items of work is known as", options: ["estimating", "mensuration", "quantity surveying", "valuation"], a: 2 },
+        { id: 26, q: "The investment required for the completion of any project is sustained by", options: ["planning", "budgeting", "estimating", "management"], a: 2 },
+        { id: 27, q: "According to ISI method of measurement, the order of the sequence is", options: ["length, breadth, height", "breadth, height, length", "height, length, breadth", "all of the above"], a: 0 },
+        { id: 28, q: "According to ISI method of measurement, the order of the sequence is", options: ["Length, breadth, height", "Length, breadth, depth", "Length, breadth, thickness", "all of the above"], a: 3 },
+        { id: 29, q: "The unit of measurement for wood work on door and window frame, rafters, battens, roof truss etc. is", options: ["metre", "cm", "quintal", "m^3"], a: 3 },
+        { id: 30, q: "The unit of measurement for beading provided in door and window frame, rafters etc. is", options: ["metre", "sq m", "quintal", "m^3"], a: 0 },
+        { id: 31, q: "The unit of measurement for steel works in trussed and its panel is", options: ["quintal", "cm", "numbers", "kilograms"], a: 0 },
+        { id: 32, q: "The unit of measurement for electric wiring or electrification light, fan plug points is", options: ["point", "number", "metre", "no unit"], a: 0 },
+        { id: 33, q: "For electric wiring such as fan, light, plug etc, the estimate is made in terms of", options: ["type of point", "number of points", "total load at main in kw", "total length of wiring in meters"], a: 0 },
+        { id: 34, q: "The unit of payment for blasting of rock including stacking is", options: ["sq m", "m^3", "1/2 sq m", "1/2 m^3"], a: 1 },
+        { id: 35, q: "Generally the unit of measurement for partition wall is", options: ["m^3", "m^2", "m", "100 M"], a: 1 },
+        { id: 36, q: "The unit of payment for excavation minor for pipes, cables etc. upto 1.5 m depth in ordinary rock/hard rock is", options: ["m^3", "m^2", "rm", "tone"], a: 2 },
+        { id: 37, q: "The unit of payment for A.C. sheet roofing is in", options: ["m^3", "m^2", "metre", "quintal"], a: 1 },
+        { id: 38, q: "The unit of payment for G.I sheet roof sheet is in", options: ["m^3", "m^2", "metre", "quintal"], a: 1 },
+        { id: 39, q: "The unit of payment for GI ridge sheet roofing is in", options: ["m^3", "m^2", "metre", "quintal"], a: 2 },
+        { id: 40, q: "The unit of measurement for earth work in excavation in ordinary earth work with in mixed soil with sand/muram/bajri etc. when depth of excavation does not exceed 30 cm. is", options: ["r.m", "m^3", "m^2", "100 sqm"], a: 2 },
+        { id: 41, q: "The measurement of steel grills is taken in term of", options: ["area", "volume", "weight", "none"], a: 2 },
+        { id: 42, q: "Unit of payment for M&S of MS bars is", options: ["per quintal", "per kg", "per tone", "per m^3"], a: 0 },
+        { id: 43, q: "Unit of payment in R of pipe is", options: ["per Rm", "per R.", "per ft", "per sq"], a: 1 },
+        { id: 44, q: "The unit of payment for fixing of glass panes or cleaning is in", options: ["kg", "number", "m^2", "m^3"], a: 1 },
+        { id: 45, q: "The quantity of soiling is obtained in", options: ["m", "m^2", "lump-sum", "m^3"], a: 1 },
+        { id: 46, q: "The quantity of honey-comb walls are worked out in the", options: ["m", "m^2", "lump-sum", "m^3"], a: 1 },
+        { id: 47, q: "The quantity of wood for the shutters of doors and windows is calculated in", options: ["m", "m^2", "lump-sum", "m^3"], a: 1 },
+        { id: 48, q: "The unit of measurement for 10 cm thick wall is", options: ["m", "m^2", "lump-sum", "m^3"], a: 1 },
+        { id: 49, q: "The standard unit of measurement for expansion joint of a roof, wall or bridge etc is", options: ["m", "m^2", "lump-sum", "m^3"], a: 0 },
+        { id: 50, q: "The explosive for blasting is usually expressed in term of", options: ["explosive power", "weight of earth that can be blasted", "m^2", "none of the above"], a: 2 },
+        { id: 51, q: "The quantity of jaffri is measured in terms of", options: ["m", "m^2", "m^3", "lump-sum"], a: 1 },
+        { id: 52, q: "Measurement of wooden railing of staircase", options: ["m", "m^2", "m^3", "lump-sum"], a: 0 },
+        { id: 53, q: "The unit of cribbing is", options: ["m", "m^2", "m^3", "lump-sum"], a: 1 },
+        { id: 54, q: "Form work is measured in", options: ["m", "m^2", "m^3", "lump-sum"], a: 1 },
+        { id: 55, q: "Estimate for electric wiring that is light, fan, plug points etc. is usually made in terms of", options: ["total power at mains in KW", "amperage of every point", "type of points", "number of points"], a: 3 },
+        { id: 56, q: "The person who enjoys the estimate right is called a", options: ["lesser", "essee", "assistant owner", "servant owner"], a: 3 },
+        { id: 57, q: "The unit of payment for electric wiring that is light, fan, plug points etc. is usually in terms of", options: ["type of point", "number of points", "total load at main in kw", "total length of wiring in meters"], a: 1 },
+        { id: 58, q: "Annual repair estimate is usually not allowed to exceed", options: ["10 % of capital cost", "5 % of capital cost", "2 % of capital cost", "1.5 % of capital cost"], a: 3 },
+        { id: 59, q: "Compute the amount of cement required for 10 m^3 RCC having ratio (1: 1.5: 3).", options: ["3975 kg", "79.54 bag", "22.76 m^3", "all of the above"], a: 3 },
+        { id: 60, q: "The amount of cement required in 10 m^3 concrete having 1: 2: 3 ratio", options: ["50 bag", "60 bag", "70 bag", "none"], a: 2 },
+        { id: 61, q: "The amount of cement required per cubic meter having mix (1: 2: 4)", options: ["4.3 bag", "3.3 bag", "6.3 bag", "5.3 bag"], a: 0 },
+        { id: 62, q: "Of the total estimated cost a building, the cost of electrification usually accounts", options: ["3 %", "8 %", "13 %", "18 %"], a: 1 },
+        { id: 63, q: "The c/s area (mm^2) and unit weight (kg/m) of 16 mm steel bar is respectively", options: ["201.185", "210,1.58", "201, 1.58", "none"], a: 2 },
+        { id: 64, q: "Compound amount of Rs. 100 in 4 years @ 4 % interest", options: ["Rs. 116", "Rs. 114", "Rs. 117", "Rs. 120"], a: 2 },
+        { id: 65, q: "The quantity of cement required for 1 m^3 plaster C:S(1: 6) ratio", options: ["150 kg", "210 kg", "310 kg", "410 kg"], a: 2 },
+        { id: 66, q: "The amount of cement required for 1 m^3 mortar (1: 6) plaster,", options: ["165 kg", "265 kg", "365 kg", "465 kg"], a: 1 },
+        { id: 67, q: "In the detailed estimate the areas worked out to the nearest", options: ["0.001 m^2", "0.01 m^2", "0.05 m^2", "0.005 m"], a: 1 },
+        { id: 68, q: "In the detailed estimate the volumes are worked out to the nearest", options: ["0.001 m^3", "0.005 m^3", "0.01 m^3", "0.05 m^3"], a: 2 },
+        { id: 69, q: "The unit rate of items written by the contractor in BOQ is to figure as well as words form. Which one is preferred?", options: ["figures", "words", "both of the above", "none of the above"], a: 1 },
+        { id: 70, q: "Which is not considered in the calculation of plinth area?", options: ["cantilever beam projection", "inside room", "staircase", "passage"], a: 0 },
+        { id: 71, q: "In the case of un-sewered areas, an additional provision for septic tank is usually", options: ["1 % of the building cost", "3 to 4 % of the building cost", "10 % of the building cost", "12 to 15 % of the building cost"], a: 1 },
+        { id: 72, q: "The unit rate of items written by the contractor in BOQ is to numeral as well as alphabetical form. Which one is preferred?", options: ["numeral", "alphabetical", "both of the above", "none"], a: 1 },
+        { id: 73, q: "Which is considered in the calculation of plinth area?", options: ["thick of wall", "corridor", "car parch", "both (a) and (b)"], a: 3 },
+        { id: 74, q: "1 British gallon = ... litres.", options: ["4.546", "3.785", "5.456", "7.385"], a: 0 },
+        { id: 75, q: "The weight of 12 mm diameter mild steel per meter length is equal to", options: ["0.98 kg", "0.77 kg", "0.88 kg", "0.99 kg"], a: 2 },
+        { id: 76, q: "The plan of a building is in the form of rectangle with center line dimension of outer walls as 9.7 m x 14.7 m. The thickness of the wall in super structure is 0.30 m. Then its centre area is", options: ["150 m^2", "145 m^2", "145.5 m^2", "135.36 m^2"], a: 3 },
+        { id: 77, q: "Contractor profit is added to", options: ["detailed estimate", "rate analysis", "valuation", "salvage"], a: 1 },
+        { id: 78, q: "The rate analysis induces", options: ["material, labour, vat, all taxes", "material, labour, contractor's overhead and profit", "material, labour, contractor's all taxes", "material & labour"], a: 1 },
+        { id: 79, q: "The overheads and profit claimed by the contractor to client is", options: ["separate item", "included in materials only", "included in labours only", "included in rate analysis"], a: 3 },
+        { id: 80, q: "For the approval of any project is no, of sanction is filled out. Which one is initially done?", options: ["administrative sanction", "expenditure sanction", "technical sanction", "all of the above"], a: 0 },
+        { id: 81, q: "The main target of a contractor is to", options: ["complete the work", "waste more materials", "earn more profit", "save the materials"], a: 2 },
+        { id: 82, q: "The chairman of material rate fixation committee in district is", options: ["CDO", "LDO", "chairman of DDC", "SP"], a: 0 },
+        { id: 83, q: "Rate analysis prepared by ministry of transport and work includes", options: ["labour & material", "labour, material & equipment", "labour, material & supervision", "all of the above"], a: 1 },
+        { id: 84, q: "Full payment of contractor is done", options: ["after agreement", "after construction", "after maintenance", "all of the above"], a: 2 },
+        { id: 85, q: "In a sanitary pipe line for 3 m length, how many skilled labour are required", options: ["1 person", "2 person", "3 person", "4 person"], a: 0 },
+        { id: 86, q: "As per norms prepared by ministry of transport & works, how workers carry a weight of", options: ["50 kg upto Skosh", "40 kg upto 4 kosh", "30 kg upto 3 kosh", "none of the above"], a: 1 },
+        { id: 87, q: "Snowcem paint required for 100 m^2 area as per norms (two coats)", options: ["20 kg", "30 kg", "40 kg", "50 kg"], a: 1 },
+        { id: 88, q: "The rate of an item of work depends", options: ["specifications of works", "specifications of materials", "method of construction", "all of the above"], a: 3 },
+        { id: 89, q: "The main purpose of specification is", options: ["specify the nature of work", "estimate the quantity and cost in", "specify the quality of materials", "all of the above"], a: 3 },
+        { id: 90, q: "Specification includes", options: ["quality, type of work & methodology", "quality of work", "quantity & quality of work", "methodology of work"], a: 0 },
+        { id: 91, q: "Which one information is found through specification?", options: ["nature of works", "quality of materials", "types of workmanship", "all of the above"], a: 3 },
+        { id: 92, q: "Which one information is not found in specification?", options: ["nature of works", "quality of materials", "types of workmanship", "dimension"], a: 3 },
+        { id: 93, q: "The number of skilled manpower required for fabrication of BMT steel is", options: ["4", "8", "12", "16"], a: 2 },
+        { id: 94, q: "The number of skilled manpower required for door/window chaukhat work is", options: ["1", "3", "4", "34"], a: 3 },
+        { id: 95, q: "In specification of earth work in foundation trenches, drains etc. lift ordinarily specified is", options: ["30 m", "1.5 m", "3 m", "3 m"], a: 1 },
+        { id: 96, q: "In specification of earth work in foundation trenches etc. lead specified is (IS-code)", options: ["30 m", "50 m", "50 m", "100 m"], a: 0 },
+        { id: 97, q: "The number of standard modular bricks required to make of masonry (as per IS Code) is:", options: ["480", "500", "520", "540"], a: 1 },
+        { id: 98, q: "The nominal lead and lift allowed for the earthwork in the excavations of the foundations are (NS Norm)", options: ["30 m and 2 m", "30 m and 2 m", "50 m and 1.5 m", "20 m and 1.5 m"], a: 2 },
+        { id: 99, q: "No deductions is made in the masonry for the opening if the area of the opening does not exceed", options: ["0.05 m^2", "0.5 m^2", "0.15 m^2", "0.10 m^2"], a: 3 },
+        { id: 100, q: "No deductions is made in the plastering or painting for the opening if the area of the opening does not exceed", options: ["0.50 m", "0.25 m^2", "0.15 m^2", "0.10 m"], a: 0 },
+        { id: 101, q: "The measurement up what unit in area is taken as", options: ["0.02 m^2", "0.05 m^2", "0.02 m^2", "0.01 m^2"], a: 3 },
+        { id: 102, q: "When not specified, the volume of steel in R.C.C work is taken as", options: ["1 % to 1.6 % of R.C.C. volume", "2 % to 4 % of R.C.C. volume", "4 % to 6 % of R.C.C. volume", "0.6 % to 1.0 % of R.C.C. volume"], a: 3 },
+        { id: 103, q: "The thickness of slabs and beams must be measured to the nearest", options: ["0.001 m", "0.005 m", "0.01 m", "0.05 m"], a: 1 },
+        { id: 104, q: "The portion which is wrongly excavated by the contractor is to be filled", options: ["the earth excavated from the same pit", "the earth excavated from a borrow pit far away from site", "mortar rate specified", "brick masonry"], a: 2 },
+        { id: 105, q: "In the analysis of rates what percentage of total cost is provided towards water charges", options: ["1.5 %", "5 %", "7.5 %", "10 %"], a: 0 },
+        { id: 106, q: "The density of cement is generally taken as", options: ["1440 kg/m^3", "1540 kg/m^3", "1340 kg/m^3", "1740 kg/m^3"], a: 0 },
+        { id: 107, q: "The weight of cement in one bag is", options: ["45 kg", "50 kg", "60 kg", "65 kg"], a: 1 },
+        { id: 108, q: "The volume of cement in one bag is", options: ["0.067 m^3", "0.050 m^3", "0.0347 m^3", "0.025 m^3"], a: 2 },
+        { id: 109, q: "When it is not specified, the number of hold fasts for a door frame is usually taken as", options: ["2", "4", "6", "8"], a: 2 },
+        { id: 110, q: "The minimum number of hinges provided in door and window shutter should be", options: ["2", "3 and 2", "3 and 2", "3 and 2"], a: 3 },
+        { id: 111, q: "The number of corrugations in a galvanized corrugated sheet is", options: ["5", "7", "10", "12"], a: 2 },
+        { id: 112, q: "The number of corrugations in a asbestos cement sheet is usually", options: ["5", "7", "10", "12"], a: 1 },
+        { id: 113, q: "The standard width of galvanized iron sheet is", options: ["32\"", "28\"", "43\"", "36\""], a: 0 },
+        { id: 114, q: "The standard width of asbestos cement corrugated sheet:", options: ["0.9 m", "1.05 m", "1.2 m", "1.35 m"], a: 1 },
+        { id: 115, q: "Minimum side lap required for asbestos cement sheets is", options: ["30 cm", "15 cm", "20 cm", "25 cm"], a: 0 },
+        { id: 116, q: "End lap provided in asbestos cements is equal to", options: ["5 cm", "10 cm", "15 cm", "25 cm"], a: 2 },
+        { id: 117, q: "During the calculation of RCC the amount of steel deducted is", options: ["3 % of total steel", "5 % of total steel", "10 % of total steel", "0 % of total steel"], a: 3 },
+        { id: 118, q: "Whenever colour washing on A.C. corrugated sheets is done, for the estimation the plan area of the sheets is increased by", options: ["5 %", "10 %", "15 %", "20 %"], a: 3 },
+        { id: 119, q: "To account for the corrugation, the plain area of the semi corrugated asbestos sheet is increased by (for white washing)", options: ["5 %", "10 %", "15 %", "20 %"], a: 1 },
+        { id: 120, q: "In case of steel rolling shutter, for the estimation of painted area, the plan area is multiplied by", options: ["1.5", "1.35", "1.4", "1.5"], a: 1 },
+        { id: 121, q: "Specifications for the hold fasts are given in terms of", options: ["number", "weight", "volume", "length"], a: 1 },
+        { id: 122, q: "When engineering departments undertake the works of other departments, the amount charged toward design, supervision and execution etc. is called", options: ["work charged establishment", "contingencies", "service charge", "centage charge"], a: 3 },
+        { id: 123, q: "Work charged establishment", options: ["5 %", "3.5 %", "4.5 %", "5.5 %"], a: 0 },
+        { id: 124, q: "The document supplementing the drawing to furnish information that are not covered in drawings and explaining the workmanship, and method of working to facilitate proper work execution at site is", options: ["specifications", "cover note", "process chart", "none of the above"], a: 0 },
+        { id: 125, q: "Which of the following is known as job overhead ?", options: ["stationery", "postage", "workman's compensation insurances etc.", "none of the above"], a: 2 },
+        { id: 126, q: "Which of the following is known as general overhead?", options: ["losses on advance", "interest on investment", "travelling expanses", "amenities to the labour"], a: 2 },
+        { id: 127, q: "If valuable properties are found during excavation, it becomes the property of", options: ["contractor", "labourers", "owner of the site", "government"], a: 3 },
+        { id: 128, q: "The volume of sand in a normal truck can carry per trip is approximately", options: ["20-25 m^3", "15-20 m^3", "10-15 m^3", "3-5 m^3"], a: 3 },
+        { id: 129, q: "The approximate weight of one cubic meter of mild steel is", options: ["1000 kg", "2400 kg", "1400 kg", "7850 kg"], a: 3 },
+        { id: 130, q: "Approximate weight of 1 cubic meter of sand is the", options: ["1000 kg", "1600 kg", "2400 kg", "2800 kg"], a: 1 },
+        { id: 131, q: "The technique of valuing the fair price of an existing building or property is known as", options: ["estimation", "valuation", "pricing", "costing"], a: 1 },
+        { id: 132, q: "Valuation is done for", options: ["minimum value", "market value", "present value based on reality", "none of the above"], a: 2 },
+        { id: 133, q: "Value is", options: ["the cost of a structure", "the cost of land", "both of the above", "none of the above"], a: 2 },
+        { id: 134, q: "Which of the following is not a part of estimating norms for rate analysis?", options: ["labour cost", "material cost", "equipment cost", "taxes"], a: 3 },
+        { id: 135, q: "Tentative cost of a road project is calculated by", options: ["kg", "number", "sq m", "m^3"], a: 0 },
+        { id: 136, q: "In the analysis of rates, the profit and over head for the contractor is generally taken as", options: ["20 %", "15 %", "10 %", "5 %"], a: 1 },
+        { id: 137, q: "Contractor tax is:", options: ["1.5 %", "2.5 %", "5 %", "10 %"], a: 0 },
+        { id: 138, q: "The appropriate cost to the completed labour as a percentage of the total cost of the building is", options: ["15 %", "25 %", "40 %", "50 %"], a: 1 },
+        { id: 139, q: "The covered area of a proposed building is 150 m^2 and it includes a rear court yard of 5 m x 4 m if the prevailing plinth area rate for such building is Rs. 1250 / m^2, what is its cost?", options: ["Rs.1,87,500", "Rs.2,12,500", "Rs.1,62,500", "Rs.1,75,000"], a: 2 },
+        { id: 140, q: "The useful part of liveable area of a building is also known as", options: ["carpet area", "circulation area", "horizontal circulation area", "plinth area"], a: 0 },
+        { id: 141, q: "Which one area must be greater at any floor of a building", options: ["carpet area", "plinth area", "floor area", "none of the above"], a: 1 },
+        { id: 142, q: "The items which is not shown in the foundation concrete, 1: 4: 8 of walls, is called", options: ["soiling", "shoring", "D.P.C", "none of the above"], a: 0 },
+        { id: 143, q: "The rate of items which do not come under any regular head of item and the cost of such items are called", options: ["lump-sum", "extras", "customary charges", "contingencies"], a: 3 },
+        { id: 144, q: "Which one is correct with respect to floor area and plinth area", options: ["floor area is always greater than plinth area", "floor area is always equal to plinth area", "plinth area is always lesser than plinth area", "none of the above"], a: 2 },
+        { id: 145, q: "Value of the property or structures become less by its becoming out of date in style is known as", options: ["junk value", "salvation value", "obsolete", "useful life"], a: 3 },
+        { id: 146, q: "The end of the useful life of the property (without being dismentated) at the end of the useful life period is known as", options: ["junk value", "salvation value", "obsolete value", "none of the above"], a: 1 },
+        { id: 147, q: "The value shown in account book after allowing necessary depreciation known as", options: ["salvage value", "book value", "market value", "realisable value"], a: 1 },
+        { id: 148, q: "Salvage value of any structure is", options: ["less than the scrap value", "greater than the scrap value", "equal to the above", "none of the above"], a: 1 },
+        { id: 149, q: "The quantity or amount of any item which is the output of a skilled labour in a day is known as", options: ["target work", "daily work", "basic work", "task work"], a: 3 },
+        { id: 150, q: "The document showing the account of work done or supply of material including the particulars and quantities is known as", options: ["bill", "voucher", "full form of vat", "none"], a: 0 },
+        { id: 151, q: "The full form of vat is", options: ["variation at tax", "violation and tax", "value added tax", "none"], a: 2 },
+        { id: 152, q: "The unit of PVC pipe used in water supply pipe line is", options: ["quintal", "m^3", "m", "none"], a: 2 },
+        { id: 153, q: "What is the defects liability period in construction norms for rate analysis", options: ["one month", "three year", "one year", "two year"], a: 0 },
+        { id: 154, q: "The number of bricks required for a wall of 80 feet long 1 feet 3 inch thick and 7 feet high with one mortar joint is:", options: ["8000", "8064", "5000", "none of the above"], a: 2 },
+        { id: 155, q: "Purpose of valuation is", options: ["buying/selling of property", "for taxation", "for determining loans/mortgage", "all of the above"], a: 3 },
+        { id: 156, q: "In corrugated galvanized iron sheets, the pitch of the corrugations is measured, usually as", options: ["75 mm", "66 mm", "76 mm", "150 mm"], a: 2 },
+        { id: 157, q: "The main purpose of rate analysis is", options: ["to find actual cost per unit items", "to find economic value of material", "none of the above", "none of the above"], a: 0 },
+        { id: 158, q: "Annual rent is generally fixed at", options: ["2 to 5 % of value of building", "6 to 10 % of value of building", "8 to 12 % of value of building", "10 to 25 % of value of building"], a: 2 },
+        { id: 159, q: "The two types of specification commonly are", options: ["initial stage specification", "material and item specification", "labour and equipment specification", "none of the above"], a: 1 },
+        { id: 160, q: "The unit of D.P.C. (Damp proof course) made in square metre in case of", options: ["Concrete Jaffries", "R.C. Chhajia", "Concrete Jaffries", "Concrete Jaffries"], a: 3 },
+        { id: 161, q: "The floor area includes the area of the balcony up to", options: ["25 %", "50 %", "30 %", "25 %"], a: 2 },
+        { id: 162, q: "Great skill is required for laying", options: ["dry rubble masonry", "ashlar fine masonry", "ashlar fine masonry", "coursed rubble masonry"], a: 0 },
+        { id: 163, q: "The weight of an item is measured correct to nearest", options: ["0.50 kg", "0.25 kg", "0.75 kg", "1.00 kg"], a: 3 },
+        { id: 164, q: "The brick work is not measured in m^3 in case of", options: ["reinforced brick work", "half brick in arches", "reinforced brick wall", "half carry per trip is"], a: 3 },
+        { id: 165, q: "The number of brick in a normal truck can carry in trip approximately", options: ["2500", "3000", "4000", "5000"], a: 2 }
+    ];
+
+    const TOTAL_QUESTIONS = quizData.length;
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * and disables the radio buttons for the question.
+     * @param {number} questionIndex Index of the question in quizData.
+     * @param {string} selectedValue Value (0-3) of the selected option.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question to prevent re-submission/change
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            // Determine option labels (a, b, c, d)
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <!-- Attach the checkAnswer function to the radio button's change event -->
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        // Update info bar total questions count
+        document.getElementById('total-q').innerText = TOTAL_QUESTIONS;
+    }
+
+    // Removed startTimer(), calculateResult(), closeModal()
+
+    // Initialize
+    loadQuiz();
+</script>
+
+</body>
+</html>
+--- END OF FILE estimate.html ---

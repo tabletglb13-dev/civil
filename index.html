@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering MCQs - Self-Study Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --card-background: #ffffff;
+            --text-color: #2c3e50;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .quiz-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            color: var(--text-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card-info {
+            font-size: 0.95em;
+            color: #95a5a6;
+        }
+
+        .card-info span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .start-btn {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 0 0 12px 12px;
+            transition: background-color 0.3s;
+            font-size: 1.1em;
+            border: none;
+        }
+
+        .start-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .icon-symbol {
+            font-size: 2em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Footer for completeness */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Civil Engineering Self-Study Hub</h1>
+        <p>Master key concepts with instant-feedback practice quizzes.</p>
+    </header>
+
+    <div class="quiz-grid">
+
+        <!-- Surveying Quiz Card -->
+        <div class="quiz-card">
+            <div class="card-content">
+                <span class="icon-symbol">🧭</span>
+                <h3>Surveying (283 MCQs)</h3>
+                <div class="card-info">
+                    Focus: Principles, Chains, Compass, Leveling, Plane Table, Theodolite.
+                    <span>Total Questions: 283</span>
+                </div>
+            </div>
+            <a href="surveyEf.html" class="start-btn">Start Surveying Quiz</a>
+        </div>
+
+        <!-- Soil Mechanics Quiz Card -->
+        <div class="quiz-card">
+            <div class="card-content">
+                <span class="icon-symbol">⛰️</span>
+                <h3>Soil Mechanics (132 MCQs)</h3>
+                <div class="card-info">
+                    Focus: Properties, Classification, Permeability, Shear Strength, Earth Pressure.
+                    <span>Total Questions: 132</span>
+                </div>
+            </div>
+            <a href="soilEf.html" class="start-btn">Start Soil Mechanics Quiz</a>
+        </div>
+
+        <!-- RCC Quiz Card -->
+        <div class="quiz-card">
+            <div class="card-content">
+                <span class="icon-symbol">🏗️</span>
+                <h3>Reinforced Cement Concrete (200 MCQs)</h3>
+                <div class="card-info">
+                    Focus: LSM/WSM Concepts, Beams, Slabs, Columns, Cover, Bond, Design Limits.
+                    <span>Total Questions: 200</span>
+                </div>
+            </div>
+            <a href="rccEf.html" class="start-btn">Start RCC Quiz</a>
+        </div>
+
+        <!-- Material Quiz Card -->
+        <div class="quiz-card">
+            <div class="card-content">
+                <span class="icon-symbol">🧱</span>
+                <h3>Building Materials (237 MCQs)</h3>
+                <div class="card-info">
+                    Focus: Stones, Bricks, Lime, Cement, Aggregates, Paints, Mortars.
+                    <span>Total Questions: 237</span>
+                </div>
+            </div>
+            <a href="materailEf.html" class="start-btn">Start Materials Quiz</a>
+        </div>
+        
+        <!-- Estimating & Costing Quiz Card -->
+        <div class="quiz-card">
+            <div class="card-content">
+                <span class="icon-symbol">💰</span>
+                <h3>Estimating & Costing (165 MCQs)</h3>
+                <div class="card-info">
+                    Focus: Types of Estimate, Measurement Units, Rate Analysis, Valuation.
+                    <span>Total Questions: 165</span>
+                </div>
+            </div>
+            <a href="estimateEf.html" class="start-btn">Start E&C Quiz</a>
+        </div>
+
+    </div>
+    
+    <footer>
+        Developed as a Civil Engineering Self-Study Tool.
+    </footer>
+</div>
+
+</body>
+</html>

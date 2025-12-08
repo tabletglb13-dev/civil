@@ -1,0 +1,421 @@
+--- START OF FILE survey.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Surveying Exam (283 Questions)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 10px; }
+        
+        /* Info Bar */
+        .sticky-header { position: sticky; top: 0; background: white; z-index: 100; padding-bottom: 10px; border-bottom: 2px solid #eee; }
+        /* Adjusted to left-align info since timer is gone */
+        .info-bar { display: flex; justify-content: flex-start; align-items: center; background: #eef2f3; padding: 15px; border-radius: 5px; font-weight: bold; }
+        .info-bar div { margin-right: 20px; } /* Space out info items */
+
+        /* Questions */
+        .question-card { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .question-text { font-size: 1.1em; font-weight: 600; margin-bottom: 10px; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin: 8px 0; }
+        .options label { display: flex; align-items: flex-start; cursor: pointer; padding: 10px; border: 1px solid #ddd; border-radius: 5px; transition: 0.2s; }
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { background-color: #f9f9f9; }
+        .options input[type="radio"] { margin-right: 10px; margin-top: 5px; transform: scale(1.2); }
+        
+        /* Result Highlights - KEPT */
+        .correct-opt { background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; }
+        .wrong-opt { background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }
+        
+        /* Removed Submit Button Styles */
+        /* Removed Results Modal Styles */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sticky-header">
+        <h1>Civil Engineering Surveying Exam - Self-Study Mode</h1>
+        <div class="info-bar">
+            <!-- Simplified info display -->
+            <div>Total Questions: <span id="total-q">283</span></div>
+        </div>
+    </div>
+
+    <!-- Removed Form structure -->
+    <div id="quiz-container">
+        <!-- Questions will be injected here by JavaScript -->
+    </div>
+    <!-- Removed Submit Button -->
+
+</div>
+
+<!-- Removed Result Modal -->
+
+<script>
+    // Answer Key Mapping: A=0, B=1, C=2, D=3
+    const keyMap = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+
+    const quizData = [
+        { id: 1, q: "The main principle of surveying is to work from", options: ["The center to the boundary", "The whole to the part", "The part to the whole", "Higher to lower level"], a: keyMap['B'] },
+        { id: 2, q: "The curvature of the earth is ignored in", options: ["Geodetic surveying", "Plane surveying", "Hydrographic surveying", "Aerial survey"], a: keyMap['B'] },
+        { id: 3, q: "Which one of the following surveys is employed for collecting sufficient data in connection with sewage disposal and water supply works?", options: ["Topographic survey", "Cadastral survey", "Geodetic survey", "Cross-sectioning and profile leveling"], a: keyMap['D'] },
+        { id: 4, q: "Geodetic surveying is undertaken", options: ["For production of accurate maps of wide areas", "For developing the science of geodesy", "Making use of most accurate instruments and methods of observation", "All of the above"], a: keyMap['D'] },
+        { id: 5, q: "The curvature of the earth is taken into account when the extent of area is more than", options: ["150 km²", "260 km²", "350 km²", "100 km²"], a: keyMap['B'] },
+        { id: 6, q: "The principle of 'working from whole to part' is used in surveying because", options: ["Plotting becomes easy", "Survey work can be completed quickly", "Accumulation of errors is prevented", "All of the above"], a: keyMap['C'] },
+        { id: 7, q: "A ranging rod is generally.....metres long.", options: ["2 to 3", "3 to 4", "4 to 5", "None"], a: keyMap['A'] },
+        { id: 8, q: "If scale of map is 1 cm = 50 m, R.F. is", options: ["50", "500", "5000", "50000"], a: keyMap['C'] },
+        { id: 9, q: "A scale of 1 inch=50 ft. is mentioned on an old map. What is the corresponding equivalent scale?", options: ["1 cm = 5 m", "1 cm = 6 m", "1 cm = 10 m", "1 cm = 12 m"], a: keyMap['B'] },
+        { id: 10, q: "The correction for sag is always", options: ["Additive", "Subtractive", "Zero", "None"], a: keyMap['B'] },
+        { id: 11, q: "The correction for slope is always", options: ["Additive", "Subtractive", "Zero", "None"], a: keyMap['B'] },
+        { id: 12, q: "The spherical excess for a triangle of area 200 sq km is approximately", options: ["0.5\"", "1.0\"", "1.5\"", "2.0\""], a: keyMap['B'] },
+        { id: 13, q: "Surveys which depict natural features like mountains, valleys, rivers, forests, etc. are known as", options: ["Cadastral surveys", "Topographical surveys", "Engineering surveys", "Mine surveys"], a: keyMap['B'] },
+        { id: 14, q: "The plain scale is used to read", options: ["One unit", "Two units", "Three consecutive units", "None of above"], a: keyMap['B'] },
+        { id: 15, q: "The error due to bad ranging is", options: ["Cumulative; positive", "Cumulative; negative", "Compensating", "Cumulative; positive or negative"], a: keyMap['A'] },
+        { id: 16, q: "Cross staff is used for", options: ["Setting out right angles", "Measuring horizontal angles", "Both of the above", "None of above"], a: keyMap['A'] },
+        { id: 17, q: "For ranging a line, the number of ranging rods required is", options: ["At least two", "At least three", "At least four", "None of the above"], a: keyMap['B'] },
+        { id: 18, q: "Greater accuracy in linear measurements, is obtained by", options: ["Tacheometry", "Direct chaining", "Direct taping", "None"], a: keyMap['C'] },
+        { id: 19, q: "Walking over the area and observing its main features and boundaries, is known as....", options: ["Inspection", "Reconnaissance", "Observation", "None"], a: keyMap['B'] },
+        { id: 20, q: "In surveying the measurements are taken in", options: ["Horizontal plane", "Vertical plane", "Inclined plane", "Both horizontal and vertical plane"], a: keyMap['D'] },
+        { id: 21, q: "The object of surveying is to prepare a", options: ["Drawing", "Cross-section", "Sketch", "Map"], a: keyMap['D'] },
+        { id: 22, q: "The diagonal scale is used to read", options: ["One unit", "Two units", "Three consecutive units", "None of above"], a: keyMap['C'] },
+        { id: 23, q: ".........is used for accurate measurement.", options: ["Chain", "Invar tape", "Metallic tape", "Steel tape"], a: keyMap['B'] },
+        { id: 24, q: "Vernier scale is used to measure", options: ["Fractional part of a graduated scale", "Fractional part of a plain scale", "Fractional part of a diagonal scale", "None of above"], a: keyMap['A'] },
+        { id: 25, q: "If the smallest division of a vernier is longer than the smallest division of its primary scale, the vernier is known as", options: ["direct vernier", "double vernier", "retrograde vernier", "simple vernier"], a: keyMap['C'] },
+        { id: 26, q: "The errors which occur is either direction, are known as", options: ["Cumulative errors", "Compensating errors", "Accidental errors", "None of the above"], a: keyMap['B'] },
+        { id: 27, q: "An invar tape is made of an alloy of", options: ["Copper and steel", "Brass and nickel", "Brass and steel", "Nickel and steel"], a: keyMap['D'] },
+        { id: 28, q: "Which one of the following surveys is required in observations of stars?", options: ["Astronomical survey", "Cadastral survey", "Aerial survey", "Photogrammetric survey"], a: keyMap['A'] },
+        { id: 29, q: "The branch of surveying which deals with the measurement of bodies of water is called", options: ["Hydrology", "Fluid mechanics", "Hydraulics", "Hydrographic surveying"], a: keyMap['D'] },
+        { id: 30, q: "In hydrographic surveying", options: ["Only horizontal control is required", "Only vertical control is required", "Both horizontal and vertical controls are required.", "No such controls are required."], a: keyMap['C'] },
+        { id: 31, q: "The correction for the atmospheric refraction is equal to", options: ["+ 1/7 of the correction for curvature of the earth.", "1/7 of the correction for curvature of the earth.", "+ 6/7 of the correction for curvature of the earth.", "6/7 of the correction for curvature of the earth."], a: keyMap['A'] },
+        { id: 32, q: "Smallest unit of area of urban properties is.........", options: ["Sq. meter", "Acre", "Hectare", "Sq. centimeter"], a: keyMap['A'] },
+        { id: 33, q: "Sounding in hydrography means", options: ["Distance travelled by sound waves in water body", "Depth of water body at the point of measurement", "Velocity of water waves", "None of the above"], a: keyMap['B'] },
+        { id: 34, q: "The north line of the map is marked on the :", options: ["Left-hand bottom corner", "Left-hand top corner", "Right-hand top corner", "Left-hand south corner"], a: keyMap['C'] },
+        { id: 35, q: "The difference between the arc length and chord length for a distance of 18 km on earth is :", options: ["5 cm", "10 cm", "15 cm", "1 cm"], a: keyMap['B'] },
+        { id: 36, q: "Surveys which are carried out to provide a national grid of control for preparation of accurate maps of large areas are known", options: ["Plane surveys", "Geodetic surveys", "Geographical surveys", "Topographical surveys"], a: keyMap['B'] },
+        { id: 37, q: "The slope correction may be ignored if", options: ["The slope of the ground is less than 3°", "The slope of the ground is say 1 in 19", "Both of the above", "None of the above"], a: keyMap['C'] },
+        { id: 38, q: "A system of surveying in which sides of various triangles are measured directly in the field with a chain and no angular measurement taken, is known as", options: ["Plane table surveying.", "Compass surveying.", "Chain surveying.", "Theodolite surveying"], a: keyMap['C'] },
+        { id: 39, q: "In chain survey the area is divided into", options: ["Rectangles", "Triangles", "Squares", "Circles"], a: keyMap['B'] },
+        { id: 40, q: "Chain survey is recommended when the area is", options: ["Crowded", "Undulating", "Simple and fairly level", "All of the above"], a: keyMap['C'] },
+        { id: 41, q: "The over-all length of an adjusted 20 m chain should be within", options: ["± 2mm", "± 5mm", "± 8mm", "None"], a: keyMap['B'] },
+        { id: 42, q: "The accuracy of chaining depends upon the alertness of", options: ["Leader", "Follower", "Both of the above", "None"], a: keyMap['B'] },
+        { id: 43, q: "If a wooded area obstructs a chain line, then it is crossed by the:", options: ["Profile line", "Random line", "Projection line", "None of the above"], a: keyMap['B'] },
+        { id: 44, q: "Smallest graduation on an invar tape is", options: ["1mm", "3mm", "5mm", "10mm"], a: keyMap['A'] },
+        { id: 45, q: "A chain may get elongated due to :", options: ["Change in temperature", "Difference in pull", "Openings of rings", "Kinks in links"], a: keyMap['C'] },
+        { id: 46, q: "To erect a perpendicular to a chain line from a point on it :", options: ["3-4-5 method is used", "A ranging rod is used", "A trough compass is used", "A clinometer is used"], a: keyMap['A'] },
+        { id: 47, q: "The simplest type of surveying is.....surveying.", options: ["Plane table", "Compass", "Chain", "Theodolite"], a: keyMap['C'] },
+        { id: 48, q: "The chaining on sloping ground is", options: ["Easier along the falling gradient", "Easier along the up gradient", "Equally convenient along falling as well as up gradient", "All the of above"], a: keyMap['A'] },
+        { id: 49, q: "Each metre length of a metric chain is divided into.......links.", options: ["5", "10", "100", "150"], a: keyMap['A'] },
+        { id: 50, q: "The longest chain line passing through the centre of the area, is known as", options: ["Subsidiary line", "Tie line", "Check line", "Base line"], a: keyMap['D'] },
+        { id: 51, q: "The additional lines which are measured to show the correctness of the chain surveying are called:", options: ["Check lines", "Proof lines", "Tie lines", "All of the above"], a: keyMap['D'] },
+        { id: 52, q: "A 30 m chain is generally divided into ...........links and each link measures........cm.", options: ["150, 20", "100, 20", "150, 50", "100, 50"], a: keyMap['A'] },
+        { id: 53, q: "Metric chains are generally available in", options: ["10 m and 20 m length", "20 m and 30 m length", "15 m and 20 m length", "25 m and 100 m length"], a: keyMap['B'] },
+        { id: 54, q: "'Offsets' are", options: ["Short measurements from chain line", "Ties or check lines which are perpendicular to chain line", "Sets of minor instruments in chain surveying", "Chain lines which go out of alignment"], a: keyMap['A'] },
+        { id: 55, q: "In case of chaining across a building....is obstructed.", options: ["Ranging", "Vision", "Ranging and vision both", "None"], a: keyMap['C'] },
+        { id: 56, q: "The length of a standard arrow is", options: ["20cm", "30cm", "40cm", "50cm"], a: keyMap['C'] },
+        { id: 57, q: "A 20 m chain is divided into", options: ["60 links", "100 links", "150 links", "200 links"], a: keyMap['B'] },
+        { id: 58, q: "For the measurement of short offsets.....are used.", options: ["Offset rods", "Ranging rods", "Both of the above", "None"], a: keyMap['A'] },
+        { id: 59, q: "Ranging in distance measurements is", options: ["Another name of taping.", "A process of establishing intermediate points on a line.", "Putting the ranging rod on the hill top for reciprocal ranging.", "A process of determining the intersection of two straight lines."], a: keyMap['B'] },
+        { id: 60, q: "'Ranging' is the process of", options: ["fixing ranging rods on the extremities of the area", "aligning the chain in a straight line between two extremities", "taking offsets from a chain line", "chaining over a range of mountains"], a: keyMap['B'] },
+        { id: 61, q: "Reciprocal ranging is employed when", options: ["The two ends of a line are not intervisible.", "One end of a line is inaccessible.", "Both the ends are inaccessible", "The ends of the line are not visible even from intermediate points."], a: keyMap['A'] },
+        { id: 62, q: "The sag corrections on hills", options: ["Is positive.", "Is negative.", "May be either positive or negative.", "Is zero"], a: keyMap['B'] },
+        { id: 63, q: "A metallic tape is made of", options: ["Steel", "Invar", "Linen", "Cloth and wires"], a: keyMap['D'] },
+        { id: 64, q: "The length of Gunter's chain is", options: ["100 ft", "50 ft", "66 ft", "75 ft"], a: keyMap['C'] },
+        { id: 65, q: "The position of a point can be fixed more accurately by", options: ["Cross staff", "Optical square", "Oblique offsets", "Perpendicular offsets"], a: keyMap['D'] },
+        { id: 66, q: "The main object of running a tie line is", options: ["To check accuracy of work", "To take details of nearby objects", "To take offsets for detailed surveying", "None of the above"], a: keyMap['B'] },
+        { id: 67, q: "The permissible error in chaining for measurement with chain on rough or hilly ground is", options: ["1 in 100", "1 in 250", "1 in 500", "1 in 1000"], a: keyMap['B'] },
+        { id: 68, q: "The chainman who drags the chain is called the", options: ["Captain", "Leader", "Follower", "Labor"], a: keyMap['B'] },
+        { id: 69, q: "Which of the following is not used in measuring perpendicular offsets?", options: ["Line ranger", "Steel tape", "Optical square", "Cross staff"], a: keyMap['A'] },
+        { id: 70, q: "If the length of a chain is found to be short on testing, it can be adjusted by", options: ["Straightening the links", "Removing one or more small circular rings", "Closing the joints of the rings if opened out", "All of the above"], a: keyMap['A'] },
+        { id: 71, q: "The maximum tolerance in a 20m chain is", options: ["± 2 mm", "± 3 mm", "± 5 mm", "± 8 mm"], a: keyMap['C'] },
+        { id: 72, q: "The accuracy of measurement in chain surveying, does not depend upon", options: ["Length of the offset", "Scale of the plotting", "Importance of the features", "General layout of the chain lines"], a: keyMap['D'] },
+        { id: 73, q: "Perpendicularity of an offset may be judged by eye, if the length of the offset is", options: ["5 m", "10 m", "15 m", "20 m"], a: keyMap['C'] },
+        { id: 74, q: "Measuring with a 30 m chain, 0.01 m too short, introduces", options: ["Positive compensating error", "Negative compensating error", "Positive cumulative error", "Negative cumulative error"], a: keyMap['C'] },
+        { id: 75, q: "While measuring a chain line between two stations 'A' and 'B' intervened by a raised ground", options: ["Vision gets obstructed", "Chaining gets obstructed", "Both vision and chaining get obstructed", "All of the above"], a: keyMap['A'] },
+        { id: 76, q: "While measuring with a metallic tape of 30 m length pull should be applied", options: ["1 kg", "2 kg", "3 kg", "4 kg"], a: keyMap['C'] },
+        { id: 77, q: "When both true and magnetic meridians coincide then the magnetic declination is", options: ["Zero", "90°", "180°", "None"], a: keyMap['A'] },
+        { id: 78, q: "In a prismatic compass, the zero is marked on the", options: ["North end", "South end", "East end", "West end"], a: keyMap['B'] },
+        { id: 79, q: "If the true bearing of a line AB is 269° 30', then the azimuth of the line AB is", options: ["0°30'", "89°30'", "90°30'", "269°30'"], a: keyMap['C'] },
+        { id: 80, q: "In the prismatic compass", options: ["The magnetic needle moves with the box", "The line of the sight does not move with the box", "The magnetic needle and graduated circle do not move with the box", "The graduated circle is fixed to the box and the magnetic needle always remains in the N-S direction"], a: keyMap['C'] },
+        { id: 81, q: "In a surveyor compass, the zero is marked on the", options: ["North end", "South end", "Both of the above", "West end"], a: keyMap['C'] },
+        { id: 82, q: "A triangle is said to be well conditioned when its angles lie between", options: ["30° and 120°", "20° and 150°", "15° and 135°", "45° and 90°"], a: keyMap['A'] },
+        { id: 83, q: "The bearing of AB is 190° and that of CB is 260° 30'. The included angle ABC, is", options: ["80° 30'", "99° 30'", "70° 30'", "None of the above"], a: keyMap['C'] },
+        { id: 84, q: "If the quadrantal bearing of a line is N 25° W, then the whole circle bearing of the line is", options: ["S 25° E", "205°", "335°", "295°"], a: keyMap['C'] },
+        { id: 85, q: "If the fore bearing of a line AB is 35° and that of line BC 15°, then the included angle between the lines is", options: ["20°", "50°", "160°", "230°"], a: keyMap['C'] },
+        { id: 86, q: "Local attraction in compass surveying may exist due to", options: ["Incorrect levelling of the magnetic needle", "Loss of magnetism of the needle", "Friction of the needle at the pivot", "Presence of magnetic substances near the instrument"], a: keyMap['D'] },
+        { id: 87, q: "In a surveyor's compass, the ring is graduated", options: ["From 0° to 360°", "From 0° to 180°", "In quadrants 0° to 90°", "None"], a: keyMap['C'] },
+        { id: 88, q: "The angle of dip at a point on equator is", options: ["0°", "30°", "90°", "45°"], a: keyMap['A'] },
+        { id: 89, q: "If the magnetic bearing of the sun at a place at noon in southern hemisphere is 167°, the magnetic declination at the place is", options: ["77° N", "23° S", "13° E", "13° W"], a: keyMap['C'] },
+        { id: 90, q: "In the WCB system, a line is said to be free from local attraction is the difference between the FB and BB is", options: ["0°", "90°", "180°", "360°"], a: keyMap['C'] },
+        { id: 91, q: "Magnetic bearing of a survey line at any place", options: ["Remains constant", "Changes systematically", "Varies differently in different months of the year", "Is always greater than true bearing"], a: keyMap['C'] },
+        { id: 92, q: "Agate cap is fitted with a", options: ["Cross staff", "Level", "Chain", "Prismatic compass"], a: keyMap['D'] },
+        { id: 93, q: "A line joining points of zero declination is called", options: ["Agonic line", "Isogonic line", "Isoclinic line", "Survey line"], a: keyMap['A'] },
+        { id: 94, q: "The horizontal angle between the true meridian and the magnetic meridian is called", options: ["Dip", "Azimuth", "Declination", "None of above"], a: keyMap['C'] },
+        { id: 95, q: "If FB of a line is zero degree, its BB is", options: ["0°", "90°", "180°", "360°"], a: keyMap['C'] },
+        { id: 96, q: "The BB of a line is S30°W, its FB is", options: ["N 30° E", "N 30° W", "S 30° W", "S 30° E"], a: keyMap['A'] },
+        { id: 97, q: "The magnetic bearing of a line AB is 120° and the magnetic declination is 4°E, its true bearing is", options: ["116°", "124°", "120°", "4°"], a: keyMap['B'] },
+        { id: 98, q: "The true bearing of a line is 60° and the magnetic declination is 3° W, its magnetic bearing is", options: ["60°", "30°", "63°", "57°"], a: keyMap['C'] },
+        { id: 99, q: "The WCB of a line is 320°, its QB is", options: ["N 40° W", "N 40° E", "W 40° N", "E 40° N"], a: keyMap['A'] },
+        { id: 100, q: "The sum of interior angles of a closed traverse is", options: ["(N - 4) 90°", "(2N - 4) 90°", "2(N - 4) 90°", "(2N + 4) 90°"], a: keyMap['B'] },
+        { id: 101, q: "The box of the compass is made of", options: ["Brass", "Iron", "Aluminium", "Silver"], a: keyMap['A'] },
+        { id: 102, q: "The smaller angle which a line makes with true meridian, is called", options: ["Bearing", "Declination", "Azimuth", "Dip"], a: keyMap['C'] },
+        { id: 103, q: "At magnetic poles, dip of a magnetic needle is", options: ["0°", "45°", "90°", "180°"], a: keyMap['C'] },
+        { id: 104, q: "Meridian is a fixed direction on the surface of the earth, with reference to which ......... of survey lines are expressed.", options: ["Bearings", "Directions", "Angles", "None of the above"], a: keyMap['A'] },
+        { id: 105, q: "The least count of a prismatic compass is", options: ["15'", "15\"", "30'", "30\""], a: keyMap['C'] },
+        { id: 106, q: "Imaginary lines joining the points having same dip on the surface of the earth, are known as", options: ["Agonic line", "Aclinic line", "Isoclinic line", "Isogonic line"], a: keyMap['C'] },
+        { id: 107, q: "Imaginary line passing through points having equal magnetic declination is termed as", options: ["Agonic line", "Isoclinic line", "Isogonic line", "Aclinic line"], a: keyMap['C'] },
+        { id: 108, q: "In the WCB (Whole Circle Bearing) system, a line is said to be free from local attraction if the differences between FB and BB is", options: ["270°", "90°", "0°", "180°"], a: keyMap['D'] },
+        { id: 109, q: "The vertical angle between longitudinal axis of a freely suspended magnetic needle and a horizontal line at its pivot, is known", options: ["declination", "azimuth", "dip", "bearing"], a: keyMap['C'] },
+        { id: 110, q: "A negative declination shows that the magnetic meridian is on", options: ["West of the true meridian", "East of the true meridian", "South of the true meridian", "None of the above"], a: keyMap['A'] },
+        { id: 111, q: "If the whole circle bearing of a line is 270°, its reduced bearing is", options: ["N 90° W", "S 90° W", "W 90°", "90° W"], a: keyMap['C'] },
+        { id: 112, q: "Magnetic declination at any place", options: ["Remains constant", "Does not remain constant", "Fluctuates", "Changes abruptly"], a: keyMap['B'] },
+        { id: 113, q: "A bearing of a line is also known as", options: ["Magnetic bearing", "True bearing", "Azimuth", "Reduced bearing"], a: keyMap['B'] },
+        { id: 114, q: "Levelling deals with measurement in", options: ["Horizontal plane", "Vertical plane", "Inclined plane", "Both horizontal and vertical plane"], a: keyMap['B'] },
+        { id: 115, q: "The branch of surveying which deals with the measurements in a vertical plane is known as", options: ["Plane tabling", "Levelling", "Traversing", "None of above"], a: keyMap['B'] },
+        { id: 116, q: "A plane, which is perpendicular to the plumb line through a point and is tangential to the level surface at that point is called a", options: ["Tangential plane", "Vertical plane", "Level plane", "Horizontal plane"], a: keyMap['D'] },
+        { id: 117, q: "Benchmark is established by", options: ["Hyposometry", "barometric levelling", "spirit levelling", "trigonometrical levelling"], a: keyMap['C'] },
+        { id: 118, q: "The height of instrument (HI) in levelling is the", options: ["Elevation of line of sight with respect to a datum", "Elevation of line of sight with respect to MSL", "Height of telescope axis above the ground", "None of above"], a: keyMap['A'] },
+        { id: 119, q: "The surface of still water is considered to be", options: ["Level", "Horizontal", "Smooth", "Curved"], a: keyMap['A'] },
+        { id: 120, q: "A fixed point of reference, whose elevation is known is called", options: ["Station", "Bench mark", "Reduced level", "Change point"], a: keyMap['B'] },
+        { id: 121, q: "A reference surface above which elevations of points are determined, is called", options: ["M.S.L", "Level surface", "Bench mark", "Datum surface"], a: keyMap['D'] },
+        { id: 122, q: "The staff reading taken on a point whose elevation is known is called", options: ["Fore sight", "Back sight", "Intermediate sight", "Fixed point"], a: keyMap['B'] },
+        { id: 123, q: "When temperature rises, the length of bubble of the bubble tube", options: ["Remains unaltered", "Decreases", "Increases", "Is uncertain"], a: keyMap['B'] },
+        { id: 124, q: "Water surface at rest is a :", options: ["Level surface", "Horizontal surface", "Tangential surface", "None"], a: keyMap['A'] },
+        { id: 125, q: "A Bench Mark is :", options: ["A reference point", "A point of known elevation", "The very first station in levelling", "Last station where survey closes"], a: keyMap['B'] },
+        { id: 126, q: "In a levelling work $\\Sigma$ Rise & $\\Sigma$ Fall = zero, then the ground is :", options: ["Continuously falling", "Continuously rising", "Undulating", "Perfectly level"], a: keyMap['D'] },
+        { id: 127, q: "During levelling if back sight is more than foresight", options: ["The forward staff is at lower point", "The back staff is at lower point", "The difference in level, cannot be ascertained", "None of the above"], a: keyMap['B'] },
+        { id: 128, q: "Mean sea level at any place is the average datum of hourly tide heights observed over a period of nearly", options: ["5 years", "10 years", "19 years", "50 years"], a: keyMap['C'] },
+        { id: 129, q: "The station on which both back sight and fore sight are taken is called", options: ["Change point", "Bench mark", "Intermediate point", "Datum point"], a: keyMap['A'] },
+        { id: 130, q: "The operation of levelling across any river or water bodies is termed", options: ["Profile levelling", "Reciprocal levelling", "Compound levelling", "Fly levelling"], a: keyMap['B'] },
+        { id: 131, q: "If the reading of the back sight is more than that of foresight, then the forward station is", options: ["Higher than the back station.", "Lower than the back station.", "Same level the back station.", "None of the above"], a: keyMap['A'] },
+        { id: 132, q: "If R.L. of a B.M. is 200.000 m, back sight is 1.525 m and foresight is 3.285 m, R.L. of the forward station, is", options: ["201.760 m", "198.240 m", "201.525 m", "None"], a: keyMap['B'] },
+        { id: 133, q: "Smallest division of a levelling staff is", options: ["1mm", "3mm", "5mm", "10mm"], a: keyMap['C'] },
+        { id: 134, q: "If the staff is not held vertical at a levelling station, the reduced level calculated from the observation would be", options: ["True R.L.", "More than true R.L.", "Less than true R.L", "None of the above"], a: keyMap['C'] },
+        { id: 135, q: "The line normal to the plumb line is known as", options: ["horizontal line", "level line", "datum line", "vertical line"], a: keyMap['B'] },
+        { id: 136, q: "The R.L. of the point A which is on the floor is 100m and back sight reading on A is 2.455 m. If the foresight reading on the point B which is on the ceiling is 2.745 m, the R.L. of point B will be", options: ["94.80 m", "99.71 m", "100.29 m", "105.20 m"], a: keyMap['D'] },
+        { id: 137, q: "Error due to inclination of line of collimation in leveling across a river can be eliminated by", options: ["Reversion", "Reciprocal ranging", "Reciprocal leveling", "Keeping level in middle"], a: keyMap['C'] },
+        { id: 138, q: "The longitudinal section of the surface of bubble tube is", options: ["Straight", "Circular", "Parabolic", "Elliptic"], a: keyMap['B'] },
+        { id: 139, q: "The radius of curvature of the arc of the bubble tube is generally kept", options: ["10 m", "25 m", "50 m", "100 m"], a: keyMap['D'] },
+        { id: 140, q: "Cross hairs in surveying telescopes, are fitted", options: ["In the objective glass", "At the centre of the telescope", "At the optical centre of the eye piece", "In front of the eye piece"], a: keyMap['D'] },
+        { id: 141, q: "The intercept of a staff", options: ["Is maximum if the staff is held truly normal to the line of sight", "Is minimum if the staff is held truly normal to the line of sight", "Decreases if the staff is tilted away from normal", "Increases if the staff is tilted towards normal"], a: keyMap['B'] },
+        { id: 142, q: "In a constant level tube, size of the bubble remains constant because upper wall is", options: ["Of relatively larger radius", "Of relatively smaller radius", "Flat", "Convex downwards"], a: keyMap['A'] },
+        { id: 143, q: "The sensitiveness of a level tube decreases if", options: ["Radius of curvature of its inner surface is increased", "Diameter of the tube is increased", "Length of the vapour bubble is increased", "Both viscosity and surface tension are increased"], a: keyMap['D'] },
+        { id: 144, q: "For high sensitivity of the bubble tube", options: ["A liquid of low viscosity is used", "A liquid of low surface tension is used", "The bubble space should be long", "All of the above"], a: keyMap['D'] },
+        { id: 145, q: "Profile levelling is usually done for determining", options: ["Contours of an area", "Capacity of a reservoir", "Elevations along a straight line", "Boundaries of property"], a: keyMap['C'] },
+        { id: 146, q: "Diaphragm of a surveying telescope is held inside", options: ["Eye-piece", "Objective", "Telescope tube at its midpoint", "Telescope at the end nearer the eye-piece"], a: keyMap['D'] },
+        { id: 147, q: "Determining the difference in elevation between two points on the surface of the earth, is known as", options: ["Levelling", "Simple levelling", "Differential levelling", "Longitudinal levelling"], a: keyMap['C'] },
+        { id: 148, q: "The method of finding out the difference in elevation between two points for eliminating the effect of curvature and refraction, is", options: ["Reciprocal levelling", "Precise levelling", "Differential levelling", "Flying levelling"], a: keyMap['A'] },
+        { id: 149, q: "In horizontal angles, the error due to imperfect levelling of the plate bubble is", options: ["Large when sights are nearly level", "Large for long sights", "Less for steeply inclined sights", "Large for steeply inclined sights"], a: keyMap['D'] },
+        { id: 150, q: "When the bubble of the level tube of a level, remains central", options: ["Line of sight is horizontal", "Axis of the telescope is horizontal", "Line of collimation is horizontal", "Geometrical axis of the telescope is horizontal"], a: keyMap['A'] },
+        { id: 151, q: "The line of collimation method of reduction of levels, does not provide a check on", options: ["intermediate sights", "fore sights", "back sights", "reduced levels"], a: keyMap['A'] },
+        { id: 152, q: "In reciprocal levelling, the error which is not fully eliminated is due to:", options: ["Earth's curvature", "Inclined line of sight", "Refraction", "Both A & C above"], a: keyMap['C'] },
+        { id: 153, q: "In levelling operation", options: ["the first sight on any change point is a back sight", "the second sight on any change point is a fore sight", "the line commences with a fore sight and closes with a back sight", "the line commences with a back sight and closes with a foresight"], a: keyMap['D'] },
+        { id: 154, q: "The real image of an object formed by the objective must lie", options: ["In the plane of cross hairs", "At the centre of the telescope", "At the optical centre of the eye-piece", "Anywhere inside the telescope"], a: keyMap['A'] },
+        { id: 155, q: "Which one of the following methods of levelling eliminates the error due to curvature and refraction?", options: ["Fly levelling", "Levelling by equalizing the distance of back sight and foresight", "Check leveling", "Precise levelling"], a: keyMap['B'] },
+        { id: 156, q: "The correction for curvature of earth is given by", options: ["$0.0785d^2$", "$0.01122d^2$", "$0.0673d^2$", "$0.785 d^2$"], a: keyMap['A'] },
+        { id: 157, q: "The combined correction for earth's curvature and refraction in linear measurement is given by", options: ["$0.0785d^2$", "$0.01122d^2$", "$0.0673d^2$", "$0.785 d^2$"], a: keyMap['C'] },
+        { id: 158, q: "Refraction error is the least in case of", options: ["Stadia tacheometry", "Tangential tacheometry", "Subtense bar tacheometry", "Omnimeters"], a: keyMap['C'] },
+        { id: 159, q: "While viewing through a level telescope and moving the eye slightly, a relative movement occurs between the image of the levelling staff and the cross hairs. The instrument is", options: ["Correctly focussed", "Not correctly focussed", "Said to have parallax", "Free from parallax"], a: keyMap['C'] },
+        { id: 160, q: "As applied to staff readings, the corrections for curvature and refraction are respectively", options: ["+ and -", "- and +", "+ and +", "- and -"], a: keyMap['B'] },
+        { id: 161, q: "Which of the following arithmetic checks can be applied in rise and fall method?", options: ["$\\Sigma$ B.S. - $\\Sigma$ F.S. = $\\Sigma$ Rise - $\\Sigma$ Fall only", "$\\Sigma$ B.S. - $\\Sigma$ F.S. = Last R.L. - First R.L. only", "$\\Sigma$ Rise - $\\Sigma$ Fall = Last R.L. - First R.L. only", "$\\Sigma$ B.S. - $\\Sigma$ F.S. = $\\Sigma$ Rise - $\\Sigma$ Fal = Last R.L. - First R.L."], a: keyMap['D'] },
+        { id: 162, q: "Collimation method is used in", options: ["Profile levelling", "Differential levelling", "Check levelling", "Both (a) and (b)"], a: keyMap['A'] },
+        { id: 163, q: "Rise and fall method is used in.", options: ["Profile levelling", "Differential levelling", "Check levelling", "None of these"], a: keyMap['C'] },
+        { id: 164, q: "The sensitivity of a bubble tube can be increased by", options: ["Increasing the diameter of the tube", "Decreasing the length of bubble", "Increasing the viscosity of liquid", "Decreasing the radius of curvature of tube"], a: keyMap['A'] },
+        { id: 165, q: "With the rise of temperature, the sensitivity of a bubble tube", options: ["Decreases", "Increases", "Remains unaffected", "None of the above"], a: keyMap['A'] },
+        { id: 166, q: "The height of instrument method of reducing levels is preferred when", options: ["There are large numbers of intermediate sights.", "There are no intermediate sights.", "There are large numbers of fore sights.", "There are no fore sights."], a: keyMap['A'] },
+        { id: 167, q: "Sensitivity of a bubble tube depends on", options: ["The radius of curvature.", "The length of the vapour bubble.", "The smoothness of the inner surface of the bubble tube.", "All of the above."], a: keyMap['D'] },
+        { id: 168, q: "The difference between a level line and a horizontal line is that", options: ["Level line is a curved line while horizontal line is a straight line", "Level line is normal to plumb line while horizontal line may not be normal to plumb line at the tangent point to level line", "Horizontal line is normal to plumb line while level line may not be normal to the plumb line", "Both are same"], a: keyMap['A'] },
+        { id: 169, q: "If the back sight reading at point A is greater than the fore sight reading at point B then", options: ["A is higher than B.", "B is higher than A.", "Height of the instrument is required to know which point is higher.", "Instrument position is required to know which point is higher."], a: keyMap['B'] },
+        { id: 170, q: "Change points in levelling are", options: ["The instrument stations that are changed from one position to another.", "The staff stations that are changed from point to point to obtain the reduced levels of the points.", "The staff stations of known elevations.", "The staff stations where back sight and fore sight readings are taken."], a: keyMap['D'] },
+        { id: 171, q: "The total change in level along the line is equal to total back sights", options: ["Minus total fore sights", "The total rises minus total falls", "The reduced level of last point minus reduced level of the first point", "All of the above"], a: keyMap['D'] },
+        { id: 172, q: "It is required to produce a small-scale map of an area in a magnetic zone by directly plotting and checking the work in the field itself. Which one of the following surveys will be most appropriate for this purpose?", options: ["Chain", "Theodolite", "Plane Table", "Compass"], a: keyMap['C'] },
+        { id: 173, q: "The principle of plane tabling is", options: ["Traversing", "Triangulation", "Parallelism", "None of above"], a: keyMap['C'] },
+        { id: 174, q: "Regarding plane-table survey, which of the following statements does not hold?", options: ["All the plotting work including contouring can be done in the field", "It is quite suitable for small scale surveys", "Less number of control points are required", "It can be done in all seasons"], a: keyMap['D'] },
+        { id: 175, q: "The process of keeping the plane table into a fixed direction so that a line representing a direction on the plan is parallel to its direction on the ground is called", options: ["Centering", "Orientation", "Levelling", "Resection"], a: keyMap['B'] },
+        { id: 176, q: "The length of an alidade should be equal to", options: ["Length of the plane table", "Breadth of the plane table", "Height of the plane table", "None of the above"], a: keyMap['A'] },
+        { id: 177, q: "In plane tabling, the straight lines, angles and triangles are constructed with a", options: ["Protractor", "Divider", "Scale", "Graphically"], a: keyMap['D'] },
+        { id: 178, q: "Which of the following instrument is used for marking north direction in plane tabling", options: ["Spirit level", "Trough Compass", "U-fork", "Alidade"], a: keyMap['B'] },
+        { id: 179, q: "It is required to produce a small-scale map of an area in a magnetic zone by directly plotting and checking the work in the field itself. Which one of the following surveys will be most appropriate for this purpose?", options: ["Chain", "Theodolite", "Plane Table", "Compass"], a: keyMap['C'] },
+        { id: 180, q: "In setting up a plane table, the operation which is done first is", options: ["Levelling", "Centering", "Orientation", "Resection"], a: keyMap['A'] },
+        { id: 181, q: "Locating the position of a plane table station with reference to three known points, is known as", options: ["Intersection method", "Radiation method", "Two point problem", "Three point problem"], a: keyMap['D'] },
+        { id: 182, q: "Inaccessible points may be located by", options: ["Radiation", "Intersection", "Traversing", "Resection"], a: keyMap['B'] },
+        { id: 183, q: "Two point and three point problems are methods of", options: ["Resection only", "Orientation only", "Resection and orientation", "Traversing"], a: keyMap['C'] },
+        { id: 184, q: "The two point problem as compared to three point problem is", options: ["More accurate", "Quicker", "More laborious", "All of above"], a: keyMap['C'] },
+        { id: 185, q: "Three point problem can be solved by", options: ["Lehmann's method", "Bessel's method", "Tracing Paper method", "All of the above"], a: keyMap['D'] },
+        { id: 186, q: "The working edge of the alidade is known as", options: ["Fiducial edge", "Parallel edge", "Drawing edge", "Straight edge"], a: keyMap['A'] },
+        { id: 187, q: "The u-fork and plumb bob are required for", options: ["Levelling", "Centering", "Orientation", "Bisecting"], a: keyMap['B'] },
+        { id: 188, q: "The method of orienting a plane table with two inaccessible points is called", options: ["Intersection", "Resection", "Back sighting", "Two-point problem"], a: keyMap['D'] },
+        { id: 189, q: "Which method is most preferred for orientation in plane tabling?", options: ["By traversing", "By magnetic needle", "By backsighting", "None of above"], a: keyMap['C'] },
+        { id: 190, q: "The instrument used for accurate centering in plane table survey is", options: ["Spirit level", "Alidade", "Plumbing fork", "Trough compass"], a: keyMap['C'] },
+        { id: 191, q: "The process of determining the locations of the instrument station by drawing resectors from the locations of the known stations is called", options: ["Radiation", "Intersection", "Traversing", "Resection"], a: keyMap['D'] },
+        { id: 192, q: "Which of the following methods of plane table surveying is used to locate the position of an inaccessible poins?", options: ["Radiation", "Intersection", "Traversing", "Resection"], a: keyMap['B'] },
+        { id: 193, q: "The type of surveying which requires least office work is", options: ["tacheometry", "trigonometrical levelling", "plane table surveying", "theodolite surveying"], a: keyMap['C'] },
+        { id: 194, q: "Intersection method of detailed plotting is most suitable for", options: ["forests", "urban areas", "hilly areas", "plains"], a: keyMap['C'] },
+        { id: 195, q: "Detailed plotting is generally done by", options: ["radiation", "traversing", "resection", "all of the above"], a: keyMap['A'] },
+        { id: 196, q: "The size of a plane table is", options: ["750 mm $\\times$ 900 mm", "600 mm $\\times$ 750 mm", "450 mm $\\times$ 600 mm", "300 mm $\\times$ 450 mm"], a: keyMap['B'] },
+        { id: 197, q: "The process of determining the locations of the instrument station by drawing resectors from the locations of the known stations is called", options: ["radiation", "intersection", "resection", "traversing"], a: keyMap['C'] },
+        { id: 198, q: "The resection by two point problem as compared to three point problem", options: ["gives more accurate problem", "takes less time", "requires more labour", "none of the above"], a: keyMap['C'] },
+        { id: 199, q: "The instrument which is used in plane table surveying for determining the horizontal distances without tape or chain is called", options: ["Plane alidade", "Telescopic alidade", "Tacheometer", "Clinometer"], a: keyMap['B'] },
+        { id: 200, q: "In plane tabling details are obtained by drawing rays from the station to objects, the method is called", options: ["Radiation", "Intersection", "Traversing", "Resection"], a: keyMap['A'] },
+        { id: 201, q: "Necessary elevations required for contouring in conjunction with plane tabling may be obtained by using", options: ["Clinometer", "Telescopic alidade", "Both of the above", "Compass"], a: keyMap['C'] },
+        { id: 202, q: "The process of determining the plotted position of the station occupied by the plane table by means of sights taken towards points of known location is called", options: ["Resection", "Intersection", "Orientation", "None of the above"], a: keyMap['A'] },
+        { id: 203, q: "To get an accurate orientation, the instrument station", options: ["Should lie on the great circle", "Should not lie on the great circle", "Accurate in both cases", "None"], a: keyMap['B'] },
+        { id: 204, q: "The circle passing through the positions of the known points or their locations, is known as", options: ["Zero circle", "Great circle", "Great triangle", "None"], a: keyMap['B'] },
+        { id: 205, q: "The triangle formed by joining the positions of the known points or their locations on a plane table, is known as", options: ["Zero circle", "Great circle", "Great triangle", "Triangle of error"], a: keyMap['C'] },
+        { id: 206, q: "The accuracy with which the instrument station can be established is known as the :", options: ["Strength of fix", "Strength of accuracy", "Strength of solution", "Strength of station"], a: keyMap['A'] },
+        { id: 207, q: "Strength of fix is poor when :", options: ["Station is on the great circle", "Station is outside the great circle", "Station is within the great triangle", "Station is within great circle but outside great triangle."], a: keyMap['A'] },
+        { id: 208, q: "Advantage of plane tabling is:", options: ["It is intended for accurate work", "Field book is not necessary", "Suitable for preparing large-scale map", "It does not require a skilled worker"], a: keyMap['B'] },
+        { id: 209, q: "In a Plane Table Survey, locations of objects are plotted by :", options: ["Traversing method", "Radiation method", "Resection method", "All of these"], a: keyMap['B'] },
+        { id: 210, q: "Accuracy with which a plane table is located on the map in a revision survey is known as:", options: ["Strength of station", "Strength of fix", "Strength of accuracy", "Accuracy"], a: keyMap['B'] },
+        { id: 211, q: "A plane table map can be plotted on a different scales if there is:", options: ["Field book", "Level book", "Angle book", "Cannot be plotted"], a: keyMap['D'] },
+        { id: 212, q: "Location of a point P by resection is done by observing", options: ["One control point from P.", "Two control points from P.", "Three control points from P.", "P from three control points."], a: keyMap['C'] },
+        { id: 213, q: "The instrument which is used in plane tabling for obtaining horizontal and vertical distances directly without resorting to chaining, is known as", options: ["Plane alidade", "Telescopic alidade", "Clinometer", "Tacheometer"], a: keyMap['B'] },
+        { id: 214, q: "Accuracy of 'fix' by two point problem, is", options: ["Bad", "Good", "Not reliable", "Unique"], a: keyMap['C'] },
+        { id: 215, q: "While surveying a plot of land by plane tabling, the field observations", options: ["And plotting proceed simultaneously", "And recorded in field books to be plotted later", "And plotting do not proceed simultaneously", "All of the above"], a: keyMap['A'] },
+        { id: 216, q: "Orientation of a plane table by solving two point problems is only adopted when", options: ["Saving of time is a main factor", "Better accuracy is a main factor", "Given points are inaccessible", "None of the above"], a: keyMap['C'] },
+        { id: 217, q: "Which one of the following procedures for getting accurate orientation is the most distinctive feature of the art of plane tabling?", options: ["Radiation", "Intersection", "Traversing", "Resection"], a: keyMap['D'] },
+        { id: 218, q: "The 'fix' of a plane table from three known points, is good, if", options: ["Middle station is nearest", "Middle station is farthest", "Either the right or left station is nearest", "None of these"], a: keyMap['A'] },
+        { id: 219, q: "The 'fix' of a plane table station with three known points, is bad if the plane table station lies", options: ["In the great triangle", "Outside the great triangle", "On the circumference of the circumscribing circle", "None of these"], a: keyMap['C'] },
+        { id: 220, q: "In setting up a plane table at any station", options: ["Levelling is done first", "Both levelling and centering are done simultaneously", "Centering is done first", "Orientation is done first"], a: keyMap['B'] },
+        { id: 221, q: "Subtense bar is an instrument used for", options: ["levelling", "measurement of horizontal distances in undulated areas", "measurement of horizontal distances in plane areas", "measurement of angles"], a: keyMap['B'] },
+        { id: 222, q: "The subtensetacheometry method is adopted when the ground is", options: ["Flat", "Inclined", "Undulating", "A water body"], a: keyMap['C'] },
+        { id: 223, q: "Turning the telescope in the vertical plane about the horizontal axis is called", options: ["Transiting", "Plunging", "Swinging", "Both A and B above"], a: keyMap['D'] },
+        { id: 224, q: "The operation of revolving the telescope in the horizontal plane about its vertical axis is called", options: ["Swinging", "Transiting", "Plunging", "None of the above"], a: keyMap['A'] },
+        { id: 225, q: "The cross hair in a surveying telescope, are placed much closer to the", options: ["Eye piece", "Objective lens", "Vertical circle", "None of the above"], a: keyMap['A'] },
+        { id: 226, q: "When the line of sight is perpendicular to the horizontal axis, the vertical circle reads", options: ["0°", "90°", "180°", "270°"], a: keyMap['A'] },
+        { id: 227, q: "Setting out a simple curve by two theodolite method does not require", options: ["angular measurements", "both angular and linear measurements", "linear measurements", "none"], a: keyMap['C'] },
+        { id: 228, q: "Setting out a simple curve by two theodolite method eliminates", options: ["Linear measurements", "Angular measurements", "Both of the above", "None"], a: keyMap['A'] },
+        { id: 229, q: "Setting out a curve by two theodolite method, involves", options: ["Linear measurements only", "Angular measurements only", "Both linear and angular measurements", "None of the above"], a: keyMap['B'] },
+        { id: 230, q: "Face left and face right observations eliminate......error.", options: ["Eccentricity", "Graduation", "Index", "Collimation"], a: keyMap['D'] },
+        { id: 231, q: "The angular error in a closed traverse should not exceed", options: ["$15\\sqrt{N} \\text{ min}$", "$30\\sqrt{N} \\text{ min}$", "$10\\sqrt{N} \\text{ min}$", "$\\sqrt{N} \\text{ min}$"], a: keyMap['A'] },
+        { id: 232, q: "The Parallax can be removed by", options: ["Focussing the objective", "Focussing the eye piece", "Focussing both the eye piece and objective", "None of above"], a: keyMap['C'] },
+        { id: 233, q: "The size of a theodolite is designated by", options: ["The length of the telescope", "The height of the theodolite plate", "The diameter of the telescope", "The diameter of the graduated circle on the lower plate"], a: keyMap['D'] },
+        { id: 234, q: "The horizontal angle between two lines is generally measured in theodolite", options: ["Clockwise from the forward station", "Counter-clockwise from the forward station", "Clockwise from the back station", "Counter-clockwise from the backward station"], a: keyMap['C'] },
+        { id: 235, q: "For which of the following permanent adjustments of theodolite, the spire test is used?", options: ["Adjustment of plate levels", "Adjustment of horizontal axis", "Adjustment of line of sight", "Adjustment of altitude bubble and vertical index frame"], a: keyMap['B'] },
+        { id: 236, q: "Which of the following errors can be eliminated by taking mean of both face observations?", options: ["Error due to imperfect graduations", "Error due to eccentricity of verniers", "Error due to imperfect adjustment of plate levels", "Error due to line of collimation not being perpendicular to horizontal axis"], a: keyMap['D'] },
+        { id: 237, q: "A theodolite can measure", options: ["Difference in angle", "Bearing of a line", "Zenith angle", "All of the above"], a: keyMap['D'] },
+        { id: 238, q: "In a closed traverse, the algebraic sum of the latitudes and departures must be equal to", options: ["0°", "90°", "180°", "360°"], a: keyMap['A'] },
+        { id: 239, q: "The face left position is also called", options: ["Telescope reversed", "Telescope inverted", "Telescope normal", "None of above"], a: keyMap['C'] },
+        { id: 240, q: "A theodolite in which the telescope can be revolved through a complete revolution in a vertical plane is known as a", options: ["Vernier theodolite", "Tilting theodolite", "Non-transit theodolite", "Transit theodolite"], a: keyMap['D'] },
+        { id: 241, q: "When the vertical circle is to the right side of the observer, it is called", options: ["Telescope inverted", "Telescope normal", "Telescope reversed", "none of above"], a: keyMap['A'] },
+        { id: 242, q: "Tacheometry is best suited to survey a ....... ground.", options: ["Level", "Undulating", "Congested", "All of the above"], a: keyMap['B'] },
+        { id: 243, q: "Tacheometry is the branch of surveying in which measurement of distances is made by", options: ["Chaining", "Pacing", "Computation", "None of the above"], a: keyMap['C'] },
+        { id: 244, q: "A stadia diaphragm consists of......vertical and .......horizontal hairs.", options: ["One, three", "Two, three", "Three, one", "Three, two"], a: keyMap['A'] },
+        { id: 245, q: "The diaphragm of a stadia theodolite is fitted with two additional", options: ["Horizontal hairs", "Vertical hairs", "Horizontal and two vertical hairs", "None of these"], a: keyMap['A'] },
+        { id: 246, q: "Multiplying constants of the theodolites / tacheometers, are kept......by the manufacturers.", options: ["0", "50", "100", "300"], a: keyMap['C'] },
+        { id: 247, q: "A 15 cm theodolite means", options: ["Length of telecscope is 15 cm", "Height of standards is 15 cm", "Diameter of lower plate is 15 cm", "Radius of upper plate is 15 cm"], a: keyMap['C'] },
+        { id: 248, q: "Anallatic lens is a :", options: ["Convex lens", "Concave lens", "Concavo-convex lens", "Plain lens"], a: keyMap['A'] },
+        { id: 249, q: "Line of collimation of the theodolite is the line:", options: ["Joining the optical centre of the objective and eyepiece", "About which telescope can be rotated", "Joining intersection of cross hairs to the optical centre of the objective", "which is horizontal"], a: keyMap['C'] },
+        { id: 250, q: "Relative movement between cross hair and the staff reading, is due to", options: ["Error in the line of collimation", "Error in the trunion axis", "Parallax error", "All of the above"], a: keyMap['C'] },
+        { id: 251, q: "The imaginary line passing through the intersection of cross hairs and the optical centre of the objective, is known as", options: ["Line of sight", "Line of collimation", "Axis of the telescope", "None of the above"], a: keyMap['B'] },
+        { id: 252, q: "In a theodolite traverse for land surveying, the length of the traverse lines are generally measured with", options: ["Chain", "Metallic tape", "Steel tape", "Invar tape"], a: keyMap['C'] },
+        { id: 253, q: "The most accurate method of plotting a theodolite traverse is by:", options: ["Consecutive coordinates", "Independent coordinates", "Included angles", "Tangent method"], a: keyMap['B'] },
+        { id: 254, q: "The operation of making the algebraic sum of latitudes and departures of a closed traverse, each equal to zero, is known as", options: ["Balancing the sights", "Balancing the departures", "Balancing the latitudes", "Balancing the traverse"], a: keyMap['D'] },
+        { id: 255, q: "Horizontal distances obtained tacheometerically are corrected for", options: ["Slope correction", "Temperature correction", "Refraction and curvature correction", "All of the above"], a: keyMap['C'] },
+        { id: 256, q: "The line joining the points having the same elevation above the datum surface, is called a", options: ["contour surface", "contour line", "contour interval", "contour gradient"], a: keyMap['B'] },
+        { id: 257, q: "The contour interval depends upon the", options: ["nature of the ground", "scale of map", "purpose and extent of survey", "all of these"], a: keyMap['D'] },
+        { id: 258, q: "The vertical distance between any two consecutive contours is called", options: ["vertical equivalent", "horizontal equivalent", "contour interval", "contour gradient"], a: keyMap['C'] },
+        { id: 259, q: "The horizontal distance between any two consecutive contours is called", options: ["vertical equivalent", "horizontal equivalent", "contour interval", "contour gradient"], a: keyMap['B'] },
+        { id: 260, q: "The contour lines can cross one another on map only in the case of", options: ["a vertical cliff", "a valley", "a ridge", "an overhanging cliff"], a: keyMap['D'] },
+        { id: 261, q: "When several contours coincide, it indicates", options: ["a vertical cliff", "a valley", "a ridge", "an overhanging cliff"], a: keyMap['A'] },
+        { id: 262, q: "Which of the following classification in surveying is based on the instrument used?", options: ["Topographic surveying", "Traverse surveying", "Cadastral surveying", "Hydrographic surveying"], a: keyMap['B'] },
+        { id: 263, q: "The global positioning system operated by the US department of defence uses", options: ["6 satellites", "12 satellites", "18 satellites", "24 satellites"], a: keyMap['D'] },
+        { id: 264, q: "The position of a point can be located in GPS on receiving signals from at least", options: ["1 Satellite", "2 Satellites", "3 Satellites", "4 Satellites"], a: keyMap['D'] },
+        { id: 265, q: "EDM instruments are used for measurement of", options: ["Short distances", "medium distances", "Long distances", "None of the above"], a: keyMap['C'] },
+        { id: 266, q: "Electromagnetic distance measuring instruments use", options: ["Radiation frequencies from visible light to microwaves", "Radiation frequencies like x-rays", "Radiation frequencies like gamma rays", "Radio waves"], a: keyMap['A'] },
+        { id: 267, q: "Altimetry may be depicted most accurately by", options: ["Hachures", "Relief shading", "Layer tinting", "Contour lines"], a: keyMap['D'] },
+        { id: 268, q: "Electronic distance measurement instruments use", options: ["X-rays.", "Sound waves.", "Light waves.", "Magnetic flux."], a: keyMap['C'] },
+        { id: 269, q: "Modern EDM instruments work on the principle of measuring", options: ["The reflected energy generated by electromagnetic waves.", "Total time taken by electromagnetic wave in travelling the distance.", "The change in frequency of the electromagnetic waves.", "The phase difference between the transmitted and the reflected electromagnetic waves."], a: keyMap['D'] },
+        { id: 270, q: "The range of infrared EDM instrument is generally limited to measuring the distances", options: ["2 to 3 km.", "20 to 30 km.", "200 to 300 km.", "more than 300 km."], a: keyMap['A'] },
+        { id: 271, q: "Electromagnetic waves are unaffected by", options: ["Air temperature.", "Atmospheric pressure.", "Vapour pressure.", "Wind speed."], a: keyMap['D'] },
+        { id: 272, q: "A clinometer is used to measure :", options: ["Distance approximately", "The angle of a slope", "Reduced level of a plane", "Bearing of a line."], a: keyMap['B'] },
+        { id: 273, q: "A planimeter is used for measuring :", options: ["Inclination of a slope", "Altitude of a place", "Area of a map", "Speed of an automobile"], a: keyMap['C'] },
+        { id: 274, q: "The odd instrument out of the following is :", options: ["Theodolite", "Prismatic compass", "Box sextant", "Dumpy level"], a: keyMap['D'] },
+        { id: 275, q: "What is the minimum number of satellites required from which signals can be recorded to enable a global positioning system receiver to determine latitude, longitude and altitude?", options: ["1", "2", "3", "4"], a: keyMap['D'] },
+        { id: 276, q: "Triangulation station selected close to the main station for avoiding intervening obstruction is called", options: ["Eccentric station", "Pivot station", "Satellite station", "Tie station"], a: keyMap['C'] },
+        { id: 277, q: "Modern EDM instruments are based on the principle of", options: ["Measurement of phase difference in the transmitted and received radiations", "The cooperative radar", "The speed of all radiations being constant or the same", "High frequency radiations having the same speed in any medium."], a: keyMap['A'] },
+        { id: 278, q: "The range and accuracy of EDM instruments vary such that", options: ["Short range instruments have better accuracy", "Short range instruments have less accuracy", "High range instruments have better accuracy", "The range and accuracy are the same for all instruments"], a: keyMap['A'] },
+        { id: 279, q: "A total station is", options: ["A combination of an electronic theodolite and digital level", "A combination of an electronic theodolite and a tacheometer", "An electronic theodolite with levelling capabilities", "A digital theodolite combined with an EDM module"], a: keyMap['D'] },
+        { id: 280, q: "A smart station is", options: ["A total station with software to calculate and display many quantities", "A total station with an integrated GPS module", "With display units on both sides", "A total station attached to a computer"], a: keyMap['B'] },
+        { id: 281, q: "The global positioning system operated by the US department of defence uses", options: ["6 satellites", "12 satellites", "18 satellites", "24 satellites"], a: keyMap['D'] },
+        { id: 282, q: "The position of a point can be located in GPS on receiving signals from at least", options: ["1 Satellite", "2 Satellites", "3 Satellites", "4 Satellites"], a: keyMap['D'] },
+        { id: 283, q: "A major requirement of GIS application is", options: ["The need to manage spatially referenced data", "Images from satellites", "Vector date structure", "Rastor data structure"], a: keyMap['A'] }
+    ];
+
+    const totalQuestions = quizData.length; // No need for timer variables
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * and disables the radio buttons for the question.
+     * @param {number} questionIndex Index of the question in quizData.
+     * @param {string} selectedValue Value (0-3) of the selected option.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            // Determine option labels (a, b, c, d)
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <!-- Attach the checkAnswer function to the radio button's change event -->
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        // Update info bar total questions count
+        document.getElementById('total-q').innerText = totalQuestions;
+    }
+
+    // Removed startTimer(), calculateResult(), closeModal()
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
+--- END OF FILE survey.html ---

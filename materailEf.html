@@ -1,0 +1,380 @@
+--- START OF FILE materail.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Material Quiz (237 Questions) - Self-Study Mode</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Sticky Header */
+        .sticky-header { position: sticky; top: 0; background: white; z-index: 100; padding-bottom: 15px; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+        .header-content { display: flex; justify-content: flex-start; align-items: center; }
+        .info-text { font-size: 0.9em; color: #555; margin-left: 20px;}
+
+        /* Questions */
+        .question-card { border-bottom: 1px solid #f0f0f0; padding: 15px 0; }
+        .question-text { font-size: 1.1em; font-weight: 600; margin-bottom: 12px; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin: 8px 0; }
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            transition: 0.2s; 
+            background: #fff; 
+        }
+        /* Hover only for unselected/unanswered options */
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { background-color: #f8f9fa; } 
+        .options input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
+        
+        /* Result Highlights - KEPT for instant feedback */
+        .correct-opt { background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; }
+        .wrong-opt { background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }
+        
+        /* Removed styles for Timer, Submit Button, and Results Modal */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sticky-header">
+        <div class="header-content">
+            <div>
+                <h2 style="margin:0;">Civil Engineering Material Quiz</h2>
+            </div>
+            <span class="info-text">237 Questions | Instant Feedback Mode</span>
+        </div>
+    </div>
+
+    <!-- Removed Form tag -->
+    <div id="quiz-container">
+        <!-- Questions will be loaded here by JavaScript -->
+    </div>
+    <!-- Removed Submit Button -->
+</div>
+
+<!-- Removed Results Modal -->
+
+<script>
+    // Data transcribed from the "Model Questions (Material)" and the Answer Key.
+    // Question IDs are strictly sequential from 1 to 237.
+    // Key Logic: a=0, b=1, c=2, d=3
+    const quizData = [
+        { id: 1, q: "The rocks formed due to solidification of molten mass laying below or above the earth surface, are called", options: ["A. aqueous rocks", "B. sedimentary rocks", "C. metamorphic rocks", "D. igneous rocks"], a: 3 },
+        { id: 2, q: "The sedimentary rocks are formed due to", options: ["A. solidification of molten mass lying below or above the earth surface", "B. gradual deposition of materials like sand, clay, etc., generally by setting water", "C. alteration of original structure under heat and excessive pressure", "D. none of the above"], a: 1 },
+        { id: 3, q: "Granite is an example of", options: ["A. aqueous rocks", "B. sedimentary rocks", "C. metamorphic rocks", "D. igneous rocks"], a: 3 },
+        { id: 4, q: "Laterite is chemically classified as", options: ["A. caleareous rock", "B. argillaceous rock", "C. sillcious rock", "D. metamorphic rock"], a: 1 },
+        { id: 5, q: "Gneiss is chemically classified as", options: ["A. calcareous rock", "B. argillaceous rock", "C. silicious rock", "D. none of these"], a: 2 },
+        { id: 6, q: "Which of the following is an example of silicious rock?", options: ["A. Granite", "B. Gneiss", "C. Quartzite", "D. all of these"], a: 3 },
+        { id: 7, q: "Which of the following is an example of argillaceous rock?", options: ["A. Kaolin", "B. Slate", "C. Laterite", "D. all of these"], a: 3 },
+        { id: 8, q: "Marble is an example of", options: ["A. aqueous rock", "B. metamorphic rock", "C. sedimentary rock", "D. igneous rock"], a: 1 },
+        { id: 9, q: "Slate in the form of tiles is used", options: ["A. for paving", "B. as road metal", "C. as an excellent roof covering material", "D. for the manufacture of cement"], a: 2 },
+        { id: 10, q: "Granite is mainly composed of", options: ["A. quartz and mica", "B. feldspar and mica", "C. quartz and feldspar", "D. quartz, feldspar and mica"], a: 3 },
+        { id: 11, q: "Sandstone consists of", options: ["A. quartz and lime", "B. quartz and silica", "C. quartz, lime and silica", "D. silica, lime and alumina"], a: 2 },
+        { id: 12, q: "The compressive strength of granite is", options: ["A. 50 to 70 MN/m^2", "B. 70 to 130 MN/m^2", "C. 130 to 170 MN/m^2", "D. 170 to 200 MN/m^2"], a: 1 },
+        { id: 13, q: "In order to dry the quarry sap of a freshly quarried slone, it should be exposed to open air for a period of", options: ["A. one month", "B. four months", "C. six to twelve months", "D. two years"], a: 2 },
+        { id: 14, q: "A good building stone is one which does not absorb more than", options: ["A. 5%", "B. 10%", "C. 15%", "D. 25%"], a: 0 },
+        { id: 15, q: "The specific gravity of stone should not, in any case be less than", options: ["A. 1", "B. 1.5", "C. 2", "D. 2.5"], a: 3 },
+        { id: 16, q: "Argillaceous rocks have their main constituent as", options: ["A. carbonates of lime", "B. clay or alumina", "C. silica or sand", "D. all of these"], a: 1 },
+        { id: 17, q: "The colour of granite is", options: ["A. grey", "B. green", "C. brown", "D. all of these"], a: 3 },
+        { id: 18, q: "A fine-grained granite", options: ["A. offers higher resistance to weathering", "B. can be easily polished and worked", "C. is used for exterior facing of buildings", "D. all of these"], a: 3 },
+        { id: 19, q: "A limestone found in seams of great thickness in non-crystalline texture with earthy appearance, is called", options: ["A. granular limestone", "B. compact limestone", "C. magnesium limestone", "D. kankar"], a: 1 },
+        { id: 20, q: "A limestone containing about 30% of alumina and silica is called", options: ["A. granular limestone", "B. compact limestone", "C. magnesium limestone", "D. kankar"], a: 3 },
+        { id: 21, q: "The silicious sandstone which has been subjected to metamorphic action, is called", options: ["A. moorum", "B. laterite", "C. quartzite", "D. dolomite"], a: 2 },
+        { id: 22, q: "The quarrying of stone by the method of wedging is successfully carried out in", options: ["A. sandstones", "B. limestones", "C. marbles", "D. all of these"], a: 3 },
+        { id: 23, q: "When quarrying is to be done in hard stone and compact rocks, the usual method of quarrying is", options: ["A. by wedging", "B. by channelling machine", "C. by blasting", "D. all of these"], a: 2 },
+        { id: 24, q: "The most powerful explosive used in blasting is", options: ["A. blasting power", "B. dynamite", "C. gun cotton", "D. cordite"], a: 1 },
+        { id: 25, q: "The dressing of stone is done", options: ["A. immediately after quarrying", "B. after seasoning", "C. after three months of quarrying", "D. just before building"], a: 0 },
+        { id: 26, q: "The crushing strength of a stone depends upon its", options: ["A. texture", "B. specific gravity", "C. workability", "D. both (a) and (b)"], a: 3 },
+        { id: 27, q: "The attrition test on stones is performed", options: ["A. to determine the crushing strength of the stone", "B. for assessing the resistance of stone to the sun, rain, wind etc.", "C. for ascertain the stability of the stone when exposed to acid fumes", "D. for determining the rate of wear of stone due to grinding action under traffic"], a: 3 },
+        { id: 28, q: "Gravel is an example of", options: ["A. aqueous rocks", "B. sedimentary rocks", "C. metamorphic rocks", "D. igneous rocks"], a: 1 },
+        { id: 29, q: "Quarry sap is found by", options: ["A. fresh wood", "B. fresh stone", "C. fresh brick", "D. fresh lime"], a: 1 },
+        { id: 30, q: "The minimum number of hardness of marble is", options: ["A. 1", "B. 3", "C. 7", "D. 10"], a: 1 },
+        { id: 31, q: "Softest rock is", options: ["A. marble", "B. talc", "C. diamond", "D. none of the above"], a: 1 },
+        { id: 32, q: "The stone that exhibit highest compressive strength is", options: ["A. slate", "B. gneiss", "C. lime stone", "D. granite"], a: 3 },
+        { id: 33, q: "Good quality building stones should not contain soluble salts more than", options: ["A. 0%", "B. 1%", "C. 2%", "D. 20%"], a: 0 },
+        { id: 34, q: "Rocks having silica as a main constituent are called", options: ["A. calcareous rocks", "B. argillaceous rock", "C. siliceous rocks", "D. none of above"], a: 2 },
+        { id: 35, q: "Crushing strength for most of the building stones should be more than", options: ["A. 500 kg/cm^2", "B. 1000 kg/cm^2", "C. 1500 kg/cm^2", "D. 2000 kg/cm^2"], a: 1 },
+        { id: 36, q: "Spalling hammer is used for", options: ["A. rough dressing of stones", "B. quarrying of stones", "C. carving of stones", "D. all of above"], a: 0 },
+        { id: 37, q: "The texture of sandstone is", options: ["A. prophyritic", "B. conglomerate", "C. vesicular", "D. granular crystalline"], a: 3 },
+        { id: 38, q: "In rock masses reduction in strength occurs due to the presence of relatively large quantities of", options: ["A. silica", "B. iron", "C. orthoclase", "D. hornblende"], a: 2 },
+        { id: 39, q: "Which of the following is unstratified?", options: ["A. sandstone", "B. Limestone", "C. Shale", "D. Granite"], a: 3 },
+        { id: 40, q: "Stone is placed along its natural bed so that the applied load is", options: ["A. parallel to it", "B. normal to it", "C. at 45° to it", "D. at 30° to it"], a: 1 },
+        { id: 41, q: "Marble is quarried by", options: ["A. blasting", "B. excavating", "C. heating", "D. wedging"], a: 3 },
+        { id: 42, q: "Which of the following is hardest mineral?", options: ["A. Quartz", "B. Felspar", "C. Garnet", "D. Amphibole"], a: 2 },
+        { id: 43, q: "Which of the following is the sofest mineral?", options: ["A. Mica", "B. Gypsum", "C. Olivine", "D. Serpentine"], a: 1 },
+        { id: 44, q: "Syenite is a", options: ["A. deep seated plutonic rock", "B. hypabassal rock", "C. basic rock", "D. acid rock"], a: 0 },
+        { id: 45, q: "Marble is", options: ["A. crystalline lime stone", "B. composed chiefly of silica and alumina", "C. fine grained crystals of feldspar and hornblende", "D. composed of carbonates of lime and magnesia"], a: 3 },
+        { id: 46, q: "Which of the following test is used to determine the rate of wear of stones?", options: ["A. Crushing test", "B. Abrasion test", "C. Attrition test", "D. Impact test"], a: 2 },
+        { id: 47, q: "For stones Mohs scale is used to determine", options: ["A. toughness", "B. hardness", "C. flakiness index", "D. durability"], a: 1 },
+        { id: 48, q: "The chemical used to protect stones in industrial towns is", options: ["A. Ba(OH)2", "B. CaCl2", "C. H2SO4", "D. caustic alkalis"], a: 0 },
+        { id: 49, q: "The most suitable stone for building piers is", options: ["A. granite", "B. limestone", "C. sand stone", "D. marble"], a: 0 },
+        { id: 50, q: "The sp. gr. of most of stones lie between", options: ["A. 1.8 to 2.2", "B. 2.5 to 3.0", "C. 3.0 to 3.5", "D. 3.5 to 4.5"], a: 1 },
+        { id: 51, q: "Granite, after metamorphism transforms to", options: ["A. quartzite", "B. gneiss", "C. schist", "D. slate"], a: 1 },
+        { id: 52, q: "Dolomite after metamorphism changes to", options: ["A. marble", "B. quartzite", "C. slate", "D. phyallite"], a: 0 },
+        { id: 53, q: "Marble is a", options: ["A. stratified rock", "B. unstratified rock", "C. foliated rock", "D. argillaceous rock"], a: 0 },
+        { id: 54, q: "The most suitable explosive used under water is", options: ["A. dynamite", "B. gun powder", "C. gun cotton", "D. rock-a-rock"], a: 3 },
+        { id: 55, q: "The most suitable explosive used in construction of tunnels is", options: ["A. dynamite", "B. cordite", "C. gelignite", "D. lithofacteor"], a: 3 },
+        { id: 56, q: "Which of the following is not a tool used for dressing stones?", options: ["A. Mallet", "B. Mason's hammer", "C. Crow chisel", "D. Jumper"], a: 3 },
+        { id: 57, q: "Which of following stones has least % water absorption by volume?", options: ["A. Trap", "B. Slate", "C. Quartzite", "D. Limestone"], a: 1 },
+        { id: 58, q: "Which of the following stone has maximum % water absorption by volume?", options: ["A. Shale", "B. Granite", "C. Slate", "D. Quartzite"], a: 0 },
+        { id: 59, q: "Trap is a", options: ["A. argillaceous rock", "B. silicious rock", "C. calcarious rock", "D. stratified rock"], a: 1 },
+        { id: 60, q: "Which stone has a hardness of 7 in the Mohs's hardness scale?", options: ["A. Quartz", "B. Calcite", "C. Gypsum", "D. Topaz"], a: 0 },
+        { id: 61, q: "The percentage of alumina in a good brick clay should vary from", options: ["A. 20 to 30%", "B. 30 to 40%", "C. 40 to 50%", "D. 50 to 60%"], a: 0 },
+        { id: 62, q: "A first class brick should have a minimum crushing strength of", options: ["A. 7 MN/m^2", "B. 10.5 MN/m^2", "C. 12.5 MN/m^2", "D. 14 MN/m^2"], a: 1 },
+        { id: 63, q: "The percentage of silica in a good brick clay should vary from", options: ["A. 20 to 30%", "B. 30 to 40%", "C. 40 to 50%", "D. 50 to 60%"], a: 3 },
+        { id: 64, q: "Excess pf alumina in the clay", options: ["A. makes the brick brittle and weak", "B. makes the brick crack and warp on drying", "C. changes colour of the brick from red to yellow", "D. improves impermeability and durability"], a: 1 },
+        { id: 65, q: "Excess of silica in the clay", options: ["A. makes the brick brittle and weak", "B. makes the brick crack and warp on drying", "C. changes the colour of the brick from red to yellow", "D. improves impermeability and durability of the brick"], a: 0 },
+        { id: 66, q: "Which of the following constituent, when present in excess quantity in clay causes the bricks to melt and distort during burning?", options: ["A. Alumina", "B. Silica", "C. Lime", "D. Alkalies"], a: 2 },
+        { id: 67, q: "The alkaline salt present in the bricks, absorbs moisture from the air which on drying", options: ["A. leaves pores and makes the bricks porous", "B. leaves high powder deposit on the brick", "C. makes the bricks brittle and weak", "D. all of these"], a: 1 },
+        { id: 68, q: "Efflorescence is caused if", options: ["A. the alkaline salt is present in the bricks", "B. the clay used for making bricks contain pyrite", "C. the water used for pugging the clay contains gypsum", "D. all of the above"], a: 3 },
+        { id: 69, q: "The good clay for making bricks is", options: ["A. unweathered clay", "B. weathered clay", "C. silted soil", "D. black cotton soil"], a: 1 },
+        { id: 70, q: "The process of mixing clay, water and other ingredients to make bricks, is known as", options: ["A. tempering", "B. pugging", "C. kneading", "D. moulding"], a: 2 },
+        { id: 71, q: "The bricks after moulding should be dried in", options: ["A. open air", "B. sun for 3 to 8 days", "C. air for 3 to 8 days but not in sun", "D. hot air for 3 days"], a: 2 },
+        { id: 72, q: "The indentation marks left on bricks during the process of moulding, are known as", options: ["A. fillets", "B. frogs", "C. projections", "D. marks"], a: 1 },
+        { id: 73, q: "The average out-turn of first class bricks in clamp burning is about", options: ["A. 50%", "B. 60%", "C. 70%", "D. 80%"], a: 1 },
+        { id: 74, q: "The average out-turn of first class bricks in kiln burning is", options: ["A. 50 to 60%", "B. 60 to 70%", "C. 70 to 80%", "D. 80 to 90%"], a: 3 },
+        { id: 75, q: "The burning of bricks in kilns is complete within.........hrs.", options: ["A. 12", "B. 24", "C. 48", "D. 96"], a: 1 },
+        { id: 76, q: "The bricks should be burnt at temperature from", options: ["A. 300 deg C to 500 deg C", "B. 500 deg C to 700 deg C", "C. 700 deg C to 1000 deg C", "D. 1000 deg C to 1200 deg C"], a: 3 },
+        { id: 77, q: "The type of brick suitable for panal walls for multi-storeyed buildings is", options: ["A. hollow bricks", "B. perforated bricks", "C. either (a) or (b)", "D. none of these"], a: 2 },
+        { id: 78, q: "Jhama bricks are", options: ["A. well burnt having smooth and even surface", "B. slightly over burnt having rough surface", "C. under burnt and can be easily broken", "D. over burnt with irregular shape"], a: 3 },
+        { id: 79, q: "The compressive strength of perforated bricks should not be less than", options: ["A. 4 MN/m^2", "B. 5 MN/m^2", "C. 6 MN/m^2", "D. 7 MN/m^2"], a: 3 },
+        { id: 80, q: "The compressive strength of paving bricks should not be less than", options: ["A. 20 MN/m^2", "B. 30 MN/m^2", "C. 40 MN/m^2", "D. 50 MN/m^2"], a: 2 },
+        { id: 81, q: "For one cubic metre of brick masonry, the number of bricks required are", options: ["A. 400", "B. 450", "C. 500", "D. 550"], a: 2 },
+        { id: 82, q: "The dolomite bricks are", options: ["A. ordinary bricks", "B. acid refractory bricks", "C. basic refractory bricks", "D. neutral refractory bricks"], a: 2 },
+        { id: 83, q: "Lime is used", options: ["A. as a matrix for concrete", "B. for plastering walls, ceilings etc.", "C. for improving soil for agricultural purposes", "D. all of the above"], a: 3 },
+        { id: 84, q: "Quick lime is a", options: ["A. carbonate of lime", "B. oxide of calcium", "C. product left immediately after the calcination of pure limestone", "D. lime quickly treated with water"], a: 2 },
+        { id: 85, q: "The lime which consists almost entirely of calcium oxide, is called", options: ["A. poor lime", "B. rich lime", "C. hydraulic lime", "D. limestone"], a: 1 },
+        { id: 86, q: "The lime which contains more than 30% of clayey impurities in the form of silica, alumina and iron oxide, is known as", options: ["A. poor lime", "B. rich lime", "C. hydraulic lime", "D. limestone"], a: 0 },
+        { id: 87, q: "Eminently hydraulic lime is one in which the percentage of silica, alumina and iron oxide is", options: ["A. 5 to 10%", "B. 10 to 25%", "C. 25 to 30%", "D. 30 to 40%"], a: 2 },
+        { id: 88, q: "The hydraulic lime which resembles very much with Portland cement in its chemical composition is called.", options: ["A. feebly hydraulic lime", "B. moderately hydraulic lime", "C. eminently hydraulic lime", "D. none of these"], a: 2 },
+        { id: 89, q: "Poor or lean lime", options: ["A. slakes rapidly with considerable evolution of heat", "B. takes very long time to develop adequate strength", "C. has high plasticity", "D. none of the above"], a: 3 },
+        { id: 90, q: "Rich or fat lime", options: ["A. slakes rapidly with considerable evolution of heat", "B. takes very long time to develop adequate strength", "C. has high plasticity", "D. all of these"], a: 3 },
+        { id: 91, q: "The commonly used lime for works under water or in damp situations is", options: ["A. fat lime", "B. lean lime", "C. feebly hydraulic lime", "D. eminently hydraulic lime"], a: 3 },
+        { id: 92, q: "The fuel generally used for burning limestone is", options: ["A. coal", "B. charcoal", "C. firewood", "D. any one of these"], a: 3 },
+        { id: 93, q: "The process of adding the required quantity of water to quick lime in order to convert it into hydrated lime, is known as", options: ["A. calcination", "B. hydration", "C. slaking", "D. quenching"], a: 2 },
+        { id: 94, q: "The advantage of adding pozzolana (or surkhi) to lime is to", options: ["A. reduce shrinkage", "B. increase resistance to cracking", "C. increase resistance to chemical attack", "D. all of these"], a: 3 },
+        { id: 95, q: "The commonly used lime in white washing is", options: ["A. quick lime", "B. fat lime", "C. lean lime", "D. hydraulic lime"], a: 1 },
+        { id: 96, q: "Quick lime on reaction with water gives", options: ["A. hydraulic lime", "B. slaked lime", "C. hydrated lime", "D. poor lime"], a: 1 },
+        { id: 97, q: "The lime mortar is made from", options: ["A. quick lime", "B. fat lime", "C. lean lime", "D. hydraulic lime"], a: 3 },
+        { id: 98, q: "The constituent in lime which retard the slaking action and increase the rapidity of setting, is", options: ["A. silica", "B. sulphate", "C. alkalies", "D. alumina"], a: 0 },
+        { id: 99, q: "The main constituent of a Portland cement is", options: ["A. lime", "B. alumina", "C. iron oxide", "D. alkalies"], a: 0 },
+        { id: 100, q: "The silica in Portland cement should be", options: ["A. 10 to 20%", "B. 20 to 25%", "C. 25 to 40%", "D. 40 to 60%"], a: 1 },
+        { id: 101, q: "The dry process of mixing is usually employed in the manufacture of Portland cement when the raw material is", options: ["A. blast furnace slag", "B. chalk", "C. clay", "D. all of these"], a: 0 },
+        { id: 102, q: "The amount of gypsum, usually, added in the manufacture of cement is", options: ["A. 0.1 to 0.5%", "B. 0.5 to 1%", "C. 1 to 3%", "D. 3 to 5%"], a: 2 },
+        { id: 103, q: "Gypsum is added in the manufacture of Portland cement", options: ["A. while mixing the raw materials", "B. during burning in the rotary kiln", "C. at the beginning of grinding the clinker", "D. at the end of grinding the clinker into powder"], a: 3 },
+        { id: 104, q: "Gypsum is added in the manufacture of Portland cement in order to", options: ["A. shorten the setting time of cement", "B. lengthen the setting time of cement", "C. decrease the burning temperature", "D. decrease the grinding time"], a: 1 },
+        { id: 105, q: "The cementing property in cement is mainly due to", options: ["A. lime", "B. silica", "C. iron oxide", "D. alumina"], a: 0 },
+        { id: 106, q: "The setting and hardening of cement paste is mainly due to the hydration and hydrolysis of", options: ["A. tri-calcium silicate", "B. di-calcium silicate", "C. tri-calcium aluminate", "D. all of these"], a: 3 },
+        { id: 107, q: "The compound responsible for the initial setting of cement, is", options: ["A. tri-calcium aluminate", "B. tetra-calcium alumino ferrite", "C. both (a) and (b)", "D. none of these"], a: 2 },
+        { id: 108, q: "The ultimate strength of cement is provided by", options: ["A. silica", "B. di-calcium silicate", "C. tri-calcium silicate", "D. tri-calcium aluminate"], a: 1 },
+        { id: 109, q: "A good quality cement should have higher percentage of", options: ["A. silica", "B. free lime", "C. di-calcium silicate", "D. tri-calcium silicate"], a: 3 },
+        { id: 110, q: "The percentage of the slag component of Portland-slag cement varies from", options: ["A. 10 to 40%", "B. 40 to 70%", "C. 70 to 80%", "D. 80 to 90%"], a: 1 },
+        { id: 111, q: "The fine grinding of cement results in", options: ["A. less heat of hydration", "B. increase in shrinkage", "C. increase in strength", "D. decrease in permeability"], a: 2 }, 
+        { id: 112, q: "The initial setting of cement is caused due to", options: ["A. di-calcium silicate", "B. tri-calcium silicate", "C. tri-calcium aluminate", "D. tri-calcium alumino ferrite"], a: 2 },
+        { id: 113, q: "The rapid hardening Portland cement is obtained by", options: ["A. grinding the clinker to a high degree of fineness", "B. adding calcium sulphate to the mixture", "C. adding gypsum after grinding", "D. burning the mixture at a lower temperature"], a: 0 },
+        { id: 114, q: "The fineness of cement is tested by", options: ["A. air-permeability method", "B. Le-chatelier method", "C. Vicat's apparatus", "D. all of these"], a: 0 },
+        { id: 115, q: "The soundness of cement is tested by", options: ["A. air permeability method", "B. Le-chatelier method", "C. Vicat's apparatus", "D. all of these"], a: 1 },
+        { id: 116, q: "Vicat's apparatus is used to determine the", options: ["A. initial setting time of cement", "B. final setting time of cement", "C. normal consistency of cement", "D. all of these"], a: 3 },
+        { id: 117, q: "Le-chatelier method is used to determine", options: ["A. initial setting of cement", "B. fineness of cement", "C. soundness of cement", "D. normal consistency of cement"], a: 2 },
+        { id: 118, q: "The expansion of cement should not exceed", options: ["A. 5 mm", "B. 10 mm", "C. 15 mm", "D. 20 mm"], a: 1 },
+        { id: 119, q: "The normal consistency of Portland cement is about", options: ["A. 10%", "B. 15%", "C. 20%", "D. 25%"], a: 3 },
+        { id: 120, q: "The initial setting time of rapid hardening cement should not be less than", options: ["A. 30 min", "B. 1 hour", "C. 4 hours", "D. 8 hours"], a: 0 },
+        { id: 121, q: "The addition of pozzolana to Portland cement causes", options: ["A. less heat of hydration", "B. increase in shrinkage", "C. decrease in permeability", "D. all of these"], a: 3 },
+        { id: 122, q: "The rate of hydration and hydrolysis of cement depends upon its", options: ["A. soundness", "B. fineness", "C. setting time", "D. tensile strength"], a: 1 },
+        { id: 123, q: "The percentage of the residue left after sieving good Portland cement in 90 micron sieve should not exceed", options: ["A. 5%", "B. 10%", "C. 20%", "D. 30%"], a: 1 },
+        { id: 124, q: "The expansion in Portland cement can be tested by", options: ["A. fineness test", "B. soundness test", "C. setting time test", "D. normal consistency test"], a: 1 },
+        { id: 125, q: "The specific surface (in cm^2/g) of a good Portland cement should not be less than", options: ["A. 500", "B. 100", "C. 2250", "D. 3200"], a: 2 },
+        { id: 126, q: "The expansion of Portland cement is caused by", options: ["A. free lime", "B. magnesia", "C. silica", "D. both (a) and (b)"], a: 3 },
+        { id: 127, q: "The compressive strength of a good Portland cement and standard sand mortar after 3 days of curing should not be less than", options: ["A. 7 MN/m^2", "B. 11.5 MN/m^2", "C. 17.5 MN/m^2", "D. 21 MN/m^2"], a: 1 },
+        { id: 128, q: "The sand is mixed with lime mortar to", options: ["A. reduce cost", "B. reduce setting time", "C. improve strength", "D. prevent shrinkage and cracking"], a: 3 },
+        { id: 129, q: "For R.C.C. construction, the maximum size of coarse aggregate is limited to", options: ["A. 10 mm", "B. 15 mm", "C. 20 mm", "D. 25 mm"], a: 3 },
+        { id: 130, q: "The durability of concrete is proportional to", options: ["A. sand content", "B. water-cement ratio", "C. cement-aggregate ratio", "D. aggregate-water ratio"], a: 2 },
+        { id: 131, q: "The maximum water-cement ratio for durable concrete is", options: ["A. 0.2", "B. 0.4", "C. 0.6", "D. 0.8"], a: 3 },
+        { id: 132, q: "The durability of cement concrete is usually improved by", options: ["A. increasing the quantity of coarse sand", "B. increasing the quantity of cement aggregate", "C. decreasing the water-cement ratio", "D. decreasing the proportion of fine aggregate"], a: 1 },
+        { id: 133, q: "According to Indian standard specifications, the concrete should be cured under a humidity of", options: ["A. 30%", "B. 50%", "C. 70%", "D. 90%"], a: 3 },
+        { id: 134, q: "The effects of impurities in water are expressed in terms of", options: ["a) initial setting time", "b) final setting time", "c) compressive strength", "d) soundness of Portland cement."], a: 0 },
+        { id: 135, q: "The difference in 7 days compressive strength of cubes and cylinders prepared with impure and pure waters should not differ by more than", options: ["a) 2 percent", "b) 5 percent", "c) 10 percent", "d) 12 percent"], a: 2 },
+        { id: 136, q: "The upper limit of suspended particles in water for the preparation of concrete is", options: ["a) 200 ppm", "b) 2000 ppm", "c) 5000 ppm", "d) 10,000 ppm"], a: 1 },
+        { id: 137, q: "Hydraulic lime is obtained by burning", options: ["a) oolitic lime stone", "b) kankar", "c) marble", "d) tufa"], a: 1 },
+        { id: 138, q: "Fat lime slakes between", options: ["a) 2-3 hours", "b) 24 hours", "c) 3 days", "d) 7 days"], a: 0 },
+        { id: 139, q: "Which of the following is caustic lime?", options: ["a) Quick lime", "b) Fat lime", "c) Milk lime", "d) Hydraulic lime"], a: 0 },
+        { id: 140, q: "Quick lime coming out of the kiln is also known as", options: ["a) hydrated lime", "b) lump lime", "c) fat lime", "d) hydraulic lime"], a: 1 },
+        { id: 141, q: "Hydrated lime for making mortars is slaked for", options: ["a) 1 day", "b) 3 days", "c) 7 days", "d) 14 days"], a: 0 },
+        { id: 142, q: "Which of the following is not used for producing fat lime?", options: ["a) Oolitic limestone", "b) Calcareous tufa", "c) Marble", "d) Raw lime stone"], a: 3 },
+        { id: 143, q: "The lime sets on absorbing CO2 from atmosphere is", options: ["a) lean lime", "b) feebly hydraulic lime", "c) rich lime", "d) fat lime"], a: 0 },
+        { id: 144, q: "The lime used for finishing coat in plastering is", options: ["a) semi hydraulic lime", "b) kankar lime", "c) magnesium lime", "d) eminently hydraulic lime"], a: 2 },
+        { id: 145, q: "Aggregate affecting durability of concrete most are", options: ["a) rounded", "b) all-in-aggregate", "c) flaky", "d) irregular"], a: 2 },
+        { id: 146, q: "The best reflection of strength of coarse aggregate is given by", options: ["a) crushing", "b) impact", "c) 10 per cent fines", "d) hardness"], a: 0 },
+        { id: 147, q: "Which of the following aggregates gives maximum strength in concrete?", options: ["a) Rounded aggregate", "b) Elongated aggregate", "(c) Angular aggregate", "D) Cubical aggregate"], a: 3 },
+        { id: 148, q: "The maximum bulking of sand is likely to occur at a moisture content of", options: ["a) 4 percent", "b) 8 percent", "c) 11 percent", "d) 14 percent"], a: 0 },
+        { id: 149, q: "The chief ingredient of a paint is", options: ["A. alcohol", "B. drier", "C. oil", "D. pigment"], a: 3 },
+        { id: 150, q: "The liquid medium used in oil paints is", options: ["A. thinner", "B. alcohol", "C. linseed oil", "D. turpentine"], a: 2 },
+        { id: 151, q: "The pigment in paints is mixed to give desired", options: ["A. smoothness", "B. colour", "C. appearance", "D. durability"], a: 1 },
+        { id: 152, q: "The liquid part of the paint is called", options: ["A. pigment", "B. vehicle", "C. solvent", "D. drier"], a: 1 },
+        { id: 153, q: "The liquid medium used in enamel paints is", options: ["A. thinner", "B. alcohol", "C. turpentine", "D. varnish"], a: 3 },
+        { id: 154, q: "The metallic oxide used in the form of powder in a paint is called", options: ["A. extender", "B. base", "C. vehicle", "D. drier"], a: 1 },
+        { id: 155, q: "The base in a paint is added to", options: ["A. improve the quality of paint", "B. make smooth surface", "C. hide the surface to be painted", "D. all of these"], a: 2 },
+        { id: 156, q: "The commonly base used in a paint is", options: ["A. iron oxide", "B. zinc oxide", "C. titanium white", "D. any one of these"], a: 3 },
+        { id: 157, q: "The thinner used for oil paints is", options: ["A. water", "B. turpentine", "C. carbon tetrachloride", "D. any one of these"], a: 1 },
+        { id: 158, q: "Linseed oil in paint is used as a", options: ["A. base", "B. thinner", "C. carrier", "D. pigment"], a: 2 },
+        { id: 159, q: "The commonly used extender in a paint is", options: ["A. barium sulphate", "B. gypsum", "C. alcohol", "D. any one of these"], a: 3 },
+        { id: 160, q: "The drier in an oil paint should not be more than", options: ["A. 5%", "B. 10%", "C. 15%", "D. 20%"], a: 1 },
+        { id: 161, q: "The commonly used solvent in oil paints is", options: ["A. turpentine", "B. naptha", "C. either (a) or (b)", "D. none of these"], a: 2 },
+        { id: 162, q: "The best primer used for structural steel work is", options: ["A. white lead", "B. red lead", "C. zinc oxide", "D. iron oxide"], a: 1 },
+        { id: 163, q: "The vehicle used in bronze paints is usually", options: ["A. linseed oil", "B. naptha", "C. water", "D. nitro-cellulose lacquer"], a: 3 },
+        { id: 164, q: "Bituminous paint consists of bitumen dissolved in", options: ["A. spirit", "B. naptha", "C. linseed oil", "D. either (a) or (b)"], a: 3 },
+        { id: 165, q: "The commonly used cement in cement paints is", options: ["A. white cement", "B. Portland cement", "C. alumina cement", "D. rapid hardening cement"], a: 0 },
+        { id: 166, q: "The solvent used in cement paints is", options: ["A. thinner", "B. turpentine", "C. water", "D. spirit"], a: 2 },
+        { id: 167, q: "Enamel paint is made by adding", options: ["A. white lead in varnish", "B. bitumen in varnish", "C. white lead in lacquer", "D. zinc white in spirit"], a: 0 },
+        { id: 168, q: "The paint which has high reflective property is", options: ["A. cellulose paint", "B. casein paint", "C. bronze paint", "D. enamel paint"], a: 2 },
+        { id: 169, q: "Which of the following paint is highly resistant to fire?", options: ["A. Cement paint", "B. Asbestos paint", "C. Aluminium paint", "D. enamel paint"], a: 1 },
+        { id: 170, q: "Sprit varnish consists of", options: ["A. spirit and wax", "B. spirit and shellac", "C. turpentine, spirit and wax", "D. turpentine, spirit and shellac"], a: 1 },
+        { id: 171, q: "Distemper is used on", options: ["A. brick walls", "B. concrete surfaces", "C. plastered surfaces exposed to weather", "D. plastered surfaces not exposed to weather"], a: 3 },
+        { id: 172, q: "The base material for distemper is", options: ["A. chalk", "B. lime", "C. clay", "D. lime putty"], a: 0 },
+        { id: 173, q: "Terrazo flooring comprises of :", options: ["a) chips, powder, concrete", "b) chips, concrete", "c) chips, cement", "d) chips, powder, cement"], a: 3 },
+        { id: 174, q: "Cement concrete floor is laid in the ratios", options: ["a) 1:8:16", "b) 1:2:4", "c) 1:1:2", "d) 1:1.5:3"], a: 1 },
+        { id: 175, q: "A floor constructed with 3 mm marble chips, is known as", options: ["a) mosaic floor", "b) terrazzo floor", "c) chips floor", "d) marble floor"], a: 1 },
+        { id: 176, q: "Mud plastering does not require", options: ["a) mixing", "b) soil", "c) curing", "d) water"], a: 2 },
+        { id: 177, q: "The commonly used drying oil for paints is", options: ["a. Oil paints", "b. Kerosene oil", "c. Linseed oil", "d. acetate of lead"], a: 2 },
+        { id: 178, q: "Paint used in automobile are", options: ["a. Enamel paint", "b. Oil paint", "c. Distemper", "d. Any of these"], a: 0 },
+        { id: 179, q: "Paints with white lead base are suitable for painting of :", options: ["a. wood work", "b. iron work", "c. both a and b", "d. none of above"], a: 0 },
+        { id: 180, q: "The best primer used for structural steel work is", options: ["a. white lead", "b. red lead", "c. zinc oxide", "d. iron oxide"], a: 1 },
+        { id: 181, q: "Bitumen paints offer", options: ["a) pleasing surface", "b) hard surface", "c) smooth surface", "d) protective surface"], a: 3 },
+        { id: 182, q: "The minimum percentage of silica, alumina and ferric oxide in lime for white washing, is", options: ["a) 20", "b) 15", "c) 5", "d) 0"], a: 3 },
+        { id: 183, q: "For a 50 kg cement bag water required, is", options: ["a) 16.5 liters", "b) 18.5 liters", "c) 20.5 liters", "d) 22.5 liters"], a: 3 },
+        { id: 184, q: "The material generally not used as extender in paints, is", options: ["(a) powdered silica", "(b) gypsum", "(c) talc", "(d) zinc white"], a: 3 },
+        { id: 185, q: "For light and ornamental casting, the most unsuitable pig iron, is", options: ["(a) forge pig", "(b) grey or foundry pig", "(c) white or forge pig", "(d) mottled pig"], a: 3 },
+        { id: 186, q: "A rock contains only one mineral. it is called", options: ["(a) homogeneous", "(b) non-homogeneous", "(c) monomineralic", "(d) polymineralic"], a: 2 },
+        { id: 187, q: "Mild steel is used for", options: ["(a) structural works in beams, joints and girders", "(b) small sized water pipes", "(c) columns and struts", "(d) none of these"], a: 0 },
+        { id: 188, q: "Forge pig may be converted to wrought iron by", options: ["(a) rolling", "(b) pudding", "(c) shingling", "(d) refining"], a: 1 },
+        { id: 189, q: "Steel contains carbon approximately", options: ["(a) 1.50 percent to 5.6 percent", "(b) 0.05 percent to 1.75 percent", "(c) 0.25 percent", "(d) none to these"], a: 1 },
+        { id: 190, q: "Water paint is a", options: ["(a) white wash", "(b) colour wash", "(c) whiting", "(d) all the above"], a: 3 },
+        { id: 191, q: "For making fly-ash building bricks, the following mix of fly-ash, sand and lime, is", options: ["(a) 80:13:7", "(b) 70:20:10", "(c) 60:35:5", "(d) none of these"], a: 0 },
+        { id: 192, q: "A ferrous metal is", options: ["(a) cast iron", "(b) wrought iron", "c) steel", "(d) all the above"], a: 3 },
+        { id: 193, q: "The most important constituent of varnish, is", options: ["(a) drier", "(b) solvent", "(c) resin", "(d) all the above"], a: 3 },
+        { id: 194, q: "Stainless steel resists corrosion due to", options: ["(a) carbon", "(b) sulphur", "(c) vanadium", "(d) chromium"], a: 3 },
+        { id: 195, q: "In stone masonry, stones (stratified rocks) are so placed that the direction of pressure to the plane of bedding is", options: ["(a) right angles", "(b) 45°", "(c) 60°", "(d) parallel"], a: 0 },
+        { id: 196, q: "In arches, stratified stones are placed so that their planes are", options: ["(a) parallel", "(b) perpendicular", "(c) radial", "(d) none of these"], a: 2 },
+        { id: 197, q: "Invar contains", options: ["(a) 12 percent of nickel", "(b) 24 percent of nickel", "(c) 30 percent to nickel", "(d) 36 percent of nickel"], a: 3 },
+        { id: 198, q: "The rocks which are formed due to pouring of magma at the earth's surface are called", options: ["(a) plutonic rocks", "(b) hypabyssal rocks", "(c) volcanic rocks", "(d) igneous rocks"], a: 2 },
+        { id: 199, q: "Softer variety of steel may be obtained by", options: ["(a) cementation process", "(b) crucible process", "(c) Bessemer process", "(d) open hearth process"], a: 2 },
+        { id: 200, q: "The kiln which may work throughout the year, is", options: ["(a) clamp", "(b) bull's kiln", "(c) hoffman's kiln", "(d) none of these"], a: 2 },
+        { id: 201, q: "PVC stands for", options: ["(a) plastic very compact carbide", "(b) polyvinyl chloride", "(c) polythene vinyl carbon", "(d) polythene vanadium"], a: 1 },
+        { id: 202, q: "The size of modular bricks, is", options: ["(a) 10 x 10 x 9 cm", "(b) 19 x 9 x 9 cm", "(c) 20 x 10 x 10 cm", "(d) 22.5 x 8.0 x 9 cm"], a: 1 },
+        { id: 203, q: "The nominal size of bricks, is", options: ["(a) 10 x 10 x 9 cm", "(b) 19 x 9 x 9 cm", "(c) 20 x 10 x 10 cm", "(d) 22.5 x 8.0 x 9 cm"], a: 2 },
+        { id: 204, q: "The operation of removal of impurities or clay adhering to iron ores, is known as", options: ["(a) dressing", "(b) calcination", "(c) roasting", "(d) smelting"], a: 0 },
+        { id: 205, q: "The normal curing period for lime mortar, is:", options: ["(a) 1 day", "(b) 3 days", "(c) 7 days", "(d) 10 days"], a: 2 },
+        { id: 206, q: "Lime concrete is generally used for", options: ["(a) wall foundations", "(b) flooring at ground level", "(c) both (a) and (b)", "(d) neither (a) nor (b)"], a: 1 },
+        { id: 207, q: "Wrought iron is manufactured from pig iron by", options: ["(a) refining", "(b) pudding", "(c) shingling", "(d) all the above"], a: 3 },
+        { id: 208, q: "Which one of the following is an air binding material?", options: ["(a) gypsum", "(b) acid-resistant cement", "(c) quick lime", "(d) all of these"], a: 2 },
+        { id: 209, q: "Bessemer process is used for the manufacture of", options: ["(a) pig iron", "(b) cast iron", "(c) wrought iron", "(d) steel"], a: 3 },
+        { id: 210, q: "PVC stands for", options: ["(a) plastic very compact", "(b) polythene vinyl chloride", "(c) polythene vinyl carbon", "(d) pigment volume concentration"], a: 3 },
+        { id: 211, q: "Los Angeles test for aggregates is made to determine the:", options: ["a) Abrasion resistance", "b) Water absorption", "c) Crushing strength", "d) Impact value"], a: 0 },
+        { id: 212, q: "Dorry's testing machine is used for", options: ["a) crushing test of stone", "b) hardness test of stone", "c) impact test of stone", "d) water absorption test"], a: 1 },
+        { id: 213, q: "Notched bar tests are frequently used for testing the", options: ["a) impact strength of a material", "b) hardness of a material", "c) machinability of a metal", "d) corrosion resistance of the material"], a: 0 },
+        { id: 214, q: "The moulded bricks are dried before burning to an approximate moisture content of", options: ["(a) 3 percent", "(b) 6 percent", "(c) 10 percent", "(d) 20 percent"], a: 1 },
+        { id: 215, q: "The height of stacks of cement while cement is being stored should not exceed", options: ["A) 10 bags", "B) 15 bags", "C) 20 bags", "D) None of above"], a: 0 },
+        { id: 216, q: "The minimum quantity of cement content in one m^3 of a reinforced concrete which is not directly exposed to weather is about:", options: ["(a) 220 kg", "(b) 350 kg", "(c) 300 kg", "(d) 450 kg"], a: 2 },
+        { id: 217, q: "Bricks before being used in works must be soaked in water for a period not less than", options: ["A) A full night", "B) 6 hours", "C) 12 hours", "D) 24 hours"], a: 2 }, 
+        { id: 218, q: "Calcium chloride as an accelerating admixture is not recommended for use with", options: ["a) ordinary portland cement", "b) rapid hardening cement", "c) high alumina cement", "d) none of the above"], a: 1 },
+        { id: 219, q: "Rebound hammer is used for", options: ["A) To find the strength of concrete", "B) To form rivet heads", "C) To break the concrete structures", "D) None of the above"], a: 0 },
+        { id: 220, q: "For under water construction, it is desirable to use the following type of cement", options: ["A) Portland Pozzolana cement", "B) Quick setting cement", "C) Sulphate resistance cement", "D) Any of the above"], a: 1 },
+        { id: 221, q: "The criteria for acceptance or rejection of concrete are based on.............day's compressive strength.", options: ["A) 7", "B) 14", "C) 28", "D) 50"], a: 2 },
+        { id: 222, q: "The dry brick is usually expected to have moisture content of about", options: ["(a) 2 percent", "(b) 6 percent", "(c) 10 percent", "(d) 20 percent"], a: 1 },
+        { id: 223, q: "The minimum quantity of cement content in one m^3 of a plain cement concrete which is not directly exposed to weather is about:", options: ["(a) 220 kg", "(b) 350 kg", "(c) 300 kg", "(d) 450 kg"], a: 0 },
+        { id: 224, q: "The maximum content (kg/m^3) of ordinary portland cement in a design mix of concrete (1 m^3) is", options: ["A) 500", "B) 450", "C) 350", "D) 400"], a: 1 },
+        { id: 225, q: "For hidden masonry works the bricks used should be", options: ["(a) Ist Class", "(b) IInd Class", "(c) IIIrd Class", "(d) for any of the above"], a: 1 },
+        { id: 226, q: "For centring of R.C.C. structures, the bricks used should be", options: ["(a) Ist Class", "(b) IInd Class", "(c) IIIrd Class", "(d) IVth Class"], a: 1 },
+        { id: 227, q: "Which of the following is harmful in the clay used for making bricks?", options: ["(a) Iron oxide", "(b) Iron pyrite", "(c) Alkali", "(d) Magnesia"], a: 1 },
+        { id: 228, q: "When the deposits of efflorescence are more than 10 percent but less than 50 percent of the exposed areas of brick, the presence of efflorescence is classified as", options: ["(a) slight", "(b) moderate", "(c) heavy", "(d) serious"], a: 1 },
+        { id: 229, q: "A good brick when immersed in a water bath for 24 hours, should not absorb water more than", options: ["(a) 20 percent of its dry weight", "(b) 15 percent of its dry weight", "(c) 15 percent of its saturated weight", "(d) 20 percent of its saturated weight"], a: 1 },
+        { id: 230, q: "The compressive strength of burnt clay bricks is", options: ["(a) 100 kg/cm^2", "(b) 150 kg/cm^2", "(c) 100-150 kg/cm^2", "(d) 35-350 kg/cm^2"], a: 3 },
+        { id: 231, q: "Terracotta is burned in", options: ["(a) pug mill", "(b) reverberatory furnace", "(c) muffle furnace", "(d) puddling furnace"], a: 2 },
+        { id: 232, q: "Wrought iron is used for", options: ["A. Structural works in beams", "B. Small sized water pipes", "C. Columns and struts", "D. None to these"], a: 1 },
+        { id: 233, q: "Which of the following mortars is most suitable for construction work in water-logged areas?", options: ["(a) Lime mortar", "(b) Gauged mortar", "(c) Cement mortar", "(d) Mud mortar"], a: 2 },
+        { id: 234, q: "After addition of cement, the gauged mortar should be used whithin", options: ["(a) 30 minutes", "(b) 1-2 hours", "(c) 8-10 hours", "(d) 24 hours"], a: 1 },
+        { id: 235, q: "A gauged mortar is obtained by adding which of the following ingredients to cement?", options: ["(a) Sand stone", "(b) Sand and surkhi", "c) Sand and lime", "(d) Surkhi alone"], a: 2 },
+        { id: 236, q: "Lime mortar is generally made with", options: ["(a) quick lime", "(b) fat lime", "(c) hydraulic lime", "(d) white lime"], a: 2 },
+        { id: 237, q: "One of the main demerits in using the lime mortar is that it", options: ["(a) is not durable", "(b) does not set quickly", "(c) swells", "(d) is plastic"], a: 1 }
+    ];
+
+    const TOTAL_QUESTIONS = quizData.length;
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * and disables the radio buttons for the question.
+     * @param {number} questionIndex Index of the question in quizData.
+     * @param {string} selectedValue Value (0-3) of the selected option.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question to prevent re-submission/change
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            // Standardize prefix to A., B., C., D. and clean up options that already contain prefixes.
+            const optionsHtml = item.options.map((opt, i) => {
+                let displayOpt = opt.replace(/^\(\w\)\s*/, '').replace(/^[A-D]\. /, '').replace(/^[a-d]\) /, '');
+                return `
+                    <li>
+                        <label id="lbl-${index}-${i}">
+                            <!-- Attach the checkAnswer function to the radio button's change event -->
+                            <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                            <span>${String.fromCharCode(65 + i)}. ${displayOpt}</span>
+                        </label>
+                    </li>
+                `;
+            }).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
+--- END OF FILE materail.html ---
