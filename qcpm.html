@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Management - Full 307 Questions</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        
+        /* Sticky Header */
+        .sticky-header { position: sticky; top: 0; background: white; z-index: 100; padding-bottom: 15px; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+        
+        /* Header Layout */
+        .header-content { display: flex; justify-content: space-between; align-items: center; } 
+        .title-section { display: flex; flex-direction: column; }
+        .info-text { font-size: 0.9em; color: #555; margin-top: 5px;}
+
+        /* Home Button Styling */
+        .home-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Questions */
+        .question-card { border-bottom: 1px solid #f0f0f0; padding: 15px 0; }
+        .question-text { font-size: 1.1em; font-weight: 600; margin-bottom: 12px; }
+        .options { list-style: none; padding: 0; }
+        .options li { margin: 8px 0; }
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px; 
+            border: 1px solid #ddd; 
+            border-radius: 6px; 
+            transition: 0.2s; 
+            background: #fff; 
+        }
+        /* Hover only for unselected/unanswered options */
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { background-color: #f8f9fa; } 
+        .options input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
+        
+        /* Result Highlights */
+        .correct-opt { background-color: #d4edda !important; border-color: #c3e6cb !important; color: #155724; }
+        .wrong-opt { background-color: #f8d7da !important; border-color: #f5c6cb !important; color: #721c24; }
+        
+        /* Score */
+        .score-board { margin-top: 10px; font-weight: bold; color: #007bff; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sticky-header">
+        <div class="header-content">
+            <div class="title-section">
+                <h2 style="margin:0;">Construction Management & Project Planning</h2>
+                <span class="info-text">307 Questions | Answer Key Verified</span>
+                <div class="score-board" id="score-display">Score: 0 / 0</div>
+            </div>
+            <a href="index.html" class="home-btn">Home</a>
+        </div>
+    </div>
+
+    <div id="quiz-container">
+        <!-- Questions will be loaded here by JavaScript -->
+    </div>
+</div>
+
+<script>
+    // Full dataset of 307 questions based on the PDF content
+    // Key mapping: a=0, b=1, c=2, d=3
+    const quizData = [
+        { id: 1, q: "Major characteristics of project is", options: ["defined objective", "defined life span with a beginning and end", "specific time, cost and performance requirement", "all of the above"], a: 3 },
+        { id: 2, q: "Public works must be of very good quality, because", options: ["it is paid in higher rate", "projects are of higher priority", "users are general public and maintenance is not timely difficulty and costly", "all of above"], a: 1 },
+        { id: 3, q: "The construction of airports is treated as", options: ["light construction", "heavy construction", "industrial construction", "none of these"], a: 1 },
+        { id: 4, q: "Which of the following is not a PERT event?", options: ["site investigation started", "sessional work completed", "bus starts from Kathmandu", "class is being attended"], a: 3 },
+        { id: 5, q: "When used in connection with the progress of a work, the term amount indicates the", options: ["total expenditure on a particular item", "supplies made and services performed", "value of the finished product in a manufacturing operation", "none of the above"], a: 0 },
+        { id: 6, q: "The first stage of a large construction work to", options: ["contract", "design", "conception", "study and evaluation"], a: 2 },
+        { id: 7, q: "The conception of idea for any construction work is the responsibility of", options: ["owner", "engineer", "contractor", "all of these"], a: 0 },
+        { id: 8, q: "The field of activities of an engineer includes", options: ["estimation", "approval of construction plans by the local authority", "inspection and payment of work done by contractor", "all of the above"], a: 3 },
+        { id: 9, q: "The contractor is responsible for", options: ["procuring material which is not supplied by the owner", "organizing and planning the work as per drawing", "executing the work as per specifications laid down in the contract", "all of the above"], a: 3 },
+        { id: 10, q: "The process of calculating the resource requirement of a project is known as", options: ["scheduling", "coordinating", "resource aggregation", "all of these"], a: 2 },
+        { id: 11, q: "The chart which gives an estimate about the amount of materials handling between various work stations is known as", options: ["flow chart", "process chart", "travel chart", "operation chart"], a: 2 },
+        { id: 12, q: "The bar chart is also known as", options: ["flow chart", "time chart", "travel chart", "Gantt chart"], a: 3 },
+        { id: 13, q: "In the analysis of rate, the profit for the contractor is generally taken as", options: ["20%", "15%", "10%", "5%"], a: 1 },
+        { id: 14, q: "The prime input of aggregate planning is", options: ["active forecasting", "passive forecasting", "demand forecasting", "none of the above"], a: 2 },
+        { id: 15, q: "A milestone chart", options: ["shows the interdependencies of various jobs", "depicts the delay of jobs, if any", "points outgoing ahead of schedule of jobs, if any", "none of these"], a: 3 },
+        { id: 16, q: "Milestone chart is an improvement over", options: ["bar chart", "PERT", "CPM", "all of these"], a: 0 },
+        { id: 17, q: "A Gantt chart indicates", options: ["balance of work to be done", "efficiency of project work", "comparison of actual process with the scheduled progress", "progress cost of project"], a: 2 },
+        { id: 18, q: "The jobs going ahead of schedule are conveniently shown in", options: ["CPM", "milestone chart", "pie chart", "none of these"], a: 0 },
+        { id: 19, q: "The earliest method used for planning of projects was", options: ["CPM", "PERT", "bar chart", "milestone chart"], a: 2 },
+        { id: 20, q: "Actual performance of task is called", options: ["an event", "an activity", "a duration", "any one of these"], a: 1 },
+        { id: 21, q: "An activity is", options: ["the beginning or end of a specified job", "an element of work entailed in the project", "the movement of heavy vehicles from one place to another", "the progress of work up to a certain limit"], a: 1 },
+        { id: 22, q: "CPM requires", options: ["single time estimate", "double time estimate", "triple time estimate", "none of these"], a: 0 },
+        { id: 23, q: "PERT requires", options: ["single time estimate", "double time estimate", "triple time estimate", "none of these"], a: 2 },
+        { id: 24, q: "The optimistic time represents the", options: ["shortest possible time in which an activity can be completed if everything goes exceptionally well", "time in which the activity is normally expected to complete under normal contingencies", "time in which an activity will take to complete in case of difficulty", "none of the above"], a: 0 },
+        { id: 25, q: "The time in which an activity will take to complete in case if difficulty, is called", options: ["optimistic time", "most likely time", "pessimistic time", "none of these"], a: 2 },
+        { id: 26, q: "Float or slack represents the difference between the", options: ["earliest completion time and latest allowable time", "latest allowable time and earliest completion time", "earliest completion time and normal expected time", "latest allowable time and normal allowable time"], a: 0 },
+        { id: 27, q: "The difference between the total float and free finish time", options: ["duration", "interfering float", "critical activity", "none of these"], a: 1 },
+        { id: 28, q: "Dummy activities are used to", options: ["determine the critical path", "determine the project completion time", "maintain the required network", "none the these"], a: 2 },
+        { id: 29, q: "A project is", options: ["a large dam constructed across a river for a single or multi-purpose", "any job involving many people and large money", "a work of major importance involving huge men and material", "an organized team work to achieve a set task within the time limit"], a: 3 },
+        { id: 30, q: "Technology is the", options: ["study of techniques", "study of machines and their operation", "study of industrial relations", "study of behavior of men and machines"], a: 1 },
+        { id: 31, q: "A company or organization (the promoter, client or employer) wishing to obtain goods or services will first", options: ["specify its requirement", "estimate the quantity", "estimate the cost", "search for market rates"], a: 0 },
+        { id: 32, q: "An event is", options: ["a dummy activity", "the useful criterion", "the start and/or finish of an activity or the group of activities", "a definite time interval"], a: 2 },
+        { id: 33, q: "Bar chart is drawn for", options: ["time versus activity", "activity versus resources", "resources versus progress", "progress versus time"], a: 0 },
+        { id: 34, q: "Policy is", options: ["a rule or a set of rules never to be violated", "a definite route along which one has to proceed", "a procedure for preparing the project report", "a set of broad guidelines stipulated by management"], a: 3 },
+        { id: 35, q: "An activity requires", options: ["events", "resources", "time and resources", "energy and vigour"], a: 2 },
+        { id: 36, q: "Which of the following is a weakness of bar chart ?", options: ["interdependencies of activities", "project progress", "uncertainties", "all of the above"], a: 3 },
+        { id: 37, q: "Select the correct statement.", options: ["Activity arrows in a CPM network are drawn to scale", "The tail of an arrow represents the finish of an activity", "Arrow head represents the start of an activity", "none of the above"], a: 3 },
+        { id: 38, q: "The earliest method used for planning of projects was", options: ["PERT", "CPM", "Bar chart", "Milestone chart"], a: 2 },
+        { id: 39, q: "PERT is an abbreviation for", options: ["pertinent equation related to a task", "performance, evaluation, rating and timing", "programme evaluation and review technique", "periodical estimation of resource treasure"], a: 2 },
+        { id: 40, q: "CPM stands for", options: ["computer programme mode", "critical project management", "controlling, planning and maintenance", "critical path method"], a: 3 },
+        { id: 41, q: "PERT is", options: ["activity oriented", "event oriented", "time oriented", "resource oriented"], a: 1 },
+        { id: 42, q: "CPM is", options: ["activity oriented", "event oriented", "time oriented", "resource oriented"], a: 0 },
+        { id: 43, q: "PERT adopts", options: ["deterministic approach", "probabilistic approach", "stochastic approach", "none of the above"], a: 1 },
+        { id: 44, q: "CPM adopts", options: ["deterministic approach", "probabilistic approach", "stochastic approach", "none of the above"], a: 0 },
+        { id: 45, q: "Which of the following statements is true?", options: ["PERT is activity oriented and adopts deterministic approach", "CPM is event oriented and adopts probabilistic approach", "CPM is activity oriented and adopts probabilistic approach", "PERT is event oriented and adopts probabilistic approach"], a: 3 },
+        { id: 46, q: "Which of the following is an example of parallel activities?", options: ["construction of walls and casting of roof", "construction of walls and carpentry work of doors and windows", "casting of roof and construction of parapet wall", "digging of well and construction of septic tank"], a: 1 },
+        { id: 47, q: "The occurrence of the completion of an activity is called its", options: ["head event", "tail event", "dual role event", "none of the above"], a: 0 },
+        { id: 48, q: "The occurrence of the starting of an activity is called its", options: ["head event", "tail event", "dual role event", "none of the above"], a: 1 },
+        { id: 49, q: "A dual role event", options: ["it the head event as well as a tail event", "consumes no time", "is the beginning of one event and the end of another", "is any event other than the initial and final events"], a: 0 },
+        { id: 50, q: "A dummy activity", options: ["has no tail event but only a head event", "has only head event but no tail event", "does not require any resources or any time", "has no bearing on the network and can appear anywhere"], a: 2 },
+        { id: 51, q: "At an event other than final event if no activity emerges, it results in an error called", options: ["looping", "dangling", "interfacing", "splicing"], a: 1 },
+        { id: 52, q: "If the path of activities leads back into itself, the resulting error in the network is known as", options: ["looping", "dangling", "interfacing", "splicing"], a: 0 },
+        { id: 53, q: "The railway project are treated as", options: ["light", "heavy", "industrial", "all of above"], a: 1 },
+        { id: 54, q: "In PERT, the critical path represents the", options: ["shortest path for the earliest completion of the project", "longest path of the network from the initial to final event", "ideal path by proceeding along which the project can be completed as per schedule", "path which takes into account the completion of the parallel activities"], a: 1 },
+        { id: 55, q: "The optimistic, most likely and pessimistic time estimates of an activity are 5, 10, 21 days, what are the expected time and standard deviation", options: ["12, 3", "11, 4", "11, 2.67", "10, 16"], a: 2 },
+        { id: 56, q: "Slack is given as the difference between", options: ["latest allowable time and earliest expected time", "latest allowable time and the pessimistic time estimate", "earliest expected time and latest allowable time", "final event time and initial event time"], a: 0 },
+        { id: 57, q: "Negative slack indicates", options: ["ahead of schedule condition", "behind the schedule condition", "on schedule condition", "none of the above"], a: 1 },
+        { id: 58, q: "Contractor's prequalification is required for", options: ["all works", "small works", "major and specified works", "none the above"], a: 2 },
+        { id: 59, q: "Which of the following terminology is not relevant to a CPM planning?", options: ["Earliest start time", "Latest start time", "Earliest finish time", "optimistic time"], a: 3 },
+        { id: 60, q: "Slack time refers to", options: ["an activity", "an event", "both event and activity", "none of the above"], a: 1 },
+        { id: 61, q: "Zero float for any activity means that the activity is", options: ["super-critical", "sub-critical", "critical", "none"], a: 2 },
+        { id: 62, q: "Negative float for any activity means that the activity is", options: ["super-critical", "sub-critical", "critical", "none"], a: 0 },
+        { id: 63, q: "The total float for any activity along the critical path in CPM is", options: ["positive", "negative", "zero", "any value"], a: 2 },
+        { id: 64, q: "Direct cost of project is due to", options: ["establishment charges as salaries to administrative staff", "loss or gain of revenue", "penalty imposed", "cost of materials and wages to labour"], a: 3 },
+        { id: 65, q: "Total project cost", options: ["increases with increase in time", "reduces with increase in time", "initially reduces and then increases with increase in time", "initially increases and then reduces with increase in time"], a: 2 },
+        { id: 66, q: "The total cost versus time curve is", options: ["straight line", "U-shaped curve", "a parabola", "n-shaped curve"], a: 1 },
+        { id: 67, q: "Crashing to the project means", options: ["reducing the time of completion by spending more resources", "reducing the cost of project by delaying the time of completion", "reducing the project size to save the resources", "all the above"], a: 0 },
+        { id: 68, q: "Resource smoothening means", options: ["gradual increase in resources", "adjustment of resources to have the least variations", "complete revamping if resources to suit the requirement", "optimization and economical utilization of resources"], a: 1 },
+        { id: 69, q: "In the time-cost optimization using CPM, the crashing of the activities along the critical path is done starting with the activity having", options: ["least cost slope", "highest cost slope", "moderate cost slope", "none of the above"], a: 0 },
+        { id: 70, q: "When all the paths are arranged according to the descending order of the float, the path which is next to critical path is known as", options: ["under-critical path", "super-critical path", "sub-critical path", "secondary critical path"], a: 2 },
+        { id: 71, q: "Which of the following is a dummy activity?", options: ["Excavate the foundations", "Await the arrival of concrete material", "Lay the foundation concrete", "Cure the foundation concrete"], a: 1 },
+        { id: 72, q: "The opening of bidding in the process of procurement is known as", options: ["contracting", "tendering", "negotiation", "mediation"], a: 1 },
+        { id: 73, q: "The first stage of a construction, is", options: ["preparation of estimate", "survey of the site", "initiation of proposal", "allotment of funds"], a: 2 },
+        { id: 74, q: "Pre-tender stage requires", options: ["acquisition of land", "finalization of designs and preparation of estimate", "finalization of alignment of work", "all of above"], a: 3 },
+        { id: 75, q: "The main function of the construction management is", options: ["planning", "organizing", "directing", "all of above"], a: 3 },
+        { id: 76, q: "Construction team means", options: ["an engineer and architect", "a contractor", "an owner", "all of above"], a: 3 },
+        { id: 77, q: "A golden rule for the procurement of construction stones, suggests", options: ["100% at the site", "67% at the site and 33% under procurement", "50% at the site and 50% under procurement", "33% at the site and 67% under procurement"], a: 1 },
+        { id: 78, q: "Military organization is known as", options: ["line organization", "line and staff organization", "functional organization", "none of these"], a: 0 },
+        { id: 79, q: "The main advantage of line organization, is", options: ["effective command and control", "defined responsibilities at all levels", "rigid discipline in the organization", "all of above"], a: 3 },
+        { id: 80, q: "Frederick W. Taylor introduced a system of working know as", options: ["line organization", "line and staff organization", "functional organization", "effective organization"], a: 2 },
+        { id: 81, q: "The most popular type of organization used for civil engineering constructions is", options: ["line organization", "line and staff organization", "functional organization", "effective organization"], a: 0 },
+        { id: 82, q: "Critical path", options: ["is always longest", "is always shortest", "may be longest", "may be shortest"], a: 0 },
+        { id: 83, q: "Henry Gant developed bar chart in", options: ["1880", "1900", "1940", "2000"], a: 1 },
+        { id: 84, q: "Bar chart is suitable for", options: ["large project", "major work", "minor work", "all of these"], a: 2 },
+        { id: 85, q: "Site order book is used for recording", options: ["instructions by the executive engineers", "construction measurements", "issue of store equipment", "names of the casual labour"], a: 0 },
+        { id: 86, q: "Various activities of a project, are shown on bar charts by", options: ["vertical lines", "horizontal lines", "dots", "crosses"], a: 1 },
+        { id: 87, q: "Which of the following documents should be prepared and submitted by a contractor?", options: ["bid document", "quality control plan", "quality assurance plan", "specification"], a: 2 },
+        { id: 88, q: "The first method invented for planning projects, was", options: ["Bar chart method", "Milestone chart", "Critical path method (CPM)", "Programme evaluation and Review Technique (PERT)"], a: 0 },
+        { id: 89, q: "PERT analysis is based on", options: ["optimistic time", "pessimistic time", "most likely time", "all the above"], a: 3 },
+        { id: 90, q: "The performance of a specific task in CPM, is known", options: ["Dummy", "Event", "Activity", "Contract"], a: 2 },
+        { id: 91, q: "Completion of an activity on CPM network, is generally known", options: ["Event", "Node", "Connector", "All the above"], a: 3 },
+        { id: 92, q: "The artificial activity which indicates that an activity following it, cannot be started unless the preceding activity is complete, is known as", options: ["event", "free float", "dummy", "constant"], a: 2 },
+        { id: 93, q: "A dummy activity", options: ["is artificially introduced", "is represented by a dotted line", "does not consume time", "all the above"], a: 3 },
+        { id: 94, q: "The estimated time required to perform an activity, is known as", options: ["event", "dummy", "duration", "float"], a: 2 },
+        { id: 95, q: "The difference between the time available to do a job and the time required to do the job, is known as", options: ["event", "float", "duration", "constraint"], a: 1 },
+        { id: 96, q: "An EPC contract means:", options: ["end of planning and construction", "evaluation planning and construction", "engineering planning and construction", "engineering procurement and construction"], a: 3 },
+        { id: 97, q: "The critical activity has", options: ["maximum float", "minimum float", "zero float", "none of these"], a: 2 },
+        { id: 98, q: "The time by which activity completion time can be delayed without affecting the start of succeeding activities, is known as", options: ["duration", "total flat", "free float", "interfering float"], a: 2 },
+        { id: 99, q: "For completion of a project, the critical path of the network represents", options: ["minimum time", "maximum time", "maximum cost", "minimum cost"], a: 0 },
+        { id: 100, q: "Which one of the following represents an activity", options: ["curing of concrete", "setting of question paper", "preparation of breakfast", "all the above"], a: 3 },
+        { id: 101, q: "Which one of the following represents an event ?", options: ["concrete cured", "fixing of door", "plastering of walls", "selecting sites"], a: 0 },
+        { id: 102, q: "Critical path lies along the activities having total float", options: ["positive", "negative", "zero", "same"], a: 2 },
+        { id: 103, q: "The time which result in the least possible construction cost of an activity, is known", options: ["normal time", "slow time", "crash time", "standard time"], a: 1 },
+        { id: 104, q: "If to, tp and tm are the optimistic, pessimistic and most likely time estimates of an activity respectively, the expected time t of the activity will be", options: ["(to+3tm+tp)/2", "(to+4tm+tp)/6", "(to+4tm+tp)/4", "(to+4tm+to)/5"], a: 1 },
+        { id: 105, q: "The figure [Nodes converging to one event] is used to indicate", options: ["a merge", "an event", "a burst", "an activity"], a: 0 },
+        { id: 106, q: "The figure [One event diverging to multiple nodes] is used to indicate", options: ["a merge", "an event", "a burst", "an activity"], a: 2 },
+        { id: 107, q: "The technique for establishing and maintaining priorities among the various jobs of a project, is known", options: ["Event flow scheduling technique", "Critical ratio scheduling", "Slotting technique for scheduling", "Short interval scheduling"], a: 1 },
+        { id: 108, q: "PERT is", options: ["limited of event oriented", "used for research and development projects", "based on three time estimates for activities linking up two events", "all the above"], a: 3 },
+        { id: 109, q: "CPM is", options: ["synthesizing in concepts", "is built of activities oriented programme", "is used for repetitive works", "all the above"], a: 3 },
+        { id: 110, q: "CPM family includes", options: ["CPA (Critical Path Analysis)", "CPP (Critical Path Plotted)", "CPS (Critical Path Scheduling)", "All the above"], a: 3 },
+        { id: 111, q: "In CPM analysis,", options: ["emphasis is given to activities", "uncertainties are not allowed", "activities are represented by arrows", "all of above"], a: 3 },
+        { id: 112, q: "Residential buildings are treated as", options: ["light construction", "heavy construction", "industrial construction", "private constructions"], a: 0 },
+        { id: 113, q: "In the network shown in Figure [1->2, 1->3, 2->5, 3->6...], the concurrent and preceding activities corresponding to activity 2-4 are respectively", options: ["1-2 and 4-7", "2-3 and 1-2", "2-3 and 4-7", "1-2 and 3-6"], a: 1 },
+        { id: 114, q: "A concrete mixer is specified by", options: ["the volume of the mixing drum", "Horse power of prime mover", "Volume of mixed concrete discharged after mixing of each batch", "mixer drum speed"], a: 2 },
+        { id: 115, q: "An event is", options: ["a definite job", "a definite time interval", "the terminals of an activity", "a definite position of an activity"], a: 3 },
+        { id: 116, q: "Which of the following does not represent an activity?", options: ["site located", "foundation is being dug", "the office area is being cleaned", "the invitations are being sent"], a: 0 },
+        { id: 117, q: "Grader is used mainly for", options: ["Trimming and finishing", "Shaping and trimming", "Finishing and shaping", "Finishing, shaping and trimming"], a: 3 },
+        { id: 118, q: "Critical path", options: ["is the shortest path", "had 'null' slack", "had the maximum slack", "had minimum slack"], a: 3 },
+        { id: 119, q: "In PERT analysis, the time estimates of activities and probability of their occurrence follow", options: ["normal distribution curve", "Poisson's distribution curve", "beta-distribution curve", "binomial distribution curve"], a: 2 },
+        { id: 120, q: "Which of the following does not represent an activity ?", options: ["construction of foundation", "construction of roof", "construction of super-structure", "all of these"], a: 3 },
+        { id: 121, q: "Earliest finish of an activity is always", options: ["greater than earliest event time of the following node", "less than earliest event time of the following node", "less than or equal to earliest event time of the following node", "greater than or equal to earliest event time of the following node"], a: 2 },
+        { id: 122, q: "Latest start of an activity is always", options: ["greater than or equal to latest event time of preceding node", "less than or equal to latest event time of preceding node", "equal to latest event time of preceding node", "less than latest event time of preceding node"], a: 0 },
+        { id: 123, q: "In PERT technique, completion of an activity is called", options: ["head activity", "head event", "tail activity", "tail event"], a: 1 },
+        { id: 124, q: "Which of the following is a PERT event ?", options: ["transport of sand", "transport of cement", "concreting of roof completed", "making of formwork continues"], a: 2 },
+        { id: 125, q: "The technique which is activity oriented is", options: ["PERT", "CPM", "both of the above", "none"], a: 1 },
+        { id: 126, q: "Of the following, the PERT event is", options: ["fixing of doors", "plastering of walls", "concrete cured", "selection of sites"], a: 2 },
+        { id: 127, q: "Which of the following is an activity", options: ["concrete cured", "walls plastered", "excavation for foundation", "all of the above"], a: 2 },
+        { id: 128, q: "Free float is mainly used to", options: ["identify the activities which can be delayed without affecting the total of preceding activity", "identify the activities, which can be delayed without affecting the total float of succeeding activity", "establish priorities", "identify the activities which can be delayed without affecting the total float of either the preceding or succeeding activities"], a: 1 },
+        { id: 129, q: "The formula for determination of price adjustment in a work contract may not contain", options: ["contract price", "adjustment amount", "material indices", "equipment cost"], a: 0 },
+        { id: 130, q: "Consulting work worth more than ten crore rupees should be procured on the basis of", options: ["request for proposal", "Request for expression of interest and request for proposal", "International level request for expression of interest and request for proposal", "International level request for proposal"], a: 2 },
+        { id: 131, q: "The direct cost of a project with respect to normal time is", options: ["minimum", "maximum", "zero", "infinite"], a: 0 },
+        { id: 132, q: "Slack time refers to", options: ["an activity", "an event", "both event and activity", "none of the above"], a: 1 },
+        { id: 133, q: "The activity which is crashed first has", options: ["highest cost slope", "least cost slope", "crashing has no relation with cost slope", "none of these"], a: 1 },
+        { id: 134, q: "Security deposit deducted at 5% from contractor's bill is", options: ["refunded when the contractor has completed the work", "refunded even before the completion of the work provided good progress has been established", "retained till the expected life of the structure of say 100 years and spent for maintenance", "refunded when the defect liability period is over"], a: 3 },
+        { id: 135, q: "A construction team includes", options: ["owner", "engineer", "architect", "all of these"], a: 3 },
+        { id: 136, q: "During the construction period, price variation clause in contracts to", options: ["increase in rates of only important materials", "variation in cost in materials element, labour element and petrol-oil-lubricant element", "variation in total cost of the project on an adhoc basis", "rate of inflation"], a: 1 },
+        { id: 137, q: "Mobilization advance upto 20 % of the cost of work is given to a contractor", options: ["on commencement of work at site for payment of loan taken by him", "for the purchase of construction material", "for the payment of advances to labour and other staff", "for all activities required to start the work at site on finalization of contract document"], a: 3 },
+        { id: 138, q: "In resource levelling", options: ["total duration of project is reduced", "total duration of project is increased", "uniform demand of resources is achieved", "cost of project is controlled"], a: 2 },
+        { id: 139, q: "A dummy activity is that part of the project which", options: ["consumer resources", "don't consume resources", "consumes time only", "none of above"], a: 1 },
+        { id: 140, q: "In PERT analysis the duration of the activities is taken as", options: ["optimistic time", "pessimistic time", "most likely time", "expected mean time"], a: 3 },
+        { id: 141, q: "In PERT technique the critical path has slack equal to", options: ["zero always", "positive", "negative", "zero or negative"], a: 3 },
+        { id: 142, q: "The variance of the PERT critical path is equal to", options: ["sum of variance of activities lying on critical path", "maximum of sum of variances upto end event", "minimum of sum of variances upto end event", "none of above"], a: 0 },
+        { id: 143, q: "Cost - benefit studies are essential to", options: ["assess the total cost of the work", "ascertain the relevant escalation in prices", "monitor the expenditure", "evaluated the viability and worth whiteness of taking up the project"], a: 3 },
+        { id: 144, q: "The CPM network is updated", options: ["at regular intervals", "at fixed times", "at any time", "whenever there is difference in the planned & actual performance"], a: 3 },
+        { id: 145, q: "The process of inspiring the subordinates to do a work or achieve an objective is called as", options: ["management", "supervision", "motivation", "communication"], a: 2 },
+        { id: 146, q: "Time and progress chart are also known as", options: ["bar chart", "modified milestone chart", "critical path method chart", "all of these"], a: 3 },
+        { id: 147, q: "The Bar chart Technique is commonly used because it", options: ["is simple to draw & easy to understand", "indicates progress clearly", "is useful for cost & quality control", "all the above"], a: 0 },
+        { id: 148, q: "Crashing is", options: ["reduction in duration", "reduction of resource", "reduction of cost", "reduction in project size"], a: 0 },
+        { id: 149, q: "PERT technique of network analysis is mainly useful for", options: ["small projects", "large and complex projects", "research and development projects", "deterministic activities"], a: 2 },
+        { id: 150, q: "The pictorial representation of activity and event of a project is known as", options: ["flow chart", "flow net", "algorithm", "network"], a: 3 },
+        { id: 151, q: "Direct purchase can be done for construction work when the amount is", options: ["up to Rs. 0.5 million", "up to Rs. 0.15 million", "up to Rs. 0.3 million", "none of above"], a: 0 },
+        { id: 152, q: "Technical planning is carried out for the", options: ["preparation of detail drawing", "preparation of detail estimate", "planning resource and initiating procurement action", "all of above"], a: 3 },
+        { id: 153, q: "Pre-Qualification should be done while the amount of procurement or construction work is to be carried out", options: ["more than 6 million", "less than 6 million", "more than 5 million", "less than 5 million"], a: 0 },
+        { id: 154, q: "In Nepal, Public Procurement Act (PPA), was effective from", options: ["2020 BS", "2038 BS", "2059 BS", "2063 BS"], a: 3 },
+        { id: 155, q: "The area under the Beta - distribution curve is divided into two equal parts by", options: ["most likely time", "optimistic time", "pessimistic time", "expected time"], a: 3 },
+        { id: 156, q: "For procurement of works upto 1 million Rs, by which of the following method of procurement is considered?", options: ["by direct negotiation", "by bidding", "by direct labour or direct negotiation", "by sealed quotation"], a: 3 },
+        { id: 157, q: "A contractor can start the construction works following the receipt of:", options: ["award of contract", "contract agreement", "notice to proceed", "variation order"], a: 2 },
+        { id: 158, q: "Quality assurance plan is prepared:", options: ["before the project works starts", "during the running of project work", "after the completion of the project", "none of the above"], a: 0 },
+        { id: 159, q: "In order to balance the needs of the many stakeholders involved in a project, the most desirable method to achieve resolution of conflicts would be:", options: ["compromise", "controlling", "forcing", "confrontation"], a: 0 },
+        { id: 160, q: "Security deposit deducted from the contractor's bill is:", options: ["refunded upon completion of work", "refunded when good progress is achieved", "retained until the lifespan of the project", "refunded when the defect liability period is over"], a: 3 },
+        { id: 161, q: "The pre-tender stage of construction requires:", options: ["selection of site", "finalization of designs", "acquisition of land", "all of the above"], a: 3 },
+        { id: 162, q: "Project monitoring is", options: ["a review technique", "a feedback mechanism", "an essential component of construction management", "all of the above"], a: 3 },
+        { id: 163, q: "CPM adopts:", options: ["probabilistic approach", "stochastic approach", "linear approach", "deterministic approach"], a: 3 },
+        { id: 164, q: "Earnest money is a .......towards the execution of a public tender government contract.", options: ["deposit", "plan", "payment", "withdrawal"], a: 0 },
+        { id: 165, q: "At an event other than final event if no activity emerges, it results in an error called:", options: ["looping", "dangling", "interfacing", "splicing"], a: 1 },
+        { id: 166, q: "Which of the following denotes a dummy activity P ?", options: ["(9) -> P -> (10)", "(9) - P -> (10)", "(9) -- P --> (10) (dotted)", "(9) <- P -- (10)"], a: 2 },
+        { id: 167, q: "Critical activities having total float are :", options: ["positive", "negative", "zero", "equal"], a: 2 },
+        { id: 168, q: "Which of the following is NOT among the principles a project manager must follow in terms of professional responsibility and ethical principles?", options: ["ensuring individual integrity", "balancing stakeholder's interests", "fulfilling contractor's demands", "interacting with the project team in a professional and cooperative manner"], a: 2 },
+        { id: 169, q: "During construction, price variation clause in a contract applies to:", options: ["increase in cost of important materials only", "variation in the cost of materials, labour and fuel", "variation in total cost of the project estimated and a lump-sum figure", "the rate of inflation"], a: 1 },
+        { id: 170, q: "If the probability factor is zero, the chances of completing the project in scheduled time are;", options: ["0%", "75%", "50%", "100%"], a: 2 },
+        { id: 171, q: "Unsafe working condition in construction industry causes:", options: ["fatal accident", "death of workers", "minor accident", "all of the above"], a: 3 },
+        { id: 172, q: "PERT technique of network analysis is mainly useful for", options: ["small projects", "large and complex projects", "research and development projects", "deterministic activities"], a: 2 },
+        { id: 173, q: "Completion of an activity on CPM network diagram is generally known as,", options: ["event", "node", "connector", "all of the above"], a: 3 },
+        { id: 174, q: "Which of the following method of procurement is not applicable for material management?", options: ["Direct purchase", "national competitive bidding", "International competitive bidding", "cost and quality based selection"], a: 3 },
+        { id: 175, q: "Tender guarantee is .... of estimated cost.", options: ["1%", "2 to 3%", "5%", "none of the above"], a: 1 },
+        { id: 176, q: "Variance is", options: ["(sum of time durations for various job) / number of jobs", "difference between time under consideration and mean time", "mean of squared deviations", "square root of mean of squared deviations"], a: 2 },
+        { id: 177, q: "If for an activity optimistic time is 1 day pessimistic times is 8 days and most likely time is 3 days then the expected time is", options: ["3.5 days", "3.6 days", "3.75 days", "4 days"], a: 0 },
+        { id: 178, q: "Slack is", options: ["difference of latest allowable time and earliest expected time", "least allowable time-earliest expected time", "earliest expected time-latest allowable time", "time gained by an activity"], a: 1 },
+        { id: 179, q: "Negative slack occurs", options: ["when latest allowable time is greater than earliest expected time", "when events stick to their schedule", "when deficiency of resources exist", "none of these"], a: 2 },
+        { id: 180, q: "Which one of the following is not an excavating and moving type of equipment?", options: ["Bulldozer", "Clam shell", "Scraper", "Dump truck"], a: 3 },
+        { id: 181, q: "Float is", options: ["the earliest time by which an activity may commence", "latest time by which an activity can be delayed without hampering the completion of the project", "latest allowable time-earliest expected time", "time available-time required for an activity"], a: 3 },
+        { id: 182, q: "For the preparation of construction schedule, the data required is", options: ["number of operations", "number of activities", "output of labour", "all of these"], a: 3 },
+        { id: 183, q: "The purpose of bid evaluation is to determine", options: ["lowest", "responsive bid", "substantially responsive bid", "lowest evaluated substantially responsive bid"], a: 3 },
+        { id: 184, q: "Which of the following is a type of bar chart that illustrates a project schedule?", options: ["Gantt Chart", "Pie Chart", "Smith Chart", "Slant Chart"], a: 0 },
+        { id: 185, q: "Contractor profit is added to:", options: ["detailed estimate", "rate analysis", "valuation", "salvage"], a: 1 },
+        { id: 186, q: "The post tender stage of construction consists of", options: ["assessment of work", "finalization of account", "assessment of expenditure during execution", "all of these"], a: 3 },
+        { id: 187, q: "The authority to approve a variation order of an amount exceeding 5 but less than 15 percent of contract amount is:", options: ["chief of local division", "chief of the department", "secretary of concerned ministry", "council of ministers"], a: 1 },
+        { id: 188, q: "Sensitivity analysis is a study of", options: ["Comparison of profit and loss", "Comparison of assets and liabilities", "Change in output due to change in input", "Economics of cost and benefits of the project"], a: 2 },
+        { id: 189, q: "In the network shown in Figure [Dependency Diagram], activity 4-5 can be started only when", options: ["activity 3-4 is completed", "activity 2-4 is completed", "activity 2-3 is completed", "activity 2-4 and 3-4 both are completed"], a: 3 },
+        { id: 190, q: "The major principal of an organization is", options: ["span of management", "unity of command", "delegation of authority", "all of these"], a: 3 },
+        { id: 191, q: "Functional organization system of working was introduced by", options: ["Henry Gantt", "F.W. Taylor", "M.R. Walker", "none of these"], a: 1 },
+        { id: 192, q: "In a line organization", options: ["discipline is strong", "quick decision are taken", "responsibility of each individual is fixed", "all of these"], a: 3 },
+        { id: 193, q: "The technology or software used for project planning includes all but:", options: ["primavera", "MS project", "CPM", "arc GIS"], a: 0 },
+        { id: 194, q: "Which of the following is a primary process for procurement of goods and services from a competitive market?", options: ["payment", "bidding", "deposit", "order placement"], a: 1 },
+        { id: 195, q: "Project maintenance is", options: ["started after project ends", "optional process", "an ongoing process", "compulsory"], a: 0 },
+        { id: 196, q: "project control begins early in the project with planning and ends late in the project with", options: ["payment", "post-implementation review", "monitoring", "auditing"], a: 3 },
+        { id: 197, q: "Select the incorrect statement", options: ["A critical path always begins at the very first event", "A critical path always terminates at the last event", "Critical activities control the project duration", "Critical activity is the one for which free float is zero."], a: 3 },
+        { id: 198, q: "Free float for any activity is defined as the difference between", options: ["its latest start time and earliest start time for its successor activity", "its latest start time and earliest start time", "its latest finish time and earliest start time for its successor activity", "its earliest finish time and latest start time for its successor activity."], a: 0 },
+        { id: 199, q: "Quality control during construction consist largely of insuring", options: ["laboratory test", "field test", "conformance", "time control"], a: 0 },
+        { id: 200, q: "The time by which a particular activity can be delayed without affecting the proceeding and succeeding activities is known as", options: ["total float", "free float", "interfering float", "independent float"], a: 3 },
+        { id: 201, q: "The time with which direct cost does not reduce with the increase in time is known as", options: ["crash time", "normal time", "optimistic time", "standard time"], a: 1 },
+        { id: 202, q: "The time corresponding to minimum total project cost is", options: ["crash time", "normal time", "optimistic time", "between normal time and crash time"], a: 3 },
+        { id: 203, q: "The cost slope is defined as", options: ["(crash cost - normal cost) / crash time", "crash cost / (normal time - crash time)", "(crash cost - normal cost) / normal time", "(crash cost - normal cost) / (normal time - crash time)"], a: 3 },
+        { id: 204, q: "The direct cost of a project with respect to normal time is", options: ["minimum", "maximum", "zero", "infinite"], a: 0 },
+        { id: 205, q: "The reduction in project time normally results in", options: ["decreasing the direct cost and increasing indirect cost", "increasing the direct cost and decreasing the indirect cost", "increasing the direct cost and indirect cost both", "decreasing the direct cost and indirect cost both"], a: 1 },
+        { id: 206, q: "In construction management works muster roll term is related as", options: ["Wages", "Bonus money", "Provident money", "Donation money"], a: 0 },
+        { id: 207, q: "Slack time refers to", options: ["an activity", "an event", "both event and activity", "none of the above."], a: 1 },
+        { id: 208, q: "A muster roll is:", options: ["attendance sheet of temporary workers for remuneration", "inventory list of equipment and list of people on the site", "list of jobs the workers must do on site", "several drawing sheets of site rolled in a bundle"], a: 0 },
+        { id: 209, q: "Slack time in PERT analysis", options: ["can never be greater than zero", "is always zero for critical activities", "can never be less than zero", "minimum for critical events."], a: 3 },
+        { id: 210, q: "Petty contract is:", options: ["work entrusted to a contractor without any restrictions", "contract wholly owned by a single staff", "contract selected as the best one", "a contract of small amount and volume to be fully handled by a staff"], a: 3 },
+        { id: 211, q: "Amount required to be deposited by contractor while submitting tender is", options: ["fixed deposit", "caution deposit", "security deposit", "earnest money"], a: 3 },
+        { id: 212, q: "In the construction industry arbitration method is used for:", options: ["inviting the tender", "opening the tender", "awarding the tender", "none of the above."], a: 3 },
+        { id: 213, q: "Types of organization used in construction industry is:", options: ["line organization", "line staff organization", "functional organization", "effective organization"], a: 0 },
+        { id: 214, q: "Updating of schedule is carried out in a project", options: ["to accommodate configuration changes", "to assign new target date against the planned date", "to reflect remedial actions for correction of deviations", "all of above"], a: 3 },
+        { id: 215, q: "The document announcing to prospective bidders that the owner is ready to receive bids is called", options: ["notice to bidders", "instruction to bidders", "bill of quantities", "intension to acceptance"], a: 0 },
+        { id: 216, q: "Which of the following is not a reason for establishing good occupational health and safety standard?", options: ["economic", "legal", "religious", "moral"], a: 2 },
+        { id: 217, q: "Critical Path method (CPM) in construction management required single time estimates whereas programme evaluation and Review Technique (PERT) requires:", options: ["double time estimates", "triple time estimates", "tretra time estimates", "penta time estimates"], a: 1 },
+        { id: 218, q: "If the variation amount is in between 10% to15% of the original contract value then approval of the variation of cost is done by:", options: ["project manager", "site in-charge", "department head", "all of the above"], a: 2 },
+        { id: 219, q: "The main advantage of line organization, is", options: ["effective command and control", "defined responsibilities at all levels", "rigid discipline in the organization", "all of above"], a: 3 },
+        { id: 220, q: "The amount provided in the estimate and bill of quantities for some specialized works to be done by the specialist firm, whose details are not known at the time of preparing estimates is called.", options: ["day works", "contingencies", "provisional sum", "prime cost"], a: 2 },
+        { id: 221, q: "Responsibility of civil overseer is", options: ["supervision of civil sub-overseer", "quality control of material", "preparation of bill of quantities", "all of above"], a: 3 },
+        { id: 222, q: "Construction activities at site are associated with the management of", options: ["manpower", "material", "machine and equipment", "all of above"], a: 3 },
+        { id: 223, q: "Muster roll consists of", options: ["estimated cost of project", "list of material in site", "list of equipment", "none of above"], a: 3 },
+        { id: 224, q: "The report prepared at the end of finishing a construction job is called:", options: ["finalization report", "approval report", "completion report", "audit report"], a: 2 },
+        { id: 225, q: "A set of documents submitted by a contractor to a project office with a description of works or goods to be provided and the proposed price is known as", options: ["tender", "agreement", "technical proposal", "financial proposal"], a: 0 },
+        { id: 226, q: "Donor funded project are based on", options: ["Priority of government", "priority of user", "good IRR", "All of above"], a: 3 },
+        { id: 227, q: "In Nepal, which of the following Act contains the provisions on health and safety of the workers?", options: ["Contract Act", "Industry Act", "Labour Act", "all of above"], a: 2 },
+        { id: 228, q: "As per the financial regulation minimum time required for tender notice is for NCB contract:", options: ["15 days", "30 days", "45 days", "60 days"], a: 1 },
+        { id: 229, q: "Preliminary project report for a road project must contain", options: ["The detailed estimated cost based on detailed design", "The several alternatives of the project that have been considered", "The soil survey, traffic survey, concept design and approximate cost", "The contract documents for inviting tenders"], a: 2 },
+        { id: 230, q: "The object of technical planning, is", options: ["Preparation of estimates", "taking remedial action for likely bottleneck in the execution", "initiating the procurement action of resources", "all of above"], a: 3 },
+        { id: 231, q: "Security deposit should be deducted at ........ from contractor's bill.", options: ["3%", "4%", "5%", "10%"], a: 2 },
+        { id: 232, q: "What does OB stands for ?", options: ["Organizational business", "Organizational behaviour", "Organizing behaviour", "Organizing business"], a: 1 },
+        { id: 233, q: "PERT means", options: ["Program evaluation and review technique", "Pertinear programming related to a project", "Performance, evaluation, rating and time", "None of the above"], a: 0 },
+        { id: 234, q: "Construction schedule is prepared after collecting", options: ["number of operations", "output of labours", "output of machinery", "all the above"], a: 3 },
+        { id: 235, q: "Line of the balance techniques used for", options: ["planning of a project", "planning of activity", "planning an event", "comprising actual progress with the schedule program"], a: 3 },
+        { id: 236, q: "The value Added Tax (VAT) added in the estimate is equal to", options: ["13%", "10%", "11%", "12%"], a: 0 },
+        { id: 237, q: "Performance security is necessary:", options: ["after construct agreement to the successful bidder", "before bid opening to lo all bidders", "during bid opening to all bidders", "before contract agreement to the successful bidder"], a: 3 },
+        { id: 238, q: "Which method is known as minimum cost or maximum time schedule method", options: ["PERT", "CPM", "bar chart", "all of the above"], a: 1 },
+        { id: 239, q: "It means the offering, giving, receiving, or soliciting, directly or indirectly, anything of value to influence improperly the actions of another party", options: ["corrupt practice", "fraudulent practice", "coercive practice", "collusive practice"], a: 0 },
+        { id: 240, q: "The object of technical planning of a project is", options: ["Preparation of estimate", "Preparation of specification", "Initiating the procurement process", "All of the above"], a: 3 },
+        { id: 241, q: "The first stage of construction project is", options: ["survey of the site", "preparation of tender", "preparation of estimate", "initiation of planning"], a: 3 },
+        { id: 242, q: "Tender notice of a public work to be constructed at a major city should be published in", options: ["local newspaper", "BT and local radio/FM", "national weekly paper", "national daily paper"], a: 3 },
+        { id: 243, q: "A guarantee amount that is provided by the contractor to the employer towards successful execution of a contract is known as:", options: ["Tender security", "Bid security", "performance security", "advance security"], a: 2 },
+        { id: 244, q: "The Bar Chart technique is commonly used because it is", options: ["useful for quality control", "useful for labour contact", "simple to draw & easy to understand", "useful to get clear progress"], a: 2 },
+        { id: 245, q: "In the analysis of rates, the profit and over head for the contractor is generally taken as:", options: ["20%", "15%", "10%", "5%"], a: 1 },
+        { id: 246, q: "The weakness in bar chart is", options: ["the various activities are independent", "uncertainly in duration for various activities", "the sequence of activities not very clear", "all of the above"], a: 3 },
+        { id: 247, q: "As provisioned in government norms, the amount of contingencies in general estimating works should not exceed", options: ["2.5%", "3%", "4.5%", "5%"], a: 3 },
+        { id: 248, q: "Rate analysis is determination of cost of:", options: ["Laborers' wages per day", "Per unit of a particular item of specified work", "Per unit volume of construction materials", "Per unit weight of specified construction materials"], a: 1 },
+        { id: 249, q: "As per the prevailing regulation (PPR) in Nepal, what is the percentage of price escalation contingency to be provided at the end of earth estimate preparation?", options: ["None", "5%", "10%", "20%"], a: 2 },
+        { id: 250, q: "In PERT analysis, the time estimate of activities and probability of their occurrence follow.", options: ["Normal distribution curve", "Poisson's distribution curve", "Beta distribution curve", "None of the above"], a: 2 },
+        { id: 251, q: "Free float is mainly used to", options: ["identify the activites, which can be delayed without affecting the total float of preceding activity", "identify activites, which can be delayed without affecting the total float of succeeding activity", "establish priorities", "identify the activities which can be delayed without affecting the total float of either the preceding or succeeding activities."], a: 1 },
+        { id: 252, q: "Daily attendance of labour is recorded in muster roll", options: ["Daily by sub-engineer", "As per the attendance register", "By an engineer", "By as accountant"], a: 0 },
+        { id: 253, q: "Which of the followings is not an essential part of general specification of public works?", options: ["Material details", "Work methodology", "Illustrative sketches", "Mode of measurement for payment"], a: 2 },
+        { id: 254, q: "Specifications of any works is required only when the work is carried out by", options: ["User's committee", "Muster roll", "Contractor", "All of the above"], a: 3 },
+        { id: 255, q: "Who prepares quality assurance plan :", options: ["The employer", "The consultants", "The contractor", "All the above"], a: 2 },
+        { id: 256, q: "A guarantee amount that is provided by the contractor to the employer towards successful execution of a contract is known as:", options: ["Tender security", "Bid security", "Performance security", "Advance security"], a: 2 },
+        { id: 257, q: "The amount of money paid to the contractor by the client after the agreement and before the execution of work is known as:", options: ["Mobilization", "Advance", "Payment of first running bill", "Security money"], a: 0 },
+        { id: 258, q: "For any types of construction works, the condition of contract is:", options: ["a part of the agreement document", "not a part of agreement document", "prepared then and when required", "not required at all"], a: 0 },
+        { id: 259, q: "When is all deposit amount retained from the contractor released?", options: ["during the payment of final bill", "upon issuance of completion certificate", "after handing over", "after expiry of defects liability period"], a: 3 },
+        { id: 260, q: "Updating may result in", options: ["change of critical path", "decrease of project completion time", "increase of project completion time", "all of above"], a: 3 },
+        { id: 261, q: "The estimated time required to perform an activity, is known as:", options: ["event", "dummy", "duration", "float"], a: 2 },
+        { id: 262, q: "Tunnel construction in Nepal is treated as", options: ["light construction", "medium construction", "normal construction", "specialization construction"], a: 3 },
+        { id: 263, q: "At work site, stastical quality control of concrete means", options: ["measurement of risks to eliminate failures", "applying the theory of probability to sample testing or inspection", "reduction in wastage of inspection costs", "reduction in costs for removal of defects"], a: 1 },
+        { id: 264, q: "In the rate analysis norms prepared by GON", options: ["quantity of required labors, materials and machinery are given against unit of works", "rate of laours, materials and machinery are given", "rate of unit works are given", "all of the above"], a: 3 },
+        { id: 265, q: "The tools and plants cost generally taken to calculate the total cost of earthwork excavation is", options: ["3 % of labour cost", "4 % of labour cost", "5 % of labour cost", "10 % of labour cost"], a: 0 },
+        { id: 266, q: "A critical ratio scheduling", options: ["Determines the status of each activity", "Adjust automatically changes in activity progress", "is a dynamic system", "None of these"], a: 3 },
+        { id: 267, q: "A contractor is", options: ["A person", "A firm", "An agency", "All of the above"], a: 3 },
+        { id: 268, q: "Inspection of construction works for quality control is carried out and covers", options: ["Sampling , examination and field testing of materials", "Testing specimens in the laboratory", "Observation of a construction equipment and plant", "All of the above"], a: 3 },
+        { id: 269, q: "The main principal of an organization is", options: ["Unity of command", "Coherency", "Delegation of authority", "All of the above"], a: 3 },
+        { id: 270, q: "The amount deposited by bidders while submitting the bid is called", options: ["Retention money", "Earnest money", "Performance bond", "None of the above"], a: 1 },
+        { id: 271, q: "For preparation of cost estimated of project following activities are necessary", options: ["Preparation of design, drawing, quantity estimate", "Preparation of rate analysis based on approved norms and district rate", "Both A and B", "None of the above"], a: 2 },
+        { id: 272, q: "While preparing the cost estimate of a construction project by government offices, the provision of overhead charge, is", options: ["5% of estimated cost", "10% of estimated cost", "15% of estimated cost", "20% of estimated cost"], a: 2 },
+        { id: 273, q: "According to public procurement Act, 2063 for the procurement of works the bids security amount mentioned is,", options: ["1 to 2 percent of estimate cost", "2 to 3 percent of estimated cost", "3 to 4 percent of estimated cost", "4 to 5 percent of estimated cost"], a: 1 },
+        { id: 274, q: "Documents showing the list of quantity of various items of works required for completion of any project is known as", options: ["Schedule of rates", "Analysis of rate", "Abstract of cost", "Schedule of quantity"], a: 3 },
+        { id: 275, q: "The bid bond validity for bidding of works contract costing less than NRs.100 million is", options: ["90 days", "120 days", "150 days", "75 days"], a: 1 },
+        { id: 276, q: "A type of contract where whole project is divided into smaller distinct activities and bidder quotes separate rates against each work items is called", options: ["Lumpsum contract", "Cost plus contract", "Unit rate contract", "Boot contract"], a: 2 },
+        { id: 277, q: "The amount of money deposited by interested bidders a tender as a guarantee is known as", options: ["Earnest money", "Performance bond", "Security money", "Retention money"], a: 0 },
+        { id: 278, q: "The types of format in which the records of labour are kept on daily basis for executing works is", options: ["Muster roll", "Attendance register", "Attendance voucher", "Daily register"], a: 0 },
+        { id: 279, q: "Critical path is", options: ["Always longest", "Always shortest", "May be longest", "May be shortest"], a: 0 },
+        { id: 280, q: "Total project cost", options: ["Increases with increase in time", "Reduces with increase in time", "Initially reduces then increases with increase in time", "Initially increases then reduces with increase in time"], a: 2 },
+        { id: 281, q: "\"The force Account \" or AMANANT, a method of carrying out the construction work is done by", options: ["Contractor using his own tools, staff, equipment etc.", "Owner using his own tools, Staff, equipment etc.", "Sub-contractor using his own tools, staff, equipment etc.", "None of the above"], a: 1 },
+        { id: 282, q: "Bar chart is drawn for", options: ["Time versus activity", "Activity versus resources", "Resource versus progress", "Progress versus cost"], a: 0 },
+        { id: 283, q: "District labor rate fixation committee is chaired by", options: ["DDC chairperson", "Chief District Officer", "Location Development Officer", "Mayor of the Municipality"], a: 1 },
+        { id: 284, q: "Which of the following techniques is advanced and more indicate in modern construction progress review?", options: ["Earned value", "S-curve", "Histogram", "Milestone"], a: 0 },
+        { id: 285, q: "Running bills are prepared by using", options: ["MS Word", "MS Excel", "Auto CAD", "MS power point"], a: 1 },
+        { id: 286, q: "Power station are generally treated as", options: ["light construction", "heavy construction", "industrial construction", "electrical construction"], a: 2 },
+        { id: 287, q: "Project monitoring is related with", options: ["Quantity, quality, cost and time", "Impacts", "Outcomes", "All of the above"], a: 3 },
+        { id: 288, q: "The day to day quality control of works at site comes under the responsibility of", options: ["Civil overseer", "Civil engineer", "Employer", "Contractor"], a: 3 },
+        { id: 289, q: "The amount of earnest money deposited at the time of submission of tender is", options: ["2% of tender amount", "3% of tender amount", "2-3% of estimated amount", "2.5% of estimated amount"], a: 2 },
+        { id: 290, q: "The most popular type of organization used for civil engineering construction is", options: ["Effective organization", "Functional organization", "Line and staff organization", "Line organization"], a: 3 },
+        { id: 291, q: "The independent float affects only", options: ["preceding activities", "succeeding activities", "the particular activity involved", "none of the above"], a: 2 },
+        { id: 292, q: "The main purpose of as built drawing is", options: ["Maintenance of service work", "Dimensioning", "To award tender", "All of the above"], a: 0 },
+        { id: 293, q: "The main advantage of line organization is", options: ["Effective command and control", "Defined responsibilities at all levels", "Strict discipline in the organization", "All of the above"], a: 3 },
+        { id: 294, q: "The milestone chart shows", options: ["shows the interdependence of various jobs", "shows the events in chronological but not in a logical sequence", "depicts the delay of jobs", "All of the above"], a: 1 },
+        { id: 295, q: "Slack time refers to an", options: ["Event", "Activity", "Both A and B", "None of the above"], a: 0 },
+        { id: 296, q: "An agreement between two parties or more to do or to do any work is known as", options: ["Work to proceed", "Contract", "Specification", "Tender"], a: 1 },
+        { id: 297, q: "For completion of a project, the critical path of the network represents", options: ["minimum time", "maximum time", "maximum cost", "minimum cost"], a: 0 },
+        { id: 298, q: "The time which results in the least possible construction cost of an activity is known as,", options: ["normal time", "slow time", "crush time", "standard time"], a: 1 },
+        { id: 299, q: "Responsibilities of building sub-engineer are", options: ["To manage office spaces", "To manage construction agencies", "To manage relation with owner", "To manage expertise and time frame"], a: 1 },
+        { id: 300, q: "The basic action involved in sheep foot rolling is", options: ["Kneading", "Pressing", "Tamping", "Vibration"], a: 0 },
+        { id: 301, q: "A muster roll is", options: ["Workers attendance sheet", "List of pending job", "List of tools and plants", "None of the above"], a: 0 },
+        { id: 302, q: "The object of technical planning of a project is", options: ["Preparation of estimate", "Preparation of specification", "Initiating the procurement process", "All of the above"], a: 3 },
+        { id: 303, q: "Bar charts are suitable only for", options: ["Minor projects", "Medium projects", "Major projects", "All of the above"], a: 0 },
+        { id: 304, q: "The technique for establishing and maintaining priorities among the various jobs of a project, is known as", options: ["Event flow scheduling technique", "Critical ratio scheduling", "Slotting technique for scheduling", "Short interval scheduling"], a: 1 },
+        { id: 305, q: "Economic sauing of time results by crashing", options: ["cheapest critical activity", "cheapest non-critical activity", "cost liest critical activity", "cost liest non-critical activity"], a: 0 },
+        { id: 306, q: "Specification of works are prepared to", options: ["ensure quality of workmanship", "ensure quantity of materials", "prepare design and estimate", "all the above"], a: 3 },
+        { id: 307, q: "For a safe working environment in the working site Tool Box Talk is conducted :", options: ["during the work", "at the end foray's work", "before the start of the day's work", "during lunch hour"], a: 2 }
+    ];
+
+    let score = 0;
+    const answered = new Set();
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * disables the radio buttons for the question, and updates the score.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        // Prevent re-answering
+        if (answered.has(questionIndex)) return;
+        answered.add(questionIndex);
+
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        } else {
+            // Correct answer
+            score++;
+        }
+
+        // Update score display
+        document.getElementById('score-display').innerText = `Score: ${score} / ${answered.size}`;
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${item.options.map((opt, i) => `
+                        <li>
+                            <label id="lbl-${index}-${i}">
+                                <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                                <span>${String.fromCharCode(97 + i)}) ${opt}</span>
+                            </label>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
