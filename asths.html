@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Government Operation Act 2074 - Executive Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #27ae60; /* Changed to Green for Local Govt theme */
+            --accent-color: #c0392b;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .sidebar-header .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 20px;
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.90rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: rgba(255,255,255,0.05);
+            color: #fff;
+            border-left-color: var(--secondary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-box {
+            background-color: #fff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* Content Cards */
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Highlight Boxes for Thresholds/Grid */
+        .threshold-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .threshold-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 6px;
+            transition: transform 0.2s;
+        }
+        
+        .threshold-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .threshold-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-term {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+          <a href="index.html" class="home-link">← Back to Home</a>
+            <h2>Local Govt Act Notes</h2>
+            <a href="#" class="home-link">नेपाल कानून आयोग</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="quizasths.html" class="active">MCQ</a></li>
+            <li><a href="#intro" class="active">परिचय (Introduction)</a></li>
+            <li><a href="#classification">वर्गीकरण (Classification)</a></li>
+            <li><a href="#rights">अधिकार र कर्तव्य (Rights/Duties)</a></li>
+            <li><a href="#judicial">न्यायिक समिति (Judicial Comm.)</a></li>
+            <li><a href="#building">भवन निर्माण (Building Code)</a></li>
+            <li><a href="#finance">आर्थिक कार्यप्रणाली (Finance)</a></li>
+            <li><a href="#district">जिल्ला समन्वय (DCC)</a></li>
+            <li><a href="#staff">कर्मचारी र विविध (Staff/Misc)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>स्थानीय सरकार सञ्चालन ऐन, २०७४</h1>
+                <p>Local Government Operation Act, 2074 - Executive Notes</p>
+            </header>
+
+            <section id="intro">
+                <h2>परिचय (Introduction)</h2>
+                <div class="intro-box">
+                    <p><strong>प्रमाणीकरण मिति:</strong> २०७४।०६।२९</p>
+                    <p><strong>उद्देश्य:</strong> नेपालको संविधान बमोजिम स्थानीय तहको अधिकार कार्यान्वयन गर्न, संघ, प्रदेश र स्थानीय तह बीच सहकारिता प्रवर्द्धन गर्न र स्थानीय नेतृत्वको विकास गर्दै सुशासन कायम गर्न यो ऐन बनाइएको हो।</p>
+                </div>
+                <h3>मुख्य परिभाषाहरु (दफा २)</h3>
+                <ul>
+                    <li><strong>स्थानीय तह:</strong> गाउँपालिका, नगरपालिका र जिल्ला सभा।</li>
+                    <li><strong>अध्यक्ष/प्रमुख:</strong> गाउँपालिकाको अध्यक्ष वा नगरपालिकाको प्रमुख।</li>
+                    <li><strong>वडा समिति:</strong> वडा अध्यक्ष र ४ जना सदस्य (२ महिला, २ खुला) सहितको समिति।</li>
+                    <li><strong>कार्यपालिका:</strong> गाउँ कार्यपालिका तथा नगर कार्यपालिका।</li>
+                </ul>
+            </section>
+
+            <section id="classification">
+                <h2>नगरपालिकाको वर्गीकरण र मापदण्ड (दफा ८)</h2>
+                <p>नेपाल सरकारले पूर्वाधार र क्षमताको आधारमा नगरपालिकाहरूलाई निम्न अनुसार वर्गीकरण गरेको छ:</p>
+                
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>१. नगरपालिका (Municipality)</h4>
+                        <ul>
+                            <li><strong>जनसंख्या:</strong> हिमाली (१०,०००), पहाडी (४०,०००), भित्री मधेश (५०,०००), तराई (७५,०००), काठमाण्डौ उपत्यका (१ लाख)।</li>
+                            <li><strong>आम्दानी (पछिल्लो ५ वर्षको औसत):</strong> हिमालीमा १ करोड, अन्यमा ३ करोड।</li>
+                            <li><strong>सुविधा:</strong> सडक, विद्युत, खानेपानी, २५ शैयाको अस्पताल, बसपार्क, ल्याण्डफिल्ड साइट आदि।</li>
+                        </ul>
+                    </div>
+
+                    <div class="threshold-card">
+                        <h4>२. उपमहानगरपालिका (Sub-Metro)</h4>
+                        <ul>
+                            <li><strong>जनसंख्या:</strong> कम्तीमा २ लाख स्थायी बासिन्दा।</li>
+                            <li><strong>आम्दानी:</strong> वार्षिक औसत २५ करोड रुपैयाँ।</li>
+                            <li><strong>सुविधा:</strong> १०० शैयाको अस्पताल (जम्मा २०० शैयाको सुविधा), सभाहल, रङ्गशाला, उच्च शिक्षाको सुविधा, फोहोरमैला प्रशोधन प्रणाली।</li>
+                        </ul>
+                    </div>
+
+                    <div class="threshold-card">
+                        <h4>३. महानगरपालिका (Metropolitan)</h4>
+                        <ul>
+                            <li><strong>जनसंख्या:</strong> कम्तीमा ५ लाख स्थायी बासिन्दा।</li>
+                            <li><strong>आम्दानी:</strong> वार्षिक औसत १ अर्ब रुपैयाँ।</li>
+                            <li><strong>सुविधा:</strong> विशेषज्ञ सहितको अस्पताल (५०० शैया सुविधा), स्नातकोत्तर तहको शिक्षा, टर्मिनल सहितको बसपार्क, अन्तर्राष्ट्रिय स्तरको होटल, संग्रहालय आदि।</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #666;"><em>नोट: वडाको संख्या गाउँपालिकामा ५-२१ र नगरपालिकामा ९-३५ सम्म हुनेछ (दफा ५)।</em></p>
+            </section>
+
+            <section id="rights">
+                <h2>काम, कर्तव्य र अधिकार (Powers & Duties)</h2>
+                
+                <h3>स्थानीय तहका प्रमुख अधिकारहरू (दफा ११)</h3>
+                <p>संविधानको अनुसूची-८ बमोजिमका २२ वटा एकल अधिकारहरू यस ऐनमा विस्तृत गरिएको छ:</p>
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>आधारभूत सेवाहरू</h4>
+                        <ul>
+                            <li><strong>शिक्षा:</strong> आधारभूत र माध्यमिक शिक्षा (कक्षा १२ सम्म)।</li>
+                            <li><strong>स्वास्थ्य:</strong> आधारभूत स्वास्थ्य र सरसफाई।</li>
+                            <li><strong>कृषि:</strong> कृषि तथा पशुपालन, कृषि सडक, सिँचाई।</li>
+                            <li><strong>पूर्वाधार:</strong> स्थानीय सडक, भवन निर्माण अनुमति।</li>
+                        </ul>
+                    </div>
+                    <div class="threshold-card">
+                        <h4>प्रशासनिक र न्यायिक</h4>
+                        <ul>
+                            <li><strong>नगर प्रहरी:</strong> गठन र सञ्चालन।</li>
+                            <li><strong>तथ्याङ्क:</strong> जन्म, मृत्यु, विवाह आदि घटना दर्ता।</li>
+                            <li><strong>न्यायिक:</strong> स्थानीय विवाद समाधान र मेलमिलाप।</li>
+                            <li><strong>विपद्:</strong> विपद् व्यवस्थापन र राहत।</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>वडा समितिको काम (दफा १२)</h3>
+                <ul>
+                    <li>योजना तर्जुमा र कार्यान्वयन।</li>
+                    <li>सिफारिस तथा प्रमाणित गर्ने (नाता प्रमाणित, नागरिकता सिफारिस, घर जग्गा कर आदि)।</li>
+                    <li>वडा भित्रको विकास निर्माणको रेखदेख।</li>
+                    <li>घरधुरी लगत र पञ्जीकरण व्यवस्थापन।</li>
+                </ul>
+            </section>
+
+            <section id="judicial">
+                <h2>न्यायिक समिति (Judicial Committee) - दफा ४६/४७</h2>
+                <div class="intro-box">
+                    <p><strong>संरचना:</strong> गाउँपालिकामा उपाध्यक्ष र नगरपालिकामा उप-प्रमुखको संयोजकत्वमा ३ सदस्यीय समिति। (अन्य २ सदस्य गाउँ/नगर सभाबाट निर्वाचित)।</p>
+                </div>
+
+                <h3>क्षेत्राधिकार (Jurisdiction)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>निर्णय गर्ने अधिकार (Adjudication)</th>
+                            <th>मेलमिलाप गराउने अधिकार (Mediation Only)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>आलीधुर, बाँध पैनी, कुलो वा पानीघाट विवाद</td>
+                            <td>सरकारी/सार्वजनिक बाहेकको जग्गा मिचेको</td>
+                        </tr>
+                        <tr>
+                            <td>बाली नोक्सानी गरेको</td>
+                            <td>पति-पत्नी बीचको सम्बन्ध विच्छेद</td>
+                        </tr>
+                        <tr>
+                            <td>ज्याला मजुरी नदिएको</td>
+                            <td>गाली बेइज्जती</td>
+                        </tr>
+                        <tr>
+                            <td>घर पालुवा पशुपंक्षी हराएको/पाएको</td>
+                            <td>लुटपाट</td>
+                        </tr>
+                        <tr>
+                            <td>ज्येष्ठ नागरिकको पालनपोषण</td>
+                            <td>अरुको आवासमा अनधिकृत प्रवेश</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>पुनरावेदन:</strong> न्यायिक समितिको निर्णय चित्त नबुझे ३५ दिनभित्र सम्बन्धित जिल्ला अदालतमा पुनरावेदन गर्न सकिनेछ।</p>
+            </section>
+
+            <section id="building">
+                <h2>भवन निर्माण तथा सडक (Building & Roads)</h2>
+                
+                <h3>नक्सा पास (दफा २७-३५)</h3>
+                <ul>
+                    <li><strong>अनिवार्यता:</strong> कसैले पनि गाउँपालिका वा नगरपालिकाबाट नक्सा पास नगराई भवन निर्माण गर्न हुँदैन।</li>
+                    <li><strong>प्रक्रिया:</strong> नक्सा सहित निवेदन दिने > ३० दिन भित्र साँधियारको मञ्जुरीनामा > जाँचबुझ > प्रमुख प्रशासकीय अधिकृतले अनुमति दिने।</li>
+                    <li><strong>मापदण्ड:</strong> राष्ट्रिय भवन संहिता पालना गर्नुपर्ने।</li>
+                    <li><strong>कारबाही:</strong> नक्सा पास नगरी भवन बनाएमा ५ लाखसम्म जरिवाना र भवन भत्काउन आदेश दिन सक्ने।</li>
+                </ul>
+
+                <h3>सडक क्षेत्राधिकार (Right of Way) - दफा ४५</h3>
+                <ul>
+                    <li>स्थानीय सडकको दायाँ बायाँको अधिकार क्षेत्र (Right of Way) तोक्ने अधिकार स्थानीय तहलाई हुनेछ।</li>
+                    <li>तोकिएको क्षेत्र भित्र बनेका संरचना हटाउन आदेश दिन सकिनेछ।</li>
+                </ul>
+            </section>
+
+            <section id="finance">
+                <h2>आर्थिक कार्य प्रणाली (Financial Procedure)</h2>
+                
+                <h3>बजेट तथा कर</h3>
+                <ul>
+                    <li><strong>बजेट पेश गर्ने समय:</strong> उपाध्यक्ष/उपप्रमुख वा तोकिएको सदस्यले आगामी आर्थिक वर्षको बजेट <strong>असार १० गते</strong> भित्र सभामा पेश गर्नुपर्नेछ (दफा ७१)।</li>
+                    <li><strong>बजेट पारित:</strong> असार मसान्त भित्र बजेट पारित गरिसक्नु पर्नेछ।</li>
+                    <li><strong>सञ्चित कोष:</strong> स्थानीय तहको आफ्नै स्थानीय सञ्चित कोष हुनेछ जसमा सबै आम्दानी, अनुदान र ऋण जम्मा हुनेछ।</li>
+                </ul>
+
+                <h3>कर लगाउने अधिकार (दफा ५५-६०)</h3>
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>लगाउन पाइने करहरु</h4>
+                        <ul>
+                            <li>एकीकृत सम्पत्ति कर / भूमिकर (मालपोत)</li>
+                            <li>घर बहाल कर</li>
+                            <li>व्यवसाय कर</li>
+                            <li>जडीबुटी, कवाडी र जीवजन्तु कर</li>
+                            <li>सवारी साधन कर (प्रदेशले तोके बमोजिम)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="district">
+                <h2>जिल्ला सभा र समन्वय समिति (District Coordination)</h2>
+                <div class="intro-box">
+                    <p>जिल्ला भित्रका गाउँपालिका र नगरपालिकाहरू बीच समन्वय गर्न जिल्ला सभा रहनेछ। यसमा कार्यकारी अधिकार हुँदैन, यो मुख्यतया समन्वयकारी निकाय हो।</p>
+                </div>
+                
+                <h3>जिल्ला समन्वय समिति (DCC) - दफा ९२</h3>
+                <ul>
+                    <li><strong>संरचना:</strong> जिल्ला सभाले आफू मध्येबाट प्रमुख र उपप्रमुख सहित बढीमा ९ जना सदस्य निर्वाचित गर्नेछ।</li>
+                    <li><strong>काम र कर्तव्य:</strong>
+                        <ul>
+                            <li>विकास निर्माणका कार्यमा सन्तुलन कायम गर्ने।</li>
+                            <li>सरकारी कार्यालय र स्थानीय तह बीच समन्वय गर्ने।</li>
+                            <li>अनुगमन गर्ने र प्रदेश/संघमा प्रतिवेदन पठाउने।</li>
+                        </ul>
+                    </li>
+                    <li><strong>कोष:</strong> जिल्ला समन्वय समितिको आफ्नै कोष हुनेछ।</li>
+                </ul>
+            </section>
+
+            <section id="staff">
+                <h2>प्रशासकीय संगठन र कर्मचारी (Administration)</h2>
+                
+                <h3>प्रमुख प्रशासकीय अधिकृत (CAO) - दफा ८४</h3>
+                <ul>
+                    <li>स्थानीय तहको प्रशासकीय प्रमुखको रूपमा नेपाल सरकारले खटाएको कर्मचारी (संघीय निजामती सेवा) रहनेछ।</li>
+                    <li><strong>काम:</strong> सभा र कार्यपालिकाको सचिवको रूपमा काम गर्ने, आर्थिक कारोबारको हिसाब राख्ने, र निर्णय कार्यान्वयन गर्ने।</li>
+                </ul>
+
+                <h3>अन्य व्यवस्थाहरु</h3>
+                <ul>
+                    <li><strong>कर्मचारी समायोजन:</strong> नेपाल सरकारले कर्मचारी समायोजन ऐन बमोजिम कर्मचारी खटाउनेछ।</li>
+                    <li><strong>करार सेवा:</strong> विशेष प्राविधिक पद (इन्जिनियर, कृषि, स्वास्थ्य) वा कार्यालय सहयोगी, सवारी चालक जस्ता पदमा करारमा कर्मचारी लिन सकिनेछ।</li>
+                    <li><strong>सम्पत्ति विवरण:</strong> निर्वाचित पदाधिकारीले आर्थिक वर्ष समाप्त भएको ६० दिन भित्र सम्पत्ति विवरण पेश गर्नुपर्नेछ।</li>
+                    <li><strong>आचारसंहिता:</strong> स्थानीय तहले आफ्ना सदस्य र कर्मचारीका लागि आचारसंहिता बनाई लागू गर्न सक्नेछ।</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling and Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Offset for fixed header
+                if (pageYOffset >= (sectionTop - sectionHeight / 4)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
