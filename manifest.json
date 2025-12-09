@@ -1,0 +1,24 @@
+{
+  "background_color": "#cb9595",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Civil👷",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "tabletglb13-dev",
+  "start_url": "https://tabletglb13-dev.github.io/civil/",
+  "theme_color": "#58a2cc",
+  "id": "1111civil",
+  "description": "A self study civil app",
+  "iarc_rating_id": "civil",
+  "categories": [
+    "education"
+  ],
+  "display_override": [
+    "standalone",
+    "fullscreen",
+    "window-controls-overlay",
+    "browser",
+    "minimal-ui"
+  ]
+}
