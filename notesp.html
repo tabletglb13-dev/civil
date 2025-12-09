@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudurpashchim Good Governance Act 2075 - Executive Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .sidebar-header .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 20px;
+            color: #bdc3c7;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: rgba(255,255,255,0.05);
+            color: #fff;
+            border-left-color: var(--secondary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-box {
+            background-color: #fff;
+            border-left: 5px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* Content Cards */
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Highlight Boxes for Thresholds/Grid */
+        .threshold-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .threshold-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .threshold-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .highlight-term {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>Governance Act Notes</h2>
+            <a href="#" class="home-link">Sudurpashchim Province</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="quizsp.html" class="active">MCQ</a></li>
+            <li><a href="#intro" class="active">परिचय (Introduction)</a></li>
+            <li><a href="#principles">शासनका आधार (Principles)</a></li>
+            <li><a href="#responsibilities">जिम्मेवारी (Responsibilities)</a></li>
+            <li><a href="#decision">निर्णय प्रक्रिया (Decision Making)</a></li>
+            <li><a href="#transparency">पारदर्शिता (Transparency)</a></li>
+            <li><a href="#contract">कार्य सम्पादन करार (Performance)</a></li>
+            <li><a href="#charter">नागरिक बडापत्र (Citizen Charter)</a></li>
+            <li><a href="#grievance">गुनासो र विविध (Grievance/Misc)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>सुदूरपश्चिम प्रदेश सुशासन ऐन, २०७५</h1>
+                <p>Sudurpashchim Province Good Governance Act, 2075 - Executive Notes</p>
+            </header>
+
+            <section id="intro">
+                <h2>परिचय (Introduction)</h2>
+                <div class="intro-box">
+                    <p><strong>प्रमाणीकरण मिति:</strong> २०७५।१२।२९</p>
+                    <p><strong>उद्देश्य:</strong> प्रदेशको सार्वजनिक मामिलालाई स्वच्छ, सक्षम, निष्पक्ष, पारदर्शी र भ्रष्टाचारमुक्त बनाउँदै जनतालाई सुशासनको प्रत्याभूति दिनु।</p>
+                    <p><strong>लागू हुने:</strong> यो ऐन प्रदेशभर तुरुन्त प्रारम्भ हुनेछ।</p>
+                </div>
+                <h3>मुख्य परिभाषाहरु</h3>
+                <ul>
+                    <li><strong>मन्त्री:</strong> मुख्यमन्त्री, मन्त्री, राज्यमन्त्री र सहायक मन्त्री।</li>
+                    <li><strong>सचिव:</strong> प्रदेश सरकारको प्रमुख सचिव, मन्त्रालयको सचिव र सो सरहको अधिकृत।</li>
+                    <li><strong>विभागीय प्रमुख:</strong> विभाग वा निर्देशनालय वा कार्यालयको प्रमुख।</li>
+                </ul>
+            </section>
+
+            <section id="principles">
+                <h2>प्रशासनिक कार्य सञ्चालनका आधार (Principles of Governance)</h2>
+                <p>प्रदेशमा सुशासन कायम गर्न पदाधिकारीहरूले निम्न आधारमा कार्य सम्पादन गर्नुपर्नेछ (दफा ६):</p>
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>आधारभूत सिद्धान्त</h4>
+                        <ul>
+                            <li>कानूनको शासन</li>
+                            <li>पारदर्शिता, वस्तुनिष्ठता, जवाफदेहिता</li>
+                            <li>आर्थिक अनुशासन र भ्रष्टाचारमुक्त प्रशासन</li>
+                            <li>मानव अधिकारको सम्मान</li>
+                        </ul>
+                    </div>
+                    <div class="threshold-card">
+                        <h4>सामाजिक न्याय</h4>
+                        <ul>
+                            <li>समन्याय र समानुपातिक समावेशीकरण</li>
+                            <li>लैंगिक न्याय र महिला सशक्तिकरण</li>
+                            <li>पिछडिएका वर्गको उत्थान</li>
+                            <li>जनसहभागिता र स्थानीय स्रोतको उपयोग</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsibilities">
+                <h2>पदाधिकारीको जिम्मेवारी (Key Responsibilities)</h2>
+                
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>मन्त्रीको जिम्मेवारी (दफा ९)</h4>
+                        <ul>
+                            <li>नीतिगत विषय र कानून बमोजिमका कार्य समयमै सम्पादन गर्ने/गराउने।</li>
+                            <li><strong>परियोजना बैंक:</strong> दीगो विकास र प्रतिफल दिने आयोजना छनौट गरी "परियोजना बैंक" निर्माण गर्ने र रातो किताबमा समावेश गर्ने।</li>
+                            <li><strong>बजेट कार्यान्वयन:</strong> बजेट पारित भएको १ महिनाभित्र अख्तियारी दिने र प्रथम चौमासिक भित्र सम्झौता गर्ने।</li>
+                            <li>रकमान्तर सम्बन्धित निर्वाचन क्षेत्र वा जिल्लामा मात्र गर्न पाइने (विशेष अवस्था बाहेक)।</li>
+                        </ul>
+                    </div>
+
+                    <div class="threshold-card">
+                        <h4>प्रमुख सचिवको जिम्मेवारी (दफा १०)</h4>
+                        <ul>
+                            <li>प्रदेश सरकारको प्रमुख प्रशासकीय अधिकारीको रुपमा रहने।</li>
+                            <li>मन्त्रालयहरू बीच समन्वय गर्ने।</li>
+                            <li>मन्त्रिपरिषद्को निर्णय प्रमाणित गर्ने र कार्यान्वयनको अनुगमन गर्ने।</li>
+                            <li>प्रत्येक ३/३ महिनामा मन्त्रालयहरूको प्रशासकीय अनुगमन गर्ने।</li>
+                        </ul>
+                    </div>
+
+                    <div class="threshold-card">
+                        <h4>सचिवको जिम्मेवारी (दफा ११)</h4>
+                        <ul>
+                            <li>मन्त्रालयको प्रमुख प्रशासकीय पदाधिकारी।</li>
+                            <li>वार्षिक कार्यक्रम तर्जुमा, कार्यान्वयन र अनुगमन।</li>
+                            <li>मातहतका कर्मचारीको सुपरीवेक्षण र नियन्त्रण।</li>
+                            <li>उत्कृष्ट कर्मचारीलाई पुरस्कारको लागि सिफारिस।</li>
+                            <li>आयोजना समयमा पूरा नभए वा गुणस्तर नभए छानबिन गरी कारबाहीको सिफारिस।</li>
+                        </ul>
+                    </div>
+
+                    <div class="threshold-card">
+                        <h4>कार्यालय प्रमुखको जिम्मेवारी (दफा १३)</h4>
+                        <ul>
+                            <li>दैनिक कार्य सञ्चालन र व्यवस्थापन।</li>
+                            <li>आयोजना निश्चित समयभित्र सम्पन्न गर्ने।</li>
+                            <li>सेवा प्रवाहलाई <strong>टोकन प्रणाली</strong> र <strong>विद्युतीय माध्यम</strong>बाट प्रभावकारी बनाउने।</li>
+                            <li>उत्कृष्ट कर्मचारीको विवरण विभागमा पठाउने।</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="decision">
+                <h2>निर्णय प्रक्रिया (Decision Making Procedure)</h2>
+                <h3>समय सीमा (Timeframe)</h3>
+                <ul>
+                    <li>कानूनमा निश्चित म्याद तोकिएकोमा सोही बमोजिम।</li>
+                    <li>म्याद नतोकिएको विषयमा: <strong>बढीमा ४ महिना भित्र</strong> निर्णय गरिसक्नु पर्नेछ (दफा १५)।</li>
+                    <li>निर्णय गर्न नसकिने भए कारण खुलाई निर्णय गर्न पाउने अधिकारीले सो को जानकारी एक तह माथिको अधिकारीलाई ३ दिन भित्र दिनुपर्नेछ।</li>
+                </ul>
+
+                <h3>निर्णयका आधार</h3>
+                <ul>
+                    <li>निर्णय गर्दा आधार र कारण स्पष्ट खुलाउनुपर्नेछ (Reasoned Decision)।</li>
+                    <li>कानूनी वा प्राविधिक प्रश्न निरुपण गर्न विज्ञको राय लिन सकिनेछ।</li>
+                    <li>तल्लो तहबाट उठेको रायमा कुनै प्रश्न उठेको भए माथिल्लो तहले सम्बोधन गर्नुपर्नेछ।</li>
+                </ul>
+            </section>
+
+            <section id="transparency">
+                <h2>पारदर्शिता र स्वार्थको द्वन्द्व (Transparency & Conflict of Interest)</h2>
+                <h3>पारदर्शिता (Transparency)</h3>
+                <ul>
+                    <li>निर्णय प्रक्रिया पारदर्शी ढंगबाट गर्नुपर्नेछ।</li>
+                    <li>"पारदर्शिता" भन्नाले निश्चित मापदण्डको आधारमा निर्णय गर्ने प्रक्रिया हो।</li>
+                </ul>
+
+                <h3>स्वार्थ बाझिएमा निर्णय गर्न नहुने (दफा १८)</h3>
+                <ul>
+                    <li>आफ्नो वा नातेदारको हित/स्वार्थ जोडिएको विषयमा निर्णय गर्न पाइने छैन।</li>
+                    <li>यदि स्वार्थ बाझिने अवस्था आएमा:
+                        <ul>
+                            <li>आफू सरहको अर्को अधिकारीलाई जिम्मा दिने, वा</li>
+                            <li>एक तह माथिको अधिकारी समक्ष पेश गर्ने।</li>
+                        </ul>
+                    </li>
+                    <li><strong>Cooling Period:</strong> नियामक निकायको अधिकृतले सेवा निवृत्त भएको <strong>२ वर्ष सम्म</strong> सोही क्षेत्रको निजी संस्थामा काम गर्न पाउने छैन।</li>
+                </ul>
+            </section>
+
+            <section id="contract">
+                <h2>कार्य सम्पादन करार (Performance Contract)</h2>
+                <ul>
+                    <li>निश्चित अवधिभित्र सम्पन्न गर्नुपर्ने (Performance Contract) वा निश्चित परिमाणको उपलब्धि हासिल गर्ने कार्यको लागि करार गर्न सकिनेछ (दफा १९)।</li>
+                    <li><strong>काबू बाहिरको परिस्थिति:</strong> मनासिब कारण भएमा सचिव समक्ष पेश गरी म्याद थप वा संशोधन गर्न सकिनेछ।</li>
+                    <li>बदनियत वा लापरवाही गरी काम नगरेमा: हानि नोक्सानीको क्षतिपूर्ति निजबाट भराइनेछ।</li>
+                </ul>
+            </section>
+
+            <section id="charter">
+                <h2>नागरिक बडापत्र (Citizen Charter)</h2>
+                <p>सर्वसाधारणलाई सेवा दिने वा जनसम्पर्क हुने कार्यालयले सबैले देख्ने ठाउँमा बडापत्र राख्नुपर्नेछ (दफा २५)।</p>
+                <div class="threshold-grid">
+                    <div class="threshold-card">
+                        <h4>बडापत्रमा हुनुपर्ने विवरण</h4>
+                        <ol>
+                            <li>दिने सेवा र त्यसको प्रकृति</li>
+                            <li>सेवाग्राहीले पूरा गर्नुपर्ने कार्यविधि</li>
+                            <li>लाग्ने समयावधि</li>
+                            <li>जिम्मेवार पदाधिकारी र कार्यकक्ष</li>
+                            <li>लाग्ने दस्तुर (Fees)</li>
+                        </ol>
+                    </div>
+                    <div class="threshold-card">
+                        <h4>क्षतिपूर्ति</h4>
+                        <ul>
+                            <li>बडापत्र बमोजिम सेवा प्राप्त गर्न नसकी सेवाग्राहीलाई हानि नोक्सानी भएमा तोकिए बमोजिम <strong>क्षतिपूर्ति</strong> दिइनेछ।</li>
+                            <li>जिम्मेवार कर्मचारी उपर विभागीय कारबाही हुन सक्नेछ।</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="grievance">
+                <h2>विविध व्यवस्था (Miscellaneous)</h2>
+                
+                <h3>गुनासो व्यवस्थापन (Grievance Handling)</h3>
+                <ul>
+                    <li>प्रत्येक कार्यालयमा <strong>गुनासो पेटिका</strong> राख्नुपर्नेछ।</li>
+                    <li>जिम्मेवार अधिकृतले ३/३ दिनमा पेटिका खोली मनासिब गुनासो सम्बोधन गर्नुपर्नेछ।</li>
+                    <li>प्रमुखको आचरण सम्बन्धी गुनासो भए माथिल्लो निकायमा पठाउनुपर्नेछ।</li>
+                </ul>
+
+                <h3>सुशासन प्रवर्द्धन केन्द्र</h3>
+                <ul>
+                    <li>प्रदेशमा एक सुशासन प्रवर्द्धन केन्द्र स्थापना गरिनेछ।</li>
+                    <li>यसले भ्रष्टाचारजन्य कार्यको अनुगमन र छानबिन गरी सिफारिस गर्नेछ।</li>
+                    <li>प्रमुख: नेपाल सरकारको राजपत्रांकित प्रथम श्रेणीको कर्मचारी।</li>
+                </ul>
+
+                <h3>अन्य प्रावधान</h3>
+                <ul>
+                    <li><strong>घुम्ती सेवा:</strong> दुर्गम क्षेत्रमा सेवा दिन घुम्ती सेवा सञ्चालन गर्न सकिने।</li>
+                    <li><strong>सार्वजनिक सुनुवाई:</strong> कार्य सम्पादनलाई पारदर्शी बनाउन सार्वजनिक सुनुवाई (Public Hearing) गराउनुपर्ने।</li>
+                    <li><strong>विदेशमा खाता:</strong> प्रदेश सरकारको सिफारिसमा नेपाल सरकारको स्वीकृति लिनुपर्ने।</li>
+                    <li><strong>प्रवक्ता:</strong> सूचना दिनको लागि प्रवक्ता तोक्नुपर्ने।</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling and Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

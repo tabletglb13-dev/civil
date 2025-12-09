@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Tiles</title>
+<style>
+    /* 
+       PASTE THIS CSS INTO YOUR HEAD TAG OR CSS FILE 
+    */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f4f7f6; /* Background of the page */
+    }
+
+    /* Container for the 6 blocks */
+    .tile-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    /* General Style for Each Tile */
+    .nav-tile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 20px;
+        text-decoration: none; /* Removes underline from links */
+        color: #333;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    /* Hover Effects */
+    .nav-tile:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    /* The Number/Icon Circle */
+    .tile-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    /* Text Styles */
+    .tile-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 10px 0;
+        color: #2d3436;
+    }
+
+    .tile-desc {
+        font-size: 0.95rem;
+        color: #636e72;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    /* "Go" Arrow at bottom */
+    .tile-arrow {
+        margin-top: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        opacity: 0.7;
+    }
+    
+    .nav-tile:hover .tile-arrow {
+        opacity: 1;
+    }
+
+    /* --- UNIQUE COLORS FOR EACH TILE --- */
+    /* Tile 1 - Blue */
+    .tile-1 .tile-icon { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .tile-1:hover { border-bottom: 4px solid #667eea; }
+    .tile-1 .tile-arrow { color: #667eea; }
+
+    /* Tile 2 - Green */
+    .tile-2 .tile-icon { background: linear-gradient(135deg, #2af598 0%, #009efd 100%); }
+    .tile-2:hover { border-bottom: 4px solid #009efd; }
+    .tile-2 .tile-arrow { color: #009efd; }
+
+    /* Tile 3 - Orange */
+    .tile-3 .tile-icon { background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+    .tile-3:hover { border-bottom: 4px solid #fda085; }
+    .tile-3 .tile-arrow { color: #fda085; }
+
+    /* Tile 4 - Red/Pink */
+    .tile-4 .tile-icon { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
+    .tile-4:hover { border-bottom: 4px solid #ff9a9e; }
+    .tile-4 .tile-arrow { color: #ff9a9e; }
+
+    /* Tile 5 - Purple */
+    .tile-5 .tile-icon { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+    .tile-5:hover { border-bottom: 4px solid #a18cd1; }
+    .tile-5 .tile-arrow { color: #a18cd1; }
+
+    /* Tile 6 - Dark/Black */
+    .tile-6 .tile-icon { background: linear-gradient(135deg, #434343 0%, black 100%); }
+    .tile-6:hover { border-bottom: 4px solid #434343; }
+    .tile-6 .tile-arrow { color: #434343; }
+
+</style>
+</head>
+<body>
+
+<!-- MAIN CONTAINER FOR THE 6 BLOCKS -->
+<div class="tile-container">
+
+    <!-- TILE 1 -->
+    <a href="notesp.html" class="nav-tile tile-1">
+        <div class="tile-icon">1</div>
+        <h3 class="tile-title">GK</h3>
+        <p class="tile-desc">Note & MCQ of सुदूरपश्चिम सुशासन ऐन</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+    <!-- TILE 2 -->
+    <a href="quizp.html" class="nav-tile tile-2">
+        <div class="tile-icon">2</div>
+        <h3 class="tile-title">My Profile</h3>
+        <p class="tile-desc">example</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+    <!-- TILE 3 -->
+    <a href="your-page-3.html" class="nav-tile tile-3">
+        <div class="tile-icon">3</div>
+        <h3 class="tile-title">Messages</h3>
+        <p class="tile-desc">Check your inbox, send new emails, and manage notifications.</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+    <!-- TILE 4 -->
+    <a href="your-page-4.html" class="nav-tile tile-4">
+        <div class="tile-icon">4</div>
+        <h3 class="tile-title">Products</h3>
+        <p class="tile-desc">Browse the catalog, add new items, or manage inventory.</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+    <!-- TILE 5 -->
+    <a href="your-page-5.html" class="nav-tile tile-5">
+        <div class="tile-icon">5</div>
+        <h3 class="tile-title">Settings</h3>
+        <p class="tile-desc">System configuration, privacy controls, and preferences.</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+    <!-- TILE 6 -->
+    <a href="your-page-6.html" class="nav-tile tile-6">
+        <div class="tile-icon">6</div>
+        <h3 class="tile-title">Help & Support</h3>
+        <p class="tile-desc">Contact our support team, read FAQs, or view documentation.</p>
+        <div class="tile-arrow">Go to Page &rarr;</div>
+    </a>
+
+</div>
+
+</body>
+</html>
