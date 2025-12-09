@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gandaki Civil Service Act 2079 - Executive Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c0392b; /* Gandaki Red Theme */
+            --secondary-color: #2980b9; /* Blue for headers */
+            --accent-color: #27ae60;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: #ecf0f1;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+        }
+
+        .sidebar-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .sidebar-header .home-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 20px;
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 0.90rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+            border-left-color: #f1c40f;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        header {
+            margin-bottom: 40px;
+            border-bottom: 3px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .intro-box {
+            background-color: #fff;
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        /* Content Cards */
+        section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin: 25px 0 15px;
+            font-size: 1.25rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Grid Layouts */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .info-card {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 3px solid var(--secondary-color);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .info-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                display: block;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 10px 0;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>गण्डकी निजामती ऐन नोट</h2>
+            <a href="#" class="home-link">गण्डकी प्रदेश सरकार</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#intro" class="active">परिचय र परिभाषा</a></li>
+            <li><a href="#formation">गठन र संरचना (Levels)</a></li>
+            <li><a href="#recruitment">पदपूर्ति र समावेशीकरण</a></li>
+            <li><a href="#transfer">सरुवा र काज</a></li>
+            <li><a href="#promotion">बढुवा र तह वृद्धि</a></li>
+            <li><a href="#salary">तलब र सुविधा</a></li>
+            <li><a href="#retirement">अवकाश र निवृत्तिभरण</a></li>
+            <li><a href="#conduct">आचरण र सजाय</a></li>
+            <li><a href="#leaves">बिदा र विविध</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="container">
+            <header>
+                <h1>गण्डकी प्रदेश निजामती सेवा ऐन, २०७९</h1>
+                <p>Gandaki Province Civil Service Act, 2079 - Executive Notes</p>
+            </header>
+
+            <section id="intro">
+                <h2>परिचय (Introduction)</h2>
+                <div class="intro-box">
+                    <p><strong>प्रमाणीकरण मिति:</strong> २०७९।११।१८</p>
+                    <p><strong>ऐन नं:</strong> संवत् २०७९ सालको ऐन नं १२</p>
+                    <p><strong>उद्देश्य:</strong> गण्डकी प्रदेश निजामती सेवालाई सक्षम, सुदृढ, सेवामूलक र उत्तरदायी बनाउँदै व्यावसायिक र मर्यादित बनाउनु।</p>
+                </div>
+                <h3>मुख्य परिभाषाहरु (दफा २)</h3>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h4>अख्तियारवाला</h4>
+                        <p>दफा १५ बमोजिम नियुक्ति गर्न सक्ने अधिकारी (प्रदेश सरकार वा कार्यालय प्रमुख)।</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>कार्यालय प्रमुख</h4>
+                        <p>कार्यालयको प्रमुख भई कामकाज गर्न तोकिएको कर्मचारी। यसले विभागीय प्रमुखलाई समेत जनाउँछ।</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>प्रमुख सचिव</h4>
+                        <p>प्रदेश सरकारको प्रमुख सचिवको रूपमा नेपाल सरकारले खटाएको विशिष्ट श्रेणीको कर्मचारी।</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>सचिव</h4>
+                        <p>प्रदेश निजामती सेवाको एघारौँ तहमा कार्यरत मन्त्रालय वा आयोगको प्रमुख प्रशासकीय अधिकारी। (यसमा नेपाल सरकारबाट खटिने राजपत्राङ्कित प्रथम श्रेणी पनि पर्दछ)।</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="formation">
+                <h2>सेवाको गठन र संरचना (Formation & Structure)</h2>
+                <p>प्रदेश सरकारले इन्जिनियरिङ, कानून, कृषि, प्रशासन, वन, शिक्षा र स्वास्थ्य सेवाहरू गठन गर्नेछ।</p>
+                
+                <h3>तहगत प्रणाली (Level System) - दफा ५</h3>
+                <p>यस ऐनले परम्परागत श्रेणीगत (Class) प्रणालीको सट्टा <strong>तहगत (Level)</strong> प्रणाली लागू गरेको छ:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>वर्ग (Category)</th>
+                            <th>तह (Levels)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>अधिकृत तह (Officer Level)</strong></td>
+                            <td>
+                                <ul>
+                                    <li>अधिकृत एघारौँ तह</li>
+                                    <li>अधिकृत दशौँ तह</li>
+                                    <li>अधिकृत नवौँ तह</li>
+                                    <li>अधिकृत आठौँ तह</li>
+                                    <li>अधिकृत सातौँ तह</li>
+                                    <li>अधिकृत छैटौँ तह</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>सहायक तह (Assistant Level)</strong></td>
+                            <td>
+                                <ul>
+                                    <li>सहायक पाँचौँ तह</li>
+                                    <li>सहायक चौथो तह</li>
+                                    <li>सहायक तेस्रो तह</li>
+                                    <li>सहायक दोस्रो तह</li>
+                                    <li>सहायक प्रथम तह</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em>नोट: यो ऐन प्रारम्भ हुँदाका बखत श्रेणीविहीन पदमा कार्यरत कर्मचारीलाई तोकिए बमोजिमको तहमा कायम गरिनेछ।</em></p>
+            </section>
+
+            <section id="recruitment">
+                <h2>पदपूर्ति र समावेशीकरण (Recruitment & Inclusion)</h2>
+                
+                <h3>पदपूर्ति प्रक्रिया (दफा ९)</h3>
+                <p>पदपूर्ति खुला प्रतियोगिता, अन्तर तह प्रतियोगिता र बढुवा (ज्येष्ठता/कार्यक्षमता) द्वारा गरिनेछ। सहायक प्रथमदेखि तेस्रो तहसम्मका पद रिक्त भएमा स्वतः खारेज हुनेछन् (करारबाट काम चलाइने)।</p>
+
+                <h3>समावेशीकरण / आरक्षण (दफा १०)</h3>
+                <p>खुला प्रतियोगिताद्वारा पूर्ति हुने पदमध्ये <strong>४५ प्रतिशत</strong> पद छुट्याई, सो प्रतिशतलाई शत प्रतिशत मानी देहाय बमोजिम वितरण गरिनेछ:</p>
+                
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h4>आरक्षण प्रतिशत</h4>
+                        <ul>
+                            <li><strong>महिला:</strong> ३३%</li>
+                            <li><strong>आदिवासी/जनजाति:</strong> २७%</li>
+                            <li><strong>दलित:</strong> १५%</li>
+                            <li><strong>विपन्न खस आर्य:</strong> १०%</li>
+                            <li><strong>अपाङ्गता भएका व्यक्ति:</strong> ५%</li>
+                            <li><strong>थारु:</strong> ४%</li>
+                            <li><strong>मुस्लिम:</strong> ३%</li>
+                            <li><strong>मधेशी:</strong> ३%</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h4>विशेष व्यवस्था</h4>
+                        <ul>
+                            <li>आरक्षण सुविधा एक व्यक्तिले सेवा अवधिभरमा <strong>एक पटक मात्र</strong> पाउनेछ।</li>
+                            <li>महिलाको हकमा ३३% आरक्षण भित्र पनि प्रतिस्पर्धा गराइनेछ।</li>
+                            <li>प्रत्येक १० वर्षमा यो व्यवस्था पुनरावलोकन हुनेछ।</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>उम्मेदवारको योग्यता (दफा १९)</h3>
+                <ul>
+                    <li>सहायक तह: १८ वर्ष पूरा भएको।</li>
+                    <li>अधिकृत तह: २१ वर्ष पूरा भएको।</li>
+                    <li>उमेर हद: पुरुषको हकमा ३५ वर्ष, महिला/अपाङ्गताको हकमा ४० वर्ष (स्वास्थ्य सेवा र बहालवालालाई हद लाग्दैन)।</li>
+                </ul>
+            </section>
+
+            <section id="transfer">
+                <h2>सरुवा र काज (Transfer & Deputation)</h2>
+                
+                <h3>सरुवा गर्ने अधिकार (दफा २५)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>कर्मचारीको तह</th>
+                            <th>सरुवा गर्ने निकाय/अधिकारी</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>अधिकृत एघारौँ तह (वा सो सरह)</td>
+                            <td>प्रदेश सरकार (मन्त्रिपरिषद)</td>
+                        </tr>
+                        <tr>
+                            <td>अधिकृत दशौँ देखि सातौँ तह सम्म</td>
+                            <td>प्रमुख सचिव</td>
+                        </tr>
+                        <tr>
+                            <td>अधिकृत छैटौँ र सो भन्दा मुनि</td>
+                            <td>सम्बन्धित मन्त्रालयको सचिव</td>
+                        </tr>
+                        <tr>
+                            <td>मन्त्रालय परिवर्तन गर्दा</td>
+                            <td>मन्त्रालय (मुख्यमन्त्री कार्यालय)</td>
+                        </tr>
+                        <tr>
+                            <td>लेखा समूह</td>
+                            <td>प्रदेश लेखा नियन्त्रक कार्यालय मार्फत मन्त्रालयले</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>काज सम्बन्धी व्यवस्था (दफा २६)</h3>
+                <ul>
+                    <li>एक वर्षमा ३ महिनाभन्दा बढी काजमा खटाउन पाइने छैन (तालिम/गोष्ठी बाहेक)।</li>
+                    <li>काज अवधि समाप्त हुनासाथ पदधिकार रहेको कार्यालयमा हाजिर हुनुपर्छ, अन्यथा तलब भत्ता पाइने छैन।</li>
+                    <li>स्थानीय तहमा काज खटाउँदा एक पटकमा बढीमा १ वर्षका लागि खटाउन सकिनेछ।</li>
+                </ul>
+            </section>
+
+            <section id="promotion">
+                <h2>तह वृद्धि र बढुवा (Level Upgrade & Promotion)</h2>
+                
+                <h3>स्वतः तह वृद्धि (Grading) - दफा २८</h3>
+                <p>कार्यसम्पादन सन्तोषजनक (९५% वा सो भन्दा बढी अङ्क) भएका कर्मचारीको निश्चित अवधि पुगेपछि तह वृद्धि हुनेछ:</p>
+                <ul>
+                    <li><strong>पाँचौँ तहबाट छैटौँ:</strong> ५ वर्ष सेवा अवधि पुगेपछि।</li>
+                    <li><strong>सातौँ तहबाट आठौँ:</strong> ५ वर्ष सेवा अवधि पुगेपछि।</li>
+                    <li><strong>नवौँ तहबाट दशौँ:</strong> ५ वर्ष सेवा अवधि पुगेपछि।</li>
+                    <li><em>सहायक स्तर:</em> सहायक प्रथम देखि पाचौँ स्तरसम्म सेवा अवधिको आधारमा (५ वर्ष, १० वर्ष, १५ वर्ष, २० वर्ष) स्तर वृद्धि हुनेछ।</li>
+                </ul>
+
+                <h3>बढुवाका आधारहरू (दफा ३५-४०)</h3>
+                <p>बढुवा गर्दा देहाय बमोजिमको १०० पूर्णाङ्कमा मूल्याङ्कन गरिनेछ:</p>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h4>अङ्क विभाजन</h4>
+                        <ul>
+                            <li><strong>कार्यसम्पादन मूल्याङ्कन:</strong> ४० अङ्क</li>
+                            <li><strong>ज्येष्ठता:</strong> ३० अङ्क (प्रति वर्ष ३ अङ्कका दरले)</li>
+                            <li><strong>भौगोलिक क्षेत्र:</strong> १६ अङ्क (क, ख, ग, घ वर्ग अनुसार)</li>
+                            <li><strong>शैक्षिक योग्यता:</strong> १२ अङ्क</li>
+                            <li><strong>तालिम:</strong> २ अङ्क</li>
+                        </ul>
+                    </div>
+                </div>
+                <p><em>विशेष व्यवस्था: एउटै पदमा १० वर्ष सेवा गरेका र अनिवार्य अवकाश हुन १ महिना बाँकी भएका कर्मचारीलाई एक तह बढुवा गरी अवकाश दिइनेछ (दफा ४७)।</em></p>
+            </section>
+
+            <section id="salary">
+                <h2>तलब, भत्ता र अन्य सुविधा (Salary & Benefits)</h2>
+                <ul>
+                    <li><strong>तलब भत्ता:</strong> पदमा बहाली गरेको दिनदेखि तलब भत्ता पाउनेछ।</li>
+                    <li><strong>तलब वृद्धि (Grade):</strong> एक वर्ष सेवा अवधि पूरा गरेपछि एक दिनको तलब बराबरको रकम।</li>
+                    <li><strong>चाडपर्व खर्च:</strong> प्रत्येक वर्ष एक महिनाको तलब बराबर (निवृत्तभरण पाउनेलाई पनि)।</li>
+                    <li><strong>उपचार खर्च:</strong>
+                        <ul>
+                            <li>अधिकृत स्तर: १२ महिनाको तलब बराबर।</li>
+                            <li>सहायक स्तर: २१ महिनाको तलब बराबर।</li>
+                        </ul>
+                    </li>
+                    <li><strong>सञ्चय कोष:</strong> १०% कट्टा गरी प्रदेश सरकारले १००% थप गर्ने।</li>
+                    <li><strong>बिमा:</strong> कर्मचारीको योगदानमा आधारित सावधिक जीवन बिमा कोष स्थापना गरिनेछ।</li>
+                    <li><strong>महँगी भत्ता:</strong> उपभोक्ता मूल्यसूचीको आधारमा उपलब्ध गराइनेछ।</li>
+                </ul>
+            </section>
+
+            <section id="retirement">
+                <h2>अवकाश र निवृत्तिभरण (Retirement & Pension)</h2>
+                
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h4>अनिवार्य अवकाश</h4>
+                        <p>कर्मचारीको उमेर <strong>६० वर्ष</strong> पूरा भएपछि अनिवार्य अवकाश पाउनेछ। (दफा ६०)</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>स्वेच्छिक अवकाश</h4>
+                        <p>निवृत्तिभरण पाउने अवस्था र ५३ वर्ष उमेर पुगेका कर्मचारीले स्वेच्छिक अवकाश लिन सक्नेछन्। यस्तोमा ६० वर्ष उमेर ननाघ्ने गरी ७ वर्ष सेवा अवधि थप हुन सक्छ।</p>
+                    </div>
+                </div>
+
+                <h3>निवृत्तिभरण (Pension) - दफा ६५</h3>
+                <ul>
+                    <li>२० वर्ष वा सो भन्दा बढी सेवा गरेका कर्मचारीले निवृत्तिभरण पाउनेछन्।</li>
+                    <li>सूत्र: (जम्मा सेवा वर्ष × आखिरी तलब) ÷ ५०</li>
+                    <li>योगदानमा आधारित: यो ऐन प्रारम्भ भएपछि नियुक्त हुनेको हकमा योगदानमा आधारित पेन्सन प्रणाली लागू हुनेछ।</li>
+                </ul>
+
+                <h3>उपदान (Gratuity) - दफा ६४</h3>
+                <ul>
+                    <li>५ देखि १० वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी आधा महिनाको तलब।</li>
+                    <li>१० देखि १५ वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी १ महिनाको तलब।</li>
+                    <li>१५ देखि २० वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी १.५ महिनाको तलब।</li>
+                </ul>
+            </section>
+
+            <section id="conduct">
+                <h2>आचरण र सजाय (Conduct & Punishment)</h2>
+                
+                <h3>पालना गर्नु पर्ने आचरणहरू</h3>
+                <ul>
+                    <li>समय पालन र नियमितता।</li>
+                    <li>अनुशासन र आदेश पालन।</li>
+                    <li>राजनीतिक प्रभाव पार्न नहुने, राजनीतिक गतिविधिमा भाग लिन नहुने।</li>
+                    <li>सरकारको आलोचना गर्न नहुने।</li>
+                    <li>दान, उपहार, चन्दा लिन न प्रतिबन्ध।</li>
+                    <li>सम्पत्ति विवरण पेश गर्नुपर्ने (६० दिन भित्र)।</li>
+                    <li>स्थायी आवासीय अनुमति (PR/Green Card) लिन नहुने।</li>
+                </ul>
+
+                <h3>विभागीय सजाय (दफा ९५)</h3>
+                <div class="card-grid">
+                    <div class="info-card">
+                        <h4>सामान्य सजाय</h4>
+                        <ul>
+                            <li>नसिहत दिने।</li>
+                            <li>बढीमा ५ तलब वृद्धि रोक्का वा ५ वर्ष बढुवा रोक्का।</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h4>विशेष सजाय</h4>
+                        <ul>
+                            <li>भविष्यमा सरकारी सेवाको निमित्त अयोग्य नठहरिने गरी हटाउने।</li>
+                            <li>भविष्यमा सरकारी सेवाको निमित्त अयोग्य ठहरिने गरी बर्खास्त गर्ने (भ्रष्टाचार, नैतिक पतन, पीआर लिएमा आदि)।</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="leaves">
+                <h2>बिदा र विविध (Leaves & Misc)</h2>
+                
+                <h3>बिदाका प्रकारहरू (दफा १১২)</h3>
+                <ul>
+                    <li>भैपरी आउने र पर्व बिदा (६+६ दिन)</li>
+                    <li>घर बिदा (१२ दिन काम गरेको १ दिनका दरले)</li>
+                    <li>बिरामी बिदा (वर्षको १२ दिन)</li>
+                    <li>प्रसूति बिदा (९८ दिन) / प्रसूति स्याहार बिदा (१५ दिन)</li>
+                    <li>किरिया बिदा (१५ दिन)</li>
+                    <li>अध्ययन बिदा</li>
+                    <li>असाधारण बिदा</li>
+                    <li>सट्टा बिदा (सार्वजनिक बिदामा काम गरे बापत)</li>
+                </ul>
+
+                <h3>विविध व्यवस्था</h3>
+                <ul>
+                    <li><strong>ट्रेड युनियन:</strong> अधिकृत आठौँ तह भन्दा मुनिका कर्मचारीले आधिकारिक ट्रेड युनियन गठन गर्न सक्ने।</li>
+                    <li><strong>पुरस्कार:</strong> सर्वोत्कृष्ट (१ जना), उत्कृष्ट (३ जना) र प्रदेश निजामती सेवा पुरस्कार (६ जना) प्रदान गरिने।</li>
+                    <li><strong>व्यवस्थापन परीक्षण:</strong> मन्त्रालयले कार्यालयहरूको व्यवस्थापन परीक्षण (Management Audit) गर्ने।</li>
+                    <li><strong>संघीय कानून:</strong> यस ऐनमा भएका व्यवस्था संघीय कानूनसँग बाझिएमा बाझिएको हदसम्म संघीय कानून लागु हुनेछ।</li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling and Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Offset for fixed header
+                if (pageYOffset >= (sectionTop - sectionHeight / 4)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
