@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Periodic Plans (1-16) - MCQ Practice</title>
+    <!-- Google Fonts: Poppins for English UI elements, Noto Sans Devanagari for Nepali text -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration (kept for consistency, though likely unused in this specific text-based quiz) -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --success-bg: #d1fae5;
+            --success-border: #34d399;
+            --success-text: #065f46;
+            --error-bg: #fee2e2;
+            --error-border: #f87171;
+            --error-text: #991b1b;
+            --score-bg: #ecfdf5;
+            --score-border: #6ee7b7;
+            --score-text: #047857;
+        }
+
+        body { 
+            /* Added Noto Sans Devanagari for Nepali text support */
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-dark); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .left-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .home-btn {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .info-pill { 
+            background: #e0e7ff; 
+            color: var(--primary-dark); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid #c7d2fe;
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: #111827;
+        }
+
+        /* Options Styling */
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: #f9fafb; 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text);
+            opacity: 0.8;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<div class="sticky-header">
+    <h1>नेपालका आवधिक योजनाहरू (१-१६)</h1>
+    <div class="header-controls">
+        <div class="left-controls">
+            <a href="index.html" class="home-btn">🏠 Home</a>
+        </div>
+        <div class="stats-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions will be injected here by JavaScript -->
+    </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    // --- State Variables for Score ---
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    // Quiz Data from the provided Yojana file
+    const quizData = [
+        { id: 1, q: "नेपालको प्रथम पञ्चवर्षीय योजना कहिले सुरु भएको थियो?", options: ["वि.सं. २०१३", "वि.सं. २०१२", "वि.सं. २०१४", "वि.सं. २०१५"], a: 0 },
+        { id: 2, q: "प्रथम पञ्चवर्षीय योजना घोषणा गर्ने प्रधानमन्त्री को हुन्?", options: ["बि.पी. कोइराला", "मात्रिका प्रसाद कोइराला", "टंक प्रसाद आचार्य", "मोहन शमशेर"], a: 2 },
+        { id: 3, q: "नेपालको पहिलो 'योजना विहीन वर्ष' (Plan Holiday) कुन अवधिलाई मानिन्छ?", options: ["२०१३-२०१७", "२०१७-२०१९", "२०४७-२०४९", "२०६१-२०६३"], a: 1 },
+        { id: 4, q: "नेपालको पहिलो 'त्रिवर्षीय योजना' कुन हो?", options: ["प्रथम योजना", "दोस्रो योजना", "तेस्रो योजना", "एघारौं योजना"], a: 1 },
+        { id: 5, q: "'साझा' संस्थाको अवधारणा कुन योजनाबाट आएको हो?", options: ["प्रथम योजना", "दोस्रो योजना", "तेस्रो योजना", "पाचौँ योजना"], a: 1 },
+        { id: 6, q: "कुन योजनामा पहिलो पटक 'पर्यटन विकास' को लागि छुट्टै शीर्षक समावेश गरिएको थियो?", options: ["दोस्रो योजना", "तेस्रो योजना", "चौथो योजना", "छैटौं योजना"], a: 1 },
+        { id: 7, q: "नेपाललाई ४ विकास क्षेत्रमा विभाजन गरी 'क्षेत्रीय विकास' (Regional Development) को अवधारणा कुन योजनामा लागू गरियो?", options: ["तेस्रो योजना", "चौथो योजना", "पाचौँ योजना", "छैटौं योजना"], a: 1 },
+        { id: 8, q: "'विकास मूल फुटाई' भन्ने नारा कुन योजनासँग सम्बन्धित छ?", options: ["तेस्रो योजना", "चौथो योजना", "पाचौँ योजना", "सातौं योजना"], a: 1 },
+        { id: 9, q: "राष्ट्रिय शिक्षा पद्धति योजना (NESP-२०२८) कुन योजना अवधिमा लागू भएको थियो?", options: ["तेस्रो योजना", "चौथो योजना", "पाचौँ योजना", "छैटौं योजना"], a: 1 },
+        { id: 10, q: "कुन योजनाले 'निःशुल्क प्राथमिक शिक्षा' को नीति लिएको थियो?", options: ["चौथो योजना", "पाचौँ योजना", "छैटौं योजना", "सातौं योजना"], a: 1 },
+        { id: 11, q: "महिला सहभागिता (Women Participation) मा जोड दिइएको पहिलो योजना कुन हो?", options: ["पाचौँ योजना", "छैटौं योजना", "सातौं योजना", "आठौं योजना"], a: 1 },
+        { id: 12, q: "प्रशासनिक 'विकेन्द्रीकरण' (Decentralization) लाई योजनाबद्ध रूपमा अघि बढाइएको योजना कुन हो?", options: ["पाचौँ योजना", "छैटौं योजना", "सातौं योजना", "आठौं योजना"], a: 2 },
+        { id: 13, q: "निजी वन र कबुलियती वनको अवधारणा कुन योजनामा ल्याइएको थियो?", options: ["छैटौं योजना", "सातौं योजना", "आठौं योजना", "नवौं योजना"], a: 1 },
+        { id: 14, q: "प्रजातन्त्र पुनस्र्थापना (२०४६) पछिको पहिलो योजना कुन हो?", options: ["सातौं योजना", "आठौं योजना", "नवौं योजना", "दशौं योजना"], a: 1 },
+        { id: 15, q: "'दिगो विकास' (Sustainable Development) को अवधारणा कुन योजना देखि अवलम्बन गरियो?", options: ["सातौं योजना", "आठौं योजना", "नवौं योजना", "दशौं योजना"], a: 1 },
+        { id: 16, q: "'गरिबी निवारण' (Poverty Alleviation) लाई एक मात्र मूल उद्देश्य बनाएको योजना कुन हो?", options: ["आठौं योजना", "नवौं योजना", "दशौं योजना", "एघारौं योजना"], a: 1 },
+        { id: 17, q: "२० वर्षे दीर्घकालीन कृषि योजना (APP) कुन योजनाको रणनीति थियो?", options: ["आठौं योजना", "नवौं योजना", "दशौं योजना", "एघारौं योजना"], a: 1 },
+        { id: 18, q: "'सुशासन' (Good Governance) को अवधारणालाई महत्त्वका साथ समावेश गरिएको पहिलो योजना कुन हो?", options: ["आठौं योजना", "नवौं योजना", "दशौं योजना", "एघारौं योजना"], a: 2 },
+        { id: 19, q: "गणतन्त्र स्थापना पछिको पहिलो योजना कुन हो?", options: ["दशौं योजना", "एघारौं योजना", "बाह्रौं योजना", "तेह्रौं योजना"], a: 1 },
+        { id: 20, q: "जलवायु परिवर्तन (Climate Change) लाई योजनामा विशेष स्थान दिइएको योजना कुन हो?", options: ["एघारौं योजना", "बाह्रौं योजना", "तेह्रौं योजना", "चौधौं योजना"], a: 1 },
+        { id: 21, q: "नेपाललाई सन् २०२२ सम्म विकासशील राष्ट्रमा स्तरोन्नति गर्ने लक्ष्य कुन योजनाले लिएको थियो?", options: ["एघारौं योजना", "बाह्रौं योजना", "तेह्रौं योजना", "चौधौं योजना"], a: 2 },
+        { id: 22, q: "संघीय संरचना (Federal Structure) अनुसारको पहिलो योजना कुन हो?", options: ["तेह्रौं योजना", "चौधौं योजना", "पन्ध्रौं योजना", "सोह्रौं योजना"], a: 1 },
+        { id: 23, q: "'समृद्ध नेपाल, सुखी नेपाली' भन्ने राष्ट्रिय नारा कुन योजनाले तय गरेको हो?", options: ["चौधौं योजना", "पन्ध्रौं योजना", "सोह्रौं योजना", "तेह्रौं योजना"], a: 1 },
+        { id: 24, q: "वि.सं. २१०० सम्मको दीर्घकालीन सोच (Vision 2100) कुन योजनामा समावेश छ?", options: ["चौधौं योजना", "पन्ध्रौं योजना", "सोह्रौं योजना", "तेह्रौं योजना"], a: 1 },
+        { id: 25, q: "हाल कार्यान्वयनमा रहेको सोह्रौं योजनाको अवधि कुन हो?", options: ["२०८०/८१ – २०८४/८५", "२०८१/८२ – २०८५/८६", "२०७६/७७ – २०८०/८१", "२०८२/८३ – २०८६/८७"], a: 1 },
+        { id: 26, q: "सोह्रौं योजनाको मुख्य नारा (Motto) के हो?", options: ["समृद्ध नेपाल, सुखी नेपाली", "सुशासन, सामाजिक न्याय र समृद्धि", "समाजवाद उन्मुख अर्थतन्त्र", "दिगो विकास र समृद्धि"], a: 1 },
+        { id: 27, q: "सोह्रौं योजनाले आर्थिक वृद्धिदरको लक्ष्य कति राखेको छ?", options: ["१०.३%", "७.१%", "८.५%", "६.५%"], a: 1 },
+        { id: 28, q: "सोह्रौं योजनाले कति वटा 'रूपान्तरणकारी क्षेत्रहरू' पहिचान गरेको छ?", options: ["१० वटा", "१२ वटा", "१५ वटा", "८ वटा"], a: 1 },
+        { id: 29, q: "नेपालमा हालसम्म कति वर्ष 'योजना विहीन वर्ष' (Plan Holidays) रहेका छन्?", options: ["२ वर्ष", "३ वर्ष", "४ वर्ष", "५ वर्ष"], a: 1 },
+        { id: 30, q: "हालसम्म (१६ औं सम्म) कति वटा त्रिवर्षीय योजनाहरू कार्यान्वयन भएका छन्?", options: ["३ वटा", "४ वटा", "५ वटा", "६ वटा"], a: 2 }
+    ];
+
+    const totalQuestions = quizData.length;
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * disables the radio buttons for the question, and updates the score.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Score Logic
+        // Increment attempted
+        attemptedCount++;
+        
+        // Check if correct
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        // Update Display
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // 3. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+
+        // Render MathJax content
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    // Scroll To Top Functionality
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
