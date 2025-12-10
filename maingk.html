@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Tiles</title>
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome is included but we will use your Emojis as well -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --hover-glow: rgba(255, 255, 255, 0.35);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Deep Space Gradient from Reference */
+            background: linear-gradient(-45deg, #141E30, #243B55, #4b6cb7, #182848);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Back Link Styling */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .header h1 {
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        /* --- THE COMPACT GRID --- */
+        .link-grid {
+            display: grid;
+            /* Auto-fit columns: minimal width 300px to accommodate your longer text */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px; 
+        }
+
+        /* --- TILE STYLING --- */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease-in-out;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Horizontal Layout */
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start;
+            text-align: left;
+            min-height: 80px; /* Ensures consistency */
+        }
+
+        /* Icon Styling (Adapting for Emojis) */
+        .card i {
+            font-size: 1.8rem; 
+            width: 40px;       
+            margin-right: 15px;
+            text-align: center;
+            font-style: normal; /* Ensures emojis sit upright */
+        }
+
+        /* Text Grouping */
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .card span {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limits description to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            background: var(--hover-glow);
+            transform: translateY(-5px) scale(1.02);
+            border-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Back Link integrated from maingk.html -->
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="header">
+            <h1>Navigation Tiles</h1>
+            <p>Select a topic to study</p>
+        </div>
+
+        <div class="link-grid">
+
+            <!-- TILE 1: Sudurpashchim -->
+            <a href="notesp.html" class="card">
+                <i>🏢</i>
+                <div class="text-group">
+                    <h3>सुदूरपश्चिम सुशासन ऐन</h3>
+                    <span>Note & MCQ</span>
+                </div>
+            </a>
+
+            <!-- TILE 2: Local Gov -->
+            <a href="asths.html" class="card">
+                <i>🏡</i>
+                <div class="text-group">
+                    <h3>स्थानीय सरकार सञ्चालन ऐन, २०७४</h3>
+                    <span>Note & MCQ</span>
+                </div>
+            </a>
+
+            <!-- TILE 3: Gandaki -->
+            <a href="nzga.html" class="card">
+                <i>🧑‍⚖️</i>
+                <div class="text-group">
+                    <h3>गण्डकी प्रदेश निजामती सेवा ऐन, २०७९</h3>
+                    <span>Notes & MCQ</span>
+                </div>
+            </a>
+
+            <!-- TILE 4: PPA & PPR -->
+            <a href="noteppr.html" class="card">
+                <i>⚖️</i>
+                <div class="text-group">
+                    <h3>PPA & PPR NOTES</h3>
+                    <span>100 MCQs - सार्वजनिक खरिद ऐन तथा नियमावली</span>
+                </div>
+            </a>
+
+            <!-- TILE 5: Plans -->
+            <a href="yojna.html" class="card">
+                <i>🧾</i>
+                <div class="text-group">
+                    <h3>नेपालका आवधिक योजनाहरू (१–१६)</h3>
+                    <span>Periodic Plans of Nepal (1-16) - MCQ Focused</span>
+                </div>
+            </a>
+
+            <!-- TILE 6: UNO -->
+            <a href="uno.html" class="card">
+                <i>🌍</i>
+                <div class="text-group">
+                    <h3>संयुक्त राष्ट्र सङ्घ (UNO)</h3>
+                    <span>लोकसेवा तयारी विशेष note & MCQ</span>
+                </div>
+            </a>
+
+            <!-- TILE 7: Public Management -->
+            <a href="pblc.html" class="card">
+                <i>🧑‍✈️</i>
+                <div class="text-group">
+                    <h3>Public Management</h3>
+                    <span>Detail note + MCQ + Extra note</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
