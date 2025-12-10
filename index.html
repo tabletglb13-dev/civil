@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering MCQs - Self-Study Hub</title>
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --hover-glow: rgba(255, 255, 255, 0.35);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Deep Space Gradient */
+            background: linear-gradient(-45deg, #141E30, #243B55, #4b6cb7, #182848);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- THE COMPACT GRID --- */
+        .link-grid {
+            display: grid;
+            /* Auto-fit columns: nice spacing for main landing options */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; 
+            margin-bottom: 40px;
+        }
+
+        /* --- TILE STYLING --- */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px; 
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Horizontal Layout */
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Icon Styling */
+        .card i {
+            font-size: 2.5rem; 
+            width: 60px;       
+            margin-right: 20px;
+            text-align: center;
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Text Grouping */
+        .text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .card span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            background: var(--hover-glow);
+            transform: translateY(-8px);
+            border-color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8rem; }
+            .card { padding: 20px; }
+            .card h3 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="header">
+            <h1>Civil Engineering Self-Study Hub</h1>
+            <p>Master key concepts with instant-feedback practice quizzes and notes.</p>
+        </div>
+
+        <div class="link-grid">
+
+            <!-- LINK 1: CIVIL -->
+            <a href="mainc.html" class="card">
+                <i>🧑‍🏭</i>
+                <div class="text-group">
+                    <h3>Civil Engineering</h3>
+                    <span>All Subjects & Technical Notes</span>
+                </div>
+            </a>
+
+            <!-- LINK 2: GK -->
+            <a href="maingk.html" class="card">
+                <i>🔥</i>
+                <div class="text-group">
+                    <h3>General Knowledge</h3>
+                    <span>GK Notes, Quizzes & Public Service</span>
+                </div>
+            </a>
+
+        </div>
+
+        <footer>
+            Developed as a Civil Engineering Self-Study Tool by ®.
+        </footer>
+    </div>
+
+</body>
+</html>
