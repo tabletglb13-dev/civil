@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Subjects</title>
+    
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --hover-glow: rgba(255, 255, 255, 0.35);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Deep Space Gradient */
+            background: linear-gradient(-45deg, #141E30, #243B55, #4b6cb7, #182848);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Back Link Styling */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .back-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .header h1 {
+            font-weight: 600;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+            font-size: 2.2rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        /* --- THE COMPACT GRID --- */
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px; 
+        }
+
+        /* --- TILE STYLING --- */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease-in-out;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Horizontal Layout */
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start;
+            text-align: left;
+            min-height: 90px;
+        }
+
+        /* Icon Styling */
+        .card i {
+            font-size: 2rem; 
+            width: 50px;       
+            margin-right: 15px;
+            text-align: center;
+            font-style: normal;
+        }
+
+        /* Text Grouping */
+        .text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .card span {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            background: var(--hover-glow);
+            transform: translateY(-5px) scale(1.02);
+            border-color: white;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="header">
+            <h1>Civil Engineering Subjects</h1>
+            <p>Select a subject to practice</p>
+        </div>
+
+        <div class="link-grid">
+
+            <!-- TILE 1 -->
+            <a href="surveyEf.html" class="card">
+                <i>🧭</i>
+                <div class="text-group">
+                    <h3>SURVEYING</h3>
+                    <span>MCQ Practice</span>
+                </div>
+            </a>
+
+            <!-- TILE 2 -->
+            <a href="soilEf.html" class="card">
+                <i>🏔️</i>
+                <div class="text-group">
+                    <h3>Soil Mechanics</h3>
+                    <span>MCQ Practice</span>
+                </div>
+            </a>
+
+            <!-- TILE 3 -->
+            <a href="rccEf.html" class="card">
+                <i>🏗️</i>
+                <div class="text-group">
+                    <h3>Reinforced Concrete</h3>
+                    <span>MCQ Practice (RCC)</span>
+                </div>
+            </a>
+
+            <!-- TILE 4 -->
+            <a href="materailEf.html" class="card">
+                <i>🧱</i>
+                <div class="text-group">
+                    <h3>Construction Materials</h3>
+                    <span>MCQ Practice</span>
+                </div>
+            </a>
+
+            <!-- TILE 5 -->
+            <a href="estimateEf.html" class="card">
+                <i>💰</i>
+                <div class="text-group">
+                    <h3>Estimating & Costing</h3>
+                    <span>MCQ Practice</span>
+                </div>
+            </a>
+
+            <!-- TILE 6 -->
+            <a href="qcpm.html" class="card">
+                <i>🕴️</i>
+                <div class="text-group">
+                    <h3>Project Management</h3>
+                    <span>Construction Management (CPM)</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
