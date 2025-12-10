@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Management (सार्वजनिक व्यवस्थापन) - Complete Question Bank</title>
+    <!-- Google Font for Nepali text -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #1557b0;
+            --success-bg: #d4edda;
+            --success-text: #155724;
+            --danger-bg: #f8d7da;
+            --danger-text: #721c24;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+        }
+
+        body { 
+            font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 20px; 
+            color: #333; 
+            line-height: 1.6;
+        }
+
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+        }
+        
+        /* Header */
+        .header-section {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header-section h1 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 2em;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #e8f0fe;
+            padding: 15px 20px;
+            border-radius: 8px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .score-display {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: var(--primary-dark);
+        }
+
+        .progress-text {
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        /* Section Dividers */
+        .topic-header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        /* Question Cards */
+        .question-card { 
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            padding: 20px; 
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 15px; 
+            color: #2c3e50; 
+        }
+
+        .question-number {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        /* Options */
+        .options { 
+            list-style: none; 
+            padding: 0; 
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .options { grid-template-columns: 1fr 1fr; }
+        }
+
+        .options li { margin: 0; }
+
+        .options label { 
+            display: flex; 
+            align-items: flex-start; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 1px solid #dadce0; 
+            border-radius: 6px; 
+            transition: all 0.2s; 
+            background: #fff; 
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .options label:hover:not(.disabled) { 
+            background-color: #f8f9fa; 
+            border-color: var(--primary);
+        } 
+
+        .options input[type="radio"] { 
+            margin-right: 12px; 
+            margin-top: 4px;
+            transform: scale(1.2); 
+            flex-shrink: 0;
+        }
+
+        /* Feedback Styles */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: #c3e6cb !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+        
+        .wrong-opt { 
+            background-color: var(--danger-bg) !important; 
+            border-color: #f5c6cb !important; 
+            color: var(--danger-text); 
+        }
+
+        .disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Scroll to Top */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        #scrollTopBtn:hover { background-color: var(--primary-dark); }
+
+    </style>
+</head>
+<body>
+
+<button onclick="topFunction()" id="scrollTopBtn" title="Go to top">⬆️</button>
+
+<div class="container">
+    <div class="header-section">
+        <h1>सार्वजनिक व्यवस्थापन (Public Management)</h1>
+        <p>Complete Practice Set Based on Sahara Education Notes</p>
+    </div>
+
+    <div class="stats-bar">
+        <div class="progress-text" id="progress-display">Question: 0 / 0</div>
+        <div class="score-display" id="score-display">Score: 0</div>
+    </div>
+
+    <div id="quiz-container">
+        <!-- Questions injected via JS -->
+    </div>
+</div>
+
+<script>
+    // Complete Data Set based on the user's provided notes
+    const quizData = [
+        
+        // --- SECTION 1: OFFICE & FUNCTIONS ---
+        { header: "१. कार्यालय परिचय र कार्यहरू (Introduction & Functions)" },
+        { id: 1, q: "POSDCORB को अवधारणा अनुसार 'R' ले के जनाउँछ?", options: ["Recording", "Reporting", "Responding", "Requesting"], a: 1 },
+        { id: 2, q: "जर्ज आर. टेरी (George R. Terry) का अनुसार कार्यालय भनेको के हो?", options: ["काम गर्ने कोठा", "संगठनलाई नियन्त्रण गर्ने संयन्त्र भएको स्थान", "सूचनाको केन्द्र", "सम्पर्क बिन्दु"], a: 1 },
+        { id: 3, q: "कुनै पनि सङ्गठनको 'मुटु' (Heart) भनेर कसलाई चिनिन्छ?", options: ["व्यवस्थापन", "कर्मचारी", "कार्यालय", "बजेट"], a: 2 },
+        { id: 4, q: "विश्वमा व्यवस्थित रूपमा कार्यालयको निर्माण तथा विस्तार कुन शताब्दीदेखि भएको मानिन्छ?", options: ["१७ औं", "१८ औं", "१९ औं", "२० औं"], a: 1 },
+        { id: 5, q: "कार्यालयका कार्यहरूलाई मुख्यतया कति भागमा बाँडिएको छ?", options: ["२ भाग", "३ भाग", "४ भाग", "५ भाग"], a: 0 },
+        { id: 6, q: "तलका मध्ये कुन कार्यालयको 'प्राथमिक/नियमित' कार्य होइन?", options: ["सूचना संकलन", "सूचना अभिलेखन", "बजेट तर्जुमा", "सूचना संचार"], a: 2 },
+        { id: 7, q: "नीति, योजना तथा कार्यक्रम तर्जुमा गर्ने कार्य कार्यालयको कुन कार्य अन्तर्गत पर्दछ?", options: ["प्राथमिक कार्य", "द्वितीय/व्यवस्थापकीय कार्य", "दैनिक कार्य", "प्राविधिक कार्य"], a: 1 },
+        { id: 8, q: "कार्यालयलाई 'तथ्याङ्क बैङ्क' (Data Bank) को रूपमा लिनु कार्यालयको कुन महत्त्व अन्तर्गत पर्दछ?", options: ["सूचना केन्द्रको रूपमा", "समन्वय केन्द्रको रूपमा", "सेवा केन्द्रको रूपमा", "नियन्त्रकको रूपमा"], a: 0 },
+        { id: 9, q: "साङ्गठनिक संरचनाको आधारमा (Org Structure) कार्यालयका प्रकारहरू कुन-कुन हुन्?", options: ["केन्द्रीय, प्रादेशिक, स्थानीय", "अग्र, मध्य, पृष्ठ", "प्रत्यक्ष, अप्रत्यक्ष", "सरकारी, निजी"], a: 1 },
+        { id: 10, q: "शासकीय संरचनाको आधारमा कार्यालयलाई कसरी वर्गीकरण गरिएको छ?", options: ["अग्र, मध्य, पृष्ठ", "स्थानीय, प्रादेशिक, केन्द्रीय", "ठुला, मझौला, साना", "सरकारी, निजी"], a: 1 },
+
+        // --- SECTION 2: OFFICE MANAGEMENT ---
+        { header: "२. कार्यालय व्यवस्थापन (Office Management)" },
+        { id: 11, q: "कार्यालय व्यवस्थापनमा '4M' भन्नाले के बुझिन्छ?", options: ["Man, Money, Machine, Material", "Men, Methods, Money, Material", "Management, Man, Money, Market", "Men, Minutes, Money, Methods"], a: 1 },
+        { id: 12, q: "कार्यालय व्यवस्थापनका तत्त्वहरू (Elements) मा तलको कुन पर्दैन?", options: ["कर्मचारी (Personnel)", "उपकरण (Means)", "वातावरण (Environment)", "नाफा (Profit)"], a: 3 },
+        { id: 13, q: "कम लागतमा बढी सेवा (Maximum services in minimum cost) प्रदान गर्नु व्यवस्थापनको कुन पक्षसँग सम्बन्धित छ?", options: ["नियमितता", "मितव्ययिता", "प्रभावकारिता", "माथिका सबै"], a: 3 },
+        { id: 14, q: "नेपालमा कार्यालय व्यवस्थापनमा देखिएको मुख्य समस्या कुन हो?", options: ["एकीकृत कानुनको अभाव", "MIS को कमजोर प्रयोग", "परम्परागत अभिलेख प्रणाली", "माथिका सबै"], a: 3 },
+        { id: 15, q: "CAFM (Computer Aided Facility Management) सफ्टवेयरको प्रयोग के का लागि गरिन्छ?", options: ["कर्मचारी भर्ना गर्न", "Space allocation र tools को अधिकतम उपयोग गर्न", "तलव वितरण गर्न", "चिठी पत्र लेख्न"], a: 1 },
+        { id: 16, q: "ABW (Activity-based Working) को अवधारणाले के जनाउँछ?", options: ["कर्मचारीलाई घरबाट काम गराउने", "खास प्रकृतिका कार्य सम्पादन तथा अध्ययन अनुसन्धान गराउने", "सबै काम म्यानुअल गर्ने", "समूहमा मात्र काम गर्ने"], a: 1 },
+
+        // --- SECTION 3: OBJECTIVE STYLE Q&A ---
+        { header: "३. बस्तुगत शैली र परिभाषाहरू (Objective Definitions)" },
+        { id: 17, q: "परम्परागत अवधारणा अनुसार कार्यालय भन्नाले के बुझिन्छ?", options: ["कार्य वा सेवा", "काम गर्ने स्थान", "भर्चुअल स्पेस", "माथिका सबै"], a: 1 },
+        { id: 18, q: "आधुनिक अवधारणा अनुसार कार्यालय भन्नाले के बुझिन्छ?", options: ["केवल कोठा", "केवल भवन", "सम्पादन गरिने कार्य वा कार्यको समग्रता", "फाइलिङ दराज"], a: 2 },
+        { id: 19, q: "कार्यालयको महत्त्वपूर्ण विशेषता यसको 'कार्य' हो, 'स्थान' होइन - यो भनाइ कसको हो?", options: ["J.C. Denyear", "J.R. Terry", "Leffingwell & Robins", "George Terry"], a: 2 },
+        { id: 20, q: "कारिन्दा सम्बन्धी कार्यहरू सम्पन्न गर्ने स्थान नै कार्यालय हो - यो परिभाषा कसको हो?", options: ["J.C. Denyear", "J.R. Terry", "Leffingwell", "Robins"], a: 0 },
+        { id: 21, q: "कार्यालयका आधारभूत तत्त्व तथा अन्तरवस्तुमा कुन पर्दछ?", options: ["उदेश्य र नीति/नियम", "मानव संशाधन र बजेट", "भवन संरचना र विधि", "माथिका सबै"], a: 3 },
+
+        // --- SECTION 4: TYPES OF OFFICE & STAFF ---
+        { header: "४. कार्यालयका प्रकार र सहायक कर्मचारी (Types & Support Staff)" },
+        { id: 22, q: "सरकारी कार्यालयको प्रमुख जिम्मेवारी के हो?", options: ["नाफा कमाउनु", "बजार विस्तार गर्नु", "शासन संचालन, विकास व्यवस्थापन र सेवा प्रवाह", "शेयरधनीलाई खुसी पार्नु"], a: 2 },
+        { id: 23, q: "निजी कार्यालयको मुख्य विशेषता के हो?", options: ["सेवामुखी", "नाफा केन्द्रित र व्यवसायमुखी", "जनताको माग सम्बोधन", "विकास निर्माण"], a: 1 },
+        { id: 24, q: "कार्य एवम् भूमिकाको आधारमा सरकारी कार्यालयलाई कति भागमा बाँडिन्छ?", options: ["२ (लाइन र स्टाफ अफिस)", "३ (केन्द्र, प्रदेश, स्थानीय)", "२ (प्रत्यक्ष, अप्रत्यक्ष)", "४ (विभिन्न मन्त्रालय)"], a: 0 },
+        { id: 25, q: "निजामती सेवा ऐन अनुसार सहायक कर्मचारी (Support Staff) भन्नाले कुन श्रेणीलाई बुझाउँछ?", options: ["राजपत्रांकित", "राजपत्र अनंकित", "विशिष्ट श्रेणी", "ठेक्काका कर्मचारी"], a: 1 },
+        { id: 26, q: "प्रदेश र स्थानीय तहका कुन तहका कर्मचारीलाई सहायक कर्मचारी मानिन्छ?", options: ["छैटौं र सातौं", "चौथो र पाचौँ", "आठौं र नवौं", "अधिकृत स्तर"], a: 1 },
+        { id: 27, q: "सहायक कर्मचारीमा हुनुपर्ने 'पेशागत गुण' कुन हो?", options: ["मृदुभाषी", "सफासुग्घर", "गोपनीयता र जवाफदेहिता", "हसिलो"], a: 2 },
+        { id: 28, q: "सहायक कर्मचारीमा हुनुपर्ने 'व्यक्तिगत गुण' कुन हो?", options: ["कानूनको ज्ञान", "सिक्ने चाहना", "शिष्ट व्यवहार र मधुर बोली", "टाइपिङ सीप"], a: 2 },
+
+        // --- SECTION 5: OFFICE RESOURCES ---
+        { header: "५. कार्यालय स्रोत साधन (Office Resources)" },
+        { id: 29, q: "कार्यालयको सबैभन्दा उत्तम तथा सर्वोत्तम स्रोत साधन कुन हो?", options: ["वित्तीय स्रोत", "मानवीय स्रोत साधन", "भौतिक स्रोत साधन", "प्रविधि"], a: 1 },
+        { id: 30, q: "व्यवस्थापकीय आधारमा मानव संशाधनलाई कति भागमा विभाजन गरिन्छ?", options: ["२ (व्यवस्थापक र कार्यात्मक)", "३ (उच्च, मध्य, निम्न)", "४ (विभिन्न तह)", "५ (विभिन्न समूह)"], a: 0 },
+        { id: 31, q: "संविधानको अनुसूची ५ मा कुन सरकारको अधिकार/स्रोत उल्लेख छ?", options: ["संघीय सरकार", "प्रदेश सरकार", "स्थानीय सरकार", "साझा अधिकार"], a: 0 },
+        { id: 32, q: "घर बहाल कर, सम्पत्ति कर र व्यवसाय कर कुन तहको सरकारको वित्तीय स्रोत हो?", options: ["संघ", "प्रदेश", "स्थानीय", "साझा"], a: 2 },
+        { id: 33, q: "सवारी साधन कर कुन-कुन तहको सरकारको अधिकार क्षेत्रमा पर्छ?", options: ["मात्र प्रदेश", "मात्र स्थानीय", "प्रदेश र स्थानीय दुवै (राजस्व बाँडफाँड)", "संघ र प्रदेश"], a: 2 },
+        { id: 34, q: "मूल्य अभिवृद्धि कर (VAT) र भन्सार महसुल कुन सरकारको एकल अधिकार हो?", options: ["स्थानीय", "प्रदेश", "संघीय", "तीनै तह"], a: 2 },
+        { id: 35, q: "खर्च हुने र नहुने आधारमा भौतिक स्रोतलाई कसरी वर्गीकरण गरिन्छ?", options: ["स्थानान्तरणयोग्य र अस्थानान्तरणयोग्य", "खर्च भएर जाने र खर्च भएर नजाने", "मूल्य वृद्धि हुने र ह्रास हुने", "ठुला र साना"], a: 1 },
+
+        // --- SECTION 6: COMMUNICATION ---
+        { header: "६. सञ्चार (Communication)" },
+        { id: 36, q: "Communication शब्द ल्याटिन भाषाको कुन शब्दबाट आएको हो?", options: ["Commune", "Communis", "Communicare", "Common"], a: 1 },
+        { id: 37, q: "कार्यालयको 'रक्त संचार' (Blood Circulation) भनेर कसलाई चिनिन्छ?", options: ["बजेट", "कर्मचारी", "संचार", "अभिलेख"], a: 2 },
+        { id: 38, q: "सञ्चार प्रक्रियाको पहिलो चरण कुन हो?", options: ["सूचनाको प्रवाह", "सूचनाको प्राप्ति", "सूचनाको सांकेतिकरण", "पृष्ठपोषण"], a: 1 },
+        { id: 39, q: "माथिबाट तलतिर (Top to Bottom) हुने संचारलाई के भनिन्छ?", options: ["उर्ध्वमुखी संचार", "अधोमुखी संचार", "छड्के संचार", "समतल संचार"], a: 1 },
+        { id: 40, q: "कुनै संगठन देखि अर्को संगठनमा हुने संचार वा छड्के रुपमा हुने संचारलाई के भनिन्छ?", options: ["Lateral Communication", "Diagonal (छड्के) Communication", "Upward Communication", "Internal Communication"], a: 1 },
+        { id: 41, q: "असल संचारका विशेषतामा '7Cs' मध्ये कुन पर्दैन?", options: ["Clarity (स्पष्टता)", "Conciseness (संक्षिप्तता)", "Completeness (पूर्णता)", "Complexity (जटिलता)"], a: 3 },
+        { id: 42, q: "इमेल, इन्टरनेट र फ्याक्स संचारको कुन माध्यम अन्तर्गत पर्दछन्?", options: ["सांकेतिक", "मौखिक", "भर्चुअल", "आम संचार"], a: 2 },
+
+        // --- SECTION 7: OFFICE PROCEDURES ---
+        { header: "७. कार्यालय कार्यविधि (Office Procedures)" },
+        { id: 43, q: "कार्यालयमा प्राप्त कागजातहरूको 'प्रारम्भिक अभिलेख' वा 'प्रवेशद्धार' कुन हो?", options: ["चलानी", "दर्ता", "फाइलिङ", "टिप्पणी"], a: 1 },
+        { id: 44, q: "दर्ता र चलानी किताब सामान्यतया कहिले परिवर्तन गरिन्छ?", options: ["प्रत्येक महिना", "प्रत्येक ६ महिनामा", "प्रत्येक आर्थिक वर्षमा", "कहिले पनि गरिदैन"], a: 2 },
+        { id: 45, q: "दर्ता र चलानी नम्बर प्रत्येक आर्थिक वर्षको सुरुमा कतिबाट सुरु हुन्छ?", options: ["००१ बाट", "१ बाट", "गत वर्षको अन्तिम नम्बरबाट", "१०१ बाट"], a: 1 },
+        { id: 46, q: "दर्ताले कार्यालयको दायित्व ______ र चलानीले दायित्व ______ ।", options: ["घटाउँछ, बढाउँछ", "बढाउँछ, घटाउँछ", "स्थिर राख्छ, बढाउँछ", "बढाउँछ, स्थिर राख्छ"], a: 1 },
+        { id: 47, q: "सुशासन नियमावली, २०६५ अनुसार 'साधारण' पत्रको फछ्यौट आफैले गर्नुपर्नेमा कति दिन भित्र गर्नुपर्छ?", options: ["३ दिन", "५ दिन", "७ दिन", "१० दिन"], a: 3 },
+        { id: 48, q: "सुशासन नियमावली अनुसार 'जरुरी' पत्र आफैले फछ्र्योट गर्नु पर्ने भए कति दिन भित्र गर्नुपर्छ?", options: ["१ दिन", "२ दिन", "३ दिन", "५ दिन"], a: 3 },
+        { id: 49, q: "पत्रमा 'तुरुन्त' भनी लेखिएको छ भने कहिले फछ्यौट गर्नुपर्छ?", options: ["२ दिन भित्र", "पेश भएकै दिन", "३ दिन भित्र", "५ दिन भित्र"], a: 1 },
+        { id: 50, q: "'अति गोप्य' पत्र कसले खोल्न मिल्छ?", options: ["दर्ता फाँट वालाले", "कार्यालय प्रमुख वा सम्बन्धित व्यक्तिले", "प्रशासन प्रमुखले", "चलानी गर्नेले"], a: 1 },
+        { id: 51, q: "चिठीपत्रको 'शिर्ष भाग' (Head) मा कुन कुरा पर्दैन?", options: ["मिति", "प्रशस्ति", "विषय", "सम्बन्ध ज्ञापन"], a: 3 },
+        { id: 52, q: "चिठीको अन्त्य भागमा रहने 'बोधार्थ' (CC) को अर्थ के हो?", options: ["विषयको जानकारी", "एक भन्दा बढी निकायलाई जानकारी दिन", "चिठी टुंग्याउन", "हस्ताक्षर गर्न"], a: 1 },
+        { id: 53, q: "कुनै पत्र वा निवेदनको सम्बन्धमा गरिने कारबाहीको लागि त्यसै पत्रमा दिने लिखित निर्देशनलाई के भनिन्छ?", options: ["टिप्पणी", "चलानी", "तोक आदेश (Tok)", "परिपत्र"], a: 2 },
+        { id: 54, q: "माथिल्लो निकायले मातहतका निकायलाई एकै विषयको जानकारी दिन लेखिने पत्रलाई के भनिन्छ?", options: ["तोक", "परिपत्र (Circular)", "जरुरी पत्र", "ज्ञापन पत्र"], a: 1 },
+
+        // --- SECTION 8: CIVIL SERVICE ACT & RULES ---
+        { header: "८. निजामती सेवा ऐन र नियमावली (Civil Service Act)" },
+        { id: 55, q: "नेपालमा 'निजामती सेवा दिवस' कहिले मनाइन्छ?", options: ["भदौ २२", "जेठ ४", "कात्तिक ३", "असार १"], a: 0 },
+        { id: 56, q: "निजामती सेवा ऐन, २०४९ कहिले जारी भयो?", options: ["२०४९ जेठ ४", "२०५० जेठ ४", "२०५० असार २८", "२०५५ असार २९"], a: 1 },
+        { id: 57, q: "निजामती सेवा ऐन, २०४९ मा कति दफा रहेका छन्?", options: ["७६ दफा", "८० दफा", "१३८ दफा", "११० दफा"], a: 0 },
+        { id: 58, q: "निजामती सेवाको गठन अन्तर्गत कति वटा सेवाहरू रहेका छन्?", options: ["८ वटा", "९ वटा", "१० वटा", "११ वटा"], a: 2 },
+        { id: 59, q: "समावेशी पदपूर्तिमा महिलाका लागि कति प्रतिशत आरक्षण छुट्याइएको छ?", options: ["२२%", "२७%", "३३%", "४५%"], a: 2 },
+        { id: 60, q: "समावेशी कोटामा आदिवासी/जनजातिका लागि कति प्रतिशत व्यवस्था छ?", options: ["२२%", "२४%", "२७%", "३३%"], a: 1 },
+        { id: 61, q: "समावेशी कोटामा दलितका लागि कति प्रतिशत व्यवस्था छ (नोट अनुसार)?", options: ["४%", "५%", "९%", "१५%"], a: 1 },
+        { id: 62, q: "राजपत्रांकित पदमा उम्मेदवार हुन कति वर्ष उमेर पुगेको हुनुपर्छ?", options: ["१८ वर्ष", "२० वर्ष", "२१ वर्ष", "२५ वर्ष"], a: 2 },
+        { id: 63, q: "पुरुष उम्मेदवारको हकमा निजामती सेवामा प्रवेश गर्ने अधिकतम उमेर हद कति हो?", options: ["३० वर्ष", "३५ वर्ष", "४० वर्ष", "४५ वर्ष"], a: 1 },
+        { id: 64, q: "महिला उम्मेदवारको हकमा उमेर हद कति तोकिएको छ?", options: ["३५ वर्ष", "३८ वर्ष", "४० वर्ष", "४५ वर्ष"], a: 2 },
+        { id: 65, q: "पुरुष कर्मचारीको परीक्षण काल (Probation Period) कति हुन्छ?", options: ["६ महिना", "९ महिना", "१ वर्ष", "२ वर्ष"], a: 2 },
+        { id: 66, q: "महिला कर्मचारीको परीक्षण काल कति हुन्छ?", options: ["३ महिना", "६ महिना", "९ महिना", "१ वर्ष"], a: 1 },
+        { id: 67, q: "मुख्य सचिवको पदावधि कति वर्षको हुन्छ?", options: ["२ वर्ष", "३ वर्ष", "४ वर्ष", "५ वर्ष"], a: 1 },
+        { id: 68, q: "सचिवको पदावधि कति वर्षको हुन्छ?", options: ["३ वर्ष", "४ वर्ष", "५ वर्ष", "६ वर्ष"], a: 2 },
+        { id: 69, q: "निजामती कर्मचारीले 'घर विदा' (Home Leave) वर्षमा कति दिन पाउँछन्?", options: ["१२ दिन", "२० दिन", "२४ दिन", "३० दिन"], a: 3 },
+        { id: 70, q: "घर विदा बढीमा कति दिन सम्म संचित गर्न पाइन्छ?", options: ["६० दिन", "९० दिन", "१२० दिन", "१८० दिन"], a: 3 },
+        { id: 71, q: "विरामी विदा वर्षमा कति दिन पाइन्छ?", options: ["६ दिन", "१० दिन", "१२ दिन", "१५ दिन"], a: 2 },
+        { id: 72, q: "प्रसुती विदा (Maternity Leave) कति दिन पाइन्छ?", options: ["६० दिन", "९० दिन", "९८ दिन", "१२० दिन"], a: 2 },
+        { id: 73, q: "प्रसुती स्याहार विदा (Paternity Leave) कति दिन पाइन्छ?", options: ["७ दिन", "१० दिन", "१२ दिन", "१५ दिन"], a: 3 },
+        { id: 74, q: "किरिया विदा कति दिन पाइन्छ?", options: ["१३ दिन", "१५ दिन", "१० दिन", "१२ दिन"], a: 1 },
+        { id: 75, q: "अध्ययन विदा (Study Leave) सेवा अवधिभर बढीमा कति वर्ष पाइन्छ?", options: ["२ वर्ष", "३ वर्ष (आवश्यक परे २ थप)", "४ वर्ष", "५ वर्ष"], a: 1 },
+        { id: 76, q: "असाधारण विदा (Extraordinary Leave) सेवा अवधिभर बढीमा कति वर्ष पाइन्छ?", options: ["१ वर्ष", "२ वर्ष", "३ वर्ष", "५ वर्ष"], a: 2 },
+        { id: 77, q: "असाधारण विदा लिन सेवा अवधि कम्तीमा कति वर्ष पुगेको हुनुपर्छ?", options: ["३ वर्ष", "५ वर्ष", "७ वर्ष", "१० वर्ष"], a: 1 },
+        { id: 78, q: "कुन विदा अधिकार होइन, सुविधा/सहुलियत मात्र हो?", options: ["घर विदा", "विरामी विदा", "सबै विदा", "कुनै पनि होइन"], a: 2 },
+        { id: 79, q: "भविष्यमा सरकारी सेवाको निमित्त अयोग्य नठहरिने गरी सेवाबाट हटाउनु कस्तो सजाय हो?", options: ["सामान्य सजाय", "विशेष सजाय", "विभागिय कारबाही", "नसिहत"], a: 1 },
+        { id: 80, q: "लगातार कति दिनसम्म विदा स्वीकृत नगराई अनुपस्थित भएमा सेवाबाट हटाउन सकिन्छ?", options: ["३० दिन", "६० दिन", "९० दिन", "१२० दिन"], a: 2 },
+        { id: 81, q: "निजामती कर्मचारीले कति वर्ष सेवा गरेपछि निवृत्तभरण (Pension) पाउँछन्?", options: ["१५ वर्ष", "१८ वर्ष", "२० वर्ष", "२५ वर्ष"], a: 2 },
+        { id: 82, q: "पेन्सन (निवृत्तभरण) गणना गर्ने सुत्र कुन हो?", options: ["(सेवा अवधि × अन्तिम तलव) ÷ ४०", "(सेवा अवधि × अन्तिम तलव) ÷ ५०", "(सेवा अवधि × अन्तिम तलव) ÷ ६०", "(सेवा अवधि × अन्तिम तलव) ÷ ७५"], a: 1 },
+        { id: 83, q: "उपदान पाउन ५ वर्ष देखि १० वर्ष सेवा गरेको कर्मचारीलाई प्रत्येक वर्षको निमित्त कति तलव दिइन्छ?", options: ["आधा महिनाको तलव", "एक महिनाको तलव", "डेढ महिनाको तलव", "दुई महिनाको तलव"], a: 0 },
+        { id: 84, q: "निजामती कर्मचारीको आचरण अन्तर्गत कुन कार्य गर्न प्रतिबन्ध छैन?", options: ["राजनीतिमा भाग लिन", "कम्पनी स्थापना गर्न", "ट्रेड युनियन गठन गर्न", "सरकारको आलोचना गर्न"], a: 2 },
+        { id: 85, q: "सम्पत्ति विवरण बुझाउनु पर्ने व्यवस्था ऐनको कुन दफामा छ?", options: ["दफा ४०", "दफा ५०", "दफा ५४", "दफा ६०"], a: 2 },
+        { id: 86, q: "सरूवा समय तालिका अनुसार सामान्य प्रशासन मन्त्रालयले कहिले सरुवा गर्छ?", options: ["भदौ १ देखि भदौ मसान्त", "असोज १ देखि १५", "कात्तिक १ देखि मसान्त", "श्रावण महिना भर"], a: 0 },
+
+        // --- SECTION 9: CONSTITUTIONAL BODIES ---
+        { header: "९. संवैधानिक निकाय (Constitutional Bodies)" },
+        { id: 87, q: "नेपालको संविधानमा कति वटा संवैधानिक निकायको व्यवस्था छ?", options: ["१० वटा", "११ वटा", "१२ वटा", "१३ वटा"], a: 3 },
+        { id: 88, q: "संवैधानिक निकायका पदाधिकारीको पदावधि कति वर्षको हुन्छ?", options: ["४ वर्ष", "५ वर्ष", "६ वर्ष", "७ वर्ष"], a: 2 },
+        { id: 89, q: "संवैधानिक परिषद्को अध्यक्ष को रहने व्यवस्था छ?", options: ["राष्ट्रपति", "प्रधानमन्त्री", "प्रधानन्यायाधीश", "सभामुख"], a: 1 },
+        { id: 90, q: "संवैधानिक निकायका पदाधिकारीको नियुक्ति कसले गर्छ?", options: ["प्रधानमन्त्री", "संवैधानिक परिषद्", "राष्ट्रपति", "संसदीय सुनुवाइ समिति"], a: 2 },
+        { id: 91, q: "महालेखा परीक्षक (Auditor General) कुन भागमा व्यवस्था गरिएको छ?", options: ["भाग २१", "भाग २२", "भाग २३", "भाग २४"], a: 1 },
+        { id: 92, q: "अख्तियार दुरुपयोग अनुसन्धान आयोगमा प्रमुख आयुक्त बाहेक कति आयुक्त रहन्छन्?", options: ["२ जना", "३ जना", "४ जना", "५ जना"], a: 2 },
+
+        // --- SECTION 10: BUDGET, ACCOUNTS & AUDIT ---
+        { header: "१०. बजेट, लेखा र लेखा परीक्षण (Budget & Audit)" },
+        { id: 93, q: "नेपालमा सबैभन्दा पहिलो पटक बजेट कहिले प्रस्तुत गरिएको थियो?", options: ["२००७ फागुन ७", "२००८ माघ २१", "२००९ साउन १", "२०१० जेठ १०"], a: 1 },
+        { id: 94, q: "नेपालमा बजेट प्रस्तुत गर्ने पहिलो अर्थमन्त्री को हुन्?", options: ["मात्रिका प्रसाद कोइराला", "सुवर्ण शमशेर जबरा", "भरत मोहन अधिकारी", "महेश आचार्य"], a: 1 },
+        { id: 95, q: "संघीय सरकारले प्रत्येक वर्ष कहिले बजेट सार्वजनिक गर्छ?", options: ["जेठ १५", "असार १", "असार १०", "साउन १"], a: 0 },
+        { id: 96, q: "प्रदेश सरकारले बजेट कहिले सार्वजनिक गर्नुपर्छ?", options: ["जेठ १५", "असार १", "असार १०", "साउन १"], a: 1 },
+        { id: 97, q: "स्थानीय तहले बजेट कहिले पेश गर्नुपर्छ?", options: ["जेठ १५", "असार १", "असार १०", "असार मसान्त"], a: 2 },
+        { id: 98, q: "एक वर्ष भन्दा बढी समय खप्ने सामान वा विकास निर्माणमा गरिने खर्च कुन बजेट हो?", options: ["चालु बजेट", "पुँजिगत बजेट", "वित्तीय व्यवस्था", "पूरक बजेट"], a: 1 },
+        { id: 99, q: "नेपालमा 'नयाँ श्रेस्ता प्रणाली' (New Accounting System) कहिले देखि लागु भयो?", options: ["२०१६", "२०१८ चैत्र २", "२०२०", "२०२५"], a: 1 },
+        { id: 100, q: "CGAS को पूरा रूप के हो?", options: ["Central Government Accounting System", "Computerized Government Accounting System", "Computerized General Audit System", "Common Government Account Software"], a: 1 },
+        { id: 101, q: "स्थानीय तहले प्रयोग गर्ने लेखा प्रणाली सफ्टवेयर कुन हो?", options: ["LMBIS", "CGAS", "SuTRA", "TSA"], a: 2 },
+        { id: 102, q: "अन्तिम लेखा परीक्षण कसले गर्छ?", options: ["कोलेनिका", "महालेखा परीक्षक", "लेखा प्रमुख", "जिल्ला प्रशासन"], a: 1 },
+        { id: 103, q: "आन्तरिक लेखा परीक्षण (संघीय कार्यालयको) कसले गर्छ?", options: ["को.ले.नि.का.", "म.ले.प.", "सम्बन्धित मन्त्रालय", "अख्तियार"], a: 0 },
+
+        // --- SECTION 11: DOCUMENT DESTRUCTION RULES 2027 ---
+        { header: "११. सरकारी कागजात धुल्याउने नियमहरू, २०२७ (Document Destruction)" },
+        { id: 104, q: "सरकारी कागजात धुल्याउने नियमहरू कहिले राजपत्रमा प्रकाशित भयो?", options: ["२०२६/१०/५", "२०२७/१०/५", "२०२८/१/१", "२०२७/५/१०"], a: 1 },
+        { id: 105, q: "'धुल्याउनु' भन्नाले के बुझिन्छ?", options: ["आगो लगाउनु", "च्यात्नु", "पढ्न, बुझ्न वा उपयोग गर्न नसकिने गरी रद्द गर्नु", "खोलामा बगाउनु"], a: 2 },
+        { id: 106, q: "दैनिक तथा अर्ध वार्षिक प्रतिवेदनहरू काम तामेल भएको कति समयपछि धुल्याइन्छ?", options: ["१ वर्ष", "३ वर्ष", "५ वर्ष", "१० वर्ष"], a: 0 },
+        { id: 107, q: "कर्मचारीको हाजिर फाराम र बिदाको रेकर्ड कति वर्षपछि धुल्याइन्छ?", options: ["१ वर्ष", "३ वर्ष", "५ वर्ष", "१० वर्ष"], a: 2 },
+        { id: 108, q: "साधारण जानकारीका लागि आएका परिपत्र वा बोधार्थपत्र कति वर्षपछि धुल्याइन्छ?", options: ["१ वर्ष", "३ वर्ष", "५ वर्ष", "तुरुन्तै"], a: 2 },
+        { id: 109, q: "ठेक्का पट्टा, सम्झौता र निर्माण कार्य सम्बन्धी कागजात (लेखापरीक्षण पछि) कति वर्ष सुरक्षित राख्नुपर्छ?", options: ["३ वर्ष", "५ वर्ष", "१० वर्ष", "२० वर्ष"], a: 0 },
+        { id: 110, q: "वार्षिक प्रतिवेदन (Annual Reports) कति वर्षपछि धुल्याउने नियम छ?", options: ["५ वर्ष", "१० वर्ष", "१५ वर्ष", "२० वर्ष"], a: 1 },
+        { id: 111, q: "हातहतियार विदेश लाने/ल्याउने इजाजतपत्र सम्बन्धी कागजात कति वर्षपछि धुल्याइन्छ?", options: ["५ वर्ष", "१० वर्ष", "२० वर्ष", "कहिल्यै धुल्याइँदैन"], a: 1 },
+        { id: 112, q: "राहदानी (Passport) सम्बन्धी मूल किताब र दरखास्त कति वर्षपछि धुल्याइन्छ?", options: ["१० वर्ष", "१५ वर्ष", "२० वर्ष", "२५ वर्ष"], a: 2 },
+        { id: 113, q: "नापी नक्सा र देशको सीमाना सम्बन्धी कागजात कहिले धुल्याइन्छ?", options: ["२० वर्षपछि", "५० वर्षपछि", "१०० वर्षपछि", "कहिल्यै नधुल्याउने"], a: 3 },
+        { id: 114, q: "लालमोहर लागेको कागजात र सन्धी सम्झौताका कागजात कुन अनुसूचीमा पर्छन्?", options: ["अनुसूची ४ (१० वर्षे)", "अनुसूची ५ (२० वर्षे)", "अनुसूची ६ (कहिल्यै नधुल्याउने)", "अनुसूची ३ (५ वर्षे)"], a: 2 },
+        { id: 115, q: "मन्त्रिपरिषद्‌को निर्णयको मूल प्रति (Cabinet Decisions) कहिले धुल्याइन्छ?", options: ["२० वर्ष पछि", "३० वर्ष पछि", "सरकार फेरिएपछि", "कहिल्यै नधुल्याउने"], a: 3 },
+        { id: 116, q: "कर्मचारीको सिटरोल (Seat Roll) कहिले धुल्याइन्छ?", options: ["अवकाशको ५ वर्ष पछि", "अवकाशको १० वर्ष पछि", "२० वर्ष पछि", "कहिल्यै नधुल्याउने"], a: 3 },
+
+        // --- SECTION 12: PUBLIC CHARTER ---
+        { header: "१२. सार्वजनिक बडापत्र (Public Charter)" },
+        { id: 117, q: "नागरिक बडापत्रको अवधारणा सर्वप्रथम कुन देशबाट सुरु भयो?", options: ["अमेरिका", "बेलायत", "फ्रान्स", "नेपाल"], a: 1 },
+        { id: 118, q: "बेलायतमा नागरिक बडापत्र कसले ल्याएका हुन्?", options: ["टोनी ब्लेयर", "मार्गरेट थ्याचर", "जोन मेजर", "विन्स्टन चर्चिल"], a: 2 },
+        { id: 119, q: "नेपालमा क्षतिपूर्ति सहितको नागरिक बडापत्रको व्यवस्था कहिले देखि भयो?", options: ["२०५६", "२०६१", "२०६४", "२०७०"], a: 3 },
+        { id: 120, q: "सुशासन ऐन, २०६४ अनुसार नागरिक बडापत्र कहाँ राख्नुपर्छ?", options: ["हाकिमको कोठामा", "वेवसाइटमा मात्र", "कार्यालय परिसरको सबैले देख्ने ठाउँमा", "स्टोर रुममा"], a: 2 },
+        { id: 121, q: "नागरिक बडापत्रमा तलको कुन कुरा उल्लेख हुनुपर्दछ?", options: ["सेवाको प्रकृति र लाग्ने समय", "सेवा प्राप्त गर्न लाग्ने दस्तुर", "गुनासो सुन्ने अधिकारी", "माथिका सबै"], a: 3 },
+
+        // --- SECTION 13: MISC & DATES ---
+        { header: "१३. विविध (Miscellaneous)" },
+        { id: 122, q: "लोकसेवा आयोगको स्थापना कहिले भयो?", options: ["२००७ फागुन ७", "२००८ असार १", "२०१० भदौ १", "२०१३ भदौ २२"], a: 1 },
+        { id: 123, q: "निजामती सेवा दिवस २०८१ को नारा के छ?", options: ["सुशासन र विकास", "व्यावसायीक र सिर्जनशील प्रशासनः विकास, समृद्धि र सुशासन", "स्वच्छ प्रशासन", "जनताको सेवा"], a: 1 },
+        { id: 124, q: "नेपालमा मानव अधिकार आयोग कुन भागमा छ?", options: ["भाग २४", "भाग २५", "भाग २६", "भाग २७"], a: 1 },
+        { id: 125, q: "मध्यमकालिन खर्च संरचना (MTEF) को सुरुवात नेपालमा कहिले भयो?", options: ["आ.व. २०५०/५१", "आ.व. २०५९/६०", "आ.व. २०६२/६३", "आ.व. २०७२/७३"], a: 1 },
+        { id: 126, q: "लेखापरीक्षण ऐन कहिले जारी भयो?", options: ["२०४८", "२०५८", "२०७५", "२०७७"], a: 2 },
+        { id: 127, q: "आर्थिक कार्यविधि तथा वित्तिय उत्तरदायित्व ऐन कहिले आयो?", options: ["२०७४", "२०७५", "२०७६", "२०७७"], a: 2 },
+        { id: 128, q: "बजेटलाई साधारण र विकास बजेटमा कहिलेदेखि वर्गीकरण गरियो?", options: ["२००८", "२०१३/१४", "२०१८", "२०४७"], a: 1 },
+        { id: 129, q: "नेपालको पहिलो बजेट कति रकमको थियो?", options: ["३ करोड", "५ करोड २५ लाख", "१० करोड", "१ अर्ब"], a: 1 }, // Note: Historical trivia, approximate based on Matrika's budget
+        { id: 130, q: "नेपालको इतिहासमा 'नाफा/बचत बजेट' कहिले प्रस्तुत गरियो?", options: ["२००८ सालमा", "२०१५ सालमा", "२०३३/३४ मा", "२०४६ सालमा"], a: 2 },
+        { id: 131, q: "RMIS (Revenue Management Information System) कुन निकायले प्रयोग गर्छ?", options: ["महालेखा नियन्त्रक", "राजस्व विभाग", "गृह मन्त्रालय", "लोकसेवा आयोग"], a: 1 },
+        { id: 132, q: "संविधानको धारा २४४ अनुसार संवैधानिक परिषद्मा कति सदस्य हुन्छन्?", options: ["५ जना", "६ जना", "७ जना", "९ जना"], a: 1 },
+        { id: 133, q: "संवैधानिक परिषद्को सदस्य सचिव को हुन्छ?", options: ["मुख्यसचिव", "संसद सचिवालयको महासचिव", "सामान्य प्रशासन सचिव", "कानुन सचिव"], a: 0 },
+        { id: 134, q: "बेरुजु फछ्र्यौट गर्ने मुख्य जिम्मेवारी कसको हो?", options: ["लेखापालको", "कार्यालय प्रमुखको", "लेखापरीक्षकको", "मन्त्रीको"], a: 1 },
+        { id: 135, q: "नागरिक बडापत्रको सुरुवात सन् १९९१ मा कुन प्रधानमन्त्रीले गरेका हुन्?", options: ["टोनी ब्लेयर", "जोन मेजर", "डेभिड क्यामरुन", "बोरिस जोनसन"], a: 1 }
+
+    ];
+
+    // Variables
+    let score = 0;
+    let answeredCount = 0;
+    const totalQuestions = quizData.filter(item => item.id).length; // Count only questions, not headers
+    const answeredSet = new Set();
+
+    // DOM Elements
+    const quizContainer = document.getElementById('quiz-container');
+    const scoreDisplay = document.getElementById('score-display');
+    const progressDisplay = document.getElementById('progress-display');
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    // Initialize Quiz
+    function initQuiz() {
+        let htmlContent = '';
+        
+        quizData.forEach((item) => {
+            if (item.header) {
+                // Render Section Header
+                htmlContent += `<div class="topic-header">${item.header}</div>`;
+            } else {
+                // Render Question Card
+                htmlContent += `
+                <div class="question-card" id="q-card-${item.id}">
+                    <div class="question-text">
+                        <span class="question-number">${item.id}.</span> ${item.q}
+                    </div>
+                    <ul class="options">
+                        ${item.options.map((opt, index) => `
+                            <li>
+                                <label id="lbl-${item.id}-${index}" class="option-label">
+                                    <input type="radio" name="question-${item.id}" value="${index}" onclick="handleAnswer(${item.id}, ${index}, ${item.a})">
+                                    <span>${opt}</span>
+                                </label>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>`;
+            }
+        });
+
+        quizContainer.innerHTML = htmlContent;
+        updateStats();
+    }
+
+    // Handle Answer Selection
+    window.handleAnswer = function(questionId, selectedIndex, correctIndex) {
+        if (answeredSet.has(questionId)) return; // Prevent changing answer
+        answeredSet.add(questionId);
+        answeredCount++;
+
+        const card = document.getElementById(`q-card-${questionId}`);
+        const inputs = card.querySelectorAll('input');
+        const labels = card.querySelectorAll('label');
+
+        // Disable all inputs for this question
+        inputs.forEach(input => input.disabled = true);
+        labels.forEach(label => label.classList.add('disabled'));
+
+        // Highlight selected answer
+        const selectedLabel = document.getElementById(`lbl-${questionId}-${selectedIndex}`);
+        const correctLabel = document.getElementById(`lbl-${questionId}-${correctIndex}`);
+
+        if (selectedIndex === correctIndex) {
+            score++;
+            selectedLabel.classList.add('correct-opt');
+            // Add checkmark visual (optional, via CSS)
+        } else {
+            selectedLabel.classList.add('wrong-opt');
+            correctLabel.classList.add('correct-opt'); // Show correct answer
+        }
+
+        updateStats();
+    };
+
+    // Update Scoreboard
+    function updateStats() {
+        scoreDisplay.innerText = `Score: ${score}`;
+        progressDisplay.innerText = `Questions: ${answeredCount} / ${totalQuestions}`;
+    }
+
+    // Scroll to Top Logic
+    window.onscroll = function() { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    }
+
+    window.topFunction = function() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
+    // Start
+    initQuiz();
+
+</script>
+
+</body>
+</html>
