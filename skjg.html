@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सरकारी कागजात धुल्याउने नियमहरू, २०२७ | नेपाल सरकार</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d; /* Deep Royal Blue */
+            --secondary-color: #dc2626; /* Crimson Red */
+            --accent-color: #eab308; /* Gold/Amber */
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 18px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--secondary-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero .meta-info {
+            font-size: 1rem;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 960px;
+            margin: -50px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-top: 4px solid transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card.intro {
+            border-top-color: var(--accent-color);
+        }
+
+        .card.rules {
+            border-top-color: var(--primary-color);
+        }
+
+        .card.schedule {
+            border-top-color: var(--secondary-color);
+        }
+
+        /* Headings */
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 20px;
+            background: #fdf2f2;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* Rule Items */
+        .rule-block {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .rule-number {
+            color: var(--secondary-color);
+            font-weight: 800;
+            font-size: 1.1em;
+            margin-right: 5px;
+        }
+
+        .sub-list {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .sub-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .sub-list li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Ordered Lists (Schedules) */
+        ol {
+            list-style: none;
+            counter-reset: item;
+            padding: 0;
+        }
+
+        ol li {
+            counter-increment: item;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        ol li::before {
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 28px;
+            height: 28px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        /* Amendment Note Box */
+        .amendment-note {
+            background-color: #fffbeb;
+            border: 1px solid #fcd34d;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: #92400e;
+            font-size: 0.95em;
+            margin-top: 30px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .amendment-note strong {
+            margin-right: 8px;
+        }
+
+        /* Preamble Text */
+        .preamble {
+            font-size: 1.1em;
+            color: var(--text-dark);
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 25px; }
+            .container { margin-top: -30px; }
+            h2 { font-size: 1.5rem; }
+            body { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header class="hero">
+        <div class="header-note" style="font-size: 0.8em; margin-bottom: 10px; color: #cbd5e0;">
+            (संवत् २०८१ साल फागुन मसान्तसम्म भएका संशोधन मिलाइएको)
+        </div>
+        <h1>सरकारी कागजात धुल्याउने नियमहरू, २०२७</h1>
+        <div class="meta-info">
+            नेपाल राजपत्रमा प्रकाशित मिति: २०२७।१०।५
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Preamble & Introduction Card -->
+        <section class="card intro">
+            <div class="preamble">
+                "प्रशासकीय कार्यविधि (नियमित गर्ने) ऐन, २०१३ को दफा २ ले दिएको अधिकार प्रयोग गरी नेपाल सरकारले देहायको नियमहरू बनाएको छ ।"
+            </div>
+            
+            <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                <strong>संशोधन:</strong> सरकारी कागजात धुल्याउने (पहिलो संशोधन) नियमावली, २०७० (२०७०।१।३०)
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section class="card rules">
+            <h2>नियमहरू</h2>
+
+            <div class="rule-block">
+                <span class="rule-number">१. संक्षिप्त नाम र प्रारम्भः</span> 
+                <ul class="sub-list" style="margin-top: 5px;">
+                    <li>(१) यी नियमहरूको नाम "सरकारी कागजात धुल्याउने नियमहरू, २०२७" रहेको छ ।</li>
+                    <li>(२) यी नियमहरू तुरुन्त प्रारम्भ हुनेछन् ।</li>
+                </ul>
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">२. परिभाषाः</span> विषय वा प्रसङ्गले अर्को अर्थ नलागेमा यी नियमहरूमा,–
+                <ul class="sub-list">
+                    <li><strong>(क) "सरकारी कार्यालय"</strong> भन्नाले सैनिक तथा प्रहरी कार्यालयहरू बाहेक नेपाल सरकारको अन्य सबै कार्यालयहरू सम्झनु पर्छ र सो शब्दले संवैधानिक अङ्गहरूका कार्यालयहरू समेतलाई जनाउँछ ।</li>
+                    <li><strong>(ख) "धुल्याउनु"</strong> भन्नाले सरकारी कार्यालयमा रहेको कागजातमा लेखिएको व्यहोरा पढ्न, बुझ्न वा त्यसको कुनै उपयोग गर्न नसकिने गरी रद्द गर्ने कार्यलाई सम्झनु पर्छ र सो शब्दले त्यस्तो कागजातलाई आगोमा डढाउने कार्यसमेत जनाउँछ ।</li>
+                    <li><strong>(ग) "कार्यालय प्रमुख"</strong> भन्नाले सरकारी कार्यालयको प्रमुख सम्झनु पर्छ ।</li>
+                </ul>
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">३. कागजात धुल्याउन आदेश दिनेः</span>
+                <ul class="sub-list">
+                    <li>(१) कार्यालय प्रमुखले आफ्नो कार्यालयमा रहेको अनुसूची ६ बाहेक अन्य अनुसूचीहरूमा लेखिएका कागजातहरू सोही अनुसूचीहरूमा लेखिएको अवधि नाघेपछि धुल्याउन आदेश दिनुपर्छ ।</li>
+                    <li>(२) यी नियमहरूको अनुसूचीहरूमा उल्लेख भएका बाहेक अन्य कागजातहरूको सम्बन्धमा कार्यालय प्रमुखले हेरी नेपाल सरकारको कुनै हानी-नोक्सानी नहुने देखि धुल्याउन उचित ठहर्‍याइएका जति कागजातहरू काम तामेल भई सकेपछि जुनसुकै बखत धुल्याउन आदेश दिन सक्नेछ ।</li>
+                    <li>(३) उपनियम (१) र (२) मा जुनसुकै कुरा लेखिएको भए तापनि सरकारी कार्यालयमा रहेको अनुसूचीमा लेखिएको वा नलेखिएको कुनै कागजात इतिहास, कला, संस्कृति, सुरक्षा वा अन्य कुनै दृष्टिकोणले धुल्याउन मुनासिब नपर्ने भन्ने कार्यालय प्रमुखलाई लागेमा निजले सो कागजात धुल्याउन आदेश नदिन सक्नेछ । त्यस्तो कागजातहरूमध्ये गोप्य कागजात बाहेक अरू कुनै कागजात अभिलेखालयमा राख्न उपयुक्त देखेमा सोही बमोजिम सो कागजात अभिलेखालयमा राख्न कार्यालय प्रमुखले आदेश दिन सक्नेछ ।</li>
+                </ul>
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">४. धुल्याउने कागजातको अभिलेख राख्नेः</span> नियम ३ बमोजिम धुल्याउने आदेश भएका कागजातहरू धुल्याउनु अगावै सम्बन्धित सरकारी कार्यालयले नेपाल सरकारबाट निर्धारित गरिएको ढाँचामा धुल्याईने कागजातको विषय र छोटकरी व्यहोरा लेखी कार्यालय प्रमुखको दस्तखत गराई अभिलेख राख्नु पर्नेछ ।
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">५. कागजात धुल्याउँदा नजिकको कार्यालयको प्रतिनिधि राख्नु पर्नेः</span> यी नियमहरू बमोजिम कागजात धुल्याउँदा सम्बन्धित कार्यालयले नजिकको कुनै सरकारी कार्यालयको एक प्रतिनिधिको रोहवरमा त्यस्तो कागजात धुल्याउनु पर्नेछ ।<br>
+                <em style="color: var(--secondary-color); display:block; margin-top:5px;">तर, सम्बन्धित कार्यालय प्रमुख राजपत्राङ्कित कर्मचारी भएमा नजिकको सरकारी कार्यालयको प्रतिनिधि राख्न आवश्यक हुने छैन ।</em>
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">६. धुल्याइएका कागजातहरू लिलाम–बिक्री गर्न सकिनेः</span> यी नियमहरू बमोजिम धुल्याइएका कागजातहरू नेपाल सरकारले तोकेको कुनै संस्था वा व्यक्तिलाई बिक्री गर्न वा प्रचलित नेपाल कानून अनुसार लिलाम गर्न सकिनेछ ।
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">७. बचाउः</span> कुनै सरकारी कार्यालयको कागजातहरू धुल्याउने सम्बन्धमा प्रचलित नेपाल कानूनले कुनै खास व्यवस्था गरेकोमा सोही बमोजिम हुनेछ ।
+            </div>
+
+            <div class="rule-block">
+                <span class="rule-number">८. अनुसूचीमा थपघट गर्न सकिनेः</span> नेपाल सरकारले नेपाल राजपत्रमा सूचना प्रकाशित गरी अनुसूचीमा थपघट गर्न सक्नेछ ।
+            </div>
+
+            <div class="amendment-note">
+                <span><strong>द्रष्टव्यः</strong> केही नेपाल कानून संशोधन गर्ने ऐन, २०६३ द्वारा रूपान्तर भएका शब्दहरूः “श्री ५ को सरकार” को सट्टा “नेपाल सरकार” ।</span>
+            </div>
+        </section>
+
+        <!-- Schedules Section -->
+        <h2 style="text-align: center; border: none; margin-top: 50px; font-size: 2rem;">अनुसूचीहरू (Schedules)</h2>
+
+        <!-- Schedule 1 -->
+        <section class="card schedule">
+            <h3>अनुसूची – १</h3>
+            <div class="subtitle">काम तामेल भएको १ (एक) वर्षपछि धुल्याउने कागजात</div>
+            <ol>
+                <li>दैनिकदेखि अर्ध वार्षिक प्रतिवेदनहरू ।</li>
+                <li>नेपाल राजपत्रमा प्रकाशित भइसकेको ऐन, नियम, आदेश, सूचनाको मसौदा प्रतिहरू र सो प्रकाशित गर्ने सम्बन्धमा भएका लेखापढीको कागजात ।</li>
+                <li>परिपत्र गर्ने शुरु कार्यालयमा रहने बाहेक उर्दी–सामेल सम्बन्धी परिपत्र ।</li>
+                <li>कर्मचारीको नियुक्ति, बिदा सम्बन्धी निवेदन, निकासा र सरुवा–बढुवाको सम्बन्धी पत्रहरू सो कर्मचारी ठेकिएको ठाउँबाट अन्त सरुवा–बढुवा भएपछि ।</li>
+                <li>माइनुट किताब बाहेक बैठक बस्ने सम्बन्धी कागजात ।</li>
+                <li>कर्मचारीहरूको सापटी, किस्ताबन्दी, दैनिक भत्ता, भ्रमण भत्ता र निजहरूलाई सम्मेलन, सेमिनार, अध्ययन तालिम आदिमा पठाएको सम्बन्धी लेखा, लेखापरीक्षण गराउन पर्ने भए गराई अन्तिम फर फारख भएपछि ।</li>
+                <li>दैवी–प्रकोप पीडित सहायता सम्बन्धी कागजात ।</li>
+            </ol>
+        </section>
+
+        <!-- Schedule 2 -->
+        <section class="card schedule">
+            <h3>अनुसूची – २</h3>
+            <div class="subtitle">काम तामेल भएको ३ (तीन) वर्षपछि धुल्याउने कागजात</div>
+            <ol>
+                <li>नक्सा र डिजाइन सम्बन्धी तथ्याङ्क बाहेक कुनै निर्माण कार्य सम्बन्धी योजना, सम्झौता, ठेक्का पट्टा, अनुदान सम्बन्धी कागजात सो कार्य पूरा भएपछि लेखापरीक्षण गराउनु पर्ने भए गराइ अन्तिम रूपमा फर फारख भएपछि र लेखापरीक्षण गराउनु नपर्नेमा सम्बन्धित कार्य पूरा भएपछि ।</li>
+                <li>स्थानीय निकायको सङ्ख्या थप–घट गर्ने विषय सम्बन्धी कागजात । <span style="color: var(--secondary-color); font-size: 0.8em; font-weight: bold;">(पहिलो संशोधनद्वारा संशोधित)</span></li>
+                <li>अरू लेखा सम्बन्धी कागजात लेखापरीक्षण गराउनु पर्ने भए गराइ अन्तिम फर फारख भएपछि ।</li>
+            </ol>
+        </section>
+
+        <!-- Schedule 3 -->
+        <section class="card schedule">
+            <h3>अनुसूची – ३</h3>
+            <div class="subtitle">काम तामेल भएको ५ (पाँच) वर्षपछि धुल्याउने कागजात</div>
+            <ol>
+                <li>विदेशी राष्ट्रमा सरकारी स्तरबाट पठाइने बधाई, शुभकामना र समवेदना सन्देशहरू ।</li>
+                <li>हाजिरी बिदाको रेकर्ड राखी कर्मचारीको हाजिर फाराम ।</li>
+                <li>कुनै योजना वा स्वशासित संस्थाको प्रगति प्रतिवेदन ।</li>
+                <li>साधारण जानकारीका लागि आएका परिपत्र वा बोधार्थपत्र ।</li>
+                <li>कर्मचारीको नोकरी विवरण र गोप्य प्रतिवेदन कर्मचारीको सेवा छुटेको ५ वर्ष पुगेपछि ।</li>
+            </ol>
+        </section>
+
+        <!-- Schedule 4 -->
+        <section class="card schedule">
+            <h3>अनुसूची – ४</h3>
+            <div class="subtitle">काम तामेल भएको १० (दश) वर्षपछि धुल्याउने कागजात</div>
+            <ol>
+                <li>वार्षिक प्रतिवेदन ।</li>
+                <li>हातहतियार विदेश लाने वा विदेशबाट ल्याउने इजाजतपत्र सम्बन्धी कागजात ।</li>
+                <li>मित्र राष्ट्रका प्रतिनिधिहरूको भ्रमण सम्बन्धी कागजात ।</li>
+                <li>कर्मचारीको दरबन्दी आदेश ।</li>
+                <li>सार्वजनिक रूपमा प्रकाशित नहुने समय समयको अधिकार प्रत्यायोजन सम्बन्धी अख्तियारी आदेश ।</li>
+            </ol>
+        </section>
+
+        <!-- Schedule 5 -->
+        <section class="card schedule">
+            <h3>अनुसूची – ५</h3>
+            <div class="subtitle">काम तामेल भएको २० (बीस) वर्षपछि धुल्याउने कागजात</div>
+            <ol>
+                <li>राहदानी सम्बन्धी मूल किताब र राहदानी सम्बन्धी दरखास्त र अरू भित्री पत्र ।</li>
+                <li>सरकारी वा गैर सरकारी अड्डा, अदालत वा उद्योग धन्दा व्यापार र व्यवसाय वा अन्य कुनै खास कार्यका सम्बन्धमा विस्तृत अध्ययन गरी तथ्याङ्क र सुझाव सहित नेपाल सरकार समक्ष आएको प्रतिवेदन ।</li>
+                <li>निर्माण सम्बन्धी मेजरमेण्ट बूक (Measurement Book) सो निर्माण कार्य पूरा भएपछि ।</li>
+                <li>कर्मचारीलाई चुनाव लड्न, व्यापार वा व्यवसाय गर्न स्वीकृति दिने सम्बन्धी कागजात ।</li>
+            </ol>
+        </section>
+
+        <!-- Schedule 6 -->
+        <section class="card schedule" style="border-top-color: var(--secondary-color); border-top-width: 6px;">
+            <h3>अनुसूची – ६</h3>
+            <div class="subtitle" style="background-color: #fee2e2; color: #991b1b; border-left-color: #991b1b;">कहिल्यै नधुल्याउने कागजात (Permanent Records)</div>
+            <ol>
+                <li>लालमोहर लागेको कागजात ।</li>
+                <li>तत्काल कायम रहेको राष्ट्रप्रमुखको हैसियतमा काम गर्ने पदाधिकारीबाट हस्ताक्षर भएको कागजात । <span style="color: var(--secondary-color); font-size: 0.8em; font-weight: bold;">(पहिलो संशोधनद्वारा संशोधित)</span></li>
+                <li>विदेशी राष्ट्रहरू, अन्तर्राष्ट्रिय संस्था वा अन्य विदेशी संस्थासँग भएको सन्धी, सम्झौता र तत्सम्बन्धी लेखापढी भएको महत्वपूर्ण कागजात ।</li>
+                <li>नेपालको समय समयको नक्सा ।</li>
+                <li>देशको सीमाना सम्बन्धी लेखापढी भएको कागजात ।</li>
+                <li>नेपालको र विदेशी राष्ट्रका प्रतिनिधिहरूको संयुक्त विज्ञप्ति ।</li>
+                <li>सम्बन्धित मन्त्रालयमा रहने मन्त्रिपरिषद्को निर्णयको मूल प्रति ।</li>
+                <li>देशको शान्ति–सुरक्षा सम्बन्धी महत्वपूर्ण कागजात ।</li>
+                <li>अमुद्रित ऐन, सवाल, सदन, खड्ग निशाना ।</li>
+                <li>चल वा अचल सम्पत्तिका हकदैया दर्शाउने कागजात ।</li>
+                <li>नापी नक्साको कागजात ।</li>
+                <li>कर्मचारीको सिटरोल ।</li>
+                <li>नेपाल सरकार वादी वा प्रतिवादी भएको मुद्दामा वा नेपाल सरकारलाई सरोकार भएको मुद्दामा अधिकार प्राप्त अड्डा वा अदालतबाट भएको अन्तिम फैसला वा अन्तिम आदेश ।</li>
+                <li>कार्यालय प्रमुखले उचित सम्झेका अरु कागजात ।</li>
+                <li>नागरिकता र नागरिकहरूको मुद्दा सम्बन्धी विषयमा विदेशी राष्ट्रहरूसँग भएको लेखापढीको कागजात ।</li>
+                <li>आयोगको प्रतिवेदन ।</li>
+            </ol>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; नेपाल सरकार | सरकारी कागजात धुल्याउने नियमहरू, २०२७</p>
+    </footer>
+
+</body>
+</html>
