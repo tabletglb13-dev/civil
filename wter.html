@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Supply & Sanitary Engineering Exam (533 Questions)</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration & Library -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --success-bg: #d1fae5;
+            --success-border: #34d399;
+            --success-text: #065f46;
+            --error-bg: #fee2e2;
+            --error-border: #f87171;
+            --error-text: #991b1b;
+            --score-bg: #ecfdf5;
+            --score-border: #6ee7b7;
+            --score-text: #047857;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-dark); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .left-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .home-btn {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .info-pill { 
+            background: #e0e7ff; 
+            color: var(--primary-dark); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid #c7d2fe;
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: #111827;
+        }
+
+        /* Options Styling */
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: #f9fafb; 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text);
+            opacity: 0.8;
+        }
+
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sticky-header">
+    <h1>Water Supply & Sanitary Engineering (Sub-Engineer)</h1>
+    <div class="header-controls">
+        <div class="left-controls">
+            <a href="index.html" class="home-btn">🏠 Home</a>
+        </div>
+        <div class="stats-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container"></div>
+</div>
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    // Answer Key Mapping based on Page 33 of PDF
+    // 0=a, 1=b, 2=c, 3=d
+    
+    const quizData = [
+{ id: 1, q: "pH value of drinking water should be close to", options: ["6", "7", "8", "9"], a: 1 },
+{ id: 2, q: "Turbidity of water is remedied by", options: ["Sedimentation", "chlorination", "filtration", "all of above"], a: 2 },
+{ id: 3, q: "The underground source of water is from", options: ["springs", "wells", "Infiltration galleries", "all of above"], a: 3 },
+{ id: 4, q: "A water supply system is said to be continuous when it is supplied for", options: ["12 hrs", "18 hrs", "24 hrs", "20 hrs"], a: 2 },
+{ id: 5, q: "Water for domestic consumption should be", options: ["colourless, odourless and tasteless", "free from dissolved salts", "hygienically safe", "attractive for looks"], a: 2 },
+{ id: 6, q: "Purest water may have", options: ["no colour", "faint blue green colour", "dark blue colour", "brownish yellow colour"], a: 0 },
+{ id: 7, q: "Turbidity is mainly due to", options: ["floating solids", "suspended solids", "colloidal solids", "dissolved solids"], a: 2 },
+{ id: 8, q: "Per capita demand of water is calculated in litres", options: ["per person per day", "per person per month", "per person per year", "none of these"], a: 0 },
+{ id: 9, q: "Demand for public uses in a city, does not include water required for", options: ["watering of public parks", "watering of public gardens", "sprinkling on roads", "drinking purposes"], a: 3 },
+{ id: 10, q: "45 litres of water per person per day, is provided in", options: ["office buildings", "hotels", "hostels", "nurse's homes"], a: 0 },
+{ id: 11, q: "Water losses in water supply, is assumed as", options: ["5%", "7.5%", "10%", "15%"], a: 3 },
+{ id: 12, q: "The factor affecting per capita demand, is", options: ["size of the city", "climatic conditions", "pressure in water", "all the above"], a: 3 },
+{ id: 13, q: "The ratio of the maximum daily consumption to the average daily demand, is", options: ["1.0", "1.2", "1.4", "1.8"], a: 3 },
+{ id: 14, q: "The source of surface water is not from", options: ["streams and rives", "storage reservoirs", "springs", "ponds and lakes"], a: 2 },
+{ id: 15, q: "The factor to be considered for the source of city water supply, is", options: ["quantity and quality of the available water", "elevation of the source of water", "general terrain intervening the area", "all the above"], a: 3 },
+{ id: 16, q: "The formula $H_L = \\frac{n^2 V^2 L}{R^{4/3}}$ for the head loss in conduits is generally known as", options: ["Hazen- William's formula", "Manning's formula", "Darcy- Weisbach formula", "Nikuradse formula"], a: 2 },
+{ id: 17, q: "The maximum pressure which the pipe can withstand without any leakage during hydrostatic pressure test, is called", options: ["Working pressure", "Design pressure", "Test pressure", "Hydrostatic pressure"], a: 2 },
+{ id: 18, q: "Cast iron pipes", options: ["are widely used in city water supplies", "resist corrosion satisfactorily", "are normally manufactured in length of about 3.5 m", "all the above"], a: 3 },
+{ id: 19, q: "Steel pipe are", options: ["suitable for withstanding high internal pressure", "connected by riveted or welded joints", "generally laid underground and no expansion joint is required", "Likely to last 100 years under ordinary conditions"], a: 3 },
+{ id: 20, q: "Corrosion of a pipe", options: ["reduces its life span", "adds colour to water", "adds odour to water", "all the above"], a: 3 },
+{ id: 21, q: "P.V.C. pipes can withstand pressure head of water upto", options: ["25m", "50m", "75 m", "100m"], a: 3 },
+{ id: 22, q: "Turbidity of water may be caused due to", options: ["Supended clay", "Supended silt", "finely divided organic material", "all the above"], a: 3 },
+{ id: 23, q: "Hardness of water is caused due to", options: ["calcium sulphate", "magnesium sulphate", "calcium bicarbonates", "all the above"], a: 3 },
+{ id: 24, q: "By boiling water, hardness can be removed if it is due to", options: ["calcium sulphate", "magnesium sulphate", "calcium nitrate", "calcium bicarbonate"], a: 3 },
+{ id: 25, q: "Which of following source has more safe yield?", options: ["river", "stream", "lakes", "spring"], a: 3 },
+{ id: 26, q: "The main process to purify water by filtration, is", options: ["mechanical straining", "flocculation and sedimentation", "biological metabolism", "all the above"], a: 3 },
+{ id: 27, q: "Water may not contain much impurities if its source is", options: ["reservoirs", "stream flowing in plains", "lakes in lower regions", "spring along hill slopes"], a: 3 },
+{ id: 28, q: "Water supply system includes", options: ["digging a well for water", "construction of dams", "construction of canals", "entire arrangement from source to distribution"], a: 3 },
+{ id: 29, q: "Surface water is obtained from", options: ["well", "springs", "artesian well", "rain"], a: 3 },
+{ id: 30, q: "Well treated water is generally supplied for", options: ["domestic use", "commercial use", "public use", "all the above"], a: 3 },
+{ id: 31, q: "Quality of water is said to be good if it is", options: ["free from suspended matter", "colourless & tasteless", "free from pathogenic organism", "all the above"], a: 3 },
+{ id: 32, q: "An earth formation which although porous and capable of absoring water does not provide an appreciable supply to wells, is known as", options: ["acquifer", "aquiclude", "aquifuge", "none of these"], a: 1 },
+{ id: 33, q: "Most important method for calculating discharge for planning a water supply project, is", options: ["velocity area method", "weir or spillway method", "use of venturi- meter", "using power plant consumption"], a: 0 },
+{ id: 34, q: "Most important source of water for public water supply, is from", options: ["lakes", "ponds", "streams", "rivers"], a: 3 },
+{ id: 35, q: "Gravity conduits for carrying water from the source are-", options: ["canals", "flumes", "acqueducts", "all the above"], a: 3 },
+{ id: 36, q: "Manholes along the mains form the source to a city are provided at 500 m intervals in", options: ["steel pipes", "R.C.C. pipes", "hume steel pipes", "all the above"], a: 3 },
+{ id: 37, q: "Hard water for public water supply is discarded because", options: ["it consumes more soap", "it contains lot of turbidity", "it contains pathogenic bacterias", "it possesses bad taste and odour"], a: 0 },
+{ id: 38, q: "Disinfection of drinking water, is done to remove", options: ["odour", "bacterias", "virus", "hardness"], a: 1 },
+{ id: 39, q: "Mostly used coagulant, is", options: ["chlorine", "alum", "lime", "bleaching powder"], a: 1 },
+{ id: 40, q: "Raw water treated with only chlorine, is known as", options: ["plain chlorination", "pre- chlorination", "first-chlorination", "de-chlorination"], a: 0 },
+{ id: 41, q: "Plain chlorination is used for water", options: ["with turbidities less than 20 mg/litre", "consumed during emergencies", "supplies to armies during war", "all the above"], a: 3 },
+{ id: 42, q: "At break point of chlorination", options: ["chlorine is used to oxidize", "residual chloride is zero", "residual chloride is maximum", "residual chlorine reappears"], a: 3 },
+{ id: 43, q: "Turbidity of water is expressed", options: ["in ppm", "in numbers in an arbitrary scale", "by PH value", "by colour code"], a: 0 },
+{ id: 44, q: "The diameter of pipes in bath rooms and lavatories in domestic water supply, is", options: ["6 mm", "12mm", "18 mm", "24mm"], a: 1 },
+{ id: 45, q: "The cast iron pipes for water supply system are used for", options: ["durability", "easy connection", "low maintenance cost", "all the above"], a: 3 },
+{ id: 46, q: "The per capita consumption of a locality is affected by", options: ["climatic condition", "quality of water", "distribution pressure", "all of the above"], a: 3 },
+{ id: 47, q: "Type of filtration unit used in community water supply system is", options: ["slow sand filter", "rapid sand filter", "tricking filter", "pressure filter"], a: 0 },
+{ id: 48, q: "The pump does not require any power, energy, fuel etc. for its working is", options: ["centrifugal", "hydraulic ram", "reciprocatory", "rotary"], a: 1 },
+{ id: 49, q: "Traddle pump is operated by", options: ["hand", "foot", "electric", "all of the above"], a: 1 },
+{ id: 50, q: "Thrust blocks are installed wherever there is a", options: ["change in the direction of size of the pipeline", "change in the pressure line diagram", "pipe line ends at a dead end", "all of the above"], a: 3 },
+{ id: 51, q: "The formula of finding Velocity $V = \\frac{1}{n}r^{2/3}s^{1/2}$ is given by", options: ["Manning", "Chazy", "Kutter", "Bazin"], a: 0 },
+{ id: 52, q: "The asbestos cement pipes are generally laid", options: ["horizontal", "vrtical", "in any position", "inclined at 60$^{\\circ}$"], a: 1 },
+{ id: 53, q: "G. I. pipe has a coating of", options: ["zinc", "lead", "silver", "aluminium"], a: 0 },
+{ id: 54, q: "Poppet valve is types of", options: ["air valve", "blow of valve", "sluice valve", "none of the above"], a: 0 },
+{ id: 55, q: "In rapid sand Filters the size of sand particles is desired in the range", options: ["0.01 mm to 0.1 mm", "0.02 mm to 0.3 mm", "0.35 mm to 0.6 mm", "2 mm to 5 mm"], a: 2 },
+{ id: 56, q: "Generally flow through period of a sedimentation tank is", options: ["Less than detention period", "More than detention period", "Equal to detention period", "Some time more & some time less"], a: 0 },
+{ id: 57, q: "Over flow rate of a sedimentation tank is", options: ["$\\frac{Q}{\\text{Plan area}}$", "$\\frac{Q}{\\text{Area of Longitudinal Section}}$", "$\\frac{Q}{\\text{Cross - sec tional area}}$", "$\\frac{Q}{\\text{Plan area} \\times \\text{Liquid depth}}$"], a: 0 },
+{ id: 58, q: "Colloidal particles are associated with", options: ["Tyndal effect", "Discrete particle", "Schmutzedecke", "Brownanian movement"], a: 3 },
+{ id: 59, q: "A Coagulant is one which", options: ["Promotes Coagulation", "Stimulates floc formation", "Increase dosage of Coagulant", "Narrows down pH range"], a: 0 },
+{ id: 60, q: "Detention time in a flocculator is.", options: ["10 to 20 sec", "20 min. to 30 min.", "2 hours to 3 hours", "None of these"], a: 1 },
+{ id: 61, q: "Schmutzedecke will be formed in", options: ["Slow sand Filters", "Rapid sand Filters", "Pressure Filters", "Both slow & rapid sand Filters"], a: 0 },
+{ id: 62, q: "Disinfection is the process of", options: ["Killing all the bacteria", "Killing only pathogenic bacteria", "Complete destruction of life", "Removal of Causative organisms for disease"], a: 3 },
+{ id: 63, q: "Sterilization is", options: ["Boiling", "Disinfection", "Eliminating all life", "Killing disease causing organisms"], a: 2 },
+{ id: 64, q: "A heavy metal capable of disinfecting is", options: ["Lead", "Iron", "Zinc", "Silver"], a: 3 },
+{ id: 65, q: "To disinfect swimming pool water, we use", options: ["Chlorine", "Bromine", "Iodine", "Flourine"], a: 1 },
+{ id: 66, q: "Pick up a disinfectant from the following", options: ["Ca(OH)$_2$", "KMnO$_4$", "HCI", "DDT"], a: 1 },
+{ id: 67, q: "In chlorination the most effective kill is due to", options: ["HCI", "HOCL", "OCI", "Cl"], a: 1 },
+{ id: 68, q: "In distribution pipes, drain valves are provided at", options: ["lower point", "higher point", "junction points", "any where"], a: 0 },
+{ id: 69, q: "A main disadvantage of Chlorine disinfectant is", options: ["It is costly", "It corrodes pipe lines", "It is difficult to handle", "It may cause cancer"], a: 3 },
+{ id: 70, q: "Presence of Chlorine (Residual) is readily detected by", options: ["Methyl orange", "Chrome black T", "Orthotolodene", "Hologuinone"], a: 2 },
+{ id: 71, q: "An advantage of Ozone over chlorine for disinfection is", options: ["It is easy to apply", "Leaves sufficient chemical", "Is cheaper than chlorine", "Gives good taste to water"], a: 3 },
+{ id: 72, q: "Potassium Permanganate is used for", options: ["Removing organic matter", "Reducing hardness", "Improving colour", "De-chlorination"], a: 0 },
+{ id: 73, q: "Hardness in water is due to salt of calcium and .....", options: ["Sodium", "Alumina", "Magnesium", "Potassium"], a: 2 },
+{ id: 74, q: "If with the minimum quantity of Potassium permanganate the pink colour disappears soon, then it shows that", options: ["Water is acidic", "Water is alkaline", "Organic matter is present in water", "Chlorine content is high in water"], a: 2 },
+{ id: 75, q: "Finely divided matter which will not settle and the apparently dissolved material which may be transformed into surface or precipitated by chemical treatment is termed as", options: ["Colloids", "Suspended matter", "Turbid", "Dirt"], a: 0 },
+{ id: 76, q: "Which of the following statements is incorrect", options: ["Disinfection efficiency falls when turbidity increases", "Optimum, pH value of disinfection is 5 to 8", "Permissible residual chlorine in drinking water is 0.5 ppm", "Only chemical treatment is ideal for the disinfection of swimming pool waters"], a: 0 },
+{ id: 77, q: "Which of the following is a method of disinfection of water", options: ["Treatment with ozone", "Exposure to ultra - violet rays", "Boiling", "All of the above"], a: 3 },
+{ id: 78, q: "Which of the following can be removed by Filtration?", options: ["Colour", "Pathogenic Bacteria", "Turbidity", "All of the above"], a: 3 },
+{ id: 79, q: "The presence of ozone in water is indicated by", options: ["Black Colour", "Light Yellow Colour", "Blue Colour", "Red Colour"], a: 2 },
+{ id: 80, q: "Which of the following does not cause acidity in water", options: ["Iron Sulphate", "Sodium Carbonate", "Mineral Acids", "Free Carbon Dioxide"], a: 0 },
+{ id: 81, q: "Very fine and Light Colloidal impurities (such as clay particles, gels and emulsions) are removed from water by", options: ["Sterilization", "Disinfection", "Plain Sedimentation", "Coagulation"], a: 3 },
+{ id: 82, q: "Presence of Lead in Water", options: ["Changes its colour", "Causes Turbidity", "Causes Alkalinity", "None of the above"], a: 0 },
+{ id: 83, q: "An advantage of Ozone over chlorine for disinfection is it", options: ["Is easy to apply", "Is cheaper than chlorine", "Gives good taste to water", "Leaves sufficient residual to guard against post contamination"], a: 2 },
+{ id: 84, q: "A disadvantage of Ozone is", options: ["Impurities are oxidized before disinfection commences", "More Contact period is required", "Toxic end products are given out", "It is highly unstable"], a: 3 },
+{ id: 85, q: "Ultra violet rays are highly effective for disinfection of", options: ["Clear Waters", "Hard Waters", "Highly Turbid Waters", "Waters rich in suspended solids"], a: 0 },
+{ id: 86, q: "An advantage of ultraviolet radiation is", options: ["It is cheap", "It can be used for any type of water", "Post Contamination is impossible", "No chemical is added to water"], a: 3 },
+{ id: 87, q: "Fluorides are removed from water by", options: ["Activated Carbon", "Activated Silica", "Activated Alumina", "Caustic Soda"], a: 2 },
+{ id: 88, q: "Iron and Manganese can be removed from water by", options: ["Sedimentation", "Sedimentation aided by Coagulation", "Filtration", "Oxidation"], a: 2 },
+{ id: 89, q: "Which of the following compound helps in removing colours :", options: ["Copper Sulphate", "Anhydrous Sodium Chloride", "Activated Carbon", "Sodium Sulphate"], a: 2 },
+{ id: 90, q: "Methanoglobineamia is caused if water is supplied with high concentration of", options: ["Chlorides", "Fluorides", "Nitrates", "Nitrites"], a: 2 },
+{ id: 91, q: "The bacterial efficiency of a rapid sand filter is around", options: ["90%", "70%", "50%", "30%"], a: 0 },
+{ id: 92, q: "The following chemicals can be used for dechlorination", options: ["Sodium thiosulphate", "Sulphur dioxide", "Postassium chlorate", "All of the above"], a: 3 },
+{ id: 93, q: "Which of the following test reveals the amount of residual chlorine in treated water?", options: ["Amperometeric test", "Orthotolodene test", "Iodometeric test", "Any of the above"], a: 1 },
+{ id: 94, q: "In orthotolodene test safe residual for drinking water is indicated by which of the following colour", options: ["Pink Colour", "Green Colour", "Yellow Colour", "Blue Colour"], a: 2 },
+{ id: 95, q: "Coagulant Commonly used is", options: ["Alum", "Bleaching Powder", "Chlorine", "All of the above"], a: 0 },
+{ id: 96, q: "Copper Sulphate is used in treatment of water for controlling", options: ["Algae", "Silt", "Bacteria", "Mineral matter"], a: 0 },
+{ id: 97, q: "Absolutely soft waters", options: ["Cause no damage to pipeline", "Give good taste", "Give lather with synthetic detergent soap", "Form no scales in boilers"], a: 3 },
+{ id: 98, q: "Besides Calcium and Magnesium, hardness is also caused because of Salts of", options: ["Sodium", "Potassium", "Strontium", "Aluminium"], a: 0 },
+{ id: 99, q: "Soft waters have a hardness of", options: ["Zero", "Less than 75 mg/lit", "Less than 150 mg/lit", "Less than 300 mg/lit"], a: 1 },
+{ id: 100, q: "Zeolite process can lower the hardness upto", options: ["0 mg/lit", "10 mg/lit", "50 mg/lit", "100 mg/lit"], a: 0 },
+{ id: 101, q: "To activate the zeolite bed the following is done", options: ["Recycling", "Backwashing", "Base exchange", "Regeneration"], a: 3 },
+{ id: 102, q: "Pre chlorination is done to", options: ["Kill Bacteria", "Inactivate viruses", "Reduce taste & odours", "Reduce quantity of chlorine used"], a: 2 },
+{ id: 103, q: "The First stage in water treatment is", options: ["Disinfection", "Sedimentation", "Filtration", "Coagulation & mixing"], a: 1 },
+{ id: 104, q: "The required depth of sand bed in slow sand filter should be", options: ["0.6 to 0.9 m", "0.3 to 0.75 m", "0.3 to 0.45 m", "1 to 2 m"], a: 0 },
+{ id: 105, q: "The required depth of sand bed in rapid sand filter should be", options: ["0.6 to 0.9 m", "0.6 to 0.75 m", "0.3 to 0.45 m", "1 to 2 m"], a: 2 },
+{ id: 106, q: "The conventional size of one unit for slow sand filter is", options: ["30 m $\\times$ 60 m", "8 m $\\times$ 10 m", "6 m $\\times$ 8 m", "15 m $\\times$ 20 m"], a: 0 },
+{ id: 107, q: "The period of cleaning for rapid sand filter is", options: ["10 to 20 days", "30 to 60 days", "24 to 48 hours", "24 to 48 weeks"], a: 2 },
+{ id: 108, q: "Plain chlorination is done after", options: ["Aeration", "Sedimentation", "Filtration", "Softening"], a: 1 },
+{ id: 109, q: "Super chlorination is done", options: ["In day to day practice", "During Summer", "During an epidemic", "When no other treatment is resorted to"], a: 2 },
+{ id: 110, q: "Before commissioning a new water supply line it is filled with a concentrated solution of chlorine and kept for 24 hours. The initial and later concentration of chlorine are", options: ["3 and 0.2 mg/lit", "10 and 5 mg/lit", "20 and 10 mg/lit", "50 and 25 mg/lit"], a: 0 },
+{ id: 111, q: "Iodine is used to disinfect", options: ["Swimming pool", "Municipal water supply", "Raw water without any treatment", "None of the above"], a: 3 },
+{ id: 112, q: "In epidemics the best method for disinfection of water is", options: ["By Ozone", "By Potassium Permanganate", "By Boiling", "By Chlorination"], a: 2 },
+{ id: 113, q: "The theoretical time for which water is detained in setting Basins is called", options: ["Flow through Period", "Detention Period", "Settling Period", "None of the above"], a: 1 },
+{ id: 114, q: "In sedimentation tank, the velocity of flow generally does not exceed", options: ["30 cm/min", "30 m/min", "30 mm/min", "30 cm/sec"], a: 2 },
+{ id: 115, q: "In rectangular sedimentation tank the ratio in between width and length should not be less than", options: ["1 : 4", "1 : 2", "1 : 3", "1 : 1"], a: 2 },
+{ id: 116, q: "The best Coagulant for removing the Colour of water is", options: ["Alum", "Lime", "Iron Sulphate", "Copper Sulphate"], a: 0 },
+{ id: 117, q: "Pumping system is best suited when", options: ["Fire accidents occur frequently", "Density of population is high and space available is less", "Source of water is at low level", "Power failures are more common"], a: 2 },
+{ id: 118, q: "An advantage of intermittent system of supply of water is", options: ["It is economical", "Supply is assured during a fire accident", "Pumping is for limited hours", "Repairs can be carried out during non-supply hours"], a: 2 },
+{ id: 119, q: "The best material for pipes to be laid under water is", options: ["Cast Iron", "Steel", "Cement Concrete", "Asbestos cement"], a: 2 },
+{ id: 120, q: "The best pipe known for water mains is", options: ["Cast Iron", "Steel", "Cement Concrete", "Asbestos Cement"], a: 0 },
+{ id: 121, q: "Grid Iron system is best suited to", options: ["An irregularly grown old town", "Undulating topography", "Radial Roads", "Planned city on a gentle slope"], a: 3 },
+{ id: 122, q: "The system which is most suitable for irregular developed town or cities is", options: ["Dead end system", "Grid Iron system", "Ring system", "Radial system"], a: 0 },
+{ id: 123, q: "The storage of water for fire on the basis of per capita is generally taken about", options: ["2 litres", "3 litres", "5 litres", "10 litres"], a: 2 },
+{ id: 124, q: "Stand pipes in Plan are", options: ["Circular", "Rectangular", "Square", "Octagonal"], a: 0 },
+{ id: 125, q: "Generally the height of stand pipes should be", options: ["15 m", "20 m", "More than 15 m", "Less than 15 m"], a: 3 },
+{ id: 126, q: "The name of the valve which is provided at all dead ends in distribution system as well as at all depressions in the mains is called as", options: ["Air relief valve", "Drain valve", "Check valve", "Hydrant"], a: 1 },
+{ id: 127, q: "Blow off valves are a must when", options: ["Undulation exist", "Saddles exist", "Dead end exist", "Fire hydrants exist"], a: 0 },
+{ id: 128, q: "Air valves are provided at", options: ["Saddles", "Summits", "Dead ends", "Regularly at 1 km intervals"], a: 1 },
+{ id: 129, q: "The valve that is most commonly provided on rising mains is", options: ["Air relief valve", "Blow off valve", "Reflux valve", "Sluice valve"], a: 0 },
+{ id: 130, q: "A goose neck is", options: ["A bent flexible pipe provided between ferrule and stop cock", "A T-Shaped brass length between water meter and ferrule", "A straight G.I. pipe service pipe & stop cock", "A bent rigid pipe between service pipe and water meter"], a: 0 },
+{ id: 131, q: "The meter commonly used for domestic service and small trade supplies involving small quantities of water to be measured is", options: ["Inferential meter", "Positive meter", "Semi Positive meter", "None of the above"], a: 3 },
+{ id: 132, q: "A water supply scheme is usually designed for a period of", options: ["5 yrs", "10 yrs", "20 yrs", "50 yrs"], a: 2 },
+{ id: 133, q: "The bacteria that can survive without Oxygen is called", options: ["Facultative Bacteria", "Anaerobic Bacteria", "Aerobic Bacteria", "Fluoric Bacteria"], a: 1 },
+{ id: 134, q: "A steel tank for water storage having capacity of 5000 liters will have steel sheet thickness of", options: ["1 to 2 mm", "2 to 2.5 mm", "3 to 3.5 mm", "4 to 5 mm"], a: 2 },
+{ id: 135, q: "For a pipe of internal diameter d, wall thickness t and internal pressure P, the bursting pressure is given by :", options: ["$\\frac{P \\times d}{t}$", "$\\frac{P \\times d^2}{2t}$", "$\\frac{P \\times d^2}{t}$", "None of these"], a: 3 },
+{ id: 136, q: "For a pipe of internal diameter d, wall thickness t and internal pressure P, the longitudinal stress is", options: ["$\\frac{P \\times d}{t}$", "$\\frac{P \\times d}{2t}$", "$\\frac{P \\times d}{4t}$", "None of these"], a: 2 },
+{ id: 137, q: "The momentary pressure produced by the sudden stoppage of moving water in a closed conductor pipe is called", options: ["Surge", "Water Jump", "Hydraulic Jump", "Water Hammer"], a: 3 },
+{ id: 138, q: "The operation of application of Lead for joining purpose is called", options: ["Soldering", "Lead Brazing", "Leading", "Cauking"], a: 3 },
+{ id: 139, q: "Galvanizing means applying a layer of", options: ["Aluminium", "Lead", "Zinc", "Nickel"], a: 2 },
+{ id: 140, q: "The size of centrifugal water pump is given by", options: ["Horse Power", "Impeller diameter", "Delivery pipe diameter & suction", "Discharge"], a: 2 },
+{ id: 141, q: "The Joints on Cast Iron pipes are generally", options: ["Flanged", "Spigot & Socket (turned & bored)", "Spigot & Socket (Lead)", "All of the above"], a: 3 },
+{ id: 142, q: "The advantages of using Cast Iron pipes for water supply system is", options: ["Good Durability", "Good Strength", "Low Cost of Maintenance", "All of the above"], a: 3 },
+{ id: 143, q: "A high velocity of wash water is required for", options: ["rapid gravity filter with strainers", "rapid gravity filter without strainers", "slow sand filter with strainers", "slow sand filter without strainers"], a: 1 },
+{ id: 144, q: "The minimum diameter of a manhole opening is", options: ["200 cm", "150 cm", "100 cm", "50 cm"], a: 3 },
+{ id: 145, q: "Air relief valves are provided", options: ["At summits", "At low points", "At pipe bends", "At pipe junctions"], a: 0 },
+{ id: 146, q: "The average annual rainfall at any station is the mean average of annual rainfall over a period of", options: ["10 years", "25 years", "35 years", "50 years"], a: 2 },
+{ id: 147, q: "The safe & most reliable system in distribution of water is", options: ["Gravity system", "Pumping system", "Pumping & Storage system", "None of these"], a: 0 },
+{ id: 148, q: "The system which is most common in Nepal is", options: ["Dead end system", "Grid Iron system", "Ring system", "Radial system"], a: 0 },
+{ id: 149, q: "The allowable average velocity in canal gravity conduit is", options: ["0.5 to 0.6 m/sec", "0.5 to 0.9 m/sec", "1.2 to 2.4 m/sec", "2 to 3 m/sec"], a: 1 },
+{ id: 150, q: "The permissible velocity in pipe pressure conduit is", options: ["0.6 to 0.9 m/sec", "0.9 to 1.8 m/sec", "0.6 to 1.8 m/sec", "6 to 9 m/sec"], a: 0 },
+{ id: 151, q: "The intake which is useful where there are no wide fluctuations and constant head is required at the intake and where river is also not too wide is called", options: ["River intake", "Cross weir intake", "Side weir intake", "Reservoir intake"], a: 1 },
+{ id: 152, q: "For determining the velocity of flow of underground water, the most commonly used non- empirical formula is", options: ["Darcy's formula", "Slichter's formula", "Hazen's formula", "Lacy's formula"], a: 0 },
+{ id: 153, q: "The types of joint used in HDP pipe is", options: ["butt joint", "slovent joint", "thread joint", "dresser coupling joint"], a: 0 },
+{ id: 154, q: "The water supply system whose main, sub-main and branches are interconnected with each other", options: ["dead end system", "grid iron system", "ring system", "radial system"], a: 1 },
+{ id: 155, q: "Disinfection of drinking water, is done to remove A. B. C. D..", options: ["odour", "bacterias", "turbidity", "colour"], a: 1 },
+{ id: 156, q: "Of the total content of water on globe the available quantity for use is less than", options: ["20%", "2%", "0.1%", "0.03%"], a: 3 },
+{ id: 157, q: "All water that occurs below the surface of the earth is called", options: ["Ground water", "Underground water", "Surface water", "None of the above"], a: 1 },
+{ id: 158, q: "The percentage in between domestic demand of water with respect to total consumption of water will be approximately", options: ["50%", "60%", "30%", "35%"], a: 0 },
+{ id: 159, q: "Which method of forecasting population of large cities is more accurate?", options: ["Graphical method", "Geometrical increase method", "Arithmetic increase method", "Comparative method"], a: 0 },
+{ id: 160, q: "The estimated future population is on the low side when we use", options: ["Graphical method", "Decreasing rate method", "Arithmetical increase method", "Geometrical increase method"], a: 2 },
+{ id: 161, q: "The shape of graph of population against time plotted according to the arithmetical increase method is", options: ["A hyperbola", "A parabola", "A straight-line", "S type graph"], a: 2 },
+{ id: 162, q: "Acidity in water is generally caused by", options: ["Oxygen", "Nitrogen", "Hydrogen", "Carbon dioxide"], a: 3 },
+{ id: 163, q: "The effectiveness of Alum as a Coagulant is maximum when", options: ["Water contains only dissolved solids", "Water is free form Bacteria", "The pH range of water is 12 to 14", "The pH range of water is 6 to 8"], a: 3 },
+{ id: 164, q: "Air binding phenomenon in rapid sand filters occurs due to", options: ["Mud Ball formation", "Low temperature", "Excessive negative head", "Higher Turbidity"], a: 2 },
+{ id: 165, q: "Chemical used for de-chlorination of water is", options: ["Chloramines", "Sulphur dioxide", "Carbon dioxide", "Carbon tetrachloride"], a: 1 },
+{ id: 166, q: "The shape of the graph of plot of population versus time based on decreasing rate method is", options: ["A parabola", "A hyperbola", "S type curve", "Straight line"], a: 2 },
+{ id: 167, q: "In a city having population approximately as 8 lakhs, the per capita demand of water will be", options: ["200 to 220 liters", "180 to 200 liters", "160 to 180 liters", "100 to 120 liters"], a: 1 },
+{ id: 168, q: "If P is the present Population, Pn the Population after n years and K the average increase of population per year then the formula Pn = P + nK is related to", options: ["Arithmetical increase method", "Geometrical increase method", "Incremental increase method", "Decreased rate of growth method"], a: 0 },
+{ id: 169, q: "Out of the following methods, the method which gives too low results is", options: ["Arithmetical increase method", "Geometrical increase method", "cremental increase metho", "Graphical method"], a: 0 },
+{ id: 170, q: "The water consumption will be higher if :", options: ["Pressure in distribution system is more", "Quality of water is good", "The living standard of people is high", "All the above are correct."], a: 3 },
+{ id: 171, q: "In which case the rate of water consumption per head per day would be maximum", options: ["Offices", "Schools", "Factories", "Hospitals"], a: 3 },
+{ id: 172, q: "Kuichling formula for Fire demand is Q =", options: ["$3182\\sqrt{P}$", "$1136 \\left[\\frac{P}{10} + 10\\right]$", "$4640\\sqrt{P} (1 - 0.01\\sqrt{P})$", "$5660\\sqrt{P}$"], a: 0 },
+{ id: 173, q: "For an old city with constraints for growth the best method of forecasting future population is", options: ["Arithmetical increase", "Geometrical increase", "Graphical increase", "Incremental increase"], a: 0 },
+{ id: 174, q: "If the present population of a city is a, rate of increase per decade is b, incremental increase per decade is c, percentage growth per decade is r, then population after n decades by incremental increase method is", options: ["$a + nb$", "$a + (b + c)$", "$a + nb + \\frac{n(n+1)}{2} c$", "$a \\left[1 + \\frac{r}{100}\\right]^n$"], a: 2 },
+{ id: 175, q: "The radius of influence is the distance from the well and the point at which lowering of the water table will be", options: ["Maximum", "Minimum", "Average", "Zero"], a: 0 },
+{ id: 176, q: "The well used by small town for public water supply are", options: ["Dug well", "Driven well", "Tube well", "Hand pump"], a: 2 },
+{ id: 177, q: "The maximum yield from a tube well is generally about", options: ["50 litre/sec", "100 litre/sec", "200 litre/sec", "300 litre/sec"], a: 2 },
+{ id: 178, q: "The water that contains substances which are undesirable or unfit for domestic use is called", options: ["Potable water", "pure water", "Polluted water", "Sewer water"], a: 2 },
+{ id: 179, q: "A good source of water requiring practically the least treatment is", options: ["A perennial river", "An Impounded Reservoir", "A deep well", "An elevated tank"], a: 2 },
+{ id: 180, q: "Turbidity in water is due to", options: ["Algae", "Fungi", "Organic salts", "Finely divided particles of clay, silt & organic matter"], a: 3 },
+{ id: 181, q: "For Potable water, the permissible pH value is", options: ["1 to 4.5", "4.5 to 7", "7 - 8.5", "9 - 11"], a: 2 },
+{ id: 182, q: "The desirable temperature of potable water is", options: ["10$^{\\circ}$C", "20$^{\\circ}$C", "27$^{\\circ}$C", "37$^{\\circ}$C"], a: 0 },
+{ id: 183, q: "The chloride content in the water for public water supply should not be more than", options: ["250 ppm", "150 ppm", "80 ppm", "50 ppm"], a: 0 },
+{ id: 184, q: "The hardness limit for potable water ranges between", options: ["50 - 65 ppm", "75 - 115 ppm", "150 - 250 ppm", "300 - 700 ppm"], a: 1 },
+{ id: 185, q: "In One litre sample of drinking water, coliform organisms should not exceed", options: ["500", "100", "10", "1"], a: 2 },
+{ id: 186, q: "The maximum permissible flouride content in the drinking water should not exceed", options: ["1 mg/lit", "20 mg/lit", "50 mg/lit", "100 mg/lit"], a: 0 },
+{ id: 187, q: "Based on Cobalt scale the maximum permissible colour for domestic supplies is", options: ["50 ppm", "25 ppm", "20 ppm", "15 ppm"], a: 2 },
+{ id: 188, q: "Turbidity for domestic water is undesirable because it is", options: ["Is unaesthetic", "Causes change of taste", "Gives apparent colour", "Prevents light penetration & hence photosynthesis"], a: 2 },
+{ id: 189, q: "Conductivity represents the concentration of the following in the water sample", options: ["Total solids", "Dissolved solids", "Volatile solids", "Fixed solids"], a: 1 },
+{ id: 190, q: "Water losses in water supply, is assumed as..", options: ["5%", "7.5%", "10%", "15%"], a: 3 },
+{ id: 191, q: "The most ideal disinfectant used for drinking water throughout the world, is", options: ["alum", "lime", "chlorine", "nitrogen"], a: 2 },
+{ id: 192, q: "Units of Turbidity is", options: ["mg/lit", "NTU", "Threshold number", "None of the above"], a: 1 },
+{ id: 193, q: "In case of public supplies, the maximum permissible nitrites content is", options: ["250 ppm", "100 ppm", "50 ppm", "45 ppm"], a: 3 },
+{ id: 194, q: "In case of safe drinking water, the BOD should be", options: ["Nil", "5 mg/lit", "15 mg/lit", "25 mg/lit"], a: 0 },
+{ id: 195, q: "Demand for public uses in a city, does not include water required for", options: ["watering of public parks", "watering of public gardens", "sprinkling on roads", "drinking purposes"], a: 3 },
+{ id: 196, q: "The aeration of water is done for the removal of", options: ["Colour", "Turbidity", "Hardness", "Odour"], a: 3 },
+{ id: 197, q: "For controlling the growth of algae, the chemical generally used is", options: ["Alum", "Lime", "Bleaching Powder", "Copper Sulphate"], a: 3 },
+{ id: 198, q: "The main disadvantage of hard water is", options: ["More turbidity", "Foul smell", "Increased Soap Consumption", "Bad taste"], a: 2 },
+{ id: 199, q: "The process of removal of permanent hardness of water is", options: ["Zeolite Process", "Filtration Process", "Lime Treatment", "Boiling of Water"], a: 0 },
+{ id: 200, q: "For the Plain Sedimentation tanks, the detention period is", options: ["2 to 5 hours", "5 to 10 hours", "10 - 12 hours", "None of the above"], a: 0 },
+{ id: 201, q: "The temporary hardness of water can be removed by", options: ["boiling", "adding lime", "adding alum", "filtration"], a: 0 },
+{ id: 202, q: "A Coagulant generally used is", options: ["Chloride", "Bleaching Powder", "Alum", "Ferric Chloride"], a: 2 },
+{ id: 203, q: "Alum increases", options: ["Hardness of water", "Carbonates in water", "Sulphates in water", "Acidity of water"], a: 3 },
+{ id: 204, q: "Swimming pool water requires", options: ["Pre-chlorination", "Super chlorination", "Double chlorination", "De-chlorination"], a: 1 },
+{ id: 205, q: "The method used for removal of fine suspended particles is", options: ["Filtration", "Aeration", "Sedimentation", "None of the above"], a: 0 },
+{ id: 206, q: "In slow sand filters, the rate of filtration of water is in the range of", options: ["175 to 250 lits/sqtn/hr", "500 to 1000 lits/sqm/hr", "1000 to 5000 lits/sqm/hr", "6000 to 10,000 lits/sqm/hr"], a: 0 },
+{ id: 207, q: "In slow sand filters the bacteria removal may be expected upto", options: ["98 - 99 %", "90 - 95 %", "80 - 89 %", "70 - 79 %"], a: 0 },
+{ id: 208, q: "In rapid sand Filters, the maximum permissible loss of head is", options: ["10 metres", "5 metres", "3 metres", "1 metres"], a: 2 },
+{ id: 209, q: "Advantage of intermittent system of water supply system", options: ["repairs can be carried out during non-supply hour", "chances of waste of water is less", "less quantity of water is used", "all of above"], a: 3 },
+{ id: 210, q: "The factor to be considered for the source of water supply", options: ["quantity and quality of available water", "elevation of source of water", "general terrain intervening the area", "all of the above"], a: 3 },
+{ id: 211, q: "Sewage sickness of land can be said to occur if", options: ["The pores of soil get clogged", "There is no air circulation through soil pores", "Anaerobic condition occur", "All of the above are correct"], a: 3 },
+{ id: 212, q: "The polluted water can be used for Fish culture if", options: ["Dissolved oxygen is 3 to 5 ppm", "CO$_2$ is 40 ppm", "Nitrogen Content is, 20 ppm", "None of the above"], a: 0 },
+{ id: 213, q: "A nectar sipping butterfly $\\rightarrow$ Dragon fly $\\rightarrow$ Frog $\\rightarrow$ Snake $\\rightarrow$ Hawk is", options: ["Predator food chain", "Parasitic food chain", "Saprophytic food chain", "Food web"], a: 0 },
+{ id: 214, q: "Septic tank effluent is", options: ["clear and spasting", "odorless", "black liquor with eacher odoyr", "fine organic solid with high BOD"], a: 3 },
+{ id: 215, q: "Which test is must for house sewer ?", options: ["water test", "air test", "compaction test", "smoke test"], a: 3 },
+{ id: 216, q: "A sanitary sewer is expected to run", options: ["Full", "Half full", "90% full", "2/3 full"], a: 3 },
+{ id: 217, q: "The relationship between Biotic and Abiotic substances of an ecosystem is", options: ["Reciprocity", "Cannibalism", "Commensalism", "Parastism"], a: 0 },
+{ id: 218, q: "Ecological Niche is :", options: ["Habitat of an organism", "Community and enviornment of an organism", "Organisms profession (position and status)", "Confinement of a species to a specific region"], a: 2 },
+{ id: 219, q: "A food chain is", options: ["Transfer of energy from one organism to another", "Relationship between producers, herbivores and carnivores", "Comprising of any three or more organisms", "Combination of organisms at different trophic levels"], a: 0 },
+{ id: 220, q: "Mixing of contents of a digester", options: ["Reduces its capacity", "Produces more foam and scum", "Toxic products produced are diluted", "Stratification takes place"], a: 2 },
+{ id: 221, q: "Dried sludge is a good", options: ["Fuel", "Soil builder", "Manure", "Filler of a low lying area"], a: 1 },
+{ id: 222, q: "The length of a squatting pan is governed by", options: ["Depth of water seal", "Number of users", "Length of urinating jet", "System of supply of water"], a: 2 },
+{ id: 223, q: "The last trap provided in a house drainage system is", options: ["Q trap", "Floor trap", "Nahani trap", "Intercepting trap"], a: 3 },
+{ id: 224, q: "Stall type urinals are best suited to", options: ["High schools", "Residential areas", "People of same height", "Public places"], a: 3 },
+{ id: 225, q: "Bowl type of urinals is ideal for", options: ["People of the same height", "Commercial areas", "Public places", "People of different heights"], a: 0 },
+{ id: 226, q: "Soil stack collects waste waters from", options: ["Baths", "Sinks and wash basins", "Urinals", "Toilets"], a: 3 },
+{ id: 227, q: "The pipe having minimum diameter in plumbing systems", options: ["Waste pipe", "Soil pipe", "Ventilation pipe", "Anti syphonage pipe"], a: 3 },
+{ id: 228, q: "Anti-Syphonage pipe need not be provided in", options: ["Single storied buildings", "Multi storied buildings", "Residential Flats", "Industrial buildings"], a: 0 },
+{ id: 229, q: "The minimum diameter of sewer pipe should be", options: ["5cm", "10cm", "7cm", "15cm"], a: 3 },
+{ id: 230, q: "Pieces of Papers, Crockery, Scrap metals etc are classified as", options: ["Refuse", "Rubbish", "Garbage", "Ashes & Cinders"], a: 1 },
+{ id: 231, q: "The liquid waste conveyed by a sewer is known as", options: ["Sullage", "Sewerage", "Sewage", "None of these"], a: 2 },
+{ id: 232, q: "The waste water from kitchens, baths etc is called", options: ["Sewage", "Sullage", "Sludge", "None of these"], a: 1 },
+{ id: 233, q: "The % of solids present in sewage is :", options: ["10%", "1%", "0.1%", "11%"], a: 2 },
+{ id: 234, q: "In a combined sewer when only the industrial or sanitary sewage are flowing, then it is termed as", options: ["Storm water flow", "Industrial flow", "Ordinary flow", "Dry weather flow"], a: 3 },
+{ id: 235, q: "The minimum infiltration of water in one km. length of sewer pipe per day is", options: ["Zero litres", "500 litres", "2800 litres", "1,40,000 litres"], a: 2 },
+{ id: 236, q: "In combined sewers the minimum velocity of flow should not be less than", options: ["0.6 m/sec", "0.75 m/sec", "1 m/sec", "6 m/sec"], a: 1 },
+{ id: 237, q: "In seperate sewers the minimum velocity of flow should not be less than", options: ["0.6 m/sec", "0.75 m/sec", "1 m/sec", "6 m/sec"], a: 0 },
+{ id: 238, q: "The circular section of a sewer is very common but it is best suited when diameter is upto", options: ["0.75 m", "1.25 in", "1.5 m", "3 m"], a: 2 },
+{ id: 239, q: "While designing a sewerage system; the design period is generally taken as", options: ["1 year", "5 year", "10 years", "20 years"], a: 3 },
+{ id: 240, q: "Ventilation columns are spaced at a distance of", options: ["500 m", "300 m", "100 m", "50 m"], a: 1 },
+{ id: 241, q: "Generally salt glazed stone ware pipes are manufactured in sizes 600 to 750 mm in diameter and their length is upto", options: ["60 to 90 cm", "3m", "5 m", "6 m"], a: 0 },
+{ id: 242, q: "As compared to dry weather flow, the amount of storm water in a sewerage system is", options: ["More", "Less", "Same", "None of these"], a: 0 },
+{ id: 243, q: "The quantity of storm water from an area depends upon", options: ["Shape of the area", "Slope of the area", "Nature of soil", "All of the above"], a: 3 },
+{ id: 244, q: "The longest time without unreasonable delay, that would be required for a drop of water to flow from the upper limit of the drainage area to the point where concentration or the maximum effect of flood is considered is known as", options: ["Inlet time", "Time of flow", "Time of concentration", "None of these"], a: 2 },
+{ id: 245, q: "The time required for first drops of rain water to flow from the distant points of water shed to the head of the sewer or drain is known as", options: ["Inlet time", "Time of flow", "Time of concentration", "None of the above"], a: 2 },
+{ id: 246, q: "Hydraulically and economically, the best section of drains for large flow is", options: ["Circular", "V shaped", "Rectangular", "None of the above"], a: 0 },
+{ id: 247, q: "The openings constructed on lines of sewers or drains in order to enable men to enter or leave the sewer is known as", options: ["Lamp holes", "Man holes", "Inspection chambers", "Street Inlets"], a: 1 },
+{ id: 248, q: "The minimum diameter' of working chamber of a circular manhole should be", options: ["0.5 m", "0.9 m", "1.2 m", "2 m"], a: 2 },
+{ id: 249, q: "The inlet with a basin which allows grit, sand or debris to settle out and thus prevent them from entering into the sewer is known as", options: ["Man hole", "Street inlet", "Catch basin", "Inspection chamber"], a: 2 },
+{ id: 250, q: "As compared to temperature of water, the temperature of sewage is", options: ["Lower", "Higher", "Same", "Depends upon the atmospheric conditions"], a: 1 },
+{ id: 251, q: "The quantity of free oxygen in septic sewers (4 to 5 hours old) is approximately", options: ["10 to 15 mg/lit", "5 to 10 mg/lit", "2 to 5 mg/lit", "Zero mg/lit"], a: 3 },
+{ id: 252, q: "The process of splitting up of complex organic compounds into oxygen and other gases like CO$_2$, CH$_4$, NH$_3$ and H$_2$S by anaerobic bacteria is", options: ["Oxidation", "Purification", "Decomposition of sewage", "None of the above"], a: 3 },
+{ id: 253, q: "BOD means", options: ["Biochemical oxygen demand", "Biological oxygen demand", "Bacteriological oxygen demand", "None of the above"], a: 0 },
+{ id: 254, q: "Due to Algae, the dissolved oxygen in a BOD bottle, in the presence of light will", options: ["Increase", "Decrease", "Remain constant", "None of the above"], a: 0 },
+{ id: 255, q: "The bacteria die if temperature is more than", options: ["50$^{\\circ}$C", "40$^{\\circ}$C", "30$^{\\circ}$C", "25$^{\\circ}$C"], a: 1 },
+{ id: 256, q: "If organic matter increases in sewage, the demand of oxygen will", options: ["Increase", "Decrease", "Remain constant", "Vary from organic to organic"], a: 0 },
+{ id: 257, q: "The biochemical decomposition of organic matter in sewage is called", options: ["Digestion", "Decomposition", "Dilution", "None of the above"], a: 1 },
+{ id: 258, q: "Which of the following unit works in anaerobic conditions?", options: ["sludge digestion tank", "sedimentation tank", "activated sludge treatment", "trickling filters"], a: 0 },
+{ id: 259, q: "The lowest point of the interior of a sewer at any cross-section is called", options: ["Bottom point", "Negative Head point", "Revertral point", "Invert"], a: 3 },
+{ id: 260, q: "A mass of sewage solids, both mineral and organic, which float at the surface of sewage is called", options: ["Waste Mass", "Floating Mass", "Surface Solids", "Scum"], a: 3 },
+{ id: 261, q: "A sewer which receives discharge from two or more than two sewers is called", options: ["Trunk sewer", "Main sewer", "Multi sewer", "Intercepting sewer"], a: 0 },
+{ id: 262, q: "A circular section of sewer offers the advantage of", options: ["Least perimeter for a given area", "Highest velocities when flowing full or half full", "More suitable when discharge is more or less constant", "Offers less opportunities for deposits"], a: 0 },
+{ id: 263, q: "In an egg-shaped sewer, the maximum discharge occurs when depth of flow is", options: ["0.25", "0.50", "0.75", "0.95"], a: 3 },
+{ id: 264, q: "The underground portion of sewage pumping station which receives the sewage and from which it is drawn by pumps is called", options: ["Sump", "Sewage pit", "Wet well", "All of the above"], a: 3 },
+{ id: 265, q: "The non scouring velocity for cement concrete sewers is usually taken as", options: ["1 m/min", "2 m/min", "5 m/min", "None of these"], a: 3 },
+{ id: 266, q: "The gas which is mainly responsible for explosion in sewer is called", options: ["Methane", "Ammonia", "Carbon Monoxide", "Mixture of oxygen and Carbon Monoxide"], a: 0 },
+{ id: 267, q: "The average liquid content of sewage is usually", options: ["99%", "95%", "90%", "75%"], a: 0 },
+{ id: 268, q: "pH value of fresh sewage is expected to be", options: ["7", "3.5", "8 to 11", "None of these"], a: 0 },
+{ id: 269, q: "In sludge digestion the gas produced in high percentage is", options: ["Nitrogen", "CO$_2$", "Methane", "Ammonia"], a: 2 },
+{ id: 270, q: "Favorable temperature for rapid sludge digestion is", options: ["5 to 10$^{\\circ}$C", "10 to 15$^{\\circ}$C", "40 to 59$^{\\circ}$C", "28 - 38$^{\\circ}$C"], a: 3 },
+{ id: 271, q: "The usual capacity of flushing cisterns for water closet is", options: ["3.5 litres", "10 to 15 litres", "25 to 40 litres", "50 litres"], a: 1 },
+{ id: 272, q: "The capacity of flushing cisterns for urinals is generally", options: ["1 litre", "5 litre", "15 litre", "25 litre"], a: 1 },
+{ id: 273, q: "For a boarding house the standard number of WCs required is", options: ["1 %", "2 %", "5 %", "10 %"], a: 3 },
+{ id: 274, q: "For a cinema Hall the number of WCs required for female is", options: ["1 %", "20 %", "2 % upto 200 and 1 % above 200", "1 % upto 200 and 2 % above 200"], a: 2 },
+{ id: 275, q: "From Septic tank the effluents are discharged into", options: ["Soak Pit", "Oxidation Pond", "Cesspool", "All of the above"], a: 0 },
+{ id: 276, q: "The fresh sludge becomes stale in", options: ["1 hour", "Two hours", "Three to Four hours", "Six to Eight hours"], a: 2 },
+{ id: 277, q: "During purification process, the gas given off is", options: ["CO$_2$", "CH$_4$", "NH$_3$", "All of the above"], a: 3 },
+{ id: 278, q: "A value provided immediately above the pump to reduce the back surge and water hammer is called", options: ["Spring valve", "Spindle valve", "Safety valve", "Reflux valve"], a: 3 },
+{ id: 279, q: "In distribution pipes, drain valves are located", options: ["At lower point", "At summit", "At junctions", "At bends"], a: 0 },
+{ id: 280, q: "The detention period of sewage in primary sedimentation tank is", options: ["15 min", "30 to 45 min", "1 hour", "1 to 3 hour"], a: 3 },
+{ id: 281, q: "The gradient for sewer line is ensured by :", options: ["Theodolite", "Dumpy level", "Compass", "Sight rails"], a: 1 },
+{ id: 282, q: "The presence of free Ammonia in sewage can be detected by", options: ["KMnO$_4$", "Adding dil H$_2$SO$_4$", "Adding Phenol", "Boiling"], a: 3 },
+{ id: 283, q: "Which of the following disease in caused by Non pathogenic bacteria", options: ["Typhoid", "Infections hepatitis", "Cholera", "None of the above"], a: 1 },
+{ id: 284, q: "Which system is used for the treatment of sewage of small estates and colonies", options: ["Aerated Lagoons", "Oxidation Ponds", "Oxidation ditch", "All of the above"], a: 1 },
+{ id: 285, q: "Pollution of a river or stream is indicated by an increase in :", options: ["Acidity", "Chloride content", "Oxygen content", "Nitrate content"], a: 3 },
+{ id: 286, q: "Specific yield of a well is", options: ["quantity of water than can be drawn from the well", "flow of water per unit time", "total quantity of water available in the well", "quantity of water per unit time per unit draw-down"], a: 2 },
+{ id: 287, q: "True colour of water is due to", options: ["Suspended Solids", "Colloidal Solids", "Volatile Solids", "Acids in solution"], a: 1 },
+{ id: 288, q: "pH of a water sample is 7, pH of another water sample of same quantity is 8 then pH of the mixture is :", options: ["7.50", "7.74", "7.26", "7.86"], a: 2 },
+{ id: 289, q: "BOD test is standardized at", options: ["10$^{\\circ}$ and 10 days", "20$^{\\circ}$ and 5 days", "37$^{\\circ}$ and 3 days", "50$^{\\circ}$ and 2 days"], a: 1 },
+{ id: 290, q: "A waste sample of 5 ml is made upto 300 ml. with distilled water. The sample had an initial D.O. of 8.0 mg/1 and after 5 days the D.O. is 0. Hence BOD of the sample was :", options: ["8 mg/1", "472 mg/1", "480 mg/1", "Test is invalid"], a: 3 },
+{ id: 291, q: "Presence of the following indicates recent pollution", options: ["Ammonical Nitrogen", "Albuminoidal Nitrogen", "Nitrites", "Nitrates"], a: 1 },
+{ id: 292, q: "Gastro intestinal irritation is produced because of excess of the following in water", options: ["Chlorides", "Sulphates", "Nitrates", "Phosphates"], a: 1 },
+{ id: 293, q: "In drinking water number of coliform bacteria should not exceed", options: ["0.100 ml", "1/100 ml", "100 ml", "100/100 ml"], a: 1 },
+{ id: 294, q: "Biochemical Oxygen Demand (B.O.D.) of safe drinking water must be", options: ["nil", "5", "10", "15"], a: 0 },
+{ id: 295, q: "Aeration of water is done to remove", options: ["odour", "colour", "bacteria", "hardness"], a: 0 },
+{ id: 296, q: "Waters from the following sources is likely to be hard", options: ["River", "Lake", "Deep well", "Shallow well"], a: 2 },
+{ id: 297, q: "Detention time in a mixing unit is :", options: ["60 to 120 seconds", "20 min to 30 min", "1 hour to 8 hours", "2 hours to 3 hours"], a: 0 },
+{ id: 298, q: "More area is required in", options: ["Slow sand filters", "Rapid Sand Filters", "Pressure filters", "Both slow sand and pressure filters"], a: 0 },
+{ id: 299, q: "The percentage of chlorine in fresh bleaching powder is about", options: ["10-15", "20-25", "30-35", "50-60"], a: 2 },
+{ id: 300, q: "Zeolite process is economical upto hardness of", options: ["1000 mg/lit", "500 mg/lit", "50 mg/lit", "100 mg/lit"], a: 0 },
+{ id: 301, q: "Combined pumping and gravity system is best suited, where", options: ["The city is in plains & source is fairly elevated", "The city had a gentle slope and source is elevated", "The city is on steep slopes & source is below", "Any type of topography"], a: 3 },
+{ id: 302, q: "The best pipe for water mains known for long life is:", options: ["Cast Iron", "Steel", "Cement Concrete", "Asbestos cement"], a: 0 },
+{ id: 303, q: "The minimum height of flushing cistern is", options: ["1m", "2m", "3m", "4m"], a: 1 },
+{ id: 304, q: "Sea water has a total dissolved solid concentration of about", options: ["36,000 mg/lit", "360 mg/lit", "3600 mg/lit", "none of these"], a: 0 },
+{ id: 305, q: "For a city developed haphazardly, the layout of distribution pipes preferred to, is", options: ["ring system", "radial system", "grid iron system", "dead end system"], a: 3 },
+{ id: 306, q: "Inspection arm is provided in", options: ["manhole", "drop man hole", "lamp hole", "clean out"], a: 2 },
+{ id: 307, q: "Summits are the points of", options: ["high pressure", "low pressure", "equal pressure", "negative"], a: 1 },
+{ id: 308, q: "A manhole is provided", options: ["At every corner", "When flow gets divided", "When direction or grade changes", "all of above"], a: 3 },
+{ id: 309, q: "A unit working purely on an acrobiosis is", options: ["Septic tank", "ASP", "Trickling Filter", "Contact bed"], a: 0 },
+{ id: 310, q: "Coarse screens are iron bars with a clearance of", options: ["Less tan 25 mm", "25 to 75 mm", "75 mm", "100 mm"], a: 0 },
+{ id: 311, q: "Psychoda alternata is found in", options: ["Septic Tanks", "Standard rate Trickling Filters", "Contact beds", "Intermittent filters"], a: 1 },
+{ id: 312, q: "Quantity of methane produced in a sludge digester is", options: ["1 to 5 m$^3$/1000 people", "10 to 20 m$^3$/1000 people", "15 to 30 m$^3$/1000 people", "25 to 50 m$^3$/1000 people"], a: 2 },
+{ id: 313, q: "The last trap provided in a house drainage system is", options: ["Q trap", "Floor trap", "Nahani trap", "Intercepting trap"], a: 3 },
+{ id: 314, q: "The pipe having minimum diameter in a plumbing system is", options: ["Waste pipe", "Soil pipe", "Ventilation pipe", "Anti-syphonage pipe"], a: 3 },
+{ id: 315, q: "Salvaging is", options: ["Dumping of solid waste", "Sanitary land filling of solid waste", "Composting and soil conditioning", "None of these"], a: 3 },
+{ id: 316, q: "For sewage irrigation an ideal crop is", options: ["Banana", "Sugarcane", "Soya bean", "Potato"], a: 0 },
+{ id: 317, q: "All traps have", options: ["A Fitter", "A grating", "A water seal", "A gate valve"], a: 2 },
+{ id: 318, q: "The maximum efficiency of BOD removal is achieved in", options: ["Oxidation ditch", "Trickling Filters", "Aerated lagoons", "Digestion tanks"], a: 0 },
+{ id: 319, q: "Anti-syphonage pipe in not required in :", options: ["One Pipe system", "Two pipe system", "Single stack system", "All of these"], a: 0 },
+{ id: 320, q: "In case of Pipes connected in series the head loss will be", options: ["Additive", "Subtractive", "Exponential", "Logrithmic"], a: 0 },
+{ id: 321, q: "Reflux valve is the same as", options: ["Gate valve", "Check valve", "Scour valve", "Air valve"], a: 1 },
+{ id: 322, q: "Pressure Filters are best suited for", options: ["Railway stations", "Swimming pools", "Individual industries", "All of above"], a: 3 },
+{ id: 323, q: "Garbage is a", options: ["Organic waste", "Liquid waste", "Semi liquid waste", "None of the above"], a: 0 },
+{ id: 324, q: "Which valve prevents back flow of water in a PiPe", options: ["Gate valve", "Air valve", "Reflux valve", "Scour valve"], a: 2 },
+{ id: 325, q: "Which chemical is used to supply oxygen for BOD", options: ["NaOH", "KCIO$_3$", "MnO$_2$", "KMnO$_4$"], a: 3 },
+{ id: 326, q: "Which trap is provided at the junction of waste stack with the building drain", options: ["S-Trap", "D-Trap", "Gully Trap", "Bottle Trap"], a: 2 },
+{ id: 327, q: "Which of the following equipment can be used for the removal of paper and rags from the sewers", options: ["Cawl", "Gouge", "Scraper", "Scoop"], a: 0 },
+{ id: 328, q: "Carbon dioxide, one of the gases given off by the decomposition of sludge, is not poisonous but may use for", options: ["Combustion", "Corrosion", "Burns", "Asphyxiation"], a: 3 },
+{ id: 329, q: "Which of the following disease is not considered to be water borne", options: ["Small Pox", "Typhoid", "Bacillary dysentery", "Cholera"], a: 0 },
+{ id: 330, q: "In Sewage treatment plants, the oil and grease is removed by", options: ["Oxidation", "Filtration", "Skimming", "Screening"], a: 2 },
+{ id: 331, q: "Bacteria which use CO$_2$ as a source of Carbon are known as", options: ["Autotrophic", "Heterotrophic", "Aerobic", "Anaerobic"], a: 0 },
+{ id: 332, q: "The storage capacity of a reservoir is generally divided into three zones and the lowest zone is known as", options: ["Useful storage", "Surcharge storage", "Active storage", "Dead storage"], a: 3 },
+{ id: 333, q: "Which one of the following may cause alkalinity in water", options: ["Calcium and magnesium carbonates", "Sodium Carbonate", "Potassium Carbonate", "Calcium Hydroxide"], a: 3 },
+{ id: 334, q: "The dilution ratio at which the odour is hardly detectable is generally called threshold odour number and for public supplies it should never exceed", options: ["3", "7", "8", "10"], a: 0 },
+{ id: 335, q: "Natural mineral contaminant in water is", options: ["Calcium", "Iron", "Sodium", "All of these"], a: 3 },
+{ id: 336, q: "Molting of teeth is associated with the presence of", options: ["Chlorides in water", "Calcium in water", "Sulpher in water", "Fluorides in water"], a: 3 },
+{ id: 337, q: "If the pH of water is 9.0 it indicates that the sample is", options: ["Acidic", "Neutral", "Alkaline", "None of these"], a: 2 },
+{ id: 338, q: "The unit part per million is identical to", options: ["Grains per gallon", "Million gallons per day", "Milligrams per liter", "None of these"], a: 2 },
+{ id: 339, q: "The fertilizer value of sludge is based mainly on the content of", options: ["Nitrogen", "Phosphorous", "Potassium", "All of these"], a: 3 },
+{ id: 340, q: "The cells of bacteria are usually in the range", options: ["0.1 to 0.2 microns", "0.5 to 5 microns", "10 to 20 microns", "30 to 50 microns"], a: 1 },
+{ id: 341, q: "Disease transmission cycle can be stopped by", options: ["Wet sanitation", "Water usage", "Sanitation system", "Night soil"], a: 2 },
+{ id: 342, q: "Leaping weir is provided only in", options: ["conservancy system", "separate system", "partly separate system", "combined system"], a: 2 },
+{ id: 343, q: "All manholes deeper than .......m, have to be provided with foot rest", options: ["0.6", "0.7", "0.8", "0.9"], a: 2 },
+{ id: 344, q: "The length of Septic tank is :...... Times its width.", options: ["2 to 2", "2 to 3", "2 to 4", "2 to 6"], a: 2 },
+{ id: 345, q: "The effluent from septic tank is disposed in a", options: ["Cesspool", "Soak pit", "trench", "above (a) and (b)"], a: 3 },
+{ id: 346, q: "Temperature, odour and turbidity are .......... characteristics of sewer.", options: ["Chemical", "Biological", "Physical", "all of these"], a: 1 },
+{ id: 347, q: "Intercepting trap ...... the house drain from the street sewer.", options: ["joints", "provides", "connects", "disconnects"], a: 3 },
+{ id: 348, q: "When the level of branch sewer is higher with respect to main sewer a ....... provided.", options: ["large manhole", "small manhole", "drop manhole", "none of these"], a: 2 },
+{ id: 349, q: "An egg shaped section of sewer", options: ["is economical than circular section", "is more stable than circular section", "provides self-cleansing velocity at low discharge", "all of the above"], a: 2 },
+{ id: 350, q: "When more than two sewers join in a manhole", options: ["their tops should be at the same level", "their centre should be at the same level", "their bottoms should be at the same level", "they can be either way"], a: 0 },
+{ id: 351, q: "The gradient of sewer is", options: ["given in the direction of natural slope of ground", "given in the opposite direction of naturals slope ground", "zero", "more than 1 in 20"], a: 0 },
+{ id: 352, q: "A manhole is generally provided at each", options: ["junction", "change of gradient", "change of sewer diameter", "all of above"], a: 3 },
+{ id: 353, q: "Manhole is said to be shallow if its depth is less than", options: ["0.7 - 0.9 m", "1.0 - 1.2 m", "0.8 m", "0.7 m"], a: 0 },
+{ id: 354, q: "The detention time in a septic tank is usually", options: ["1-2 hours", "5-6 hours", "18-24 hours", "22-24 hours"], a: 2 },
+{ id: 355, q: "Septic tank are best suited for", options: ["municipalities", "industries", "scattered residences", "congested areas"], a: 2 },
+{ id: 356, q: "The types of sanitation in which urine and nightsoil is separated", options: ["VIP latrine", "septic tank", "aqua privy", "ecosanitation"], a: 3 },
+{ id: 357, q: "Inverted siphon is called", options: ["special sewer", "general sewer", "depressed sewer", "none of the above"], a: 2 },
+{ id: 358, q: "Leachate is observed in", options: ["septic tank", "sewage", "landfill", "none of the above"], a: 2 },
+{ id: 359, q: "Nahni trap is made of", options: ["mud", "cast iron", "steel", "all of the above"], a: 1 },
+{ id: 360, q: "Any trap is intended to trap", options: ["water", "sewage of sullage", "any liquid waste", "foul gases"], a: 3 },
+{ id: 361, q: "Sewage is", options: ["waste water from bathrooms", "drainage from roads", "waste water from kitchen", "any waste water of domestic or industrial origin"], a: 3 },
+{ id: 362, q: "Sewerage is", options: ["collection of sewage", "collection + conveyance of sewage", "collection + conveyance + treatment of sewage", "collection + conveyance + treatment + ultimate disposal of sewage"], a: 1 },
+{ id: 363, q: "A sanitary sewer is expected to run", options: ["full", "half full", "2/3 full", "90% full"], a: 2 },
+{ id: 364, q: "In an egg shaped sewer section, the maximum discharge occurs when depth of flow is", options: ["0.25 d", "0.5d", "0.75d", "0.95d"], a: 3 },
+{ id: 365, q: "A flight sewer is provided when the gradient is", options: ["zero", "low", "steep", "maximum (i.e. vertical)"], a: 2 },
+{ id: 366, q: "A septic tank is a water tight tank where the following operation (s) take place", options: ["sedimentation", "sedimentation + digestion (anaerobic)", "digestion (aerobic)", "decomposition of organic and inorganic matter"], a: 1 },
+{ id: 367, q: "Mostly adopted detention period for a septic tank is", options: ["12 hours", "24 hours", "48 hours", "72 hours"], a: 1 },
+{ id: 368, q: "The gases given out of a septic tank are", options: ["CO$_2$ + SO$_2$ + N", "CO$_2$ + PH$_3$ + NH$_3$", "CO$_2$ + CH$_4$ + H$_2$S", "CH$_4$ + O$_2$ + H$_2$"], a: 2 },
+{ id: 369, q: "The length of the main sewer leading to treatment or disposal unit is called", options: ["lateral", "branch sewer", "main sewer", "outfall sewer"], a: 3 },
+{ id: 370, q: "Septic tank effluent is", options: ["quite clear and sparking", "always over septicized", "having fine organic solids with high BOD", "black tarry liquor with earthen odour"], a: 2 },
+{ id: 371, q: "Waste pipe collects liquid waste from", options: ["toilets and urinals", "wash basins and baths", "urinals and kitchens", "from any room"], a: 1 },
+{ id: 372, q: "P.V.C. pipes can withstand pressure head of water upto", options: ["25 m", "50 m", "75 m", "100 m"], a: 3 },
+{ id: 373, q: "Sewer consist of ...... of water", options: ["90%", "99%", "80%", "85%"], a: 1 },
+{ id: 374, q: "Manhole is said to be deep if its depth is more than", options: ["1m", "1.5m", "2m", "2.5m"], a: 1 },
+{ id: 375, q: "Top space in sewer is left free for a sanitary sewer for", options: ["Gases to accumulate", "Fluctuations to be met", "Allowing shock loading", "Maintaining uniform pressure"], a: 0 },
+{ id: 376, q: "Max flow in sewers may be taken as", options: ["1.5 $\\times$ average flow", "2 $\\times$ average flow", "3 $\\times$ average flow", "5 $\\times$ average flow"], a: 2 },
+{ id: 377, q: "Velocity of flow in sewer should be between", options: ["0.6 m/sec to 3 m/sec", "2 m/sec to 4 m/sec", "30 cm/sec to 90 cm/sec", "3 m/sec to 5 m/sec"], a: 0 },
+{ id: 378, q: "For a partly running circular sewer as the depth of flow increases", options: ["Wetted Perimeter increases", "Velocity of flow increases", "Velocity of flow decreases", "Discharge increases"], a: 3 },
+{ id: 379, q: "Water carriage system needs more", options: ["Men", "Area", "Water", "Money"], a: 2 },
+{ id: 380, q: "Combined system may be favoured where", options: ["Ranifall is concentrated in a season of the year and DWF is often fluctuating from day to day", "Ranifall is scattered through out the year and DWF is too small compared to storm water", "Ranifall is distributed throughout the year such that it is $\\le$ 10 $\\times$ DWF", "City is on steep rocky slopes."], a: 2 },
+{ id: 381, q: "Partly separate system is", options: ["Collecting DWF and storm water in the same sewer", "Collecting DWF and drainage of initial showers into the same sewer", "Collection of sewage and sullage into the same sewer", "Collection of storm water and a part of DWF into the same sewer"], a: 3 },
+{ id: 382, q: "Flush air inlet is sometimes called", options: ["clean out", "well hole", "flushing whole", "ventilated lamp holes"], a: 3 },
+{ id: 383, q: "Disinfection of water results in", options: ["removal of turbidity", "removal of hardness", "killing of disease bacteria", "complete sterilization"], a: 2 },
+{ id: 384, q: "When fall in elevation is greater than 90 cm the manhole provided is called", options: ["Lamp hole", "Flight Manhole", "Drop manhole", "Fall manhole"], a: 2 },
+{ id: 385, q: "A syphon spillway is an arrangement to", options: ["Divert DWF into open drain", "Divert excessive DWF into open drain", "Divert excessive storm water into open drain", "Divert excessive combined flow into open drain"], a: 2 },
+{ id: 386, q: "Colour of fresh sewage is", options: ["Green", "Brown", "Pink", "Grey"], a: 3 },
+{ id: 387, q: "The common end products for both aerobiosis and anaerobiosis is", options: ["H$_2$S", "CH$_4$", "NO$_3$", "CO$_2$"], a: 3 },
+{ id: 388, q: "A unit working purely on anaerobiosis is", options: ["Septic Tank", "Activated sludge process", "Trickling Filters", "Contact beds"], a: 0 },
+{ id: 389, q: "Grit obtained in a Grit chamber is used", options: ["As a manure", "As a soil conditioner", "As a Coarse aggregate", "As a substitute for sand"], a: 2 },
+{ id: 390, q: "Over flow rate for a primary clarifier is", options: ["20-30 m$^3$/m$^2$/day", "5 to 10 m$^3$/m$^2$/day", "30 -100 m$^3$/m$^2$/day", "200 to 300 m$^3$/m$^2$/day"], a: 0 },
+{ id: 391, q: "BOD removal in a primary clarifier is", options: ["50% to 60%", "30% to 40%", "10% to 20%", "Nil"], a: 1 },
+{ id: 392, q: "A Septic Tank is a water tight tank where the following operations take place", options: ["Sedimentation", "Sedimentation + digestion", "Digestion", "Decomposition of organic & inorganic matter"], a: 1 },
+{ id: 393, q: "Mostly adopted detention period for a septic tank under Nepal's conditions is", options: ["12 Hours", "24 Hours", "48 Hours", "72 Hours"], a: 1 },
+{ id: 394, q: "A Natural method of disposal of sewage is", options: ["Sewage irrigation", "Septic Tank Treatment", "Composting", "Aerated Lagooning"], a: 0 },
+{ id: 395, q: "Which trap is provided at the junction of waste stack with the building drain", options: ["S-Trap", "D-Trap", "Gully Trap", "Bottle Trap"], a: 2 },
+{ id: 396, q: "Coarse screens are iron bars with a clearance of", options: ["Less than 25 mm", "25 to 75 mm", "75 mm", "100 mm"], a: 2 },
+{ id: 397, q: "Grit is", options: ["Inert matter of sp. gravity 2.65", "Organic & inert matter combined", "Organic & inert matter combined", "Colloidal matter of heavy sp. gravity"], a: 0 },
+{ id: 398, q: "Grit chamber'has a detention period of", options: ["45 to 90 sec", "2 min to 5 min", "20 min to 30 min", "2 hours to 4 hours"], a: 0 },
+{ id: 399, q: "Velocity of flow through a grit chamber is", options: ["30 to 60 cm/sec", "30 to 60 cm/min", "15 to 45 cm/sec", "15 to 45 cm/min"], a: 2 },
+{ id: 400, q: "Top surface is left free in a sanitary sewer for", options: ["gases to accumulate", "fluctuation to be met", "allowing shock loading", "maintaining uniform pressure"], a: 0 },
+{ id: 401, q: "Media used in Trickling Filter is", options: ["Organic matter", "Inorganic matter", "Brocken Lime stone", "Inert, insoluble & tough material"], a: 3 },
+{ id: 402, q: "Usual size of media in standard Rate Trickling Filter is", options: ["6 mm to 20 mm", "10 mm to 20 mm", "25 mm to 100 mm", "100 mm to 250 mm"], a: 2 },
+{ id: 403, q: "Depth of standard rate Trickling Filter is", options: ["0.5 to 1 m", "1 to 2 m", "1.5 to 4.8 m", "1 to 8 m"], a: 2 },
+{ id: 404, q: "Biological Layer sticking to the trickling filter media consists of", options: ["Bacteria", "Protozoa", "Bacteria + algae", "Bacteria + Protozoa + Fungi"], a: 3 },
+{ id: 405, q: "The usual rate of Organic Loading on a standard rate Trickling Filter is", options: ["10 to 100 g/m$^3$/day", "100 to 400 g/m$^3$/day", "400 to 1000 g/m$^3$/day", "1000 to 3000 g/m$^3$/day"], a: 1 },
+{ id: 406, q: "The usual rate of hydraulic loading on a High rate Trickling Filter is", options: ["1 to 2 m$^3$/m$^2$/day", "2 to 5 m$^3$/m$^2$/day", "5 to 10 m$^3$/m$^2$/day", "10 to 30 m$^3$/m$^2$/day"], a: 3 },
+{ id: 407, q: "Recirculation ratio for a standard rate Trickling Filter is", options: ["0", "0.5 to 3", "3 to 6", "20"], a: 0 },
+{ id: 408, q: "Effluent from a high Rate Trickling Filter is", options: ["Black & Highly oxidized", "Light grey & oxidized", "Brown and not fully oxidized", "Well Nitrified and free from odours"], a: 2 },
+{ id: 409, q: "Psychoda alternate is found in", options: ["Septic Tanks", "Standard rate Trickling filters", "High rate Trickling Filters", "Activated sludge Process"], a: 1 },
+{ id: 410, q: "Activated sludge process is a biological process involving", options: ["Aerobic + anaerobic bacteria", "Aerobic bacteria + protozoa + algae", "Anaerobic bacteria + fungi", "Facultative bacteria + algae"], a: 1 },
+{ id: 411, q: "Media Provided in Activated Sludge Process (ASP) is", options: ["Broken stone", "Anthracite Coal", "Plastics", "None"], a: 3 },
+{ id: 412, q: "Aeration Period in the aeration tank of Activated Sludge Process is:", options: ["1 to 2 hours", "2 to 4 hours", "6 to 10 hours", "10 to 20 hours"], a: 2 },
+{ id: 413, q: "Amount of return sludge in conventional Activated Sludge Process is", options: ["10 to 20 %", "25 to 50 %", "50 to 100 %", "100 to 300 %"], a: 1 },
+{ id: 414, q: "Food/Microbes (F/m) ratio in Activated Sludge Process is", options: ["1 initially & 2 Finally", "2 initially & 1 Finally", "0.7 initially & 0.3 Finally", "0.5 initially & 0 Finally"], a: 2 },
+{ id: 415, q: "Efficiency of Activated sludge process (ASP) is", options: ["30 to 40 %", "50 to 60 %", "60 to 98 %", "90 to 95 %"], a: 3 },
+{ id: 416, q: "Conventional ASP is not suited to", options: ["Strong organic wastes", "Shock Loading and varying quality of influent", "Very dilute wastes", "High recirculation"], a: 1 },
+{ id: 417, q: "The detention period for a standard rate digester is", options: ["10 to 20 days", "20 to 30 days", "30 to 90 days", "90 to 180 days"], a: 2 },
+{ id: 418, q: "In standard rate digesters the main bacteria are", options: ["Cryptophillic", "Psychrophilic", "Mesophilic", "Thermophilic"], a: 2 },
+{ id: 419, q: "Quantity of methane produced in a sludge digester is", options: ["1 to 5 m$^3$/1000 people", "10 to 20 m$^3$/1000 people", "15 to 30 m$^3$/1000 people", "25 to 50 m$^3$/1000 people"], a: 2 },
+{ id: 420, q: "Usually the digesters have a diameter of", options: ["2 to 6 m", "6 to 35 m", "10 to 60 m", "50 to 100 m"], a: 1 },
+{ id: 421, q: "Maximum number of users in a standpost is", options: ["50", "75", "100", "150"], a: 2 },
+{ id: 422, q: "Organic loading of activated sludge process is", options: ["100 to 200 g/m$^3$/day", "200 to 400 g/m$^3$/day", "500 to 650 g/m$^3$/day", "650 to 800 g/m$^3$/day"], a: 2 },
+{ id: 423, q: "The rate of de-oxygenation depends upon", options: ["Volume and BOD of Sewage", "Time available for decomposition", "Temperature of the diluting water", "All the above are correct"], a: 3 },
+{ id: 424, q: "If the sewage contains grease and fatty oils, these are removed in", options: ["skimming tanks", "detritus tanks", "grit chambers", "sedimentation tanks"], a: 0 },
+{ id: 425, q: "Screening or skimming cannot remove", options: ["Large Suspended matter", "Oil & Fat", "Grease", "Fine suspended matter"], a: 3 },
+{ id: 426, q: "The settling velocity theoretically does not depend upon", options: ["Sp. gravity of particles", "Depth of tank", "Size of particles", "Temperature of fluids"], a: 1 },
+{ id: 427, q: "Grit chambers are designed for particles of diameter", options: ["2 $\\times$ 10$^{-2}$ cm", "2 $\\times$ 10$^{-3}$ cm", "3 $\\times$ 10$^{-2}$ cm", "3 $\\times$ 10$^{-3}$ cm"], a: 0 },
+{ id: 428, q: "Tests for BOD is usually made at a temperature of", options: ["0$^{\\circ}$C", "10$^{\\circ}$C", "20$^{\\circ}$C", "37$^{\\circ}$C"], a: 2 },
+{ id: 429, q: "The pathogenic bacteria can be killed by", options: ["Chlorination", "Oxidation", "Nitrification", "All of the above"], a: 0 },
+{ id: 430, q: "The capacity of waste water treatment plant located at Guheswori, Kathmandu", options: ["45.3 MLD", "16.4 MLD", "17.3 MLD", "None of above"], a: 1 },
+{ id: 431, q: "Sewerage system originates from", options: ["lateral sewer", "trunk sewer", "branch sewer", "house sewer"], a: 3 },
+{ id: 432, q: "Per capita water demand is measured as", options: ["lit/1000 person/year", "lit/person/day", "lit/person/month", "person/month/lit"], a: 1 },
+{ id: 433, q: "Pathogens in water may cause", options: ["cholera", "typhoid", "dysentery", "all of above"], a: 3 },
+{ id: 434, q: "If the coliform bacteria is present in a sample of water, then the coliform test to be conducted is", options: ["presumptive coliform test", "confirmed coliform test", "completed coliform test", "All of above"], a: 3 },
+{ id: 435, q: "Septic tank is a", options: ["settling tank", "digestion tank", "both of above", "none of above"], a: 2 },
+{ id: 436, q: "The maximum efficiency of BOD removal is achieved in", options: ["oxidation pond", "oxidation ditch", "aerated lagoons", "trickling filters"], a: 1 },
+{ id: 437, q: "The height of the sink of wash basin above floor level is kept", options: ["60cm", "70cm", "75cm to 80cm", "80cm"], a: 2 },
+{ id: 438, q: "PVC pipes can with stand pressure upto", options: ["20 in head of water", "50 m head of water", "100 in head of water", "150 m of head of water"], a: 2 },
+{ id: 439, q: "When the reduced level of water source is higher than the reduced level of the consumer's place, water is generally supplied", options: ["By pumping system", "By gravitational system", "Both A and B", "None of the above"], a: 1 },
+{ id: 440, q: "A sanitary sewer is expected to run", options: ["Full", "Half full", "2/3 full", "90% full"], a: 2 },
+{ id: 441, q: "The self-cleaning velocity normally adopted for sewer is", options: ["Less than 1 m/s", "1 m/s to 1.2 m/s", "1.5 m/s to 1.2 m/s", "More than 2 m/s"], a: 0 },
+{ id: 442, q: "The bed slope in slow sand filters is generally kept", options: ["1 in 50", "1 in 75", "1 in 100", "1 in 200"], a: 2 },
+{ id: 443, q: "Surge tanks are used", options: ["for storage water", "to increase the velocity in a pipeline", "as overflow valves", "to guard against water hammer"], a: 3 },
+{ id: 444, q: "In slow sand filters, the turbidity of raw water can be removed only up to", options: ["60 mg/litre", "75 mg/litre", "100 mg/litre", "150 mg/litre"], a: 0 },
+{ id: 445, q: "Acidity in water is caused due to", options: ["Mineral acids", "Iron sulphate", "Aluminium sulphate", "All the above"], a: 3 },
+{ id: 446, q: "The process of passing water through beds of granular materials, is called", options: ["screening", "sedimentation", "filtration", "none of these"], a: 2 },
+{ id: 447, q: "Water to the consumers may be supplied from", options: ["infiltration galleries connected to sump well", "infiltration well dug out on the banks of rivers", "ranney wells sunk to the water level", "all the above"], a: 3 },
+{ id: 448, q: "Recuperation test is carried out to determine", options: ["turbidity of water", "pH value of water", "yield of well", "discharge from a well"], a: 2 },
+{ id: 449, q: "The ratio of discharge and plan area of a continuous flow type settling tank, is known", options: ["surface loading", "overflow", "overflow rate", "all the above"], a: 3 },
+{ id: 450, q: "Hardness of water can be removed by boiling if it is due to", options: ["calcium bicarbonates", "calcium sulphates", "calcium chloride", "calcium nitrates"], a: 0 },
+{ id: 451, q: "Low turbidity of water is detected by", options: ["Turbidity tube", "Jackson turbidity meter", "Baylis turbidimeter", "Hellipe turbidimeter"], a: 2 },
+{ id: 452, q: "Perched acquifers generally occur", options: ["below water table", "above water table", "in acquicludes", "in artesian acquifers"], a: 1 },
+{ id: 453, q: "Harmful bacteria are called :", options: ["parasites", "anaerobic bacteria", "aerobic bacteria", "pathogens"], a: 3 },
+{ id: 454, q: "Which is the oldest water works in Nepal ?", options: ["Bhimdhara scheme", "Birdhara scheme", "Sundarijal scheme", "Dudhpokhari scheme"], a: 1 },
+{ id: 455, q: "The population forecasting method generally adopted in Nepal for water demand calculation is :", options: ["comparative method", "geometric increase method", "arithmetic method", "logistic curve method"], a: 1 },
+{ id: 456, q: "The range of velocity of water flowing through HDPE pipe should be in the range of:", options: ["0.2-1.5m/s", "1-2m/s", "0.7-3 m/s", "2-3 m/s"], a: 2 },
+{ id: 457, q: "The sewage is treated by aerobic bacteria action in", options: ["oxidation pond", "settling tank", "trickling filter", "all of the above"], a: 0 },
+{ id: 458, q: "The quantity of flushing water required for pour flush water seal latrine is :", options: ["0.5-1.5 liters", "1.5 to 2 liters", "2-3 liters", "3-4 liters"], a: 3 },
+{ id: 459, q: "A water test to find both pathogenic and non pathogenic bacteria, which present in intestines of all living warm bonded animals is :", options: ["bacillus coli", "cacillus coli", "total count", "most probable test"], a: 2 },
+{ id: 460, q: "For a long pipe, the head loss :", options: ["at the entrance is ignored", "at the outlet is ignored", "at the entrance and outlet both are ignored", "due to friction is ignored"], a: 2 },
+{ id: 461, q: "The two basic factors for determination of storage tank capacity in rural water supply system are:", options: ["available supply and consumption patterns", "consumption pattern and the level differences between the source and the village", "distanced from the source and population", "peak hour demands and population"], a: 3 },
+{ id: 462, q: "pathogens in water may cause :", options: ["cholera", "typhoid", "dysentery", "all of the above"], a: 3 },
+{ id: 463, q: "An artesian aquifer is the one where :", options: ["water surface under the ground is at atmospheric pressure", "water is under pressure between two impervious strata", "water table serves as upper surface of zone of saturation", "none of the above"], a: 1 },
+{ id: 464, q: "Commonly used material for water mains is", options: ["RCC", "steel", "cast iron", "aluminum"], a: 2 },
+{ id: 465, q: "Septic tank is designed on the basis of sludge storage of", options: ["30 litre/person", "60 litre/person", "90 litre/person", "100 litre/person"], a: 2 },
+{ id: 466, q: "The sewerage system originate from :", options: ["lateral sewers", "main sewers", "branch sewers", "house sewers"], a: 3 },
+{ id: 467, q: "Per capita water demand is measure as :", options: ["l/1000 person/year", "l/person/day", "l/person/month", "person/month/l"], a: 1 },
+{ id: 468, q: "A horizontal well driven into a water bearing conduit to collect the percolating water is called:", options: ["Artisan well", "Spring well", "Infiltration gallery", "Intake gallery"], a: 2 },
+{ id: 469, q: "Hard water contains:", options: ["Calcium", "Magnesium bicarbonate", "Magnesium sulphate", "Al of the above"], a: 3 },
+{ id: 470, q: "The minimum width of a septic tank is taken as:", options: ["70cm", "75cm", "80cm", "90cm"], a: 1 },
+{ id: 471, q: "The small sewers are cleaned by:", options: ["Flushing", "Cane rodding", "Wooden pills", "None of there"], a: 0 },
+{ id: 472, q: "The bacteria which required free oxygen for their survival, are called :", options: ["Anaerobic bacteria", "Facultative bacteria", "Aerobic bacteria", "All of the above"], a: 2 },
+{ id: 473, q: "A thick floating layer on a surface of a septic tank is called:", options: ["Sludge", "Scum", "Grease", "Skim"], a: 1 },
+{ id: 474, q: "Disinfection is the process of :", options: ["Killing all the bacteria", "Killing only pathogenic bacteria", "Removal causative organism for disease", "Complete distraction of life"], a: 0 },
+{ id: 475, q: "It is estimated that the quantity ratio of water supply is Kathmandu by exploring 'ground water' to that by utilizing 'Surface runoff water (GW:SW) is:", options: ["45:55", "55:45", "50:50", "40:60"], a: 2 },
+{ id: 476, q: "The capacity of flushing cistern for water closets is:", options: ["1-2 liters", "10-15 liters", "5 liters", "20-25 liters"], a: 1 },
+{ id: 477, q: "The maximum pressure to which cast iron pipes may be subjected to is:", options: ["3kg/cm$^2$", "5kg/cm$^2$", "7kg/cm$^2$", "10kg/cm$^2$"], a: 3 },
+{ id: 478, q: "The total water requirement for the municipality per day in a water supply scheme divided by the population gives.", options: ["daily demand", "per capita demand", "storage capacity", "discharge required"], a: 1 },
+{ id: 479, q: "Presence of nitrogen in a waste water sample is due to the decomposition of,", options: ["carbohydrates", "proteins", "fats", "vitamins"], a: 1 },
+{ id: 480, q: "The SODIS method of water purification is a process of:", options: ["chlorination", "solar disinfection", "system of disinfected integral supply", "supply of disinfected and improved water system"], a: 1 },
+{ id: 481, q: "Pathogenic bacteria can be removed by water purification process called", options: ["aeration with chemicals", "disinfection", "sedimentation with coagulants", "filtration"], a: 1 },
+{ id: 482, q: "The effluent form septic tank is disposed in a", options: ["Cesspool", "Gutter", "Trench", "Pit"], a: 3 },
+{ id: 483, q: "A desirable pH value of water is", options: ["7", "6 to 8", "5-9", "7 to 8.5"], a: 1 },
+{ id: 484, q: "The slope of sewer shall be", options: ["Given the direction of natural slope", "Given in the opposite direction of natural slope of ground", "Zero", "Steeper than 1 in 20"], a: 0 },
+{ id: 485, q: "The sewerage system originates from:", options: ["Main sewers", "Lateral sewers", "House sewers", "Branch sewers"], a: 2 },
+{ id: 486, q: "The required minimum residual head at the public tap stand is", options: ["10m", "15m", "7m", "12m"], a: 2 },
+{ id: 487, q: "Source of water supply relatively better in terms of quality is", options: ["Stream", "River", "Rain water", "spring"], a: 3 },
+{ id: 488, q: "Per capita demand of water is calculated in litres", options: ["Per person per day", "Per person per month", "Per person per year", "None of the above"], a: 0 },
+{ id: 489, q: "The per capita demand of water taken while designing a Rural Water Supply Scheme in case of Nepal is", options: ["25 lpcd", "45 lpcd", "65 lpcd", "125 lpcd"], a: 1 },
+{ id: 490, q: "Rapid gravity filters adopted in water treatment is to remove", options: ["bacteria & colloidal soils", "dissolve organic substance", "dissolves solids & dissolved gas", "floating solid & dissolve inorganic solids"], a: 0 },
+{ id: 491, q: "In an unsewered area of rural Nepal, Sanitation System generally adopted is", options: ["Septic tank", "Pit Latrine", "Open area latrine", "None of the above"], a: 0 },
+{ id: 492, q: "The content of total solids in drinking water shall not be to greater than", options: ["100 mg/l", "500 mg/l", "1000 mg/l", "2000 mg/l"], a: 2 },
+{ id: 493, q: "A septic tank is water tight tank where the following operations (S) take place", options: ["Sedimentation", "Sedimentation and digestion (anaerobic)", "Digestion (aerobic)", "none of above"], a: 1 },
+{ id: 494, q: "By boiling water, hardness can be removed if it is due to", options: ["Calcium sulphate", "Magnesium sulphate", "Calcium bicarbonate", "None of the above"], a: 2 },
+{ id: 495, q: "Septic tank effluent is", options: ["Quite clear and sparkling", "Always odourless", "Having fine organic soils with high BoD", "Black tarry liquor with earthen odour"], a: 0 },
+{ id: 496, q: "The main function of a manhole in a sewer line is", options: ["Inspection of sewer", "Cleaning of sewer", "Joining different types of sewer", "Joining different sewer with different sizes"], a: 1 },
+{ id: 497, q: "If the head of water is more than 100m, then the types of pipe used is", options: ["PVC", "HDPE", "Plastic", "GI"], a: 3 },
+{ id: 498, q: "A water which does not contain harmful impurities and does contain other salts and impurities either good for health or unharmful to health is called", options: ["Sterilized water", "Wholesale water", "Pure water", "All of the above"], a: 1 },
+{ id: 499, q: "Maximum velocity all sewer at Nepal is limited to", options: ["Less than 1 m/sec", "1-1.20 m/sec", "1.5-.2.0 m/sec", "3.0-3.5 m/sec"], a: 2 },
+{ id: 500, q: "A good source of water requiring practically the least treatment is", options: ["A perennial river", "An impounded reservoir", "A deep well", "An elevated lake"], a: 3 },
+{ id: 501, q: "When the pipes are connected in series, the total rate of flow is", options: ["Is equal to sum of rate of flow in each pipe", "Is equal to the reciprocal of sum of rate of flow in each pipe", "Is same as flowing through each pipe", "Close somewhere"], a: 2 },
+{ id: 502, q: "A sanitary sewer is expected to run", options: ["Full", "Half full", "Two third full", "90% full"], a: 2 },
+{ id: 503, q: "A septic tank is an air tight where the following operation(s) take place", options: ["Sedimentation", "Sedimentation + Anaerobic digestion", "Aerobic digestion", "Decomposition of organic and inorganic matter by bacteria"], a: 1 },
+{ id: 504, q: "Portable water is suitable for mixing and curing with PH value", options: ["Not less than 6", "Not less than 6.5", "Not less than 7", "Not less than 7.5"], a: 0 },
+{ id: 505, q: "Mostly the pipe used in Nepal for rural water supply scheme is", options: ["HDPE", "PVC", "GI", "CI"], a: 0 },
+{ id: 506, q: "In septic tank, decomposition of organic bacteria is done by", options: ["anaerobic bacteria", "aerobic bacteria", "both A and B", "none of the above"], a: 0 },
+{ id: 507, q: "To reduce the possibilities of cracking generally the minimum grade of concrete used in RCC water tank is", options: ["M20", "M15", "M10", "M7.5"], a: 0 },
+{ id: 508, q: "In supply mains, water hammer pressure is reduced by providing", options: ["Sluice valve", "Air valve", "Pressure release valve", "None of the above"], a: 2 },
+{ id: 509, q: "The process of killing pathogenic bacteria's from water is called", options: ["Sedimentation", "Filtration", "Coagulation", "Disinfection"], a: 3 },
+{ id: 510, q: "For design of sewers, percentage of sewage discharge is assumed as", options: ["65 to 75%", "70 to 75%", "75 to 80%", "100%"], a: 2 },
+{ id: 511, q: "A manhole is generally not provided at each", options: ["Bend", "Junction", "Change of sewer diameter", "None of the above"], a: 1 },
+{ id: 512, q: "The inspection pit or chamber is a manhole provided in a base drainage system", options: ["At every change of direction", "At every change of gradient", "At every 30 meter intervals", "All of the above"], a: 3 },
+{ id: 513, q: "The bacteria which can serve with or without oxygen is known as", options: ["Aerobic bacteria", "Anaerobic bacteria", "Facultative bacteria", "None of the above"], a: 2 },
+{ id: 514, q: "The water supply service pile shall pass into or beneath the building at a depth of not less than", options: ["45 cm", "60 cm", "75 cm", "90 cm"], a: 2 },
+{ id: 515, q: "The minimum water supply recommended offices excluding fire-fighting need is litre per head per day.", options: ["100", "45", "50", "30"], a: 1 },
+{ id: 516, q: "The most common source of water in Hills and Terai of Nepal are ........ respectively", options: ["Ground and surface", "Surface and ground", "Ground and ground", "Surface and surface"], a: 1 },
+{ id: 517, q: "Major objectives/s of lighting is/are", options: ["To combine artificial and natural light", "To save energy/electricity", "To maintain safety measure", "All of the above"], a: 3 },
+{ id: 518, q: "Building services mean", options: ["Water supply", "Sanitation", "Electricity", "All of the above"], a: 3 },
+{ id: 519, q: "The minimum distance between septic tank and well should be", options: ["10m", "30m", "100m", "500m"], a: 1 },
+{ id: 520, q: "Which of the following is/are safety tools?", options: ["Gumboot", "Earthing set", "Helmet", "All of the above"], a: 3 },
+{ id: 521, q: "Septic tanks are best suited for", options: ["Scattered settlement", "Congested settlement", "Commercial settlement", "Industrial settlement"], a: 0 },
+{ id: 522, q: "When the reduced level of water source is higher than the reduced level of the consumer's place, water is generally supplied", options: ["By pumping system", "By gravitational system", "Both A and B", "None of the above"], a: 1 },
+{ id: 523, q: "A sanitary sewer is expected to run", options: ["Full", "Half full", "2/3 full", "90% full"], a: 2 },
+{ id: 524, q: "The self-cleaning velocity normally adopted for sewer is", options: ["Less than 1 m/s", "1 m/s to 1.2 m/s", "1.5 m/s to 1.2 m/s", "More than 2 m/s"], a: 0 },
+{ id: 525, q: "PVC pipes can with stand pressure upto", options: ["20 in head of water", "50 m head of water", "100 in head of water", "150 m of head of water"], a: 2 },
+{ id: 526, q: "What is the most common used coagulant ?", options: ["Alum", "Ferric sulphate", "Limestone", "Coal"], a: 0 },
+{ id: 527, q: "The water bearing strata i.e. layer of sand, gravel etc. is called", options: ["An acquifer", "An ..........", "An aquifuge", "Zone of saturation"], a: 0 },
+{ id: 528, q: "Bowl type of urinals are ideals for", options: ["People of the same height", "Commercial areas", "Public places", "People of different heights"], a: 2 },
+{ id: 529, q: "Pipe having minimum diameter in plumbing system is", options: ["Waste pipe", "Soil pipe", "Ventilation pipe", "Anti siphonage pipe"], a: 3 },
+{ id: 530, q: "The alkalinity in water is caused by", options: ["Sodium carbonate", "Potassium carbonate", "Calcium hydroxide", "All of the above"], a: 3 },
+{ id: 531, q: "The growth of algae is useful in", options: ["Sedimentation tank", "Slow sand filter", "Oxidation pond", "Sludge digestion tank"], a: 2 },
+{ id: 532, q: "Generally, the primary source of all water supply is to be said as", options: ["Precipitation", "River", "Canal", "Impounding reservoirs"], a: 0 },
+{ id: 533, q: "Quantity of sewage form a settlement depends on", options: ["Rate of water supply on that area", "Living standard of the people", "Industrial activities within the area", "All of the above"], a: 3 }
+];
+
+    const totalQuestions = quizData.length;
+
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        attemptedCount++;
+        
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // Highlight correct answer
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight wrong answer if selected
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    // Scroll to Top
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
