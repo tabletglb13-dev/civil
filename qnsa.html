@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Service Act 2049 - MCQ Practice</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Mukta:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #d32f2f; /* Nepal Red */
+            --primary-dark: #b71c1c;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --success-bg: #d1fae5;
+            --success-border: #34d399;
+            --success-text: #065f46;
+            --error-bg: #fee2e2;
+            --error-border: #f87171;
+            --error-text: #991b1b;
+            --score-bg: #ecfdf5;
+            --score-border: #6ee7b7;
+            --score-text: #047857;
+        }
+
+        body { 
+            font-family: 'Poppins', 'Mukta', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-color); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+            font-weight: 700;
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .info-pill { 
+            background: #e0e7ff; 
+            color: #1e40af; 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid #c7d2fe;
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: #111827;
+        }
+
+        /* Options Styling */
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: #f9fafb; 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text);
+            opacity: 0.8;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<div class="sticky-header">
+    <h1>निजामती सेवा ऐन, २०४९ (MCQ Practice)</h1>
+    <div class="header-controls">
+        <div class="stats-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions injected here -->
+    </div>
+</div>
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    const quizData = [
+        // परिच्छेद १: प्रारम्भिक
+        { id: 1, q: "निजामती सेवा ऐन, २०४९ को लालमोहर र प्रकाशन मिति कहिले हो?", options: ["२०४९।११।१५", "२०५०।०२।०४", "२०५०।०४।०२", "२०४९।०२।०४"], a: 1 },
+        { id: 2, q: "‘निजामती कर्मचारी’ भन्नाले के बुझिन्छ?", options: ["संवैधानिक अंगमा कार्यरत व्यक्ति", "निजामती सेवाको पदमा बहाल रहेको व्यक्ति", "शिक्षक सेवामा कार्यरत व्यक्ति", "सार्वजनिक संस्थानको कर्मचारी"], a: 1 },
+        { id: 3, q: "‘विभागीय प्रमुख’ भन्नाले कसलाई जनाउँछ?", options: ["मन्त्रालयको सचिव", "कार्यालय प्रमुख", "तोकिएको अधिकारी", "विभागीय मन्त्री"], a: 2 },
+        { id: 4, q: "‘परिवार’ को परिभाषा भित्र विवाहिता महिला कर्मचारीको हकमा तलका मध्ये को पर्दछ?", options: ["बाजे, बज्यै", "सासू, ससुरा", "दाजु, भाइ", "दिदी, बहिनी"], a: 1 },
+        
+        // परिच्छेद २: संगठन
+        { id: 5, q: "कर्मचारी प्रशासन सम्बन्धी केन्द्रीय निकाय कुन हो?", options: ["प्रधानमन्त्री तथा मन्त्रिपरिषद्को कार्यालय", "लोक सेवा आयोग", "सामान्य प्रशासन मन्त्रालय", "गृह मन्त्रालय"], a: 2 },
+        { id: 6, q: "निजामती सेवा ऐन बमोजिम गठन भएका निजामती सेवाहरु कति वटा छन्?", options: ["८ वटा", "९ वटा", "१० वटा", "११ वटा"], a: 2 },
+        { id: 7, q: "सेवा विशिष्टीकरण गर्ने प्रयोजनको लागि राजपत्राङ्कित विशिष्ट श्रेणी (सचिव) लाई कति वटा क्लष्टर (समूह) मा बाँडिएको छ?", options: ["४ वटा", "५ वटा", "६ वटा", "७ वटा"], a: 2 },
+        { id: 8, q: "निजामती सेवामा तलका मध्ये कुन श्रेणी रहँदैन?", options: ["विशिष्ट", "पाँचौं", "चतुर्थ", "तृतीय"], a: 1 },
+
+        // परिच्छेद ३: पदपूर्ति
+        { id: 9, q: "राजपत्राङ्कित तृतीय श्रेणी (शाखा अधिकृत) को पदपूर्तिमा खुल्ला प्रतियोगिताद्वारा कति प्रतिशत पदपूर्ति गरिन्छ?", options: ["१००%", "७०%", "८०%", "४०%"], a: 1 },
+        { id: 10, q: "राजपत्र अनङ्कित प्रथम श्रेणी (ना.सु.) को पदपूर्तिमा कार्यक्षमताको मूल्याङ्कनद्वारा हुने बढुवा कति प्रतिशत हुन्छ?", options: ["२०%", "३०%", "४०%", "५०%"], a: 2 },
+        { id: 11, q: "निजामती सेवालाई समावेशी बनाउन खुल्ला प्रतियोगिताद्वारा पूर्ति हुने पदमध्ये कति प्रतिशत पद छुट्याइन्छ?", options: ["४० प्रतिशत", "४५ प्रतिशत", "४९ प्रतिशत", "५० प्रतिशत"], a: 1 },
+        { id: 12, q: "आरक्षण (समावेशी) तर्फ छुट्याइएको ४५ प्रतिशतलाई १०० मान्दा महिलाका लागि कति प्रतिशत छुट्याइएको छ?", options: ["२७%", "२२%", "३३%", "९%"], a: 2 },
+        { id: 13, q: "पिछडिएको क्षेत्रका लागि कति प्रतिशत आरक्षणको व्यवस्था छ?", options: ["५%", "४%", "३%", "९%"], a: 1 },
+        { id: 14, q: "‘पिछडिएको क्षेत्र’ भन्नाले कति वटा जिल्लालाई बुझाउँछ?", options: ["७ जिल्ला", "८ जिल्ला", "९ जिल्ला", "१० जिल्ला"], a: 2 },
+        { id: 15, q: "तलका मध्ये कुन जिल्ला ‘पिछडिएको क्षेत्र’ अन्तर्गत पर्दैन?", options: ["अछाम", "मुगु", "जुम्ला", "दार्चुला"], a: 3 },
+        { id: 16, q: "राजपत्राङ्कित पदमा उम्मेदवार हुन कति वर्ष उमेर पूरा भएको हुनुपर्छ?", options: ["१८ वर्ष", "२० वर्ष", "२१ वर्ष", "२५ वर्ष"], a: 2 },
+        { id: 17, q: "पुरुष उम्मेदवारको हकमा निजामती सेवामा प्रवेश गर्ने अधिकतम उमेर हद कति हो?", options: ["३० वर्ष", "३५ वर्ष", "४० वर्ष", "४५ वर्ष"], a: 1 },
+        { id: 18, q: "महिला तथा अपाङ्ग उम्मेदवारको हकमा उमेर हद कति तोकिएको छ?", options: ["३५ वर्ष", "३८ वर्ष", "४० वर्ष", "४५ वर्ष"], a: 2 },
+        { id: 19, q: "बहालवाला स्थायी निजामती कर्मचारीलाई उमेरको हद कति लाग्छ?", options: ["३५ वर्ष", "४० वर्ष", "४५ वर्ष", "उमेरको हद लाग्दैन"], a: 3 },
+        { id: 20, q: "महिला कर्मचारीको हकमा परीक्षणकाल (Probation Period) कति अवधिको हुन्छ?", options: ["६ महिना", "१ वर्ष", "२ वर्ष", "३ महिना"], a: 0 },
+        { id: 21, q: "पुरुष कर्मचारीको हकमा परीक्षणकाल कति अवधिको हुन्छ?", options: ["६ महिना", "१ वर्ष", "१८ महिना", "२ वर्ष"], a: 1 },
+        
+        // परिच्छेद ४: सरुवा र बढुवा
+        { id: 22, q: "निजामती कर्मचारीको सरुवा गर्ने सामान्य अधिकार कसलाई हुन्छ?", options: ["सम्बन्धित मन्त्रालय", "अख्तियारवाला", "लोक सेवा आयोग", "प्रधानमन्त्री कार्यालय"], a: 1 },
+        { id: 23, q: "राजपत्राङ्कित विशिष्ट श्रेणीको कर्मचारीको सरुवा कसले गर्दछ?", options: ["सामान्य प्रशासन मन्त्री", "मुख्य सचिव", "नेपाल सरकार", "लोक सेवा आयोग"], a: 2 },
+        { id: 24, q: "भौगोलिक क्षेत्रको आधारमा ‘क’ वा ‘ख’ वर्गको कार्यालयमा कम्तीमा डेढ वर्ष काम गरेको कर्मचारीलाई कुन वर्गमा सरुवा गरिनेछ?", options: ["क वा ख", "ग वा घ", "घ मात्र", "क मात्र"], a: 1 },
+        { id: 25, q: "बढुवाको लागि कार्यक्षमताको मूल्याङ्कन गर्दा कुल कति अंकलाई आधार मानिन्छ?", options: ["५० अंक", "७५ अंक", "१०० अंक", "२०० अंक"], a: 2 },
+        { id: 26, q: "बढुवामा कार्यक्षमताको मूल्याङ्कन गर्दा ज्येष्ठता वापत कति अंक छुट्याइएको छ?", options: ["४० अंक", "३० अंक", "२० अंक", "१६ अंक"], a: 1 },
+        { id: 27, q: "बढुवामा भौगोलिक क्षेत्रमा काम गरे वापत कति अंक पाइन्छ?", options: ["१० अंक", "१२ अंक", "१४ अंक", "१६ अंक"], a: 3 },
+        { id: 28, q: "शैक्षिक योग्यता वापत बढुवामा बढीमा कति अंक प्रदान गरिन्छ?", options: ["९ अंक", "१२ अंक", "१५ अंक", "२० अंक"], a: 1 },
+        { id: 29, q: "बढुवा समितिको सचिवालय कहाँ रहने व्यवस्था छ?", options: ["सामान्य प्रशासन मन्त्रालय", "सम्बन्धित मन्त्रालय", "लोक सेवा आयोग", "प्रधानमन्त्री कार्यालय"], a: 2 },
+        { id: 30, q: "लोक सेवा आयोगको अध्यक्ष वा निजले तोकेको सदस्य अध्यक्ष रहने बढुवा समितिले कुन पदको लागि सिफारिस गर्छ?", options: ["राजपत्र अनङ्कित", "राजपत्राङ्कित", "श्रेणी विहिन", "माथिका सबै"], a: 1 },
+
+        // परिच्छेद ५: तलब भत्ता
+        { id: 31, q: "निजामती कर्मचारीले कहिले देखि तलब भत्ता पाउनेछन्?", options: ["नियुक्ति पत्र पाएको दिनदेखि", "पदमा बहाली गरेको दिनदेखि", "हाजिर भएको १ महिना पछि", "तालिम सकेपछि"], a: 1 },
+        { id: 32, q: "तलब भत्ता पुनरावलोकन समिति कति वर्षमा पुनरावलोकन गर्दछ?", options: ["प्रत्येक वर्ष", "प्रत्येक २ वर्षमा", "प्रत्येक ३ वर्षमा", "प्रत्येक ५ वर्षमा"], a: 2 },
+        { id: 33, q: "तलब भत्ता पुनरावलोकन समितिको अध्यक्ष को रहने व्यवस्था छ?", options: ["अर्थ सचिव", "सामान्य प्रशासन मन्त्री", "मुख्य सचिव", "लोक सेवा आयोगको अध्यक्ष"], a: 2 },
+        { id: 34, q: "निजामती कर्मचारीले प्रत्येक वर्ष चाडपर्व खर्च वापत कति रकम पाउँछन्?", options: ["आधा महिनाको तलब", "एक महिनाको तलब", "दुई महिनाको तलब", "पाँच हजार रुपैयाँ"], a: 1 },
+
+        // परिच्छेद ६: अवकाश र निवृत्तभरण
+        { id: 35, q: "निजामती कर्मचारीको अनिवार्य अवकाश हुने उमेर हद कति हो?", options: ["५५ वर्ष", "५८ वर्ष", "६० वर्ष", "६३ वर्ष"], a: 1 },
+        { id: 36, q: "निजामती सेवाको पदमा नियुक्ति पाउन कति वर्ष सेवा अवधि पुगेको हुनुपर्छ?", options: ["१५ वर्ष", "१८ वर्ष", "२० वर्ष", "२५ वर्ष"], a: 2 },
+        { id: 37, q: "५ वर्ष देखि १० वर्ष सेवा गरेको कर्मचारीले अवकाश पाएमा कति उपदान पाउँछन्?", options: ["प्रत्येक वर्षको निमित्त आधा महिनाको तलब", "प्रत्येक वर्षको निमित्त १ महिनाको तलब", "प्रत्येक वर्षको निमित्त डेढ महिनाको तलब", "उपदान पाउँदैनन्"], a: 0 },
+        { id: 38, q: "निवृत्तभरण (Pension) पाउने गरी सेवा गरेका कर्मचारीको मृत्यु भएमा निजको परिवारले कति वर्षसम्म पूरा पेन्सन पाउँछन्?", options: ["५ वर्ष", "७ वर्ष", "१० वर्ष", "आजीवन"], a: 1 },
+        { id: 39, q: "मासिक निवृत्तभरण निकाल्ने सुत्र कुन हो?", options: ["(जम्मा सेवा वर्ष × आखिरी तलब) ÷ ५०", "(जम्मा सेवा वर्ष × आखिरी तलब) ÷ ६०", "(जम्मा सेवा वर्ष × आखिरी तलब) ÷ ४०", "(जम्मा सेवा वर्ष × आखिरी तलब) ÷ १००"], a: 0 },
+        { id: 40, q: "स्वेच्छिक अवकाश लिन चाहने कर्मचारीको उमेर र सेवा अवधि कति हुनुपर्छ?", options: ["४५ वर्ष उमेर र २० वर्ष सेवा", "५० वर्ष उमेर र २० वर्ष सेवा", "४० वर्ष उमेर र १५ वर्ष सेवा", "५५ वर्ष उमेर र २५ वर्ष सेवा"], a: 1 },
+        { id: 41, q: "निजामती कर्मचारीको सावधिक जीवन बिमा वापत बिमाङ्क रकम कति हुन्छ?", options: ["५० हजार", "१ लाख", "२ लाख", "५ लाख"], a: 2 },
+        
+        // परिच्छेद ७: आचरण
+        { id: 42, q: "निजामती कर्मचारीले पालना गर्नु पर्ने आचरण कुन होइन?", options: ["समय पालन र नियमितता", "अनुशासन र आज्ञापालन", "राजनीतिमा भाग लिनु", "सरकारी कामकाज सम्बन्धी समाचार प्रकाशन गर्न प्रतिबन्ध"], a: 2 },
+        { id: 43, q: "निजामती कर्मचारीले सम्पत्ति विवरण कहिले पेश गर्नु पर्दछ?", options: ["नियुक्ति भएको ३० दिनभित्र र प्रत्येक आर्थिक वर्षमा", "नियुक्ति भएको ६० दिनभित्र र प्रत्येक आर्थिक वर्षमा", "प्रत्येक महिना", "सेवा निवृत्त हुँदा मात्र"], a: 1 },
+        { id: 44, q: "कुन श्रेणीको कर्मचारीले ट्रेड युनियन गठन गर्न पाउँदैनन्?", options: ["राजपत्र अनङ्कित", "श्रेणी विहिन", "कार्यालय प्रमुख भई काम गर्ने राजपत्राङ्कित", "सहायक स्तरका कर्मचारी"], a: 2 },
+        { id: 45, q: "स्थायी आवासीय अनुमति (DV/PR) लिएको कर्मचारीलाई के गरिन्छ?", options: ["सरुवा गरिन्छ", "नसिहत दिइन्छ", "सेवाबाट बर्खास्त गरिन्छ", "बढुवा रोक्का गरिन्छ"], a: 2 },
+
+        // परिच्छेद ८: सेवाको सुरक्षा
+        { id: 46, q: "निजामती कर्मचारीलाई सेवाबाट हटाउनु वा बर्खास्त गर्नु अघि के दिनुपर्छ?", options: ["मौखिक जानकारी", "सफाईको सबुत दिने मनासिव माफिकको मौका", "राजीनामा दिने मौका", "माथिका सबै"], a: 1 },
+        { id: 47, q: "कुन अवस्थामा कर्मचारीलाई सफाईको मौका नदिई हटाउन सकिन्छ?", options: ["भ्रष्टाचार गरेमा", "नैतिक पतन देखिने फौजदारी अभियोगमा अदालतबाट कसुरदार ठहरिएमा", "काममा अनुपस्थित भएमा", "आचरण उल्लंघन गरेमा"], a: 1 },
+
+        // परिच्छेद ९: सजाय र पुनरावेदन
+        { id: 48, q: "तलका मध्ये कुन ‘सामान्य सजाय’ हो?", options: ["सेवाबाट हटाउने", "सेवाबाट बर्खास्त गर्ने", "नसिहत दिने", "भविष्यमा अयोग्य ठहरिने गरी हटाउने"], a: 2 },
+        { id: 49, q: "कुनै कर्मचारीले भ्रष्टाचार गरेमा निजलाई कस्तो सजाय हुन्छ?", options: ["नसिहत दिने", "२ वर्ष बढुवा रोक्का", "भविष्यमा सरकारी सेवाको निमित्त अयोग्य नठहरिने गरी हटाउने", "भविष्यमा सरकारी सेवाको निमित्त अयोग्य ठहरिने गरी बर्खास्त गर्ने"], a: 3 },
+        { id: 50, q: "बिदा स्वीकृत नगराई लगातार कति दिन अनुपस्थित भएमा सेवाबाट हटाउन सकिन्छ?", options: ["३० दिन", "६० दिन", "९० दिन", "१५ दिन"], a: 2 },
+        { id: 51, q: "विभागीय सजायको आदेश दिने अधिकार राजपत्राङ्कित प्रथम श्रेणीको कर्मचारीको हकमा कसलाई हुन्छ?", options: ["विभागीय प्रमुख", "नेपाल सरकार", "लोक सेवा आयोग", "मुख्य सचिव"], a: 1 },
+        { id: 52, q: "विभागीय सजायको आदेश उपर चित्त नबुझे कहाँ पुनरावेदन गर्न सकिन्छ?", options: ["सर्वोच्च अदालत", "लोक सेवा आयोग", "प्रशासकीय अदालत", "सम्बन्धित मन्त्रालय"], a: 2 },
+
+        // परिच्छेद १०: विविध
+        { id: 53, q: "निजामती कर्मचारीले पाउने विदाहरु मध्ये कुन पर्दैन?", options: ["भैपरी आउने विदा", "घर विदा", "जात्रा विदा", "प्रसूति विदा"], a: 2 },
+        { id: 54, q: "प्रसूति स्याहार विदा (पुरुष कर्मचारीलाई) को व्यवस्था ऐनमा छ कि छैन?", options: ["छैन", "छ", "नियमावलीमा मात्र छ", "ऐनमा स्पष्ट छैन"], a: 1 },
+        { id: 55, q: "असाधारण विदा लिएको अवधिको सेवा अवधि गणना हुन्छ कि हुँदैन?", options: ["हुन्छ", "हुँदैन", "आधा हुन्छ", "विशिष्ट श्रेणीको मात्र हुन्छ"], a: 1 },
+        { id: 56, q: "कुनै कर्मचारीको पति वा पत्नी विदेश स्थित राजदूतावासमा खटिएमा निजले कस्तो विदा पाउँछन्?", options: ["अध्ययन विदा", "बेतलबी विदा", "काज विदा", "विशेष विदा"], a: 1 },
+        { id: 57, q: "निजामती सेवामा पुनः कायम भएमा (अदालतको आदेशले) कर्मचारीले के पाउँछन्?", options: ["सेवा अवधि मात्र", "तलव, भत्ता, चाडपर्व खर्च र तलव वृद्धि", "पेन्सन मात्र", "केही पनि पाउँदैनन्"], a: 1 },
+        { id: 58, q: "बरबुझारथ नगर्ने कर्मचारीलाई के हुन्छ?", options: ["सरुवा रोकिन्छ", "तलब रोकिन्छ", "विभागीय कारवाही हुन्छ", "केही हुँदैन"], a: 2 },
+        { id: 59, q: "निजामती कर्मचारीको ‘सावधिक जीवन बीमा’ को प्रिमियम कसले तिर्छ?", options: ["कर्मचारीले मात्र", "सरकारले मात्र", "१०% कर्मचारी र ९०% सरकार", "रु २०० कर्मचारी र रु २०० सरकार (बराबर)"], a: 3 },
+        { id: 60, q: "निजामती सेवा ऐन, २०४९ ले कुन ऐनलाई खारेज गरेको छ?", options: ["निजामती सेवा ऐन, २०१३", "निजामती सेवा ऐन, २०२१", "प्रशासन सुधार ऐन, २०३२", "सुशासन ऐन, २०६४"], a: 0 }
+    ];
+
+    const totalQuestions = quizData.length;
+    document.getElementById('total-q').innerText = totalQuestions;
+
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        
+        // Disable inputs
+        inputs.forEach(input => input.disabled = true);
+        
+        attemptedCount++;
+        
+        // Logic for highlighting
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        correctLabel.classList.add('correct-opt');
+
+        if (selectedVal === item.a) {
+            correctCount++;
+        } else {
+            const selectedLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            selectedLabel.classList.add('wrong-opt');
+        }
+        
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+    }
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${index + 1}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Scroll to top logic
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Init
+    loadQuiz();
+
+</script>
+
+</body>
+</html>

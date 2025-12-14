@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>निजामती सेवा ऐन, २०४९ (Civil Service Act, 2049)</title>
+    <!-- Google Fonts for professional Nepali Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #d32f2f; /* Nepal Red */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 280px;
+            --header-height: 60px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #fff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background-color: #f0f0f0;
+            border-left-color: var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        /* Typography & Sections */
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            font-family: 'Tiro Devanagari Sanskrit', serif;
+        }
+
+        .document-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .document-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .amendments-box {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        section {
+            background: #fff;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px;
+        }
+
+        .chapter-title {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .clause {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .sub-clause {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Formula Display */
+        .formula-box {
+            background: #fff3e0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border: 1px dashed #ffa726;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                top: 15px;
+                right: 15px;
+                z-index: 1100;
+                background: var(--accent-color);
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰ विषयसूची</button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>निजामती सेवा ऐन, २०४९</h2>
+            <p>स्टडी गाइड</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#preamble">प्रस्तावना</a></li>
+            <li><a href="#ch1">परिच्छेद-१ (प्रारम्भिक)</a></li>
+            <li><a href="#ch2">परिच्छेद-२ (सेवाहरूको गठन)</a></li>
+            <li><a href="#ch3">परिच्छेद-३ (पदपूर्ति)</a></li>
+            <li><a href="#ch4">परिच्छेद-४ (सरुवा र बढुवा)</a></li>
+            <li><a href="#ch5">परिच्छेद-५ (तलब, भत्ता र सुविधा)</a></li>
+            <li><a href="#ch6">परिच्छेद-६ (अवकाश र निवृत्तभरण)</a></li>
+            <li><a href="#ch7">परिच्छेद-७ (आचरण)</a></li>
+            <li><a href="#ch8">परिच्छेद-८ (सेवाको सुरक्षा)</a></li>
+            <li><a href="#ch9">परिच्छेद-९ (सजाय र पुनरावेदन)</a></li>
+            <li><a href="#ch10">परिच्छेद-१० (विविध)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <header class="document-header" id="preamble">
+            <h1>निजामती सेवा ऐन, २०४९</h1>
+            <p>लालमोहर र प्रकाशन मिति: २०५०।२।४</p>
+            
+            <div class="amendments-box">
+                <strong>संशोधनहरू:</strong>
+                <ol>
+                    <li>नेपाल स्वास्थ्य सेवा ऐन, २०५३ (२०५३।११।१५)</li>
+                    <li>निजामती सेवा (पहिलो संशोधन) ऐन, २०५५ (२०५५।३।२९)</li>
+                    <li>केही नेपाल ऐन संशोधन गर्ने ऐन, २०५७ (२०५७।४।२६)</li>
+                    <li>संसद सचिवालय सम्बन्धी ऐन, २०५८ (२०५८।८।२८)</li>
+                    <li>निजामती सेवा (दोस्रो संशोधन) ऐन, २०६४ (२०६४।४।२३)</li>
+                    <li>गणतन्त्र सुदृढीकरण तथा केही नेपाल कानून संशोधन गर्ने ऐन, २०६६ (२०६६।१०।७)</li>
+                    <li>निजामती सेवा (तेस्रो संशोधन) ऐन, २०७० (२०७०।१२।१२)</li>
+                    <li>निजामती सेवा (चौथो संशोधन) ऐन, २०७२ (२०७२।०३।२९)</li>
+                </ol>
+            </div>
+            
+            <p style="margin-top: 20px; font-style: italic;">
+                निजामती सेवाको गठन, सञ्चालन र सेवाका शर्तहरूको व्यवस्था गर्न बनेको ऐन<br>
+                <strong>प्रस्तावना:</strong> निजामती सेवालाई बढी सक्षम, सुदृढ, सेवामूलक र उत्तरदायी बनाउन निजामती सेवाको गठन, सञ्चालन र सेवाको शर्तसम्बन्धी व्यवस्था गर्न वाञ्छनीय भएकोले,<br>
+                श्री ५ महाराजाधिराज वीरेन्द्र वीर विक्रम शाहदेवको शासनकालको बाइसौं वर्षमा संसदले यो ऐन बनाएको छ ।
+            </p>
+        </header>
+
+        <!-- Chapter 1 -->
+        <section id="ch1">
+            <h2 class="chapter-title">परिच्छेद- १: प्रारम्भिक</h2>
+            
+            <div class="article">
+                <h3 class="article-title">१. संक्षिप्त नाम र प्रारम्भ:</h3>
+                <p>(१) यस ऐनको नाम "निजामती सेवा ऐन, २०४९" रहेको छ।</p>
+                <p>(२) यो ऐन तुरुन्त प्रारम्भ हुनेछ।</p>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">२. परिभाषा:</h3>
+                <p>विषय वा प्रसङ्गले अर्को अर्थ नलागेमा यस ऐनमा,–</p>
+                <div class="sub-clause">
+                    <p>(क) "निजामती सेवा" भन्नाले दफा ३ बमोजिम गठित निजामती सेवा सम्झनुपर्छ।</p>
+                    <p>(ख) "निजामती कर्मचारी" भन्नाले निजामती सेवाको पदमा बहाल रहेको व्यक्ति सम्झनुपर्छ।</p>
+                    <p>(ग) "अख्तियारवाला" भन्नाले दफा ९ बमोजिम नियुक्ति गर्न सक्ने अधिकारी सम्झनुपर्छ।</p>
+                    <p>(ग१) "स्थायी आवासीय अनुमति" भन्नाले विदेशी मुलुकले कुनै शर्त तोकी वा नतोकी सो मुलुकमा स्थायी रुपले बसोबास गर्न पाउने गरी नेपाली नागरिकलाई उपलब्ध गराएको डाइभरसिटि इमिग्रेन्ट भिसा, (डि.भी), परमानेन्ट रेजिडेन्ट भिसा (पि.आर) वा ग्रीन कार्ड सम्झनु पर्छ र सो शब्दले नेपाली नागरिकलाई विदेशमा स्थायी रुपमा बसोबास गर्न दिइएको जुनसुकै नामको स्थायी आवासीय अनुमतिलाई समेत जनाउछ।</p>
+                    <p>(घ) "परिवार" भन्नाले निजामती कर्मचारीसंग बस्ने तथा निज आफैंले पालन पोषण गर्नुपर्ने पति, पत्नी, छोरा, अविवाहिता छोरी, धर्मपुत्र, अविवाहिता धर्मपुत्री, बाबु, आमा वा सौतेनी आमा सम्झनुपर्छ र सो शब्दले पुरुष र अविवाहिता महिला कर्मचारीको हकमा निजको बाजे, बज्यै तथा विवाहिता महिला कर्मचारीको हकमा निजको सासू, ससुरालाई समेत जनाउँछ।</p>
+                    <p>(ङ) "विभागीय प्रमुख" भन्नाले तोकिएको अधिकारी सम्झनुपर्छ।</p>
+                    <p>(च) "कार्यालय प्रमुख" भन्नाले तोकिएको कार्यालयको प्रमुख कर्मचारी सम्झनुपर्छ।</p>
+                    <p>(छ) "स्थायी पद" भन्नाले निवृत्तिभरण पाउने र म्याद नतोकिएको निजामती सेवाको पद सम्झनुपर्छ।</p>
+                    <p>(ज) "विशेषज्ञ पद" भन्नाले विशेष प्रकृतिको काम, कर्तव्य र उत्तरदायित्व भएको र विशेष योग्यता चाहिने पद सम्झनुपर्छ।</p>
+                    <p>(ज१) "निजामती कर्मचारीको ट्रेड युनियन" भन्नाले दफा ५३ को उपदफा (१) अन्तर्गत गठित निजामती कर्मचारीको ट्रेड युनियन सम्झनुपर्छ।</p>
+                    <p>(ज२) "निजामती कर्मचारीको आधिकारिक ट्रेड युनियन" भन्नाले दफा ५३ को उपदफा (३) बमोजिम गठित निजामती कर्मचारीको आधिकारिक ट्रेड युनियन सम्झनुपर्छ।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 2 -->
+        <section id="ch2">
+            <h2 class="chapter-title">परिच्छेद- २: निजामती सेवाहरूको गठन</h2>
+            
+            <div class="article">
+                <h3 class="article-title">३. निजामती सेवाको गठन:</h3>
+                <p>नेपाल सरकारले देहायबमोजिमका निजामती सेवाहरूको गठन गर्नेछ :-</p>
+                <div class="sub-clause">
+                    <p>(क) नेपाल आर्थिक योजना तथा तथ्यांक सेवा</p>
+                    <p>(ख) नेपाल इन्जिनियरिङ सेवा</p>
+                    <p>(ग) नेपाल कृषि सेवा</p>
+                    <p>(घ) नेपाल न्याय सेवा</p>
+                    <p>(घ१) नेपाल परराष्ट्र सेवा</p>
+                    <p>(ङ) नेपाल प्रशासन सेवा</p>
+                    <p>(ङ१) नेपाल लेखापरीक्षण सेवा</p>
+                    <p>(च) नेपाल वन सेवा</p>
+                    <p>(छ) नेपाल विविध सेवा</p>
+                    <p>(ज) नेपाल शिक्षा सेवा</p>
+                </div>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">४. श्रेणी:</h3>
+                <p>निजामती सेवामा देहायबमोजिमका श्रेणीहरू रहनेछन्:-</p>
+                <table>
+                    <tr>
+                        <th>राजपत्राङ्कित (Gazetted)</th>
+                        <th>राजपत्र अनङ्कित (Non-Gazetted)</th>
+                    </tr>
+                    <tr>
+                        <td>विशिष्ट (Special)</td>
+                        <td>प्रथम (First)</td>
+                    </tr>
+                    <tr>
+                        <td>प्रथम (First)</td>
+                        <td>द्वितीय (Second)</td>
+                    </tr>
+                    <tr>
+                        <td>द्वितीय (Second)</td>
+                        <td>तृतीय (Third)</td>
+                    </tr>
+                    <tr>
+                        <td>तृतीय (Third)</td>
+                        <td>चतुर्थ (Fourth)</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>पाँचौं (Fifth)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">६. सेवा समूह तथा उपसमूहहरु:</h3>
+                <p>राजपत्राङ्कित विशिष्ट श्रेणी सम्म नै सेवा विशिष्टीकरण गर्ने प्रयोजनको लागि देहाय बमोजिमका सेवाको समूहीकरण(क्लष्टर) गरिएको छ :-</p>
+                <div class="sub-clause">
+                    <p>(क) नेपाल ईन्जिनियरिङ्ग सेवा,</p>
+                    <p>(ख) नेपाल कृषि तथा वन सेवा,</p>
+                    <p>(ग) नेपाल न्याय सेवा,</p>
+                    <p>(घ) नेपाल परराष्ट्र सेवा,</p>
+                    <p>(ङ) नेपाल प्रशासन सेवा,</p>
+                    <p>(च) नेपाल लेखापरीक्षण सेवा।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 3 -->
+        <section id="ch3">
+            <h2 class="chapter-title">परिच्छेद- ३: निजामती सेवाको पदपूर्ति</h2>
+
+            <div class="article">
+                <h3 class="article-title">७. निजामती सेवाको पदपूर्ति:</h3>
+                <p>निजामती सेवाको पद देहाय बमोजिम पूर्ति गरिनेछ :-</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">पद</th>
+                            <th rowspan="2">खुल्ला प्रतियोगिताद्वारा</th>
+                            <th colspan="3">बढुवाद्वारा</th>
+                        </tr>
+                        <tr>
+                            <th>कार्यक्षमताको मूल्याङ्कनद्वारा</th>
+                            <th>आन्तरिक प्रतियोगिताद्वारा</th>
+                            <th>जेष्ठता र कार्यसम्पादन मूल्याङ्कनद्वारा</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>श्रेणी विहिन/ राजपत्र अनङ्कित पाँचौ</td>
+                            <td>१००%</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>राजपत्र अनङ्कित द्वितीय श्रेणी</td>
+                            <td>७०%</td>
+                            <td>-</td>
+                            <td>२०%</td>
+                            <td>१०%</td>
+                        </tr>
+                        <tr>
+                            <td>राजपत्र अनङ्कित प्रथम श्रेणी</td>
+                            <td>४०%</td>
+                            <td>२०%</td>
+                            <td>-</td>
+                            <td>४०%</td>
+                        </tr>
+                        <tr>
+                            <td>राजपत्राङ्कित तृतीय श्रेणी</td>
+                            <td>७०%</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>३०%</td>
+                        </tr>
+                        <tr>
+                            <td>राजपत्राङ्कित द्वितीय श्रेणी</td>
+                            <td>१०%</td>
+                            <td>३५%</td>
+                            <td>२०%</td>
+                            <td>३५%</td>
+                        </tr>
+                        <tr>
+                            <td>राजपत्राङ्कित प्रथम श्रेणी</td>
+                            <td>१०%</td>
+                            <td>३५%</td>
+                            <td>२०%</td>
+                            <td>३५%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">समावेशी व्यवस्था (आरक्षण):</h3>
+                <p>निजामती सेवालाई समावेशी बनाउन खुल्ला प्रतियोगिताद्वारा पूर्ति हुने पदमध्ये पैंतालीस प्रतिशत पद छुट्याई सो प्रतिशतलाई शतप्रतिशत मानी देहायबमोजिमका उम्मेदवारबीचमा मात्र छुट्टाछुट्टै प्रतिस्पर्धा गराई पदपूर्ति गरिनेछ :-</p>
+                <ul>
+                    <li>(क) महिला – ३३%</li>
+                    <li>(ख) आदिवासी/जनजाति – २७%</li>
+                    <li>(ग) मधेसी – २२%</li>
+                    <li>(घ) दलित – ९%</li>
+                    <li>(ङ) अपांग – ५%</li>
+                    <li>(च) पिछडिएको क्षेत्र – ४%</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.9em; background: #eee; padding: 10px;">
+                    <strong>स्पष्टीकरण:</strong> "पिछडिएको क्षेत्र" भन्नाले अछाम, कालिकोट, जाजरकोट, जुम्ला, डोल्पा, बझाङ, बाजुरा, मुगु र हुम्ला जिल्ला सम्झनुपर्छ।
+                </p>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">१०. उम्मेदवार हुनको लागि अयोग्यता:</h3>
+                <p>देहायका व्यक्तिहरू निजामती सेवाको पदमा उम्मेदवार हुन सक्ने छैनन्:-</p>
+                <div class="sub-clause">
+                    <p>(क) राजपत्र अनङ्कित र श्रेणीविहीन पदमा १८ वर्ष उमेर पूरा नभएका,</p>
+                    <p>(ख) राजपत्राङ्कित पदमा २१ वर्ष उमेर पूरा नभएका,</p>
+                    <p>(ग) पुरुष उम्मेदवारको हकमा पैंतीस वर्ष र महिला उम्मेदवारको हकमा चालीस वर्ष उमेर पूरा भइसकेका,</p>
+                    <p>(घ) भविष्यमा सरकारी सेवाको निमित्त अयोग्य ठहरिने गरी सेवाबाट बर्खास्त गरिएका,</p>
+                    <p>(ङ) गैरनेपाली नागरिक,</p>
+                    <p>(च) नैतिक पतन देखिने फौजदारी अभियोगमा अदालतबाट कसूरदार ठहरिएका।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter 4 -->
+        <section id="ch4">
+            <h2 class="chapter-title">परिच्छेद- ४: सरुवा र बढुवा</h2>
+            
+            <div class="article">
+                <h3 class="article-title">१८. सरुवा गर्ने अधिकार:</h3>
+                <p>निजामती कर्मचारीलाई देशको विभिन्न भौगोलिक क्षेत्रको अनुभवसमेत दिलाउनका लागि सरुवा गरिनेछ।</p>
+                <p>विशेषज्ञताको सेवा लिनुपर्ने पदमा रहेको र स्थानीयस्तरमा अन्यत्र कतै पनि निजको सेवा, समूह वा उप–समूहसम्बन्धी पद तथा कार्यालय नभएको निजामती कर्मचारी बाहेक अन्यलाई देहायबमोजिम समय तालिकाअनुसार सरुवा गर्नुपर्नेछ:-</p>
+                <ul>
+                    <li>(क) “क” वा “ख” वर्गको भौगोलिक क्षेत्रको कार्यालयमा कम्तीमा डेढ वर्ष।</li>
+                    <li>(ख) “ग” वा “घ” वर्गको भौगोलिक क्षेत्रको कार्यालयमा कम्तीमा दुई वर्ष।</li>
+                </ul>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">२४. बढुवाको आधार:</h3>
+                <p>कार्यक्षमताको मूल्याङ्कन गर्दा देहायबमोजिम बढीमा एक सय अंक दिइनेछ:-</p>
+                <table>
+                    <tr>
+                        <td>कार्यसम्पादन मूल्याङ्कनवापत</td>
+                        <td>४० अंक</td>
+                    </tr>
+                    <tr>
+                        <td>ज्येष्ठतावापत</td>
+                        <td>३० अंक</td>
+                    </tr>
+                    <tr>
+                        <td>शैक्षिक योग्यतावापत</td>
+                        <td>१२ अंक</td>
+                    </tr>
+                    <tr>
+                        <td>भौगोलिक क्षेत्रमा काम गरेवापत</td>
+                        <td>१६ अंक</td>
+                    </tr>
+                    <tr>
+                        <td>तालिमवापत</td>
+                        <td>२ अंक</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">भौगोलिक क्षेत्रको अंक (दफा २४ग):</h3>
+                <p>नेपाललाई "क", "ख", "ग", र "घ" वर्गमा विभाजन गरी काम गरेको वर्षको आधारमा अंक प्रदान गरिनेछ। (जस्तै: "क" वर्ग (अति दुर्गम) मा काम गरे वापत बढी अंक प्राप्त हुन्छ)।</p>
+            </div>
+        </section>
+
+        <!-- Chapter 5 -->
+        <section id="ch5">
+            <h2 class="chapter-title">परिच्छेद- ५: तलब भत्ता, चाडपर्व खर्च तथा अन्य सुविधा</h2>
+            
+            <div class="article">
+                <h3 class="article-title">२७. तलब भत्ता:</h3>
+                <p>निजामती कर्मचारीले आफ्नो पदमा बहाली गरेको दिनदेखि तलब भत्ता पाउनेछ।</p>
+            </div>
+            
+            <div class="article">
+                <h3 class="article-title">३२. चाडपर्व खर्च:</h3>
+                <p>निजामती कर्मचारीले आफ्नो धर्म, संस्कृति, परम्पराअनुसार मनाइने चाडपर्वको लागि एक महिनाको तलब वरावरको रकम प्रत्येक वर्ष चाडपर्व खर्चको रूपमा पाउनेछ।</p>
+            </div>
+        </section>
+
+        <!-- Chapter 6 -->
+        <section id="ch6">
+            <h2 class="chapter-title">परिच्छेद- ६: अवकाश, उपदान र निवृत्तभरण</h2>
+            
+            <div class="article">
+                <h3 class="article-title">३३. अनिवार्य अवकाश:</h3>
+                <p>अन्ठाउन्न (५८) वर्ष उमेर पूरा भएको वा पदावधि पूरा भएको निजामती कर्मचारीले निजामती सेवाबाट स्वतः अवकाश पाउनेछ।</p>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">३७. निवृत्तभरण (Pension):</h3>
+                <p>बीस वर्ष वा सोभन्दा बढी समयसम्म सरकारी सेवा गरेको निजामती कर्मचारीले देहायबमोजिमको हिसाबले मासिक निवृत्तभरण पाउनेछ:-</p>
+                <div class="formula-box">
+                    (जम्मा सेवा वर्ष X आखिरी तलबको रकम) ÷ ५०
+                </div>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">३६. उपदान:</h3>
+                <p>५ वर्ष सेवा गरेको तर २० वर्ष नपुगेको कर्मचारीले उपदान पाउनेछन्:</p>
+                <ul>
+                    <li>५ देखि १० वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी आधा महिनाको तलब।</li>
+                    <li>१० देखि १५ वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी एक महिनाको तलब।</li>
+                    <li>१५ देखि २० वर्ष सेवा: प्रत्येक वर्षको निमित्त आखिरी डेढ महिनाको तलब।</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Chapter 7 -->
+        <section id="ch7">
+            <h2 class="chapter-title">परिच्छेद- ७: आचरण</h2>
+            <div class="article">
+                <ul>
+                    <li><strong>४१. समय पालन:</strong> नियमित रूपले कार्यालयमा हाजिर हुनुपर्ने।</li>
+                    <li><strong>४२. अनुशासन:</strong> आज्ञापालन र शिष्ट व्यवहार।</li>
+                    <li><strong>४४. राजनीतिमा भाग लिन नहुने:</strong> निजामती कर्मचारीले राजनीतिमा भाग लिनु हुँदैन।</li>
+                    <li><strong>४५. सरकारको आलोचना गर्न नहुने:</strong> नीति विपरित हुने गरी लेख प्रकाशन वा प्रशारण गर्न नहुने।</li>
+                    <li><strong>४८. कम्पनी स्थापना/व्यापार:</strong> सरकारको स्वीकृति विना बैंक/कम्पनी स्थापना वा व्यापार गर्न नहुने।</li>
+                    <li><strong>५०. हड्ताल प्रतिबन्ध:</strong> प्रदर्शन र हडताल गर्न प्रतिबन्ध।</li>
+                    <li><strong>५३. ट्रेड युनियन:</strong> कार्यालय प्रमुख बाहेकका कर्मचारीले ट्रेड युनियन गठन गर्न पाउने।</li>
+                    <li><strong>५४. सम्पत्ति विवरण:</strong> प्रत्येक वर्ष सम्पत्ति विवरण पेश गर्नुपर्ने।</li>
+                    <li><strong>६१क. पीआर/ग्रिनकार्ड:</strong> स्थायी आवासीय अनुमति (DV/PR) लिन नहुने।</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Chapter 8 -->
+        <section id="ch8">
+            <h2 class="chapter-title">परिच्छेद- ८: सेवाको सुरक्षा</h2>
+            <div class="article">
+                <h3 class="article-title">५६. सेवाको सुरक्षा:</h3>
+                <p>कनै पनि निजामती कर्मचारीलाई सफाइको सबूत दिने मनासिव माफिकको मौका नदिई निजामती सेवाबाट हटाइने वा बर्खास्त गरिने छैन। (नैतिक पतन देखिने फौजदारी अभियोगमा अदालतबाट कसूरदार ठहरिएको बाहेक)।</p>
+            </div>
+        </section>
+
+        <!-- Chapter 9 -->
+        <section id="ch9">
+            <h2 class="chapter-title">परिच्छेद- ९: सजाय र पुनरावेदन</h2>
+            
+            <div class="article">
+                <h3 class="article-title">५९. सजाय:</h3>
+                <p><strong>(क) सामान्य सजाय:</strong></p>
+                <ol>
+                    <li>नसिहत दिने,</li>
+                    <li>दुई वर्षसम्म बढुवा रोक्का गर्ने वा बढीमा दुई तलब वृद्धि रोक्का गर्ने,</li>
+                    <li>दुई वर्षदेखि पाँच वर्षसम्म बढुवा रोक्का गर्ने वा दुईदेखि पाँच तलब वृद्धिसम्म रोक्का गर्ने।</li>
+                </ol>
+                <p><strong>(ख) विशेष सजाय:</strong></p>
+                <ol>
+                    <li>भविष्यमा सरकारी सेवाको निमित्त अयोग्य नठहरिने गरी सेवाबाट हटाउने।</li>
+                    <li>भविष्यमा सरकारी सेवाको निमित्त अयोग्य ठहरिने गरी सेवाबाट बर्खास्त गर्ने।</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h3 class="article-title">६१. बर्खास्त गरिने अवस्थाहरू:</h3>
+                <ul>
+                    <li>नैतिक पतन देखिने फौजदारी अभियोगमा अदालतबाट कसुरदार ठहरिएमा।</li>
+                    <li>भ्रष्टाचार गरेमा।</li>
+                    <li>स्थायी आवासीय अनुमति (PR/DV) लिएमा।</li>
+                    <li>नागरिकता/उमेर/योग्यता ढाँटेको प्रमाणित भएमा।</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Chapter 10 -->
+        <section id="ch10">
+            <h2 class="chapter-title">परिच्छेद- १०: विविध</h2>
+            
+            <div class="article">
+                <h3 class="article-title">७१. विदाहरू:</h3>
+                <p>निजामती कर्मचारीहरूले देहायका विदाहरू पाउने छन्:-</p>
+                <ul>
+                    <li>(क) भैपरी आउने र पर्व विदा</li>
+                    <li>(ख) घर विदा</li>
+                    <li>(ग) बिरामी विदा</li>
+                    <li>(घ) प्रसूति विदा</li>
+                    <li>(घ१) प्रसूति स्याहार विदा (पुरुष कर्मचारीलाई)</li>
+                    <li>(ङ) किरिया विदा</li>
+                    <li>(च) अध्ययन विदा</li>
+                    <li>(छ) असाधारण विदा</li>
+                    <li>(ज) बेतलबी विदा</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>Note: This is a study aid based on the PDF content provided. For official legal purposes, please refer to the Nepal Gazette.</p>
+            <p>&copy; 2024 Nepal Civil Service Study Guide</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Sidebar Toggle Script for Mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Active Link Highlighting on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('.sidebar ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
