@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>नेपालको भौगोलिक परिचय | Nepal Geography Profile</title>
+    <!-- Google Fonts for Nepali -->
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-light: #f4f6f7;
+            --text-dark: #333;
+            --white: #ffffff;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-home {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-mcq {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--white);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            right: 0; /* Right side for better reading flow in this context, or left usually */
+            left: 0;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+            padding-top: 80px; /* Space for buttons */
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            padding: 0 20px 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            border-left: 4px solid transparent;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .sidebar li a:hover, .sidebar li a.active {
+            background-color: #eaf2f8;
+            border-left-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        section {
+            background: var(--white);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2rem;
+            margin: 15px 0 10px;
+            font-weight: 700;
+        }
+
+        ul.points {
+            list-style-type: none;
+        }
+
+        ul.points > li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        ul.points > li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            white-space: nowrap;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #eaf2f8;
+        }
+
+        /* Highlighting */
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .note-box {
+            background-color: #e8f4fd;
+            border-left: 5px solid var(--secondary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding-top: 60px;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons">
+        <a href="mcq.html" class="btn btn-mcq">MCQ Practice</a>
+        <a href="index.html" class="btn btn-home">Home</a>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h3>विषय सूची</h3>
+            <ul>
+                <li><a href="#intro">१. भौगोलिक परिचय</a></li>
+                <li><a href="#geo-division">२. भौगोलिक विभाजन</a></li>
+                <li><a href="#rivers">३. नदीनाला र विभाजन</a></li>
+                <li><a href="#climate">४. हावापानी</a></li>
+                <li><a href="#political">५. राजनीतिक विभाजन</a></li>
+                <li><a href="#local-level">६. स्थानीय तह</a></li>
+                <li><a href="#resources">७. प्राकृतिक स्रोत (भूमि/वन)</a></li>
+                <li><a href="#minerals">८. खनिज पदार्थ</a></li>
+                <li><a href="#water-lakes">९. जलस्रोत र तालहरू</a></li>
+                <li><a href="#demographics">१०. जनसङ्ख्या (२०७८)</a></li>
+                <li><a href="#protected">११. संरक्षित क्षेत्र र वन्यजन्तु</a></li>
+                <li><a href="#yarsagumba">१२. यार्सागुम्बा</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>नेपालको भौगोलिक परिचय</h1>
+                <p>नेपाल परिचय (पि.डि.एफ) मा आधारित सम्पूर्ण विवरण</p>
+            </header>
+
+            <!-- Section 1: Introduction -->
+            <section id="intro">
+                <h2>१. भौगोलिक अवस्थिति र परिचय</h2>
+                <ul class="points">
+                    <li>नेपाल दक्षिण एसियामा अवस्थित भूपरिवेष्टित मुलुक हो।</li>
+                    <li><strong>अक्षांश:</strong> २६ डिग्री २२ मिनेटदेखि ३० डिग्री २७ मिनेट उत्तरी अक्षांश।</li>
+                    <li><strong>देशान्तर:</strong> ८० डिग्री ४ मिनेटदेखि ८८ डिग्री १२ मिनेट पूर्वी देशान्तर।</li>
+                    <li><strong>क्षेत्रफल:</strong> १,४७,१८१ वर्ग कि.मि. (५६,८२७ वर्ग माइल)।</li>
+                    <li><strong>विश्वको हिस्सा:</strong> ०.०३ प्रतिशत।</li>
+                    <li><strong>एसियाको हिस्सा:</strong> ०.३ प्रतिशत।</li>
+                    <li><strong>दक्षिण एसियाको हिस्सा:</strong> २.८२ प्रतिशत।</li>
+                    <li><strong>स्थिति:</strong> दुई विशाल मुलुक भारत र चीनको बीचमा। समुद्र/बङ्गालको खाडीदेखि करिब १,१२७ कि.मि. टाढा।</li>
+                    <li><strong>लम्बाइ:</strong> पूर्व-पश्चिम औसत ८८५ कि.मि.।</li>
+                    <li><strong>चौडाइ:</strong> उत्तर-दक्षिण औसत १९३ कि.मि.।</li>
+                    <li><strong>सिमाना:</strong>
+                        <ul>
+                            <li>दक्षिण: भारतको बिहार र उत्तर प्रदेश राज्य।</li>
+                            <li>पश्चिम: भारतको उत्तराखण्ड राज्य।</li>
+                            <li>पूर्व: भारतको पश्चिम बङ्गाल र सिक्किम राज्य।</li>
+                            <li>उत्तर: चीनको स्वशासित क्षेत्र तिब्बत।</li>
+                        </ul>
+                    </li>
+                    <li><strong>प्रमाणिक समय:</strong> दोलखा जिल्लामा पर्ने गौरीशङ्कर हिमाललाई काटेर गएको ८६ डिग्री १५ मिनेट पूर्वी देशान्तरलाई आधार मानी निर्धारण गरिएको। यो समय ग्रिनविच मानक समयभन्दा ५ घण्टा ४५ मिनेट छिटो छ। (लागू: वि.सं. २०४२ वैशाख १)।</li>
+                    <li><strong>हिमालहरू:</strong> विश्वका ८,००० मिटरभन्दा अग्ला १४ चुचुरामध्ये ८ वटा नेपालमा पर्छन्। ६,००० मिटर र सोभन्दा अग्ला १,३०० भन्दा बढी चुचुरा छन्।</li>
+                    <li><strong>परिचय:</strong> सगरमाथाको देश, गौतम बुद्धको जन्मस्थल लुम्बिनीको देश, सीता जन्मेको देश र विशेष किसिमको झन्डा भएको देश।</li>
+                </ul>
+            </section>
+
+            <!-- Section 2: Geographical Division -->
+            <section id="geo-division">
+                <h2>२. भौगोलिक विभाजन</h2>
+                <p>धरातलका आधारमा नेपाललाई उत्तरदेखि दक्षिणसम्म तीन बृहत् प्रदेशमा विभाजन गर्न सकिन्छ:</p>
+
+                <h3>(क) हिमाली प्रदेश</h3>
+                <ul class="points">
+                    <li>नेपालको १५ प्रतिशत भूभाग ओगटेको।</li>
+                    <li>समुद्र सतहदेखि करिब ३,००० मिटरमाथिको उचाइमा अवस्थित।</li>
+                    <li>चौडाइ: करिब २५ देखि ५० किलोमिटर।</li>
+                    <li>चट्टान: निस, सेल, स्लेट, ग्रेनाइट, क्वारजाइट, चुन आदि।</li>
+                    <li>२८ हिमशृङ्खलाहरू पूर्वदेखि पश्चिमसम्म फैलिएका छन्।</li>
+                    <li>प्रमुख हिमालहरू: सगरमाथा, कञ्चनजङ्घा, ल्होत्से, मकालु, चो यु, धवलागिरि, मनास्लु, अन्नपूर्ण आदि।</li>
+                    <li>३ उपक्षेत्रमा विभाजन:
+                        <ol>
+                            <li><strong>मुख्य हिमाली क्षेत्र:</strong> ८,००० मिटरभन्दा अग्ला हिमालहरू र ६,००० मिटरभन्दा अग्ला १,३११ चुचुराहरू।</li>
+                            <li><strong>भित्री हिमाली क्षेत्र:</strong> मुख्य हिमालय र तिब्बत तटवर्ती क्षेत्रको बीचमा। उचाइ २,४००-५,००० मिटर। (जस्तै: हुम्ला, जुम्ला, मुगु, डोल्पा, मुस्ताङ, मनाङ)। यहाँ वर्षा कम हुन्छ (वृष्टिछाया)।</li>
+                            <li><strong>सीमान्त हिमाली क्षेत्र:</strong> तिब्बतको समानान्तर करिब १३० कि.मि. उत्तरसम्म फैलिएको। ६,०००-७,००० मिटर उचाइको तिब्बती पठारको भाग। यसलाई 'टेथिस हिमाल' पनि भनिन्छ। (जस्तै: मनाङ, मुस्ताङका उत्तरी भाग)।</li>
+                        </ol>
+                    </li>
+                    <li>आर्थिक गतिविधि: पशुपालन (याक, भेडा, च्याङ्ग्रा), जडीबुटी, पर्यटन। खेतीयोग्य जमिन कम।</li>
+                </ul>
+
+                <div class="table-container">
+                    <caption>तालिका नं. १.२: प्रमुख हिमशिखर र तिनको उचाइ</caption>
+                    <table>
+                        <thead>
+                            <tr><th>हिमशिखर</th><th>उचाइ (मि.)</th><th>हिमशृङ्खला</th><th>जिल्ला/प्रदेश</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>सगरमाथा</td><td>८,८४८.८६</td><td>खुम्बु/महालङ्गुर</td><td>सोलुखुम्बु/कोशी</td></tr>
+                            <tr><td>कञ्चनजङ्घा</td><td>८,५८६</td><td>कञ्चनजङ्घा</td><td>ताप्लेजुङ/कोशी</td></tr>
+                            <tr><td>ल्होत्से</td><td>८,५१६</td><td>खुम्बु/महालङ्गुर</td><td>सोलुखुम्बु/कोशी</td></tr>
+                            <tr><td>मकालु</td><td>८,४६३</td><td>कुम्भकर्ण</td><td>सङ्खुवासभा/कोशी</td></tr>
+                            <tr><td>चो ओयु</td><td>८,२०१</td><td>खुम्बु/महालङ्गुर</td><td>सोलुखुम्बु/कोशी</td></tr>
+                            <tr><td>धवलागिरि</td><td>८,१६७</td><td>धवलागिरि</td><td>म्याग्दी/मुस्ताङ/गण्डकी</td></tr>
+                            <tr><td>मनास्लु</td><td>८,१६३</td><td>गणेश</td><td>गोरखा/गण्डकी</td></tr>
+                            <tr><td>अन्नपूर्ण</td><td>८,०९१</td><td>अन्नपूर्ण</td><td>कास्की/गण्डकी</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>(ख) पहाडी प्रदेश</h3>
+                <ul class="points">
+                    <li>क्षेत्रफल: ६८ प्रतिशत भूभाग। दक्षिणमा ३०० मिटरदेखि उत्तरमा ३,००० मिटर उचाइसम्म।</li>
+                    <li>चौडाइ: ७५ देखि १२५ कि.मि.।</li>
+                    <li>जिल्ला संख्या: २८ (२०७८ को जनगणना अनुसार ४०.३% जनसंख्या)।</li>
+                    <li>तीन श्रेणीमा विभाजन:
+                        <ol>
+                            <li><strong>चुरे पर्वत श्रेणी:</strong> (शिवालिक) ६१० देखि १८७२ मिटर उचाइ। बाहिरी हिमालय पनि भनिन्छ। नवीनतम् पर्वत। वातावरण संरक्षणका दृष्टिले संवेदनशील।</li>
+                            <li><strong>महाभारत श्रेणी:</strong> १,५०० देखि ३,००० मिटर (१२,००० फिटसम्म)। 'होचो हिमालय' (Lesser Himalaya)। हिल-स्टेसनहरू (शैलुङ, ट्याम्के, फूलचोकी, दामन आदि) पर्छन्।</li>
+                            <li><strong>मध्यभूमि श्रेणी:</strong> महाभारत र हिमालय बीचका टार, बेँसी र उपत्यकाहरू (काठमाडौँ, पोखरा, त्रिशूली आदि)।</li>
+                        </ol>
+                    </li>
+                    <li>प्रमुख उपत्यकाहरू: काठमाडौँ (१३३७ मि.), पोखरा (८१९ मि.), दाङ (६६३ मि.), सुर्खेत (६६४ मि.)।</li>
+                </ul>
+
+                <h3>(ग) तराई प्रदेश</h3>
+                <ul class="points">
+                    <li>नेपालको अन्नभण्डार। 'मधेश' पनि भनिन्छ।</li>
+                    <li>उचाइ: ६० देखि ६०० मिटर।</li>
+                    <li>चौडाइ: २५ देखि ३० कि.मि.।</li>
+                    <li>जिल्ला संख्या: १८ (२०७८ को जनगणना अनुसार ५३.६% जनसंख्या)।</li>
+                    <li>तीन श्रेणीमा विभाजन:
+                        <ol>
+                            <li><strong>मध्य तराई:</strong> चुरेको दक्षिणको समथर भाग।</li>
+                            <li><strong>भाबर क्षेत्र:</strong> चुरेको फेदी र तराईको सिरान। १२.८ देखि १६ कि.मि. चौडाइ। ढुंगा, गिट्टी, बालुवाले बनेको, पानी सोसिने क्षेत्र (चारकोसे झाडी)। ४.५% भूभाग ओगटेको।</li>
+                            <li><strong>भित्री मधेश:</strong> चुरे र महाभारत पर्वतको बीचमा चारैतिर पहाडले घेरिएका विशाल फाँटहरू। कुल क्षेत्रफलको ८.५%। (उदयपुर, सिन्धुली, मकवानपुर, चितवन, नवलपरासी पूर्व, दाङ, सुर्खेत - ७ जिल्ला)।</li>
+                        </ol>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 3: Rivers and Climate -->
+            <section id="rivers">
+                <h2>३. नदीनाला र हावापानी</h2>
+                <h3>नदीको आधारमा विभाजन</h3>
+                <ul class="points">
+                    <li><strong>(क) कोशी क्षेत्र:</strong> कञ्चनजङ्घादेखि लाङटाङ हिमालसम्म। नेपालको सबैभन्दा ठुलो नदी। सहायक नदीहरू: तमोर, अरुण, लिखु, दूधकोशी, तामाकोशी, सुनकोशी, इन्द्रावती। विद्युत् क्षमता: २२,००० मेगावाट। प्रभाव क्षेत्र: ६० हजार वर्ग कि.मि.।</li>
+                    <li><strong>(ख) गण्डकी क्षेत्र:</strong> लाङटाङदेखि धवलागिरि हिमालसम्म। नेपालको सबभन्दा गहिरो नदी। सहायक नदीहरू: त्रिशूली, बूढीगण्डकी, दरौँदी, मादी, मर्स्याङ्दी, सेती, कालीगण्डकी। विद्युत् क्षमता: २१,००० मेगावाट।</li>
+                    <li><strong>(ग) कर्णाली क्षेत्र:</strong> धवलागिरिदेखि व्यास हिमालसम्म। नेपालको सबैभन्दा लामो नदी (नेपालभित्र ५०७ कि.मि.)। सहायक नदीहरू: हुम्ला कर्णाली, मुगु कर्णाली, ठूली भेरी, सानी भेरी, तिला, बुढीगङ्गा, सेती। विद्युत् क्षमता: ३२,००० मेगावाट।</li>
+                </ul>
+
+                <h3>नदीका स्तरहरू</h3>
+                <ul class="points">
+                    <li><strong>पहिलो स्तर:</strong> हिमालबाट उत्पत्ति भई निरन्तर बहने (कोशी, गण्डकी, कर्णाली)।</li>
+                    <li><strong>दोस्रो स्तर:</strong> महाभारत पर्वतबाट उत्पत्ति हुने, हिउँदमा पानी घट्ने (मेची, कन्काई, बागमती, तिनाउ, राप्ती आदि)।</li>
+                    <li><strong>तेस्रो स्तर:</strong> चुरेबाट उत्पत्ति हुने, मनसुनमा बाढी आउने र हिउँदमा सुक्ने (सिरसिया, तिलावे, जमुनी आदि)।</li>
+                </ul>
+            </section>
+
+            <section id="climate">
+                <h2>४. हावापानीका प्रकार</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr><th>हावापानीको प्रकार</th><th>उचाइ/क्षेत्र</th><th>विशेषता</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>उपोष्ण मनसुनी (Sub-Tropical Monsoon)</td>
+                                <td>तराई, भाबर, दून, चुरे (१,२०० मिटरसम्म)</td>
+                                <td>ग्रीष्ममा ३८-४२°C, शीतकालमा १५-५°C। पूर्वमा बढी वर्षा।</td>
+                            </tr>
+                            <tr>
+                                <td>न्यानो समशीतोष्ण (Warm Temperate)</td>
+                                <td>१,२०० देखि २,१०० मिटर (चुरे, महाभारत)</td>
+                                <td>ग्रीष्ममा २४-३१°C, हिउँदमा ०°C सम्म। पोखरामा बढी पानी पर्ने।</td>
+                            </tr>
+                            <tr>
+                                <td>ठन्डा समशीतोष्ण (Cool Temperate)</td>
+                                <td>२,१०० देखि ३,३५० मिटर (महाभारत)</td>
+                                <td>ग्रीष्ममा १५-२०°C, हिउँदमा ०°C भन्दा तल। हिउँ पर्ने। स्वास्थ्यका लागि उपयुक्त।</td>
+                            </tr>
+                            <tr>
+                                <td>लेकाली (Alpine)</td>
+                                <td>३,३५० देखि ५,००० मिटर</td>
+                                <td>९ महिना ०°C भन्दा तल। खेतीपाती हुँदैन, पशुपालन हुन्छ।</td>
+                            </tr>
+                            <tr>
+                                <td>ध्रुवीय/टुन्ड्रा (Tundra)</td>
+                                <td>५,००० मिटरभन्दा माथि</td>
+                                <td>सधैँ हिउँ पर्ने, हिमाली मरुभूमि।</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 4: Political Division -->
+            <section id="political">
+                <h2>५. राजनीतिक विभाजन</h2>
+                <p>नेपालको संविधान अनुसार ७ प्रदेश र ७५३ स्थानीय तहमा विभाजन गरिएको छ।</p>
+                
+                <div class="note-box">
+                    <strong>संघीय संरचना:</strong> संघ, प्रदेश र स्थानीय तह।
+                </div>
+
+                <h3>प्रदेश विवरण</h3>
+                <ul class="points">
+                    <li><strong>कोशी प्रदेश:</strong> १४ जिल्ला। राजधानी: विराटनगर। ठुलो जिल्ला: ताप्लेजुङ, सानो: तेह्रथुम।</li>
+                    <li><strong>मधेश प्रदेश:</strong> ८ जिल्ला। राजधानी: जनकपुर। ठुलो जिल्ला: सप्तरी, सानो: महोत्तरी।</li>
+                    <li><strong>बागमती प्रदेश:</strong> १३ जिल्ला। राजधानी: हेटौँडा। ठुलो जिल्ला: सिन्धुपाल्चोक, सानो: भक्तपुर।</li>
+                    <li><strong>गण्डकी प्रदेश:</strong> ११ जिल्ला। राजधानी: पोखरा। ठुलो जिल्ला: गोरखा, सानो: पर्वत।</li>
+                    <li><strong>लुम्बिनी प्रदेश:</strong> १२ जिल्ला। राजधानी: देउखुरी (दाङ)। ठुलो जिल्ला: दाङ, सानो: नवलपरासी (ब.सु.प)।</li>
+                    <li><strong>कर्णाली प्रदेश:</strong> १० जिल्ला। राजधानी: वीरेन्द्रनगर (सुर्खेत)। ठुलो जिल्ला: डोल्पा, सानो: रुकुम पश्चिम।</li>
+                    <li><strong>सुदूरपश्चिम प्रदेश:</strong> ९ जिल्ला। राजधानी: गोदावरी (कैलाली)। ठुलो जिल्ला: बझाङ, सानो: बैतडी।</li>
+                </ul>
+            </section>
+
+            <section id="local-level">
+                <h2>६. स्थानीय तह (७५३)</h2>
+                <ul class="points">
+                    <li>महानगरपालिका: ६</li>
+                    <li>उपमहानगरपालिका: ११</li>
+                    <li>नगरपालिका: २७६</li>
+                    <li>गाउँपालिका: ४६०</li>
+                </ul>
+
+                <div class="table-container">
+                    <caption>तालिका: महानगरपालिकाहरू (२०७८ जनगणना)</caption>
+                    <table>
+                        <thead><tr><th>महानगरपालिका</th><th>जनसङ्ख्या</th><th>जनघनत्व</th></tr></thead>
+                        <tbody>
+                            <tr><td>काठमाडौँ</td><td>८,६२,४००</td><td>१७,४४०</td></tr>
+                            <tr><td>पोखरा</td><td>५,१३,५०४</td><td>१,१०६</td></tr>
+                            <tr><td>भरतपुर</td><td>३,६९,२६८</td><td>८५३</td></tr>
+                            <tr><td>ललितपुर</td><td>२,९४,०९८</td><td>८,१४२</td></tr>
+                            <tr><td>वीरगन्ज</td><td>२,७२,३८२</td><td>२,०६२</td></tr>
+                            <tr><td>विराटनगर</td><td>२,४३,९२७</td><td>३,१६८</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>नदी किनारमा अवस्थित प्रमुख नगरहरू</h4>
+                <ul class="points">
+                    <li>काठमाडौँ - बागमती</li>
+                    <li>पोखरा - सेती गण्डकी</li>
+                    <li>बुटवल - तिनाउ</li>
+                    <li>नारायणगढ - नारायणी</li>
+                    <li>जोमसोम, बेनी, बाग्लुङ - कालीगण्डकी</li>
+                    <li>विदुर, धुन्चे - त्रिशूली</li>
+                </ul>
+            </section>
+
+            <!-- Section 5: Natural Resources -->
+            <section id="resources">
+                <h2>७. प्राकृतिक स्रोत र साधन</h2>
+                <h3>(क) भूमि</h3>
+                <p>नेपालमा खेतीयोग्य भूभाग करिब १८ प्रतिशत रहेको छ (LRMP अनुसार)।</p>
+                <ul class="points">
+                    <li><strong>रैकर भूमि:</strong> राज्य वा सरकारलाई कर तिरेर व्यक्तिले भोगचलन गरेको जग्गा।</li>
+                    <li><strong>बिर्ता भूमि:</strong> बहादुरीपूर्ण काम गरेवापत वा 'वृत्ति' स्वरूप प्रदान गरिएको (वि.सं. २०१६ मा उन्मूलन)।</li>
+                    <li><strong>गुठी भूमि:</strong> मठमन्दिर वा धार्मिक कार्यका लागि छुट्याइएको जग्गा (राजगुठी, दुनियाँ गुठी आदि)।</li>
+                    <li><strong>किपट भूमि:</strong> पूर्वी पहाडमा राई/लिम्बु जातिलाई पध्रान गरिएको कर तिर्नु नपर्ने भूमि (२०२१ भूमिसुधार पछि रैकरमा परिणत)।</li>
+                </ul>
+
+                <h3>(ख) माटोका प्रकार</h3>
+                <ol>
+                    <li><strong>पाँगो माटो:</strong> तराई र बेँसीमा पाइने, उब्जनीका लागि उत्तम (धान, उखु, सुर्ती)।</li>
+                    <li><strong>बलौटे पत्थरीलो माटो:</strong> भाबर, भित्री मधेश र चुरेमा। साल, सिसौका लागि उपयुक्त।</li>
+                    <li><strong>रातो फुस्रो माटो:</strong> महाभारतका भिरालो ठाउँमा। फलफूल, चिया, आलु, मकैका लागि उपयोगी।</li>
+                    <li><strong>तलैया माटो:</strong> उपत्यकाका ताल सुकेर बनेको (काठमाडौँ)। कालो र मलिलो। खेतीका लागि सर्वोत्तम।</li>
+                    <li><strong>हिमाली माटो:</strong> हिम नदीले थुपारेको। उब्जनी कम हुने (मकै, जौ, आलु, फापर)।</li>
+                </ol>
+
+                <h3>(ग) वन सम्पदा</h3>
+                <p>सन् २०१४ को सर्वेक्षण अनुसार वन क्षेत्र ४४.७४ प्रतिशत पुगेको छ।</p>
+                <ul class="points">
+                    <li><strong>उष्णप्रदेशीय सदाबहार (Sub-tropical):</strong> १,२०० मिटरसम्म। चारकोसे झाडी। साल, सिसौ, खयर।</li>
+                    <li><strong>समशीतोष्ण पतझर (Temperate Deciduous):</strong> १,२००-२,१०० मि.। साल, सल्ला, कटुस।</li>
+                    <li><strong>समशीतोष्ण सदाबहार कोणधारी:</strong> २,१०१-३,३५० मि.। धुपी, सल्ला, देवदारु।</li>
+                    <li><strong>लेकाली वनस्पति (Alpine):</strong> ३,३५१-५,००० मि.। गुराँस, बुकीफूल, जडीबुटी।</li>
+                    <li><strong>शीत मरुभूमि (Tundra):</strong> ५,००० मि. माथि। लेउ र झ्याउ मात्र।</li>
+                </ul>
+            </section>
+
+            <!-- Section 6: Minerals -->
+            <section id="minerals">
+                <h2>८. खनिज पदार्थ</h2>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>खनिज</th><th>पाइने स्थानहरू</th></tr></thead>
+                        <tbody>
+                            <tr><td>फलाम</td><td>फूलचोकी, ठोसे, चितवन, कुलेखानी, प्युठान, बझाङ</td></tr>
+                            <tr><td>तामा</td><td>तामाखानी, कुलेखानी, बुद्धखोला, बन्दीपुर, म्याग्दी</td></tr>
+                            <tr><td>अभ्रख</td><td>भोजपुर, डोटी, रसुवा, लमजुङ, सुन्दरीजल</td></tr>
+                            <tr><td>चुनढुङ्गा</td><td>चोभार, भैँसे, धनकुटा, मोरङ, चितवन, सुर्खेत</td></tr>
+                            <tr><td>सिसा</td><td>गणेश हिमाल, फूलचोकी, मकवानपुर, बाग्लुङ</td></tr>
+                            <tr><td>मार्बल</td><td>गोदावरी, महाभारत पर्वत शृङ्खला</td></tr>
+                            <tr><td>कोइला</td><td>दाङ, सल्यान, चितवन, मकवानपुर, काठमाडौँ</td></tr>
+                            <tr><td>पेट्रोलियम</td><td>दाङ, तराई, चुरे पहाड, मुक्तिक्षेत्र (सम्भावना)</td></tr>
+                            <tr><td>सुन</td><td>सुनकोशी, बूढीगण्डकी, कालीगण्डकीको बगर</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 7: Lakes -->
+            <section id="water-lakes">
+                <h2>९. ताल, कुण्ड र पोखरीहरू</h2>
+                <ul class="points">
+                    <li><strong>रारा ताल:</strong> मुगु जिल्ला (सबैभन्दा ठुलो)। लम्बाइ ५.२ कि.मि., गहिराइ १६७ मि.। (महेन्द्र ताल)।</li>
+                    <li><strong>फोक्सुण्डो ताल:</strong> डोल्पा जिल्ला। 'रग्मो' (स्थानीय नाम)। सबैभन्दा गहिरो (६५० मि.)।</li>
+                    <li><strong>तिलिचो ताल:</strong> मनाङ (सबैभन्दा उचाइमा - ४९१९ मि.)।</li>
+                    <li><strong>फेवाताल:</strong> कास्की। बीचमा तालबाराही मन्दिर।</li>
+                    <li><strong>छो रोल्पा:</strong> दोलखा (विस्फोटको खतरामा रहेको हिमताल)।</li>
+                    <li><strong>घोडाघोडी ताल:</strong> कैलाली (हत्केला आकारको)।</li>
+                    <li><strong>गोसाइँकुण्ड:</strong> रसुवा (४३८० मि.)।</li>
+                    <li><strong>अन्य:</strong> सत्यवती (पाल्पा), बुलबुले (सुर्खेत), रानीपोखरी (काठमाडौँ), इन्द्र सरोवर (मकवानपुर - मानव निर्मित)।</li>
+                </ul>
+            </section>
+
+            <!-- Section 8: Demographics -->
+            <section id="demographics">
+                <h2>१०. जनसङ्ख्या (२०७८ को जनगणना)</h2>
+                <ul class="points">
+                    <li><strong>कुल जनसङ्ख्या:</strong> २,९१,६४,५७८</li>
+                    <li><strong>वृद्धि:</strong> १० वर्षमा २६,७०,०७४ ले बढी (१०.०८%)।</li>
+                    <li><strong>वार्षिक वृद्धिदर:</strong> ०.९२% (विगत ८० वर्षयताकै कम)।</li>
+                    <li><strong>लैङ्गिक अनुपात:</strong> ९५.५९ (प्रति १०० महिलामा पुरुषको संख्या)।</li>
+                    <li><strong>जनघनत्व:</strong> १९८ जना प्रति वर्ग कि.मि.।</li>
+                    <li><strong>शहरी जनसङ्ख्या:</strong> ६६.१७% (नगरपालिका क्षेत्र गाभिएको आधारमा)।</li>
+                    <li><strong>भौगोलिक वितरण:</strong>
+                        <ul>
+                            <li>तराई: ५३.६१%</li>
+                            <li>पहाड: ४०.३१%</li>
+                            <li>हिमाल: ६.०८%</li>
+                        </ul>
+                    </li>
+                    <li><strong>प्रदेशगत:</strong> सबैभन्दा बढी बागमती (२०.९७%), सबैभन्दा कम कर्णाली (५.७९%)।</li>
+                </ul>
+            </section>
+
+            <!-- Section 9: Protected Areas -->
+            <section id="protected">
+                <h2>११. संरक्षित क्षेत्र र वन्यजन्तु</h2>
+                <p>नेपालमा १२ राष्ट्रिय निकुञ्ज, १ वन्यजन्तु आरक्ष, १ सिकार आरक्ष, ६ संरक्षण क्षेत्र र १३ मध्यवर्ती क्षेत्रहरू छन्।</p>
+                
+                <h3>राष्ट्रिय निकुञ्जहरू</h3>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>नाम</th><th>स्थापना</th><th>जिल्ला</th><th>विशेषता</th></tr></thead>
+                        <tbody>
+                            <tr><td>चितवन</td><td>२०३०</td><td>चितवन/मकवानपुर/पर्सा</td><td>पहिलो निकुञ्ज। एकसिंगे गैँडा, पाटे बाघ।</td></tr>
+                            <tr><td>सगरमाथा</td><td>२०३२</td><td>सोलुखुम्बु</td><td>विश्वको अग्लो स्थानमा। हिमचितुवा, डाँफे।</td></tr>
+                            <tr><td>लाङटाङ</td><td>२०३२</td><td>रसुवा/नुवाकोट/सिन्धु</td><td>रेडपांडा (हाब्रे)।</td></tr>
+                            <tr><td>रारा</td><td>२०३२</td><td>मुगु/जुम्ला</td><td>सबैभन्दा सानो (१०६ वर्ग कि.मि.)।</td></tr>
+                            <tr><td>बर्दिया</td><td>२०३२</td><td>बर्दिया</td><td>पाटेबाघ, कृष्णसार, डल्फिन।</td></tr>
+                            <tr><td>शे-फोक्सुण्डो</td><td>२०४०</td><td>डोल्पा/मुगु</td><td>सबैभन्दा ठुलो (३५५५ वर्ग कि.मि.)।</td></tr>
+                            <tr><td>खप्तड</td><td>२०४२</td><td>बझाङ/बाजुरा/डोटी/अछाम</td><td>धार्मिक क्षेत्र।</td></tr>
+                            <tr><td>मकालु वरुण</td><td>२०४९</td><td>सङ्खुवासभा/सोलु</td><td>विश्वकै दुर्लभ वनस्पति।</td></tr>
+                            <tr><td>शिवपुरी नागार्जुन</td><td>२०५८</td><td>काठमाडौँ/नुवाकोट</td><td>काठमाडौँको पानीको स्रोत।</td></tr>
+                            <tr><td>बाँके</td><td>२०६७</td><td>बाँके/सल्यान/दाङ</td><td>कान्छो निकुञ्ज (घोषणाका आधारमा)।</td></tr>
+                            <tr><td>शुक्लाफाँटा</td><td>२०७३</td><td>कञ्चनपुर</td><td>बाह्रसिंगेको झुण्ड।</td></tr>
+                            <tr><td>पर्सा</td><td>२०७४</td><td>पर्सा/चितवन</td><td>जंगली हात्ती।</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>अन्य संरक्षित क्षेत्रहरू</h3>
+                <ul class="points">
+                    <li><strong>कोशी टप्पु वन्यजन्तु आरक्ष:</strong> सुनसरी (२०३२)। अर्ना (जंगली भैँसी) र चराचुरुङ्गीका लागि प्रसिद्ध।</li>
+                    <li><strong>ढोरपाटन सिकार आरक्ष:</strong> रुकुम/बाग्लुङ/म्याग्दी (२०४४)। नेपालको एकमात्र सिकार आरक्ष। नाउर र झारलको सिकार अनुमति।</li>
+                    <li><strong>संरक्षण क्षेत्रहरू:</strong> अन्नपूर्ण (सबैभन्दा ठुलो), कञ्चनजङ्घा, मनास्लु, कृष्णसार, गौरीशङ्कर, अपि-नाम्पा।</li>
+                </ul>
+            </section>
+
+            <!-- Section 10: Yarsagumba -->
+            <section id="yarsagumba">
+                <h2>१२. यार्सागुम्बा (Yarsagumba)</h2>
+                <ul class="points">
+                    <li><strong>परिचय:</strong> आधा किरा र आधा वनस्पति (Half Insect and Half Fungus)।</li>
+                    <li><strong>वैज्ञानिक नाम:</strong> <em>Cordyceps sinensis</em>।</li>
+                    <li><strong>पाइने स्थान:</strong> ३,००० देखि ५,००० मिटर उचाइका हिमाली भेग (डोल्पा, दार्चुला आदि)।</li>
+                    <li><strong>उपयोग:</strong> शक्तिवर्धक जडीबुटी, मृगौला, फोक्सो, मुटु रोगको उपचारमा।</li>
+                    <li><strong>उपनाम:</strong> 'हिमाली विहाग्रा' वा 'Jeevan Buti'। नेपालको "Yellow Living Gold"।</li>
+                </ul>
+            </section>
+
+            <footer style="text-align: center; margin-top: 50px; padding: 20px; color: #777; border-top: 1px solid #ddd;">
+                <p>&copy; नेपाल परिचय (पि.डि.एफ) संकलन। सर्वाधिकार सुरक्षित।</p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Script for sticky sidebar active state -->
+    <script>
+        // Select all links in the sidebar
+        const links = document.querySelectorAll('.sidebar ul li a');
+        
+        // Add click event listener to each link
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove active class from all links
+                links.forEach(l => l.classList.remove('active'));
+                // Add active class to the clicked link
+                this.classList.add('active');
+            });
+        });
+
+        // Optional: Smooth scrolling script can be refined here if needed
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
