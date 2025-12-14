@@ -236,9 +236,34 @@
             font-size: 0.8rem;
             color: #777;
         }
+
+        }
+
+/* Home Button Color (Green) */
+.home-btn {
+    background-color: #333; /* Dark Grey */
+}
+.home-btn:hover {
+    background-color: #000;
+}
+
+/* MCQ Water Button Color (Water Blue) */
+.water-btn {
+    background-color: #00a8e8; /* Cyan/Blue */
+}
+.water-btn:hover {
+    background-color: #007bb5;
+}
     </style>
 </head>
 <body>
+    <div class="top-left-buttons">
+    <!-- Home Button -->
+    <a href="index.html" class="btn home-btn">Home</a>
+    
+    <!-- MCQ Water Link -->
+    <a href="qnsa.html" class="btn water-btn">MCQ</a>
+    </div>
 
     <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()">☰ विषयसूची</button>
