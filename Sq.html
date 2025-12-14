@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Advanced Document Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles & Dark/Neon Background */
+        :root {
+            --dark-bg: #12121f;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00ffff;
+            --neon-purple: #ff00ff;
+            --text-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --input-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0a0a1a 100%);
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+            color: var(--text-color);
+        }
+
+        /* Background Effects */
+        .neon-glow-1, .neon-glow-2 {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: 0;
+            animation: pulse-glow 10s infinite alternate;
+            pointer-events: none; /* Allows clicking through the glow */
+        }
+
+        .neon-glow-1 { background: var(--neon-blue); top: 10%; left: 10%; }
+        .neon-glow-2 { background: var(--neon-purple); bottom: 15%; right: 15%; animation-delay: -5s; }
+
+        @keyframes pulse-glow {
+            from { transform: scale(1) translate(0, 0); opacity: 0.5; }
+            to { transform: scale(1.2) translate(50px, -50px); opacity: 0.65; }
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+            margin: 20px 0; /* Space for scrolling on mobile */
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px var(--neon-blue);
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        /* Form Elements */
+        .form-group { margin-bottom: 25px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+            font-size: 0.95rem;
+        }
+
+        .input-with-clear {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 45px 14px 15px; /* Larger padding for touch */
+            background: var(--input-bg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: var(--text-color);
+            font-size: 16px; /* Prevents iOS auto-zoom */
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+            -webkit-appearance: none; /* Removes default iOS styles */
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple), inset 0 0 5px var(--neon-purple);
+        }
+
+        .clear-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--neon-purple);
+            font-size: 24px; /* Larger icon */
+            cursor: pointer;
+            padding: 10px; /* Larger touch target */
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clear-btn:hover {
+            opacity: 1;
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        /* Checkbox Group Styling - Optimized for Touch */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* The clickable card area */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid transparent;
+            user-select: none; /* Prevents text highlighting on double tap */
+        }
+
+        .checkbox-item:active {
+            transform: scale(0.98);
+        }
+
+        .checkbox-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hide the default checkbox slightly but keep it functional */
+        input[type="checkbox"] {
+            -webkit-appearance: none; appearance: none;
+            min-width: 20px; width: 20px; height: 20px;
+            border: 2px solid var(--neon-blue); border-radius: 4px;
+            margin-right: 10px; background-color: transparent;
+            transition: all 0.2s ease; cursor: pointer;
+            position: relative;
+        }
+
+        /* Checkmark styling */
+        input[type="checkbox"]:checked {
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 5px var(--neon-blue);
+            border-color: var(--neon-blue);
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: '✔';
+            font-size: 14px;
+            color: #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+        }
+        
+        /* Highlight the whole card when selected */
+        .checkbox-item:has(input:checked) {
+            border-color: rgba(0, 255, 255, 0.3);
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .checkbox-item span {
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            touch-action: manipulation; /* Improves touch response */
+        }
+
+        .btn-search {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            border: none;
+            box-shadow: 0 0 15px var(--neon-purple);
+            flex-basis: 100%; /* Full width on small screens by default fallback */
+        }
+
+        .btn-search:hover, .btn-search:focus {
+            box-shadow: 0 0 25px var(--neon-purple), 0 0 40px var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-home {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .btn-home:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-clear-all {
+            background: transparent;
+            color: #ff5555;
+            border: 2px solid #ff5555;
+            box-shadow: 0 0 10px #ff5555;
+        }
+
+        .btn-clear-all:hover {
+            background: #ff5555;
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px #ff5555;
+            transform: translateY(-2px);
+        }
+
+        /* MOBILE OPTIMIZATION */
+        @media (min-width: 601px) {
+            .btn-search {
+                flex-basis: auto;
+                min-width: 200px;
+                order: 3;
+            }
+            .btn-home { order: 1; }
+            .btn-clear-all { order: 2; }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 25px 20px; /* Reduced side padding for more space */
+            }
+
+            h1 {
+                font-size: 1.6rem; /* Smaller title for mobile */
+                margin-bottom: 20px;
+            }
+
+            /* Stack buttons vertically on mobile */
+            .actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%; /* Full width buttons */
+                padding: 16px; /* Taller buttons for thumbs */
+            }
+            
+            /* Order: Search first, then Clear, then Home */
+            .btn-search { order: 1; }
+            .btn-clear-all { order: 2; }
+            .btn-home { order: 3; margin-top: 10px; border: none; box-shadow: none; opacity: 0.8; font-size: 12px; }
+
+            /* Make checkbox grid 2 columns on very small screens */
+            .checkbox-group {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            
+            /* Special case for "Leave File Type Blank" to span full width */
+            .checkbox-item:last-child {
+                grid-column: span 2;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="neon-glow-1"></div>
+    <div class="neon-glow-2"></div>
+
+    <div class="container">
+        <h1>Advanced Document Search</h1>
+
+        <form id="searchForm" onsubmit="handleSearch(event)">
+            
+            <div class="form-group">
+                <label for="topic">Topic Name / Search Query</label>
+                <div class="input-with-clear">
+                    <input type="text" id="topic" class="search-input" name="topic" placeholder="e.g., Artificial Intelligence" required>
+                    <button type="button" class="clear-btn" onclick="clearField('topic')" title="Clear Topic Field" aria-label="Clear topic">&times;</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="suffix">Website Suffix Filter</label>
+                <div class="input-with-clear">
+                    <input type="text" id="suffix" class="search-input" name="suffix" placeholder="e.g., .edu, .gov, .org">
+                    <button type="button" class="clear-btn" onclick="clearField('suffix')" title="Clear Suffix Field" aria-label="Clear suffix">&times;</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Document Types</label>
+                <div class="checkbox-group">
+                    
+                    <!-- File Type Checkboxes -->
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="pdf">
+                        <span>PDF</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="ppt">
+                        <span>PPT</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="doc">
+                        <span>Word</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="xls">
+                        <span>Excel</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="img">
+                        <span>Images</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="video">
+                        <span>Video</span>
+                    </label>
+                    
+                    <!-- Special Options -->
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="noFileType" value="none" onchange="handleSpecialCheckbox(this)">
+                        <span>Any File Type</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="index.html" class="btn btn-home">Home</a>
+                <button type="button" class="btn btn-clear-all" onclick="clearAllFields()">Clear All</button>
+                <button type="submit" class="btn btn-search">Start Search</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        // Maps the checkbox value to one or more Google filetype extensions
+        const fileTypesMap = {
+            'pdf': ['pdf'],
+            'ppt': ['ppt', 'pptx'],
+            'doc': ['doc', 'docx'],
+            'xls': ['xls', 'xlsx'],
+            'img': ['jpg', 'jpeg', 'png', 'gif'],
+            'svg': ['svg'],
+            'video': ['mp4', 'mov', 'avi']
+        };
+        
+        function clearField(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.value = '';
+            field.focus();
+        }
+
+        function clearAllFields() {
+            document.getElementById('topic').value = '';
+            document.getElementById('suffix').value = '';
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+            });
+            document.getElementById('topic').focus();
+        }
+
+        function handleSpecialCheckbox(checkbox) {
+            const docTypeCheckboxes = document.querySelectorAll('input[name="doctype"]');
+            
+            if (checkbox.checked) {
+                docTypeCheckboxes.forEach(cb => {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+
+            const topic = document.getElementById('topic').value.trim();
+            const suffix = document.getElementById('suffix').value.trim();
+            const selectedCheckboxes = Array.from(document.querySelectorAll('input[name="doctype"]:checked'));
+            const leaveBlankCheckbox = document.getElementById('noFileType');
+
+            if (!topic) {
+                alert("Please enter a Topic Name / Search Query.");
+                return;
+            }
+
+            let filetypeFilterArray = [];
+
+            // 1. Build the File Type query string
+            if (!leaveBlankCheckbox.checked) {
+                selectedCheckboxes.forEach(cb => {
+                    const key = cb.value;
+                    if (fileTypesMap[key]) {
+                        fileTypesMap[key].forEach(ext => {
+                            filetypeFilterArray.push(`filetype:${ext}`);
+                        });
+                    }
+                });
+            }
+
+            // 2. Format the File Type query part
+            let filetypeQueryPart = '';
+            if (filetypeFilterArray.length > 0) {
+                if (filetypeFilterArray.length === 1) {
+                    filetypeQueryPart = ` ${filetypeFilterArray[0]}`;
+                } else {
+                    filetypeQueryPart = ` (${filetypeFilterArray.join(' OR ')})`;
+                }
+            }
+            
+            // 3. Build the Site Suffix query
+            let siteQueryPart = '';
+            if (suffix) {
+                const cleanSuffix = suffix.startsWith('.') ? suffix.substring(1) : suffix;
+                siteQueryPart = ` site:*.${cleanSuffix}`;
+            }
+
+            // 4. Combine all parts into the final search string
+            let finalQuery = topic + siteQueryPart + filetypeQueryPart;
+
+            // 5. Encode and Construct the final Google URL
+            const encodedQuery = encodeURIComponent(finalQuery);
+            const searchUrl = `https://www.google.com/search?q=${encodedQuery}`;
+            
+            // 6. Open in a new tab
+            window.open(searchUrl, '_blank');
+        }
+    </script>
+    
+</body>
+</html>
