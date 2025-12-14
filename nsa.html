@@ -236,57 +236,12 @@
             font-size: 0.8rem;
             color: #777;
         }
-        }
-        /* Container to fix buttons to top-left */
-.top-left-buttons {
-    position: fixed; /* Keeps it in place even when scrolling */
-    top: 10px;
-    left: 10px;
-    z-index: 9999; /* Ensures it sits on top of everything else */
-    display: flex;
-    gap: 10px; /* Space between the two buttons */
-}
-
-/* General Button Style */
-.btn {
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-family: sans-serif;
-    font-weight: bold;
-    color: white;
-    transition: 0.3s;
-}
-
-        }
-
-/* Home Button Color (Green) */
-.home-btn {
-    background-color: #333; /* Dark Grey */
-}
-.home-btn:hover {
-    background-color: #000;
-}
-
-/* MCQ Water Button Color (Water Blue) */
-.water-btn {
-    background-color: #00a8e8; /* Cyan/Blue */
-}
-.water-btn:hover {
-    background-color: #007bb5;
-}
+        
+        
     </style>
 </head>
 <body>
-    <div class="top-left-buttons">
-    <!-- Home Button -->
-    <a href="index.html" class="btn home-btn">Home</a>
-    
-    <!-- MCQ Water Link -->
-    <a href="qnsa.html" class="btn water-btn">MCQ</a>
-    </div>
-
-    <!-- Mobile Menu Button -->
+   <!-- Mobile Menu Button -->
     <button class="mobile-menu-btn" onclick="toggleSidebar()">☰ विषयसूची</button>
 
     <!-- Sidebar -->
@@ -296,6 +251,7 @@
             <p>स्टडी गाइड</p>
         </div>
         <ul class="nav-links">
+            <li><a href="qnsa.html">MCQs</a></li>
             <li><a href="#preamble">प्रस्तावना</a></li>
             <li><a href="#ch1">परिच्छेद-१ (प्रारम्भिक)</a></li>
             <li><a href="#ch2">परिच्छेद-२ (सेवाहरूको गठन)</a></li>
