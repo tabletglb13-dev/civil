@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Document Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles & Dark/Neon Background (Kept for attractive theme) */
+        :root {
+            --dark-bg: #12121f;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00ffff;
+            --neon-purple: #ff00ff;
+            --text-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.25);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0a0a1a 100%);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        .neon-glow-1, .neon-glow-2 {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: 0;
+            animation: pulse-glow 10s infinite alternate;
+        }
+
+        .neon-glow-1 { background: var(--neon-blue); top: 10%; left: 10%; }
+        .neon-glow-2 { background: var(--neon-purple); bottom: 15%; right: 15%; animation-delay: -5s; }
+
+        @keyframes pulse-glow {
+            from { transform: scale(1) translate(0, 0); opacity: 0.5; }
+            to { transform: scale(1.2) translate(50px, -50px); opacity: 0.65; }
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        /* Input and Clear Button Grouping */
+        .form-group { margin-bottom: 25px; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--neon-blue);
+            text-shadow: 0 0 3px rgba(0, 255, 255, 0.5);
+        }
+
+        .input-with-clear {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple), inset 0 0 5px var(--neon-purple);
+        }
+
+        .clear-btn {
+            position: absolute;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: var(--neon-purple);
+            font-size: 18px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .clear-btn:hover {
+            opacity: 1;
+            text-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        /* Checkbox Group Styling */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .checkbox-item { display: flex; align-items: center; cursor: pointer; }
+        
+        input[type="checkbox"] {
+            -webkit-appearance: none; appearance: none;
+            width: 20px; height: 20px;
+            border: 2px solid var(--neon-blue); border-radius: 4px;
+            margin-right: 8px; background-color: transparent;
+            transition: all 0.2s ease; cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 5px var(--neon-blue), 0 0 15px var(--neon-blue);
+            border-color: var(--neon-blue);
+        }
+
+        .checkbox-item span { font-size: 14px; }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            flex-grow: 1;
+            min-width: 120px;
+        }
+
+        .btn-search {
+            background: var(--neon-purple);
+            color: var(--dark-bg);
+            border: none;
+            box-shadow: 0 0 15px var(--neon-purple);
+            order: 3;
+        }
+
+        .btn-search:hover {
+            box-shadow: 0 0 25px var(--neon-purple), 0 0 40px var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .btn-home {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            order: 1;
+        }
+
+        .btn-home:hover {
+            background: var(--neon-blue);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-clear-all {
+            background: transparent;
+            color: #ff5555;
+            border: 2px solid #ff5555;
+            box-shadow: 0 0 10px #ff5555;
+            order: 2;
+        }
+
+        .btn-clear-all:hover {
+            background: #ff5555;
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px #ff5555;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            .container { padding: 25px; width: 95%; }
+            .checkbox-group { grid-template-columns: 1fr; }
+            .actions { 
+                flex-direction: column; 
+                gap: 15px;
+            }
+            .btn { 
+                width: 100%;
+                order: initial !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="neon-glow-1"></div>
+    <div class="neon-glow-2"></div>
+
+    <div class="container">
+        <h1>Advanced Document Search</h1>
+
+        <form id="searchForm" onsubmit="handleSearch(event)">
+            
+            <div class="form-group">
+                <label for="topic">Topic Name / Search Query</label>
+                <div class="input-with-clear">
+                    <input type="text" id="topic" class="search-input" name="topic" placeholder="e.g., Artificial Intelligence Ethics" required>
+                    <button type="button" class="clear-btn" onclick="clearField('topic')" title="Clear Topic Field">&times;</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="suffix">Website Suffix Filter</label>
+                <div class="input-with-clear">
+                    <input type="text" id="suffix" class="search-input" name="suffix" placeholder="Optional: Enter a suffix like .edu or .gov">
+                    <button type="button" class="clear-btn" onclick="clearField('suffix')" title="Clear Suffix Field">&times;</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Document Types (Select one or more)</label>
+                <div class="checkbox-group">
+                    
+                    <!-- File Type Checkboxes -->
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="pdf">
+                        <span>PDF</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="ppt">
+                        <span>PPT</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="doc">
+                        <span>DOC/DOCX</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="xls">
+                        <span>Excel/XLS</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="img">
+                        <span>Photo (JPG, PNG)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="svg">
+                        <span>SVG Graphic</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="doctype" value="video">
+                        <span>Video (MP4, MOV)</span>
+                    </label>
+                    
+                    <!-- Special Options -->
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="noFileType" value="none" onchange="handleSpecialCheckbox(this)">
+                        <span>Leave File Type Blank</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="index.html" class="btn btn-home">Home</a>
+                <button type="button" class="btn btn-clear-all" onclick="clearAllFields()">Clear All</button>
+                <button type="submit" class="btn btn-search">Start Document Search</button>
+            </div>
+            
+        </form>
+    </div>
+
+    <script>
+        // Maps the checkbox value to one or more Google filetype extensions
+        const fileTypesMap = {
+            'pdf': ['pdf'],
+            'ppt': ['ppt', 'pptx'],
+            'doc': ['doc', 'docx'],
+            'xls': ['xls', 'xlsx'],
+            'img': ['jpg', 'jpeg', 'png', 'gif'],
+            'svg': ['svg'],
+            'video': ['mp4', 'mov', 'avi']
+        };
+        
+        function clearField(fieldId) {
+            document.getElementById(fieldId).value = '';
+            document.getElementById(fieldId).focus();
+        }
+
+        function clearAllFields() {
+            clearField('topic');
+            clearField('suffix');
+            
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+            });
+        }
+
+        function handleSpecialCheckbox(checkbox) {
+            const docTypeCheckboxes = document.querySelectorAll('input[name="doctype"]');
+            
+            if (checkbox.checked) {
+                docTypeCheckboxes.forEach(cb => {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                    }
+                });
+            }
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+
+            const topic = document.getElementById('topic').value.trim();
+            const suffix = document.getElementById('suffix').value.trim();
+            const selectedCheckboxes = Array.from(document.querySelectorAll('input[name="doctype"]:checked'));
+            const leaveBlankCheckbox = document.getElementById('noFileType');
+
+            if (!topic) {
+                alert("Please enter a Topic Name / Search Query.");
+                return;
+            }
+
+            let filetypeFilterArray = [];
+
+            // 1. Build the File Type query string
+            if (!leaveBlankCheckbox.checked) {
+                selectedCheckboxes.forEach(cb => {
+                    const key = cb.value;
+                    if (fileTypesMap[key]) {
+                        // Add each extension to the array, e.g., 'filetype:pdf', 'filetype:pptx'
+                        fileTypesMap[key].forEach(ext => {
+                            filetypeFilterArray.push(`filetype:${ext}`);
+                        });
+                    }
+                });
+            }
+
+            // 2. Format the File Type query part
+            let filetypeQueryPart = '';
+            if (filetypeFilterArray.length > 0) {
+                if (filetypeFilterArray.length === 1) {
+                    // FIX: If only ONE filetype is selected, do NOT use brackets.
+                    // Result: filetype:pdf
+                    filetypeQueryPart = ` ${filetypeFilterArray[0]}`;
+                } else {
+                    // If multiple filetypes, use brackets and ORs.
+                    // Result: (filetype:pdf OR filetype:ppt)
+                    filetypeQueryPart = ` (${filetypeFilterArray.join(' OR ')})`;
+                }
+            }
+            
+            // 3. Build the Site Suffix query
+            let siteQueryPart = '';
+            if (suffix) {
+                const cleanSuffix = suffix.startsWith('.') ? suffix.substring(1) : suffix;
+                siteQueryPart = ` site:*.${cleanSuffix}`;
+            }
+
+            // 4. Combine all parts into the final search string
+            // Topic is first, followed by filters, each separated by a space.
+            let finalQuery = topic + siteQueryPart + filetypeQueryPart;
+
+            // 5. Encode and Construct the final Google URL
+            const encodedQuery = encodeURIComponent(finalQuery);
+            const searchUrl = `https://www.google.com/search?q=${encodedQuery}`;
+            
+            // 6. Open in a new tab
+            window.open(searchUrl, '_blank');
+        }
+    </script>
+    
+</body>
+</html>
