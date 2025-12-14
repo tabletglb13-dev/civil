@@ -236,6 +236,27 @@
             font-size: 0.8rem;
             color: #777;
         }
+        }
+        /* Container to fix buttons to top-left */
+.top-left-buttons {
+    position: fixed; /* Keeps it in place even when scrolling */
+    top: 10px;
+    left: 10px;
+    z-index: 9999; /* Ensures it sits on top of everything else */
+    display: flex;
+    gap: 10px; /* Space between the two buttons */
+}
+
+/* General Button Style */
+.btn {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
 
         }
 
