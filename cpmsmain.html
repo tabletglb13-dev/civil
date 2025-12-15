@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Management - Home</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-white: #ffffff;
+            --text-dim: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-white);
+            min-height: 100vh;
+            /* Liquid Animated Background */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: liquidGradient 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes liquidGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; }
+        header p { margin: 10px 0 0; font-weight: 300; opacity: 0.9; font-size: 1.1rem; }
+
+        /* --- LIQUID GLASS TILES --- */
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* The Anchor Link Tile */
+        .tile {
+            text-decoration: none; /* Removes underline from link */
+            color: var(--text-white);
+            
+            /* Glassmorphism Styles */
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            height: 70px; /* Fixed Height */
+        }
+
+        /* Hover Animation: Liquid Shine */
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .tile:hover::before { left: 100%; }
+
+        .tile:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 40px 0 rgba(31, 38, 135, 0.4);
+        }
+
+        /* Icon Styling */
+        .tile-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Dynamic Colors using nth-child */
+        .tile:nth-child(1) .tile-icon { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .tile:nth-child(2) .tile-icon { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .tile:nth-child(3) .tile-icon { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .tile:nth-child(4) .tile-icon { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+        .tile:nth-child(5) .tile-icon { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+
+        .tile-content {
+            flex-grow: 1;
+        }
+
+        .tile-content h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tile-content span {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            display: block;
+            margin-top: 3px;
+        }
+
+        .tile-arrow {
+            margin-left: auto;
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .tile:hover .tile-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .tile { height: auto; min-height: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <header>
+        <h1>Construction Management</h1>
+        <p>Select a topic to open the quiz</p>
+    </header>
+
+    <!-- DASHBOARD: LIQUID GLASS GRID -->
+    <!-- Note: Replace 'href' values with your actual file names -->
+    <div class="tile-grid">
+        
+        <!-- Tile 1 -->
+        <a href="punmia.html" class="tile" target="_blank">
+            <div class="tile-icon">📊</div>
+            <div class="tile-content">
+                <h3>Dr. B.C. Punmia</h3>
+                <span>PERT & CPM Networks</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+        <!-- Tile 2 -->
+        <a href="equipment.html" class="tile" target="_blank">
+            <div class="tile-icon">🚜</div>
+            <div class="tile-content">
+                <h3>R.L. Peurifoy</h3>
+                <span>Construction Equipment</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+        <!-- Tile 3 -->
+        <a href="planning.html" class="tile" target="_blank">
+            <div class="tile-icon">📅</div>
+            <div class="tile-content">
+                <h3>K.K. Chitkara</h3>
+                <span>Planning & Scheduling</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+        <!-- Tile 4 -->
+        <a href="contracts.html" class="tile" target="_blank">
+            <div class="tile-icon">📜</div>
+            <div class="tile-content">
+                <h3>S. Seetharaman</h3>
+                <span>Contracts & Tenders</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+        <!-- Tile 5 -->
+        <a href="safety.html" class="tile" target="_blank">
+            <div class="tile-icon">⛑️</div>
+            <div class="tile-content">
+                <h3>P.S. Gahlot</h3>
+                <span>Safety & Materials</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
