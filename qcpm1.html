@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering - PERT, CPM & Construction Planning</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1e40af;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --success-bg: #d1fae5;
+            --success-border: #34d399;
+            --success-text: #065f46;
+            --error-bg: #fee2e2;
+            --error-border: #f87171;
+            --error-text: #991b1b;
+            --score-bg: #ecfdf5;
+            --score-border: #6ee7b7;
+            --score-text: #047857;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-dark); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .left-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .home-btn {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .info-pill { 
+            background: #e0e7ff; 
+            color: var(--primary-dark); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid #c7d2fe;
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: #111827;
+        }
+
+        /* Options Styling */
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: #fff;
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: #f9fafb; 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text);
+            opacity: 0.8;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Image Placeholder for questions that rely on PDF figures */
+        .img-note {
+            font-size: 0.9em;
+            color: #d97706;
+            background-color: #fffbeb;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            border: 1px solid #fcd34d;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<div class="sticky-header">
+    <h1>Construction Planning, PERT, CPM</h1>
+    <div class="header-controls">
+        <div class="left-controls">
+            <a href="#" class="home-btn" onclick="location.reload()">🔄 Reset</a>
+        </div>
+        <div class="stats-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions will be injected here by JavaScript -->
+    </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    // --- State Variables for Score ---
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    // Quiz Data extracted from the PDF
+    const quizData = [
+        { id: 1, q: "A project is", options: ["a large dam constructed across a river for a single or multi-purpose", "any job involving many people and large money", "a work of major importance involving huge men and material", "an organised team work to achieve a set task within the time limit."], a: 3 },
+        { id: 2, q: "Technology is the", options: ["study of techniques", "study of machines and their operation", "study of industrial relations", "study of behaviour of men and machines."], a: 1 },
+        { id: 3, q: "An activity is", options: ["an element of work entailed in the project", "the movement of heavy vehicles from one place to another", "the beginning or the end of a specified job", "the progress of work upto certain limit."], a: 0 },
+        { id: 4, q: "An event is", options: ["a dummy activity", "the useful criterion", "the start and/or finish of an activity or the group of activities", "a definite time interval."], a: 2 },
+        { id: 5, q: "The pictorial representation of activities and events of a project is known as the", options: ["Flow chart", "Flow net", "Algorithm", "Net work."], a: 3 },
+        
+        { id: 6, q: "The flow of time in a net work is generally", options: ["from left to right", "from right to left", "both ways", "of no importance."], a: 0 },
+        { id: 7, q: "Bar chart is also known as", options: ["Histogram chart", "Flow chart", "Time chart", "Gantt chart."], a: 3 },
+        { id: 8, q: "Bar chart is drawn for", options: ["time versus activity", "activity versus resources", "resources versus progress", "progress versus time."], a: 0 },
+        { id: 9, q: "Policy is", options: ["a rule or a set of rules never to be violated", "a definite route along which one has to proceed", "a procedure for preparing the project report", "a set of broad guidelines stipulated by management."], a: 3 },
+        { id: 10, q: "An activity requires", options: ["events", "resources", "time and resources", "energy and vigour."], a: 2 },
+        
+        { id: 11, q: "A drawback of the bar chart is that", options: ["it is difficult to judge whether an activity is completed or not", "all the activities represented are independent of each other", "sequence of activities is not clearly defined", "it is not possible to judge whether the activity is ahead or behind schedule."], a: 2 },
+        { id: 12, q: "Milestones are", options: ["the events specifying the beginning and/or the end of subdivided activities", "the stones indicating the distance along a highway", "dates of important happenings in the history of any nation", "none of the above."], a: 0 },
+        { id: 13, q: "Henry Gantt developed the bar chart technique around", options: ["1800", "1900", "1850", "1950."], a: 1 },
+        { id: 14, q: "Milestone charts are developed around", options: ["1800", "1840", "1900", "1940."], a: 3 },
+        { id: 15, q: "The earliest method used for planning of projects was", options: ["PERT", "CPM", "Bar chart", "Milestone chart."], a: 2 },
+        { id: 16, q: "Bar charts are suitable only for", options: ["minor projects", "medium projects", "major projects", "all the above."], a: 0 },
+        
+        { id: 17, q: "PERT is an abbreviation for", options: ["pertinent equation related to a task", "performance, evaluation, rating and timing", "programme evaluation and review technique", "periodical estimation of resource treasure."], a: 2 },
+        { id: 18, q: "CPM stands for", options: ["computer programming mode", "critical project management", "controlling, planning and maintenace", "critical path method."], a: 3 },
+        { id: 19, q: "PERT is", options: ["activity oriented", "event oriented", "time oriented", "resource oriented."], a: 1 },
+        { id: 20, q: "CPM is", options: ["activity oriented", "event oriented", "time oriented", "resource oriented."], a: 0 },
+        { id: 21, q: "PERT adopts", options: ["deterministic approach", "probabilistic approach", "stochastic approach", "none of the above."], a: 1 },
+        { id: 22, q: "CPM adopts", options: ["deterministic approach", "probabilistic approach", "stochastic approach", "none of the above."], a: 0 },
+        { id: 23, q: "Which of the following statements is true?", options: ["PERT is activity oriented and adopts deterministic approach.", "CPM is event oriented and adopts probabilistic approach.", "CPM is activity oriented and adopts probabilistic approach.", "PERT is event oriented and adopts probabilistic approach."], a: 3 },
+        { id: 24, q: "When the events are numbered in a network then the number of the head event of an activity is", options: ["always larger than the number of the tail event of the same activity", "always smaller than the number of the tail event of the same activity", "always equal to the number of the tail event of the same activity", "none of the above."], a: 0 },
+        { id: 25, q: "Which of the following is an example of parallel activities?", options: ["construction of walls and casting of roof", "construction of walls and carpentry work of doors and windows", "casting of roof and construction of parapet wall", "digging of well and construction of septic tank."], a: 1 },
+        { id: 26, q: "The occurrence of the completion of an activity is called its", options: ["head event", "tail event", "dual role event", "none of the above."], a: 0 },
+        
+        { id: 27, q: "The occurrence of the starting of an activity is called its", options: ["head event", "tail event", "dual role event", "none of the above."], a: 1 },
+        { id: 28, q: "A dual role event", options: ["is the head event as well as a tail event", "consumes no time", "is the beginning of one event and the end of another", "is any event other than the initial and final events."], a: 3 },
+        { id: 29, q: "Pick up the correct statement from the following:", options: ["In a network activities are represented by arrows and events are circled.", "Events into which a number of activities enter and from which one or several activities emerge are called the merge nodes.", "Events into which one or several activities enter and from which a number of emerging activities are generated are called burst nodes.", "all the above."], a: 3 },
+        { id: 30, q: "An important principle in drawing a network is", options: ["no activity can start until all the previous activities in the same chain are completed", "parallel activities should begin and end at the same time", "between two events there should not be more than two activities", "the number of dummy activities in a network should not exceed 4."], a: 0 },
+        { id: 31, q: "A dummy activity", options: ["has no tail event but only a head event", "has only head event but no tail event", "does not require any resources or any time", "has no bearing on the network and can appear anywhere."], a: 2 },
+        { id: 32, q: "At an event other than final event if no activity emerges, it results in an error called", options: ["looping", "dangling", "interfacing", "splicing."], a: 1 },
+        { id: 33, q: "If the path of activities leads back into itself, the resulting error in the network is known as", options: ["looping", "dangling", "interfacing", "splicing."], a: 0 },
+        { id: 34, q: "In the figure given (refer PDF Page 4), identify the network with the error looping", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 1 },
+        
+        { id: 35, q: "In the figure of the problem 34 (refer PDF), identify the network with dangling.", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 2 },
+        { id: 36, q: "Which of the following denotes a dummy activity P?", options: ["(9) - - P - -> (10)", "(9) - P - - > (10)", "(9) - - - P - -> (10)", "(9) - - - P - - > (10)"], a: 2 },
+        { id: 37, q: "In the network shown in the figure (Page 5), which of the following statement is true.", options: ["activities A and B should be completed before C commences", "activities A and B should be completed before D commences", "activities A and B should be completed before E commences", "the sequence of the activities is A -> B -> C -> D -> E."], a: 1 },
+        { id: 38, q: "If the activity A precedes B but succeeds C, then network is", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 2 },
+        { id: 39, q: "A network is given (Page 5). The correct numbering of the events is given by", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 2 },
+        
+        { id: 40, q: "In which of the following are the arrows correctly indicated? (Refer PDF Page 6)", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 3 },
+        { id: 41, q: "The figure (Page 6) indicates", options: ["a merge", "a burst", "an activity", "none of the above."], a: 0 },
+        { id: 42, q: "What does the figure question 42 indicate? (Page 6)", options: ["a merge", "a burst", "an activity", "none of the above."], a: 1 },
+        { id: 43, q: "In PERT, the critical path represents the", options: ["shortest path for the earliest completion of the project", "longest path of the network from the initial to final event", "ideal path by proceeding along which the project can be completed as per schedule", "path which takes into account the completion of the parallel activities."], a: 1 },
+        { id: 44, q: "The optimistic time estimate represents", options: ["the shortest time required to complete the activity under favourable conditions", "the maximum time required to complete the activity under adverse conditions", "the time the activity would most often require if normal conditions prevail", "none of the above."], a: 0 },
+        { id: 45, q: "In problem 44 which would represent the most likely time estimate.", options: ["Option (a)", "Option (b)", "Option (c)", "Option (d)"], a: 2 },
+        { id: 46, q: "In problem 44 which would represent the pessimistic time estimate.", options: ["Option (a)", "Option (b)", "Option (c)", "Option (d)"], a: 1 },
+        { id: 47, q: "If $t_o, t_p$ and $t_L$ represent the optimistic, pessimistic and most likely time estimates, the expected time of completion of the activity is given by", options: ["$t_E = \\frac{t_o + t_L + t_p}{3}$", "$t_E = \\frac{t_o + 2t_L + t_p}{4}$", "$t_E = \\frac{t_o + 3t_L + t_p}{5}$", "$t_E = \\frac{t_o + 4t_L + t_p}{6}$"], a: 3 },
+        
+        { id: 48, q: "A job consists of five activities A, B, C, D and E. Activities A and B can start concurrently. Activity C can start only after A and B are completed, D starts after B is finished, and E can start only after C and D are finished. The correct network for the project is", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 0 },
+        { id: 49, q: "The probability distribution taken to represent the completion time in PERT analysis is", options: ["Gamma distribution", "Normal distribution", "Beta distribution", "Log-normal distribution."], a: 2 },
+        { id: 50, q: "According to Beta distribution, the standard deviation of the time of completion is given by", options: ["$\\sigma = \\frac{t_p - t_o}{3}$", "$\\sigma = \\frac{t_p - t_o}{4}$", "$\\sigma = \\frac{t_p - t_o}{5}$", "$\\sigma = \\frac{t_p - t_o}{6}$"], a: 3 },
+        { id: 51, q: "The optimistic, most likely and pessimistic time estimates of an activity are 5, 10, 21 days. What are the expected time and standard deviation?", options: ["12, 3", "11, 4", "11, 2.67", "10, 16."], a: 2 },
+        { id: 52, q: "Higher standard deviations means", options: ["higher uncertainty", "lower uncertainty", "nothing to do with uncertainty", "none of the above."], a: 0 },
+        { id: 53, q: "If $\\sigma_1, \\sigma_2, ..., \\sigma_n$ are the standard deviations of time of completion for the activities along the critical path, the standard deviations of the time of completion of the project is given by", options: ["$\\sigma_{IE} = \\frac{\\sigma_1 + \\sigma_2 + ... + \\sigma_n}{n}$", "$\\sigma_{IE} = \\sqrt{\\frac{\\sigma_1 + \\sigma_2 + ... + \\sigma_n}{n}}$", "$\\sigma_{IE} = \\sqrt{\\sigma_1^2 + \\sigma_2^2 + ... + \\sigma_n^2}$", "$\\sigma_{IE} = \\frac{\\sqrt{\\sigma_1} + \\sqrt{\\sigma_2} + ... + \\sqrt{\\sigma_n}}{n}$"], a: 2 },
+        
+        { id: 54, q: "What is the standard deviation for the network given below (Page 8)? ($t_o=1, t_p=7$ and $t_o=2, t_p=8$)", options: ["1", "$\\sqrt{2}$", "2", "$2^2$."], a: 1 },
+        { id: 55, q: "Slack is given as the difference between", options: ["latest allowable time and earliest expected time", "latest allowable time and the pessimistic time estimate", "earliest expected time and latest allowable time", "final event time and initial event time."], a: 0 },
+        { id: 56, q: "Negative slack indicates", options: ["ahead of schedule condition", "behind the schedule condition", "on schedule condition", "none of the above."], a: 1 },
+        { id: 57, q: "For all the events along the critical path, the slack is", options: ["maximum", "negative", "minimum or zero", "none of the above."], a: 2 },
+        { id: 58, q: "The probability factor Z in PERT is given by", options: ["$\\frac{\\text{scheduled time} - \\text{earliest expected time}}{\\text{standard deviation}}$", "$\\frac{\\text{scheduled time} - \\text{latest allowable time}}{\\text{variance}}$", "$\\frac{\\text{latest allowable time} - \\text{scheduled time}}{\\text{standard deviation}}$", "$\\frac{\\text{latest allowable time} - \\text{earliest expected time}}{\\text{variance}}$"], a: 0 },
+        { id: 59, q: "If the probability factor is zero, the chances of completing the project in scheduled time are", options: ["0%", "50%", "75%", "100%."], a: 1 },
+        { id: 60, q: "Float may be defined as the difference between", options: ["latest start time and the earliest start time", "latest finish time and the earliest finish time", "time available and the time required to complete the activity", "all the above."], a: 3 },
+        { id: 61, q: "Interfering float is the difference between", options: ["Total float and independent float", "Total float and free float", "Free float and independent float", "Independent float and free float."], a: 1 },
+        
+        { id: 62, q: "Negative float for any activity means that the activity is", options: ["super-critical", "sub-critical", "critical", "none of the above."], a: 0 },
+        { id: 63, q: "Zero float for any activity means that the activity is", options: ["super-critical", "sub-critical", "critical", "none of the above."], a: 2 },
+        { id: 64, q: "Positive float for any activity means that the activity is", options: ["super-critical", "sub-critical", "critical", "none of the above."], a: 1 },
+        { id: 65, q: "The total float for any activity along the critical path in CPM is", options: ["positive", "negative", "zero", "any value."], a: 2 },
+        { id: 66, q: "Direct cost of a project is due to", options: ["establishment charges as salaries to administrative staff", "loss or gain of revenue", "penalty imposed", "cost of materials and wages of labour."], a: 3 },
+        { id: 67, q: "Total project cost", options: ["increases with increase in time", "reduces with increase in time", "initially reduces and then increases with increase in time", "initially increases and then reduces with increase in time."], a: 2 },
+        { id: 68, q: "The total cost versus time curve is", options: ["a straight line", "U-shaped curve", "a parabola", "n-shaped curve."], a: 1 },
+        { id: 69, q: "Crashing to the project means", options: ["reducing the time of completion by spending more resources", "reducing the cost of project by delaying the time of completion", "reducing the project size to save the resources", "all the above."], a: 0 },
+        { id: 70, q: "Resource smoothening means", options: ["gradual increase in resources", "adjustment of resources to have the least variations", "complete revamping of resources to suit the requirement", "optimisation and economical utilisation of resources."], a: 1 },
+        { id: 71, q: "Cost slope of the direct cost curve is given by", options: ["$\\frac{\\text{crash cost} - \\text{normal cost}}{\\text{normal time} - \\text{crash time}}$", "$\\frac{\\text{crash cost} - \\text{normal cost}}{\\text{crash time}}$", "$\\frac{\\text{crash cost} - \\text{normal cost}}{\\text{normal time}}$", "$\\frac{\\text{normal cost} - \\text{crash cost}}{\\text{crash time}}$"], a: 0 },
+        
+        { id: 72, q: "In the time-cost optimization using CPM, the crashing of the activities along the critical path is done starting with the activity having", options: ["least cost slope", "highest cost slope", "moderate cost slope", "none of the above."], a: 0 },
+        { id: 73, q: "When all the paths are arranged according to the descending order of the float, the path which is next to critical path is known as", options: ["under-critical path", "sub-critical path", "semi-critical path", "secondary critical path."], a: 2 },
+        { id: 74, q: "Which of the following is a dummy activity?", options: ["Excavate the foundations", "Await the arrival of concrete material", "Lay the foundation concrete", "Cure the foundation concrete."], a: 1 },
+        { id: 75, q: "The time by which the completion of an activity can be delayed without affecting the start of succeeding activities is called", options: ["total float", "interfering float", "independent float", "free float."], a: 3 },
+        { id: 76, q: "Fulkerson's rule is used for numbering the", options: ["events", "activities", "initial events", "dummies."], a: 0 },
+        { id: 77, q: "Which of the following is a sequential? (Refer PDF Page 10)", options: ["Figure (a)", "Figure (b)", "Figure (c)", "Figure (d)"], a: 0 },
+        { id: 78, q: "In the problem 77, which is converging", options: ["(a)", "(b)", "(c)", "(d)"], a: 2 },
+        { id: 79, q: "In the problem 77, which is diverging", options: ["(a)", "(b)", "(c)", "(d)"], a: 1 },
+        { id: 80, q: "Total cost is", options: ["direct cost", "direct cost + indirect cost", "overheads", "outage loss."], a: 1 },
+        { id: 81, q: "Outage loss plus overheads is equal to", options: ["direct cost", "indirect cost", "total cost", "penalty."], a: 0 },
+        
+        { id: 82, q: "Identify the odd man out", options: ["Mix concrete", "Excavate trench", "Assemble parts", "Design completed."], a: 3 },
+        { id: 83, q: "Which of the following is the correct form of representation of an event?", options: ["Circle", "Cross", "Plus", "Hexagon"], a: 0 },
+        { id: 84, q: "Which of the following is not related to cost slope?", options: ["crash cost", "normal cost", "crash time", "slack."], a: 3 },
+        { id: 85, q: "Use of dummies is required for", options: ["grammatical purpose only", "logical purpose only", "both (a) and (b)", "none of the above."], a: 2 }
+    ];
+
+    const totalQuestions = quizData.length;
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * disables the radio buttons for the question, and updates the score.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Score Logic
+        // Increment attempted
+        attemptedCount++;
+        
+        // Check if correct
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        // Update Display
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // 3. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            // Check if it's an image-heavy question to add a note
+            let note = "";
+            if (item.q.toLowerCase().includes("figure") || item.q.toLowerCase().includes("refer pdf")) {
+                note = `<div class="img-note">⚠️ Requires Figure from PDF</div>`;
+            }
+
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                ${note}
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+
+        // Render MathJax content
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    // Scroll To Top Functionality
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
