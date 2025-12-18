@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Exam Questions Compendium - Restructured</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        
+        body {
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Soft background */
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 95%;
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+            border-radius: 18px;
+        }
+        
+        /* Header and Home Button */
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 25px;
+            border-bottom: 5px solid #0056b3; /* Primary Blue */
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #0056b3; /* Primary Blue */
+            margin: 0;
+            font-weight: 900;
+            font-size: 2.8em;
+            line-height: 1.1;
+        }
+        
+        .home-button {
+            text-decoration: none;
+            background-color: #28a745; /* Green for action */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .home-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+        }
+
+        /* Navigation Bar/Tiles */
+        .nav-container {
+            margin-bottom: 40px;
+            padding: 15px 0;
+            background-color: #e9f5ff; /* Lightest blue background */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-tiles {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping on smaller screens */
+            gap: 10px;
+            justify-content: center;
+            padding: 0 10px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .nav-tile a {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            white-space: nowrap; /* Prevent breaking of tile text */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-tile a:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Subject Blocks */
+        .subject-block {
+            margin-top: 50px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            scroll-margin-top: 100px; /* For smooth scrolling past fixed header (if any) */
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .subject-block:hover {
+             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-heading {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.8em;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            border-bottom: 4px solid #0056b3;
+            letter-spacing: 1px;
+        }
+        
+        .subject-heading span {
+            margin-right: 20px;
+            font-size: 1.3em;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+        
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background-color: #e9f5ff;
+            color: #0056b3;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #fbfbfb;
+        }
+        
+        tbody tr:hover {
+            background-color: #e6f2ff;
+            cursor: default;
+        }
+        
+        .mark-cell {
+            white-space: nowrap; 
+            font-weight: 700;
+            color: #dc3545;
+            text-align: center;
+        }
+        
+        /* Select Button/Icon Styles */
+        .select-cell {
+            text-align: center;
+            width: 50px; /* Fixed width */
+            padding: 8px 10px;
+        }
+        
+        .select-btn {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 1.5em; /* Use a large unicode character for the icon */
+            line-height: 1;
+            padding: 0;
+            transition: color 0.15s, transform 0.1s;
+        }
+        
+        .select-btn:hover {
+            color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        /* Style for the question wrapper to aid full selection */
+        .question-content {
+            display: block; /* Makes it a block-level element, aiding selection */
+            user-select: text; /* Ensures text is selectable */
+        }
+
+        /* Custom style for Airport Engineering heading */
+        #airport-engineering .subject-heading {
+            background-color: #ffc107;
+            color: #333;
+            border-bottom: 4px solid #cc9900;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            /* ... (Responsive styles retained, adjusted table columns) */
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .home-button {
+                margin-top: 15px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            .subject-heading {
+                font-size: 1.5em;
+                padding: 15px 20px;
+            }
+            th, td {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+            .nav-tiles {
+                justify-content: flex-start; /* Align left for better wrapping on smaller screens */
+            }
+            .nav-tile a {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+            .select-cell {
+                width: 40px;
+                padding: 8px 5px;
+            }
+        }
+        @media (max-width: 600px) {
+            /* Adjustments for mobile view where header is hidden */
+            table thead {
+                display: none;
+            }
+            table, tbody, tr, td {
+                display: block;
+                width: 100%;
+            }
+            /* Styling for responsive table layout on mobile */
+            td[data-label="Question"] {
+                padding-left: 15px !important; /* Resetting padding for full width on mobile */
+                width: auto;
+                position: relative;
+            }
+             td:not([data-label="Question"]):not(.select-cell) {
+                padding-left: 100px !important;
+            }
+            
+            td:not([data-label="Question"])::before {
+                content: attr(data-label);
+                font-weight: bold;
+                float: left;
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                text-transform: uppercase;
+                margin-right: 10px;
+                color: #0056b3;
+                width: 80px;
+            }
+
+            .mark-cell {
+                text-align: left !important;
+            }
+
+            .select-cell {
+                 display: block; /* Still display the button cell */
+                 width: 100%;
+                 text-align: right; /* Align icon to the right side of the row */
+                 padding: 8px 15px;
+                 border-bottom: 1px solid #f0f0f0;
+            }
+             /* Removing the label generated for the select cell */
+            .select-cell::before {
+                 content: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-content">
+        <h1>👷 Civil Engineering Exam Questions Compendium</h1>
+        <a href="index.html" class="home-button">Home</a>
+    </div>
+    
+    <!-- Navigation Tiles -->
+    <nav class="nav-container">
+        <ul class="nav-tiles">
+            <li class="nav-tile"><a href="#construction-materials">Materials</a></li>
+            <li class="nav-tile"><a href="#engineering-drawing">Drawing</a></li>
+            <li class="nav-tile"><a href="#surveying">Surveying</a></li>
+            <li class="nav-tile"><a href="#mechanics-of-structure">Mechanics</a></li>
+            <li class="nav-tile"><a href="#structural-design">Structural Design</a></li>
+            <li class="nav-tile"><a href="#soil-mechanics">Soil Mechanics</a></li>
+            <li class="nav-tile"><a href="#water-sanitation">Water & Sanitation</a></li>
+            <li class="nav-tile"><a href="#irrigation-hydrology">Irrigation</a></li>
+            <li class="nav-tile"><a href="#highway-engineering">Highway</a></li>
+            <li class="nav-tile"><a href="#airport-engineering">Airport</a></li>
+            <li class="nav-tile"><a href="#estimating-costing">Estimating</a></li>
+            <li class="nav-tile"><a href="#construction-management">Management</a></li>
+            <li class="nav-tile"><a href="#building-technology">Building Tech</a></li>
+            <li class="nav-tile"><a href="#construction-safety">Safety</a></li>
+            <li class="nav-tile"><a href="#miscellaneous">Misc.</a></li>
+        </ul>
+    </nav>
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Construction Materials -->
+    <div class="subject-block" id="construction-materials">
+        <div class="subject-heading">
+            <span>🏗️</span> 1. Construction Materials
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cement & Admixtures -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">1.</td><td data-label="Question"><div class="question-content">Write down the various ingredients and the physical properties of the cement. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">2.</td><td data-label="Question"><div class="question-content">What are the different types of cement? Write down the ingredients of Portland Cement.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">3.</td><td data-label="Question"><div class="question-content">Explain different types of cements used in Nepal and its suitability. Which cement is used for mass concrete work and why? Write down.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">4.</td><td data-label="Question"><div class="question-content">Mention the major properties and functions of cement. What are the major things to be taken care of while storing the cement? (*)</div></td><td class="mark-cell" data-label="Mark">[2.5+2.5=5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">5.</td><td data-label="Question"><div class="question-content">Describe about the various physical tests of cement.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">6.</td><td data-label="Question"><div class="question-content">Describe the properties of cement to be used for airport construction. Also, mention the need for using admixtures.</div></td><td class="mark-cell" data-label="Mark">[4+1=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">7.</td><td data-label="Question"><div class="question-content">What is admixture? Mention different types of admixture with their application. (*)</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">8.</td><td data-label="Question"><div class="question-content">What are the major reasons for using admixtures? Write its classification by function.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <!-- Bricks, Stone & Masonry -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">9.</td><td data-label="Question"><div class="question-content">What are the qualities of good bricks? Why should we be careful about the harmful ingredients in brick earth?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">10.</td><td data-label="Question"><div class="question-content">Explain in brief the constituents of brick earth. What are the harmful ingredients of brick earth? (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">11.</td><td data-label="Question"><div class="question-content">Explain about the manufacturing method of Brick.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">12.</td><td data-label="Question"><div class="question-content">What kind of tests do you suggest for bricks while using in construction? Explain.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">13.</td><td data-label="Question"><div class="question-content">Describe shortly classification of different bricks.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">14.</td><td data-label="Question"><div class="question-content">Describe about the qualities of good stone.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">15.</td><td data-label="Question"><div class="question-content">Describe the merits and demerits of random rubble stone masonry.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <!-- Concrete, Aggregates & Sampling -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">16.</td><td data-label="Question"><div class="question-content">Describe the differences between fine aggregates and coarse aggregates. Explain the importance of maintaining their proportion in the cement concrete work. How should we store cement? What are the roles of admixture while cement concreting?</div></td><td class="mark-cell" data-label="Mark">[2+1+1+1=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">17.</td><td data-label="Question"><div class="question-content">List out the lab test for the aggregate. Explain the stepwise procedure to prepare the gradation curve of the aggregate.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">18.</td><td data-label="Question"><div class="question-content">What is sampling of material? How is sampling carried out of aggregates? Elucidate.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">19.</td><td data-label="Question"><div class="question-content">Describe the sampling techniques of construction material. How does the sample represent the same work? State.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">20.</td><td data-label="Question"><div class="question-content">What are the main construction materials in building construction? Describe.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">21.</td><td data-label="Question"><div class="question-content">What is water-cement ratio in construction work? Mention various factors affecting strength of concrete. (*)</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">22.</td><td data-label="Question"><div class="question-content">Define water cement ratio and explain in brief the factors affecting the strength of concrete.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">23.</td><td data-label="Question"><div class="question-content">Briefly explain the key factors affecting the strength of concrete.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <!-- Bitumen & Others -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">24.</td><td data-label="Question"><div class="question-content">What do you mean by paint and varnish? Write down any six tests of bitumen.</div></td><td class="mark-cell" data-label="Mark">[1+1+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">25.</td><td data-label="Question"><div class="question-content">Describe briefly the type of paints and varnishes. Also list out the characteristics of good paints.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">26.</td><td data-label="Question"><div class="question-content">What is VG bitumen? Explain briefly the main tests to be carried out to check the suitability of bitumen for road construction. Which VG grade bitumen is suitable for construction of bitumen road in mountainous region of Nepal? Discuss.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>27.</td><td data-label="Question"><div class="question-content">Describe the types of bitumen used for road construction.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>28.</td><td data-label="Question"><div class="question-content">Write down importance of Flakiness Index of aggregates in Road Pavement Construction.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>29.</td><td data-label="Question"><div class="question-content">Elaborate on Gabion wires and their applications?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>30.</td><td data-label="Question"><div class="question-content">Write down any four laboratory tests for Gabion wire.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>31.</td><td data-label="Question"><div class="question-content">Write short notes on: a) Initial setting time of cement, b) Final setting time of cement, c) Bulking of sand.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Construction Materials -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Engineering Drawing -->
+    <div class="subject-block" id="engineering-drawing">
+        <div class="subject-heading">
+            <span>✏️</span> 2. Engineering Drawing
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">1.</td><td data-label="Question"><div class="question-content">What is engineering drawing? Differentiate between artistic drawing and engineering drawing. (*)</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">2.</td><td data-label="Question"><div class="question-content">What is engineering drawing and its role? Explain. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">3.</td><td data-label="Question"><div class="question-content">What are the different types of lines used in engineering drawing? Differentiate between a plan view and an elevation view.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">4.</td><td data-label="Question"><div class="question-content">What is engineering drawing? Describe about the types of scale.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">5.</td><td data-label="Question"><div class="question-content">What do you mean by Scale? Explain the types of Scale?</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">6.</td><td data-label="Question"><div class="question-content">Write the significance of working drawing of the construction project and when it is prepared?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">7.</td><td data-label="Question"><div class="question-content">What is the importance of the topographical map with contours in preparing the master plan of a building? Prepare a schematic layout for a rectangular-shaped building plan using a holistic approach, positioning it two meters inside the rectangular layout lines.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td data-label="S.N.">8.</td><td data-label="Question"><div class="question-content">What is understood by computer application in drawing? Explain with examples.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Engineering Drawing -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Surveying -->
+    <div class="subject-block" id="surveying">
+        <div class="subject-heading">
+            <span>🧭</span> 3. Surveying
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Principles & Classification -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">What do you understand by Surveys in Engineering? What are the principle and various classifications based on Curvature of earth and Nature of the fields.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">What are the main principles of surveying? Describe.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What is surveying? Explain briefly the fundamental principles of surveying. What are the advantages and limitations of plane table surveying? Describe face left and face right reading in theodolite survey.</div></td><td class="mark-cell" data-label="Mark">[1+3+4+2=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Explain the classification of surveying based on instruments. Write down the principles of surveying.</div></td><td class="mark-cell" data-label="Mark">[8+2=10]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Define the term surveying and differentiate between geodetic and plane surveying.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">Write in brief about general classification of surveys.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <!-- Levelling & Theodolite -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Describe the temporary adjustment procedure of theodolite.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">Explain the principles of levelling. Describe reciprocal levelling with sketch.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">What is reciprocal levelling? When and how do we conduct reciprocal levelling? State.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">What are the principles of levelling? Explain in brief.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Define levelling. Explain the temporary adjustment of levelling.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">When do you use trigonometric levelling? What are its limitations? Describe.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Describe the trigonometrial levelling with sketches. Also, explain the five main functions of Geographical Information System (GIS).</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <!-- Plane Table, Traverse, Total Station -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Describe the method of plane tabling and what are the merits and demerits of plane table survey?</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Discuss the benefits and limitations of plane table surveying in field application.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What is method of resection in the context of plane table surveying? Can you correlate resection with working of GPS? Also, explain Reciprocal Levelling and different orders of Benchmarks.</div></td><td class="mark-cell" data-label="Mark">[3+2+2+3=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">What is traverse survey? Mention the purpose of traverse.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">Define closed traverse. Why checks are necessary in closed traverse?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">What are the applications of total station in surveying? Describe with examples.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <!-- Contouring & Chain Survey -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">Define contouring. Explain any nine characteristics of contour maps.</div></td><td class="mark-cell" data-label="Mark">[1+9=10]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">What is contouring? What factors affect the contour interval? State.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">Write down the important characteristics of contours.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">Describe contour and its interval. Mention its characteristics and uses of contour in maps.</div></td><td class="mark-cell" data-label="Mark">[2+3+3+2=10]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">Mention the important characteristics of contour. Write use of contour map.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>25.</td><td data-label="Question"><div class="question-content">Explain the different types of correction in chain survey. Find the sag correction of 30 m steel tape under a pull of 8 kg in three equal spans of 10 m each...</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Surveying -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Mechanics of Structure -->
+    <div class="subject-block" id="mechanics-of-structure">
+        <div class="subject-heading">
+            <span>📏</span> 4. Mechanics of Structure
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- SFD/BMD & Beams -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Draw shear force and bending moment diagram of a beam loaded with 4 kN/m uniformly distributed load having length 4 m. The support condition of beam is one end hinge and other end roller. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Calculate Shear Force and Bending Moment of simply supported beam of span (L) = 4 and carries uniformly distributed load (udl) = 5 KN/m. Sketch shear force and B.M. diagram with calculated value. (*)</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Draw the bending moment and shear force diagrams for a simply supported beam of length, L, carrying a uniformly distributed loading of 'w' KN/m throughout the span.</div></td><td class="mark-cell" data-label="Mark">[2.5+2.5=5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Draw the bending moment diagram for a simply supported beam of 5 m span subjected to a uniformly distributed load of 4 KN/m and a concentrated load of 30 KN at the center.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Define shear force and Bending Moment, discuss its relationship. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">Differentiate between Shear Force and Bending Moment. Calculate the maximum bending moment of simply supported beam of span (l) having uniformly distributed load (w) per unit length.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Describe with illustrations how the shear force and bending moment occur in a simply supported beam with uniformly distributed loading.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">Explain the different types of loads acting on a beam? Write.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Prove the bending equation for a homogeneous section M/I = σ/y = E/R with usual notations.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">What is center of gravity (CG) of a body? Draw bending moment diagram and shear force diagram of a simply supported beam carrying a point load (W) at the center of span (L).</div></td><td class="mark-cell" data-label="Mark">[1+2+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <!-- Fluid Mechanics Principles (as part of Engineering Mechanics) -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Describe viscosity. Calculate the specific weight, specific mass, specific volume and specific gravity of a liquid having a volume of 5 m³ and weight of 40 KN. (*)</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Define dynamic viscosity of a liquid. Explain four types of hydraulic coefficients.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Describe briefly mass density, specific weight, specific volume, specific gravity and viscosity in fluid mechanics.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Introduce pressure energy, kinetic energy and potential energy in pipe flow.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Name the different forms of energy of flowing liquid. Explain the principle of conservation of energy and the relationship between Hydraulic Gradient Line (HGL) and Total Energy Line (TEL).</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What are head losses in fluid flow through pipes? Differentiate between major and minor head losses.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <!-- Strength of Materials/General Mechanics -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Write short notes on Poisson's ratio and Hook's law.</div></td><td class="mark-cell" data-label="Mark">[2.5+2.5=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Mechanics of Structure -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Structural Design (RCC & Foundation) -->
+    <div class="subject-block" id="structural-design">
+        <div class="subject-heading">
+            <span>🌉</span> 5. Structural Design (RCC & Foundation)
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Design Concepts & Beams -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Unlike in Working Stress Method, discuss how a different kind of approach is adopted while using safety factors... in the case of Limit State Design of RC structure. Explaining under-reinforced and over-reinforced RC sections, clarify how and why an over-reinforced section is not advisable to provide.</div></td><td class="mark-cell" data-label="Mark">[6+2+2=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Introduce and compare working stress and limit state philosophy for design of RCC structures.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What do you mean by under-reinforced, over-reinforced and balanced section? Which is the most economic section and how can it be achieved?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Explain the following terms: a) Under reinforced section, b) Over reinforced section, c) Balanced section. (*)</div></td><td class="mark-cell" data-label="Mark">[2+2+1=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Describe under reinforced, over reinforced and balanced RCC section.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What are the modes of failure in under reinforced and over reinforced beam? Explain.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Discuss the role of shear reinforcement in R.C. beams and the improved bond strength between concrete and steel reinforcement.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">Write down different types of shear reinforcement in a RCC section and briefly explain the steps of shear reinforcement design.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">What type of shear reinforcements are used in a RCC beam? Explain with sketch.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">A rectangular beam is 200 mm wide 400 mm deep up to the center of reinforcement. Find the reinforcement required if it has to resist a moment of 40 KNm...</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">What is anchorage length? Explain its significance in reinforced concrete design.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <!-- Columns & Slabs -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Design a short column, square in section to carry an axial load of 200 KN using mild steel and M20 mix.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Describe the design procedure of axially loaded rectangular column section.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">A short axially loaded square column 500mm x 500mm is subjected to service load of 2000 KN. Calculate the ultimate load and minimum area of longitudinal reinforcement.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">What is the difference between a long column and a short column in RCC structures? How does slenderness ratio influence their behavior?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">How do you differentiate short and long columns? Explain.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Differentiate between one-way slab and two-way slab. What are the design procedure for slab?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">Describe about one-way and two-way slab of RCC section with sufficient details and sketch it.?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <!-- Retaining Walls -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">What are the stability requirements for design of retaining walls? Explain with neat sketch.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Structural Design (RCC & Foundation) -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Soil Mechanics -->
+    <div class="subject-block" id="soil-mechanics">
+        <div class="subject-heading">
+            <span>🪨</span> 6. Soil Mechanics
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Soil Properties & Classification -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Describe three phase system of soil with diagram. Define void ratio and porosity. The soil sample contains volume of void 0.2 and volume of soil is 0.30. Calculate the void ratio and porosity of soil.</div></td><td class="mark-cell" data-label="Mark">[4+2+4=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Define specific gravity, dry mass density, water content, percentage air void and air content. What is the relationship between dry mass density and percentage air voids of soil mass?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Describe soil classification in brief.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Describe the different types of soil with its classification for civil engineering purpose.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">What is Plasticity Index and how do you determine its value in earth work.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <!-- Compaction & Consolidation -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What are the factors that affect compaction of soil? Illustrate the relation between compaction and optimum moisture content. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">What is Optimum Moisture Content (OMC) and maximum dry density? Show the relation between dry density and moisture content. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">What do you mean by OMC? Describe the factors that effect the soil compaction.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Define Maximum Dry Density (MDD) and Optimum Moisture Content (OMC).</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">How is proctor compaction test carried out in road work? Explain in brief.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Write short notes on soil compaction techniques.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">What happens if soil is not compacted? How does compaction affect engineering properties of soils?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Differentiate between soil compaction and consolidation. Explain how each of these processes affects the structure.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <!-- Other -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Explain the Darcy's law.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Soil Mechanics -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Water Supply and Sanitation -->
+    <div class="subject-block" id="water-sanitation">
+        <div class="subject-heading">
+            <span>💦</span> 7. Water Supply and Sanitation
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Water Sources & Supply System -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">What are the components of a typical gravity flow water supply project in hilly areas? Provide a sketch showing all the components.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Write different components of gravity water supply system. What are major factors which needs to be considered during design of this system.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Write the different components of gravity water supply system with sketch.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">What are the different types of water sources? Why gravity source is more feasible than pumping source? Explain.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">What types of sources of water are used in water supply system? Which ecological regions are suitable for the supply of surface water and ground water sources in water supply systems?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">Discuss briefly on various sources of water supply.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Explain the different factors to be considered during selection of water source to provide drinking water facility to municipal population. Again, state the methods of determining storage tank capacity as well.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">How would you use shallow and deep tube wells for the water supply in Terai? Under what conditions each is used and why?</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Differentiate between shallow well and deep well.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <!-- Water Demand & Quality -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">How do you calculate the water demand of a town? And, what are the factors affecting the water demand? Write.</div></td><td class="mark-cell" data-label="Mark">[4+6=10]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Describe per capita and the types of water demand. Why does the variation in water demand occur? Explain.</div></td><td class="mark-cell" data-label="Mark">[2+4+4=10]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Define potable and wholesome water. Also, discuss about significance of WHO guidelines for drinking water quality.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <!-- Water Treatment -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Describe the functions of grit chamber, coagulation and flocculation tank, sedimentation tank, filtration tank and disinfection unit used in purification of water.</div></td><td class="mark-cell" data-label="Mark">[2+2+2+2+2=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <!-- Sanitation & Sewerage -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">What are the functions of septic tank? Draw a schematic diagram of a septic tank showing its main components. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Describe septic tank and soak pit with necessary sketches. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">Explain the design procedure of septic tank with neat sketches. Assume necessary parameters by yourself.</div></td><td class="mark-cell" data-label="Mark">[7+3=10]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">What are the factors to be considered while designing septic tank and soak pit?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">What are the advantages and disadvantages of onsite sanitation? Write.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">What is sewerage system? Discuss its types with advantage and disadvantage.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">Explain the different types of sewerage disposal system used in Nepal.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">What are the differences between self-cleaning velocity and limiting velocity? Determine the velocity of the flow in a sewer running one half full... Discuss the various methods of sewage treatment.</div></td><td class="mark-cell" data-label="Mark">[2+5+3=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <!-- Hydraulics (Pipe Flow) -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">Differentiate between pipe flow and open channel flow. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">What is the different between pipe flow and open channel flow, discuss in detail with example?</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">What do you mean by HGL in pipeline design? Draw HGL for the pipeline having length of 4 km, 200 mm in diameter...</div></td><td class="mark-cell" data-label="Mark">[2+8=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>25.</td><td data-label="Question"><div class="question-content">Define hydraulic jump. What are the applications of hydraulic jump? Describe syphon and draw the sketch of syphon pipe connecting two reservoirs.</div></td><td class="mark-cell" data-label="Mark">[2+4+4=10]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Water Supply and Sanitation -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Irrigation and Hydrology -->
+    <div class="subject-block" id="irrigation-hydrology">
+        <div class="subject-heading">
+            <span>🌾</span> 8. Irrigation and Hydrology
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Crop Water Requirement -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Define the terms duty, delta and base period that used in crop water requirements. Derive the relation between duty and delta. (*)</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Write short note on Duty, Delta, Base period in Irrigation System.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What do you understand by crop-water requirement? Explain various factors affecting crop-water requirement.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Design an irrigation canal section to irrigate 12750 ha of agricultural land with a duty of 850 ha/m³/sec...</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">"Irrigation is a necessity for agricultural production, but sometimes irrigation may create adverse situations for crops, environment and living things." Justify this statement.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <!-- Canals, Losses & Open Channel Flow -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What are the major losses in irrigation canal? Explain in brief.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">What are canal losses? Enlist the methods for minimization of canal losses.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">Discuss the various types of losses that occur in irrigation canals and their impact on water efficiency.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Explain the canal losses and their minimization methods. Also, draw a typical canal irrigation system showing the major components.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">What are the different methods of irrigation used in Nepal? Draw and explain the river training works commonly used in hilly areas.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">What is Manning's rugosity coefficient? For an earthen rectangular canal, calculate the discharge if width of the canal is 2 m and depth of flow is 1.5 m...</div></td><td class="mark-cell" data-label="Mark">[2+8=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <!-- Head Works & River Training -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Define head works. What are the types of head works? Describe the different components of head works with sketch.</div></td><td class="mark-cell" data-label="Mark">[1+2+7=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">List out the different works that need to be done under river training works. Sketch the cascade types gabion wall and write its features.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">What is understood by River Training Work? Describe the different types of river training works and their importance.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Explain three most suitable method of river training works in hilly regions of Gandaki Provinces with Sketches.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <!-- Notches and Weirs -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">Define Notch and Weir. What are the advantages of a triangular notch over a rectangular notch?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Differentiate between weirs and notches.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">Define notches and weirs. Write the formula that gives discharge over a rectangular weir.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">Briefly describe the discharge measurement method through notches.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Irrigation and Hydrology -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Highway Engineering -->
+    <div class="subject-block" id="highway-engineering">
+        <div class="subject-heading">
+            <span>🛣️</span> 9. Highway Engineering
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Alignment & Geometric Design -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">What are the basic requirements of road alignment? Explain the types of road based on functional classification. (*)</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">What are the basic requirements of road alignment? What do you mean by superelevation? How is it different from camber? Write down the significance of superelevation.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Define highway alignment. What are the factors affecting highway alignment?</div></td><td class="mark-cell" data-label="Mark">[1.5+3.5=5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Mention the different design aspects to be considered in the design of horizontal alignment of a road.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Explain how the values of radius of horizontal curve, superelevation and maximum gradient vary with the changes in design speed referring to the relevant Nepal Road Standard of Department of Roads.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What are the factors to control the geometric design of a highway? Calculate the rate of superelevation for a national highway whose design speed is 120 km/hr, assuming necessary data.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">List the various geometric elements to be considered in highway design. What are the factors on which the stopping sight distance depends?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">Calculate the safe stopping distance for design speed 60 km per hour for a two-way traffic on a two-lane road assuming coefficient of friction is 0.37 and reaction time of driver as 2.5 seconds.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Why superelevation is provided over a curve of the road? Give the formula for it.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">What is the importance of camber in road pavement? How is it provided?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Explaining the need of extra-widening width, find the total pavement width required for a four lane highway on a horizontal radius of 250 m...</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Describe longitudinal gradient in a road alignment on the basis of Nepal Road Standards.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <!-- Road Classification & Cross Section -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Explain the classification of roads as per Nepal Road Standard, 2070. Describe the special consideration for alignment of Hill Roads.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Describe the types of roads based on construction method. Explain the special consideration for alignment of Hill Roads.</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Draw a cross section of a Highway of Nepal and define all the elements.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What are the basic design controls and design criteria for roads in Nepal? Also draw a neat sketch of typical cross section of road with pavement structures.</div></td><td class="mark-cell" data-label="Mark">[7+3=10]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <!-- Hill Roads -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">What are the design and construction problems of hill road? What are the special consideration which need to be followed in the selection of alignments for road in mountainous area?</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">How do you provide longitudinal and cross drainages in hill roads? Explain.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">Explain the special structures used in hill road. Describe the different layers in pavement structure with their function.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <!-- Pavement & Construction -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">What are the components of flexible pavement? Describe construction procedure of asphalt road.</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">Describe the types of pavement. What are the components of pavement of road structure? Explain.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">List the components of road pavement? Explain with diagram.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">Describe in detail the construction procedure of surface dressing road. How is quality control of work carried out? Mention.</div></td><td class="mark-cell" data-label="Mark">[6+4=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">How do you construct WBM roads? What is its suitability? Discuss in detail.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <!-- Drainage & History -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>25.</td><td data-label="Question"><div class="question-content">Define highway drainage and explain the importance of highway drainage.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>26.</td><td data-label="Question"><div class="question-content">Discuss the importance of an effective highway drainage system and outline the key components involved in its design. Explain how improper drainage can affect highway performance and safety.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>27.</td><td data-label="Question"><div class="question-content">Briefly explain the historic development of roads in Nepal and classification of roads.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Highway Engineering -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Airport Engineering -->
+    <div class="subject-block" id="airport-engineering">
+        <div class="subject-heading">
+            <span>✈️</span> 10. Airport Engineering
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Planning & ICAO -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Briefly describe the history of civil aviation in Nepal. List out international airports constructed and under planning consideration in Nepal.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Explain about the historic developments of airports in Nepal.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What are the factors to be considered for the airport site selection? Why rose diagram is important for runway orientation? Explain.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">What is Airport Master Planning? Elaborate the types of activities involved in the master plan process.</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Elaborate the different elements of airport planning. Explain the 'Centralized' and 'Decentralized' concept of Terminal-Building Planning with their salient features.</div></td><td class="mark-cell" data-label="Mark">[6+4=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What does ICAO stand for? Enlist the geometric design standards for the airport design as per ICAO. As per ICAO, write the class of Tribhuvan International Airport and elaborate it.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Describe briefly about International Civil Aviation Organization (ICAO)'s requirement for aerodrome design and operations.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">For the purpose of identifying standards for various sizes of airports and the functions they serve, reference codes have been developed by ICAO. Elaborate Aerodrome Reference Code as per ICAO Annex 14.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <!-- Terminal, Runway, Taxiway -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Define runway, taxiway and Apron of an airport.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">What are the additional requirements for a Domestic Airport Terminal to be upgraded to an International Airport? Describe.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">What is the design consideration for airport terminal area? Explain.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">What are the factors that govern the size of the Apron-Gate position in an airport? Also, sketch different basic aircraft parking configurations and discuss advantages and disadvantages of each of them.</div></td><td class="mark-cell" data-label="Mark">[4+6=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Point out different categories of visual aids for navigation at an airport. Explain taxiway marking with sketch.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">What is the purpose of Runway Threshold? How do you mark it and what are the standard dimensions of the markings?</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Mention the markings in the airport pavement. What do the letters 'L', 'R' and 'C' indicate in marking?</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <!-- Pavement -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What is airport pavement? Compare the basic design concept for flexible and rigid airport pavements.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Explain different structural components of a flexible pavement. How does flexible pavement differ from rigid pavement? Explain.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">List the sequence of layers and test requirements in the field to construct a flexible pavement of parallel taxiway.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">Discuss the components and functions of Pavement Management System (PMS) in maintaining airport pavements. Write techniques for evaluating the structural strength of pavements. How do you assess runway surface conditions? Mention.</div></td><td class="mark-cell" data-label="Mark">[4+4+2=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">What is pavement management system? Explain different types of distress in bituminous pavement of an airport.</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">Explain in brief about the maintenance of airport runway.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <!-- Drainage & STOL Port -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">What is airport drainage system? Write down its functions. What type of data will you collect for its design?</div></td><td class="mark-cell" data-label="Mark">[1+2+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">Briefly point out the special characteristics of airport drainage system.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">Explain the design considerations for airport drainage systems, including the determination of the design storm and layout of surface and subsurface drainage.</div></td><td class="mark-cell" data-label="Mark">[6+4=10]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>25.</td><td data-label="Question"><div class="question-content">Discus the physical characteristics of the STOL port, its obstacles and limitations.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Airport Engineering -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Estimating Costing -->
+    <div class="subject-block" id="estimating-costing">
+        <div class="subject-heading">
+            <span>💰</span> 11. Estimating Costing
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rate Analysis -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">What do you mean by rate analysis and how is it prepared? What are the norms for M20 concrete? (*)</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">What do you mean by the rate analysis of an item of work? What are the breakdown of an item work for rate analysis practiced in Nepal?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Explain with example the rate analysis of an item for cement concrete work in 1:2:4 ratios.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Explain the rate analysis of an item for cement concrete work in the mix ratio 1:1.5:3, with a suitable example.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Describe rate analysis with suitable example.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">What is rate analysis? Write Its Importance.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">What are necessary things for analyzing the unit rate of items of works? Identify.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">What do you mean by rate analysis? Briefly explain.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <!-- Estimates & BOQ -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Why estimate should be prepared? What are the purposes of rate analysis and which points are taken into consideration while preparing analysis of rate?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">Describe about different types of estimates of civil works.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">What is the purpose of estimating and costing? Describe differences between estimates: preliminary, approximate quantity and detailed.</div></td><td class="mark-cell" data-label="Mark">[1+2+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Differentiate between plinth area estimate and detailed estimate.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">What is depreciation? Describe preliminary estimate and detailed estimate.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Explain the step by step procedures for preparation of cost estimate.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">According to prevailing Financial Act and Regulation of Government of Nepal, list out the procedural steps for preparing rate analysis and the cost estimation for civil works.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/11/30</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">List out the main items of work. Draw the standard estimate formats and rate analysis formats used in government offices.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Describe the duties of Sub Engineer during preparation of estimates. Prepare the format of rate analysis for estimate.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">What is Bill of Quantity (BoQ)? Explain its use and importance in construction projects.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">What is Bill of Quantity (BoQ)? How and why is it prepared? Also, explain the importance of rate analysis.</div></td><td class="mark-cell" data-label="Mark">[2+3+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <!-- Specification -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">What is the purpose of specification in estimating and costing? Write.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">Describe specification. Mention the importance of specification in construction work. (*)</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">Why specification is generally prepared in a building construction project? Explain its importance.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">How do you prepare specification of cement concrete road? write the example of specification of it.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">Enlist the basic data requirement for detailed estimation of water supply projects. What factors need to be viewed during the preparation of detailed estimate?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Estimating Costing -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Construction Management -->
+    <div class="subject-block" id="construction-management">
+        <div class="subject-heading">
+            <span>📈</span> 12. Construction Management
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Planning & Control -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Define construction management. What is the main objective of construction management?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2079/12/14</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Discuss the importance of time control in managing a civil engineering contract. Outline the key tools or techniques used to ensure timely completion of a project.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">Describe Bar Chart, CPM and PERT techniques in planning and control of a construction work. Explain their uses with sketches.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">What are the importance of CPM and PERT in the construction practice? Write down.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">What is understood by Float in the Critical Path Method (CPM)? Explain with examples.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/03/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">Explain the importance of supervision in construction projects.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <!-- Quality Management -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">What are the differences between quality control and quality assurance plan? How can quality management plan and quality control system enhance the output of a project? Describe.</div></td><td class="mark-cell" data-label="Mark">[6+4=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/15</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">How do you assure the quality control of concrete at site? Elucidate.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/02</td></tr>
+                <!-- Contracts & Procurement -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">What is contract? Explain general and specific conditions of contract while awarding contract for air traffic control building.</div></td><td class="mark-cell" data-label="Mark">[2+8=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">State various types of contracts and explain its disadvantages.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">What is contract? What is the difference between Bid Security and Performance Security in a contract? What are the various tools for project planning? Explain the relationship between client, consultant (engineer) and contractor in a project.</div></td><td class="mark-cell" data-label="Mark">[1+2+3+4=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">What is the purpose of bid security? In which conditions it is forfeited and returned back to the respective bidder.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/24</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">Mention the amount of bid security and performance bond in Nepal.</div></td><td class="mark-cell" data-label="Mark">[2+1+2=5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">Shortly introduce the National Competitive Bidding (NCB) procedure for procurement of work practiced in Nepal.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">List out the documents which are included in contract document.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/09</td></tr>
+                <!-- Roles & Responsibilities -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What are the responsibilities of civil overseer in Civil Aviation Authority of Nepal? Briefly explain the relation among employer, contractor and consultant in construction works.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">Discuss the responsibilities of a civil sub-engineer in any construction project. Discuss, how accidents take place relating to working environment at construction site. Suggest remedial measures to avoid and prevent accidents in construction site in context of Nepal.</div></td><td class="mark-cell" data-label="Mark">[4+3+3=10]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">Explain the responsibilities of a building sub-engineer.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">Write down the responsibilities of a Civil Sub-Engineer in the supervision of Construction Works.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">What is the role of civil sub-engineer in establishing good relation among owner, consultant and contractor?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">What are the responsibilities of a civil overseer in construction management and how they ensure project success.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">Briefly explain the relation among employer, contractor and consultant in construction works.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <!-- Equipment & Others -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">What are the different construction equipment and plants used in airport construction? Describe about different factors affecting selection of construction equipment.</div></td><td class="mark-cell" data-label="Mark">[3+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/25</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">Draw schematic diagram of typical hydropower system and explain its components. In your view what are the challenges in construction of hydropower project in Nepal? Describe.</div></td><td class="mark-cell" data-label="Mark">[2+4+4=10]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Construction Management -->
+    
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Building Construction Technology -->
+    <div class="subject-block" id="building-technology">
+        <div class="subject-heading">
+            <span>🏠</span> 13. Building Construction Technology
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Foundations & Masonry -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Describe different types of foundations for civil engineering structures along with their suitability in soil types.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/10/04</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Why foundation is provided in structure? Explain the types of shallow and deep foundations.</div></td><td class="mark-cell" data-label="Mark">[2+8=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/23</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What do you mean by shallow foundation? Describe types of shallow foundation? Explain the causes of failure of foundations?</div></td><td class="mark-cell" data-label="Mark">[1+4+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">What are the points to be considered for the suitability of the foundation in the construction work? Draw the different types of shallow foundation?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/09/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Differentiate between shallow foundation and deep foundation.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">Mention the factors influencing the selection of an appropriate foundation type for a multi-storey building located on a site with soft clay soil. Explain how these factors affect the decision between adopting a shallow foundation or a deep foundation.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Why bricks are commonly used material in construction work? Explain briefly the manufacturing process of bricks.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>8.</td><td data-label="Question"><div class="question-content">What are the common types of bricklaying used in our country? Briefly explain the process of any one type of bricklaying.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>9.</td><td data-label="Question"><div class="question-content">Define and sketch how bricks are laid in a Flemish bond.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>10.</td><td data-label="Question"><div class="question-content">Describe different types of wall system and their function and advantages in building construction.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2079/12/04</td></tr>
+                <!-- Damp Proofing & Waterproofing -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>11.</td><td data-label="Question"><div class="question-content">Water leakage/dampness is found as a common problem... Find out its causes and provide its remedy using different damp proofing materials and techniques...</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>12.</td><td data-label="Question"><div class="question-content">Describe with the help of figure damp proof treatment in the basement of a building in damp soils.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>13.</td><td data-label="Question"><div class="question-content">What are the major causes of dampness? List the methods of damp proofing.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2080/05/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>14.</td><td data-label="Question"><div class="question-content">What are the main function of cement in mortar and concrete? What are the purposes of Damp proof course (D.P.C)?</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>15.</td><td data-label="Question"><div class="question-content">Write the difference between water proofing and damp proofing. Provide comparative note.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <!-- Concrete (Workability & Curing) -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>16.</td><td data-label="Question"><div class="question-content">What do you understand by workability of concrete and how it is maintained in building construction?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>17.</td><td data-label="Question"><div class="question-content">What do you mean by workability of concrete? Discuss the factor influencing workability of concrete.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>18.</td><td data-label="Question"><div class="question-content">What is curing of concrete and why is it necessary? List out the different methods of curing.</div></td><td class="mark-cell" data-label="Mark">[1+2+7=10]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>19.</td><td data-label="Question"><div class="question-content">Why is curing of concrete important? Mention the methods of curing.</div></td><td class="mark-cell" data-label="Mark">[2.5+2.5=5]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>20.</td><td data-label="Question"><div class="question-content">How is the strength of concrete determined? Explain the procedure in detail.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <!-- Scaffolding, Shoring, Dewatering -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>21.</td><td data-label="Question"><div class="question-content">What do you mean by shoring and is dewatering associated with it?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>22.</td><td data-label="Question"><div class="question-content">What is scaffolding? Explain its type.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2081/01/2</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>23.</td><td data-label="Question"><div class="question-content">Define scaffolding and shoring. Describe the importance of curing.</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <!-- Architecture & Building Codes -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>24.</td><td data-label="Question"><div class="question-content">What are the basic requirements related to the shape and size of a building to make it earthquake resistant?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>25.</td><td data-label="Question"><div class="question-content">What is earthquake-resistant building construction? Describe the different types of building construction techniques used in Nepal.</div></td><td class="mark-cell" data-label="Mark">[1+4=5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>26.</td><td data-label="Question"><div class="question-content">Describe in detail about the earthquake resistant features in: a. RCC Frame Structure Building, b. Load Bearing Structure Building Construction as per Nepal National Building Code.</div></td><td class="mark-cell" data-label="Mark">[5+5=10]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>27.</td><td data-label="Question"><div class="question-content">What do you understand by orientation of building?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>28.</td><td data-label="Question"><div class="question-content">Why climatology is important in a Building Design?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>29.</td><td data-label="Question"><div class="question-content">Show a dog-legged timber staircase with help of plan and section with nominal dimensions and labeling of important elements.</div></td><td class="mark-cell" data-label="Mark">[10]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>30.</td><td data-label="Question"><div class="question-content">Differentiate between interior and exterior modeling in Architecture?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>31.</td><td data-label="Question"><div class="question-content">What are the difference between Civil Engineering and Architectural Engineering? Why Architectural Engineering is important in Building Construction?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>32.</td><td data-label="Question"><div class="question-content">Why should municipality consider the parameters for constructing a building on the housing lot through enforcement of Building Byelaws: a. Greenery, b. Ground coverage, c. Right of way, d. Floor area ratio, e. Setbacks i.e. margins.</div></td><td class="mark-cell" data-label="Mark">[1x5=5]</td><td class="mark-cell" data-label="Exam Date">2081/08/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>33.</td><td data-label="Question"><div class="question-content">Explain in short, the various processes in obtaining permission for building construction starting from the application process to the approval for commencing construction (as per Local Government Operation Act, 2074).</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/31</td></tr>
+                <!-- Electrical (Internal Wiring) -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>34.</td><td data-label="Question"><div class="question-content">Discuss the best practices involved in the installation of internal wiring system in residential buildings including appropriate wire sizing, routing and protection methods.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Building Construction Technology -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Construction Safety -->
+    <div class="subject-block" id="construction-safety">
+        <div class="subject-heading">
+            <span>🚧</span> 14. Construction Safety
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">Describe the safety precautions in electricity works.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/02/29</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">What safety measures should be followed while doing underground construction?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What safety measures must be followed on a construction site?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/01/06</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">Describe the importance of safety measures in a construction project. Also, mention the role of sub-engineer to ensure construction safety.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">Discuss, how accidents take place relating to working environment at construction site. Suggest remedial measures to avoid and prevent accidents in construction site in context of Nepal.</div></td><td class="mark-cell" data-label="Mark">[3+3=6]</td><td class="mark-cell" data-label="Exam Date">2081/09/03 (Part of IX.30)</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Construction Safety -->
+
+    <!-- START RESTRUCTURED SUBJECT BLOCK: Miscellaneous and General Topics -->
+    <div class="subject-block" id="miscellaneous">
+        <div class="subject-heading">
+            <span>🌍</span> 15. Miscellaneous and General Topics
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="select-cell">Select</th>
+                    <th>S.N.</th>
+                    <th>Question</th>
+                    <th class="mark-cell">Mark</th>
+                    <th class="mark-cell">Exam Date (B.S.)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- General/Niche Civil Topics -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>1.</td><td data-label="Question"><div class="question-content">What is the purpose of transmission line? List out the types of transmission tower.</div></td><td class="mark-cell" data-label="Mark">[3+2=5]</td><td class="mark-cell" data-label="Exam Date">2081/03/05</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>2.</td><td data-label="Question"><div class="question-content">Brief the challenges from social prospective of fixing alignment of pipe line for water supply in Karnali Province.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>3.</td><td data-label="Question"><div class="question-content">What are the main objectives of the current periodic plan of Karnali Province?</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/02/03</td></tr>
+                <!-- Nepali General Knowledge -->
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>4.</td><td data-label="Question"><div class="question-content">भ्रष्टाचार निवारण ऐन, २०५९ का विशेषताहरु उल्लेख गर्नुहोस् । (Mention the features of the Anti-Corruption Act, 2059).</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2081/04/19</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>5.</td><td data-label="Question"><div class="question-content">नेपालको संविधानले शोषण विरूद्ध के-कस्ता हकको व्यवस्था गरेको छ? (What rights against exploitation are provisioned in the Constitution of Nepal?)</div></td><td class="mark-cell" data-label="Mark">[4]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>6.</td><td data-label="Question"><div class="question-content">संयुक्त राष्ट्रसंघ स्थापनाको उद्देश्य र यसका सिद्धान्तहरू बुँदागत रूपमा उल्लेख गर्नुहोस् । (Mention the objectives and principles of the establishment of the United Nations).</div></td><td class="mark-cell" data-label="Mark">[2+3=5]</td><td class="mark-cell" data-label="Exam Date">2080/12/12</td></tr>
+                <tr><td class="select-cell" data-label="Select"><button class="select-btn" title="Select Question">📋</button></td><td>7.</td><td data-label="Question"><div class="question-content">Describe the types of leaves for teachers and staffs provisioned under the Tribhuvan University Teacher, Staff Service Rules, 2050.</div></td><td class="mark-cell" data-label="Mark">[5]</td><td class="mark-cell" data-label="Exam Date">2082/05/17</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- END SUBJECT BLOCK: Miscellaneous and General Topics -->
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectButtons = document.querySelectorAll('.select-btn');
+        
+        selectButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // 1. Find the question text element (sibling within the same row)
+                const row = this.closest('tr');
+                if (!row) return;
+
+                const questionContent = row.querySelector('.question-content');
+                
+                if (questionContent) {
+                    // 2. Programmatically select the text content
+                    if (window.getSelection && document.createRange) {
+                        const range = document.createRange();
+                        range.selectNodeContents(questionContent); // Selects all content within the div
+                        
+                        const selection = window.getSelection();
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+
+                        // Optional: Try to focus the selected element for better mobile behavior (may not work consistently)
+                        questionContent.focus(); 
+                    } else if (document.body.createTextRange) {
+                        // Fallback for IE (mostly obsolete, but good practice)
+                        const range = document.body.createTextRange();
+                        range.moveToElementText(questionContent);
+                        range.select();
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

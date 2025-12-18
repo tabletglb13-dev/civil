@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Engineering - Smart List</title>
+    <!-- MathJax for Formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* --- THEME: DEEP OCEAN --- */
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #1e293b;
+            --neon-cyan: #22d3ee;
+            --neon-blue: #3b82f6;
+            --neon-purple: #818cf8;
+            --text-bright: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(30, 41, 59, 0.60);
+            --glass-hover: rgba(30, 41, 59, 0.90);
+            --border-glow: rgba(34, 211, 238, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Water Effect */
+        .water-effect {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(34,211,238,0.08), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59,130,246,0.08), transparent 40%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        /* --- LIST STYLING --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .list-item {
+            background: var(--glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list-item:hover {
+            transform: translateX(5px);
+            background: var(--glass-hover);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Left side: Icon + Text */
+        .item-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .item-icon {
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .category-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            opacity: 0.8;
+        }
+
+        .question-text {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Right side: Meta Data */
+        .item-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            min-width: 100px;
+            margin-left: 20px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+        }
+
+        .date-tag {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        .marks-tag {
+            font-size: 0.85rem;
+            color: var(--neon-purple);
+            font-weight: bold;
+            background: rgba(129, 140, 248, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Search Hover Icon */
+        .search-indicator {
+            position: absolute;
+            right: 20px;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: 0.2s;
+            transform: translateX(-10px);
+        }
+
+        .list-item:hover .search-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .list-item:hover .item-meta {
+            opacity: 0; /* Hide meta on hover */
+        }
+
+        /* --- SEARCH MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 20px;
+            width: 95%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
+
+        .search-header {
+            background: #1e293b;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--neon-cyan);
+        }
+        .search-header h3 { color: var(--neon-cyan); margin-left: 10px; }
+        
+        .close-btn {
+            font-size: 28px; color: var(--neon-cyan);
+            cursor: pointer; transition: 0.2s; padding: 0 10px;
+        }
+        .close-btn:hover { color: white; }
+
+        .search-frame {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: white; 
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container { padding: 30px 15px; }
+            h1 { font-size: 1.8rem; }
+            .list-item { flex-direction: column; align-items: flex-start; }
+            .item-content { width: 100%; }
+            .item-meta { 
+                flex-direction: row; 
+                width: 100%; 
+                margin-left: 0; 
+                margin-top: 15px; 
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                padding-top: 10px;
+                justify-content: space-between;
+            }
+            .list-item:hover .item-meta { opacity: 1; } 
+            .search-indicator { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="water-effect"></div>
+
+    <div class="container">
+        <h1>✈️ Airport Engineering</h1>
+        
+        <!-- List Container -->
+        <div class="list-container" id="questionList">
+            <!-- Items injected by JS -->
+        </div>
+    </div>
+
+    <!-- DEDICATED SEARCH MODAL -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <div class="search-header">
+                <h3>Google Search Results</h3>
+                <span class="close-btn" onclick="closeSearch()">&times;</span>
+            </div>
+            <div style="padding: 10px; text-align: center; color: #94a3b8; font-size: 0.9em; background: #0f172a;">
+                If the screen is white, the site refused connection. <a id="fallbackLink" href="#" target="_blank" style="color: var(--neon-cyan);">Click here to open in new tab</a>.
+            </div>
+            <iframe id="googleFrame" class="search-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOURCE: Airport Engineering ---
+        const questions = [
+            // Planning & ICAO
+            { id: 1, cat: "History", icon: "📜", date: "2080/10/04", marks: "[5]", q: "Briefly describe the history of civil aviation in Nepal. List out international airports constructed and under planning consideration in Nepal." },
+            { id: 2, cat: "History", icon: "📜", date: "2079/11/30", marks: "[5]", q: "Explain about the historic developments of airports in Nepal." },
+            { id: 3, cat: "Site Selection", icon: "🧭", date: "2080/10/04", marks: "[10]", q: "What are the factors to be considered for the airport site selection? Why rose diagram is important for runway orientation? Explain." },
+            { id: 4, cat: "Master Plan", icon: "🗺️", date: "2081/03/25", marks: "[10]", q: "What is Airport Master Planning? Elaborate the types of activities involved in the master plan process." },
+            { id: 5, cat: "Planning", icon: "🏗️", date: "2082/03/23", marks: "[10]", q: "Elaborate the different elements of airport planning. Explain the 'Centralized' and 'Decentralized' concept of Terminal-Building Planning." },
+            { id: 6, cat: "ICAO", icon: "🌐", date: "2080/10/04", marks: "[10]", q: "What does ICAO stand for? Enlist the geometric design standards for the airport design as per ICAO. Write the class of Tribhuvan International Airport." },
+            { id: 7, cat: "ICAO", icon: "🌐", date: "2081/03/25", marks: "[5]", q: "Describe briefly about International Civil Aviation Organization (ICAO)'s requirement for aerodrome design and operations." },
+            { id: 8, cat: "Reference Code", icon: "🔢", date: "2082/03/23", marks: "[10]", q: "For the purpose of identifying standards for various sizes of airports and the functions they serve, reference codes have been developed by ICAO. Elaborate Aerodrome Reference Code as per ICAO Annex 14." },
+            
+            // Terminal, Runway, Taxiway
+            { id: 9, cat: "Definitions", icon: "📖", date: "2081/04/19", marks: "[5]", q: "Define runway, taxiway and Apron of an airport." },
+            { id: 10, cat: "Terminal", icon: "🏢", date: "2080/10/04", marks: "[5]", q: "What are the additional requirements for a Domestic Airport Terminal to be upgraded to an International Airport? Describe." },
+            { id: 11, cat: "Terminal", icon: "🏢", date: "2081/03/25", marks: "[10]", q: "What is the design consideration for airport terminal area? Explain." },
+            { id: 12, cat: "Apron & Gate", icon: "✈️", date: "2082/03/23", marks: "[10]", q: "What are the factors that govern the size of the Apron-Gate position in an airport? Also, sketch different basic aircraft parking configurations." },
+            { id: 13, cat: "Visual Aids", icon: "💡", date: "2081/03/25", marks: "[5]", q: "Point out different categories of visual aids for navigation at an airport. Explain taxiway marking with sketch." },
+            { id: 14, cat: "Runway Markings", icon: "🛫", date: "2080/10/04", marks: "[5]", q: "What is the purpose of Runway Threshold? How do you mark it and what are the standard dimensions of the markings?" },
+            { id: 15, cat: "Runway Markings", icon: "🛫", date: "2080/10/04", marks: "[5]", q: "Mention the markings in the airport pavement. What do the letters 'L', 'R' and 'C' indicate in marking?" },
+            
+            // Pavement
+            { id: 16, cat: "Pavement", icon: "🛣️", date: "2080/10/04", marks: "[5]", q: "What is airport pavement? Compare the basic design concept for flexible and rigid airport pavements." },
+            { id: 17, cat: "Pavement", icon: "🛣️", date: "2081/03/25", marks: "[10]", q: "Explain different structural components of a flexible pavement. How does flexible pavement differ from rigid pavement? Explain." },
+            { id: 18, cat: "Construction", icon: "🚜", date: "2081/03/25", marks: "[5]", q: "List the sequence of layers and test requirements in the field to construct a flexible pavement of parallel taxiway." },
+            { id: 19, cat: "Maintenance", icon: "🛠️", date: "2081/03/25", marks: "[10]", q: "Discuss the components and functions of Pavement Management System (PMS) in maintaining airport pavements. How do you assess runway surface conditions?" },
+            { id: 20, cat: "Maintenance", icon: "🛠️", date: "2082/03/23", marks: "[10]", q: "What is pavement management system? Explain different types of distress in bituminous pavement of an airport." },
+            { id: 21, cat: "Maintenance", icon: "🛠️", date: "2082/02/24", marks: "[5]", q: "Explain in brief about the maintenance of airport runway." },
+            
+            // Drainage & STOL Port
+            { id: 22, cat: "Drainage", icon: "🚿", date: "2080/10/04", marks: "[5]", q: "What is airport drainage system? Write down its functions. What type of data will you collect for its design?" },
+            { id: 23, cat: "Drainage", icon: "🚿", date: "2081/03/25", marks: "[5]", q: "Briefly point out the special characteristics of airport drainage system." },
+            { id: 24, cat: "Drainage", icon: "🚿", date: "2082/03/23", marks: "[10]", q: "Explain the design considerations for airport drainage systems, including the determination of the design storm and layout of surface and subsurface drainage." },
+            { id: 25, cat: "STOL Port", icon: "🏔️", date: "2082/03/23", marks: "[5]", q: "Discus the physical characteristics of the STOL port, its obstacles and limitations." }
+        ];
+
+        // --- RENDER LIST ---
+        const listContainer = document.getElementById('questionList');
+
+        questions.forEach(item => {
+            // Create Search Query Logic: Clean text + context
+            const cleanQuery = item.q.replace(/[^a-zA-Z0-9 ]/g, "").substring(0, 100);
+            const finalQuery = `${cleanQuery} airport engineering civil`;
+
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            // Click triggers search directly
+            listItem.onclick = () => openSearch(finalQuery);
+            
+            listItem.innerHTML = `
+                <div class="item-content">
+                    <div class="item-icon">${item.icon}</div>
+                    <div class="text-group">
+                        <span class="category-label">${item.cat}</span>
+                        <div class="question-text">${item.q}</div>
+                    </div>
+                </div>
+                <div class="item-meta">
+                    <span class="date-tag">${item.date}</span>
+                    <span class="marks-tag">${item.marks}</span>
+                </div>
+                <div class="search-indicator">&#128269;</div>
+            `;
+            listContainer.appendChild(listItem);
+        });
+
+        // --- SEARCH MODAL LOGIC ---
+        function openSearch(query) {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            const fallback = document.getElementById('fallbackLink');
+            
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&igu=1`;
+            
+            frame.src = searchUrl;
+            fallback.href = searchUrl; 
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSearch() {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            
+            modal.classList.remove('active');
+            frame.src = ""; // Stop loading
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Close on outside click
+        window.onclick = function(e) {
+            if (e.target.id === 'searchModal') {
+                closeSearch();
+            }
+        }
+    </script>
+</body>
+</html>

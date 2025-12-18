@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering Compendium - Home</title>
+    <style>
+        /* --- THEME: DEEP OCEAN --- */
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #1e293b;
+            --neon-cyan: #22d3ee;
+            --neon-blue: #3b82f6;
+            --neon-purple: #818cf8;
+            --text-bright: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(30, 41, 59, 0.60);
+            --glass-hover: rgba(30, 41, 59, 0.80);
+            --border-glow: rgba(34, 211, 238, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Water Effect Background */
+        .water-effect {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(34,211,238,0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(59,130,246,0.08), transparent 25%);
+            z-index: -1;
+            animation: pulse 10s ease-in-out infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 1; transform: scale(1.1); } }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* --- GRID CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px 20px 80px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- SUBJECT CARD --- */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hover Effects */
+        .card:hover {
+            transform: translateY(-10px);
+            background: var(--glass-hover);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 40px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Icon Styling */
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover .icon-circle {
+            background: var(--neon-cyan);
+            color: #020617;
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Text Styling */
+        .card h2 {
+            font-size: 1.25rem;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .number-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .hero { padding: 60px 20px 20px; }
+            .grid { grid-template-columns: 1fr; }
+            .card { flex-direction: row; text-align: left; padding: 20px; }
+            .icon-circle { width: 50px; height: 50px; font-size: 1.5rem; margin-bottom: 0; margin-right: 20px; }
+            .card:hover .icon-circle { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="water-effect"></div>
+
+    <header class="hero">
+        <h1>Engineering Compendium</h1>
+        <p class="subtitle">Select a subject below to access the smart question bank with instant Google Search integration.</p>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+
+            <!-- 1. Construction Materials -->
+            <a href="1.html" class="card">
+                <span class="number-badge">01</span>
+                <div class="icon-circle">🏗️</div>
+                <div>
+                    <h2>Materials</h2>
+                    <p>Cement, Brick, Concrete & Aggregates</p>
+                </div>
+            </a>
+
+            <!-- 2. Engineering Drawing -->
+            <a href="2.html" class="card">
+                <span class="number-badge">02</span>
+                <div class="icon-circle">✏️</div>
+                <div>
+                    <h2>Drawing</h2>
+                    <p>Scales, Projections & CAD</p>
+                </div>
+            </a>
+
+            <!-- 3. Surveying -->
+            <a href="3.html" class="card">
+                <span class="number-badge">03</span>
+                <div class="icon-circle">🧭</div>
+                <div>
+                    <h2>Surveying</h2>
+                    <p>Levelling, Theodolite & Contouring</p>
+                </div>
+            </a>
+
+            <!-- 4. Mechanics of Structure -->
+            <a href="4.html" class="card">
+                <span class="number-badge">04</span>
+                <div class="icon-circle">📏</div>
+                <div>
+                    <h2>Mechanics</h2>
+                    <p>SFD, BMD, Stress & Fluid Properties</p>
+                </div>
+            </a>
+
+            <!-- 5. Structural Design (RCC) -->
+            <a href="5.html" class="card">
+                <span class="number-badge">05</span>
+                <div class="icon-circle">🌉</div>
+                <div>
+                    <h2>Structure (RCC)</h2>
+                    <p>Beams, Columns, Slabs & Design</p>
+                </div>
+            </a>
+
+            <!-- 6. Soil Mechanics -->
+            <a href="6.html" class="card">
+                <span class="number-badge">06</span>
+                <div class="icon-circle">🪨</div>
+                <div>
+                    <h2>Soil Mechanics</h2>
+                    <p>Properties, Compaction & Classification</p>
+                </div>
+            </a>
+
+            <!-- 7. Water Supply & Sanitation -->
+            <a href="7.html" class="card">
+                <span class="number-badge">07</span>
+                <div class="icon-circle">💦</div>
+                <div>
+                    <h2>Water & Sanitation</h2>
+                    <p>Sources, Treatment, Septic & Sewerage</p>
+                </div>
+            </a>
+
+            <!-- 8. Irrigation & Hydrology -->
+            <a href="8.html" class="card">
+                <span class="number-badge">08</span>
+                <div class="icon-circle">🌾</div>
+                <div>
+                    <h2>Irrigation</h2>
+                    <p>Canals, Crop Water, Headworks & Weirs</p>
+                </div>
+            </a>
+
+            <!-- 9. Highway Engineering -->
+            <a href="9.html" class="card">
+                <span class="number-badge">09</span>
+                <div class="icon-circle">🛣️</div>
+                <div>
+                    <h2>Highway</h2>
+                    <p>Alignment, Pavements & Hill Roads</p>
+                </div>
+            </a>
+
+            <!-- 10. Airport Engineering -->
+            <a href="10.html" class="card">
+                <span class="number-badge">10</span>
+                <div class="icon-circle">✈️</div>
+                <div>
+                    <h2>Airport</h2>
+                    <p>Runways, Terminals & ICAO Standards</p>
+                </div>
+            </a>
+
+            <!-- 11. Estimating Costing -->
+            <a href="11.html" class="card">
+                <span class="number-badge">11</span>
+                <div class="icon-circle">💰</div>
+                <div>
+                    <h2>Estimating</h2>
+                    <p>Rate Analysis, BOQ & Valuation</p>
+                </div>
+            </a>
+
+            <!-- 12. Construction Management -->
+            <a href="12.html" class="card">
+                <span class="number-badge">12</span>
+                <div class="icon-circle">📈</div>
+                <div>
+                    <h2>Management</h2>
+                    <p>CPM, PERT, Contracts & Safety</p>
+                </div>
+            </a>
+
+            <!-- 13. Building Tech -->
+            <a href="13.html" class="card">
+                <span class="number-badge">13</span>
+                <div class="icon-circle">🏠</div>
+                <div>
+                    <h2>Building Tech</h2>
+                    <p>Foundations, Masonry & Finishing</p>
+                </div>
+            </a>
+
+            <!-- 14. Construction Safety -->
+            <a href="14.html" class="card">
+                <span class="number-badge">14</span>
+                <div class="icon-circle">🚧</div>
+                <div>
+                    <h2>Safety</h2>
+                    <p>Hazards, Precautions & Site Safety</p>
+                </div>
+            </a>
+
+            <!-- 15. Miscellaneous -->
+            <a href="15.html" class="card">
+                <span class="number-badge">15</span>
+                <div class="icon-circle">🌍</div>
+                <div>
+                    <h2>Miscellaneous</h2>
+                    <p>General Topics, Law & Infrastructure</p>
+                </div>
+            </a>
+            
+            <!-- 16. All Question -->
+            <a href="alqb.html" class="card">
+                <span class="number-badge">All</span>
+                <div class="icon-circle">🧾</div>
+                <div>
+                    <h2>ALL QUESTION</h2>
+                    <p>SUBJET WISH COPYABLE AND EASY TO SEARCH</p>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+</body>
+</html>

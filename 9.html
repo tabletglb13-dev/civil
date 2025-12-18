@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highway Engineering - Smart List</title>
+    <!-- MathJax for Formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* --- THEME: DEEP OCEAN --- */
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #1e293b;
+            --neon-cyan: #22d3ee;
+            --neon-blue: #3b82f6;
+            --neon-purple: #818cf8;
+            --text-bright: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(30, 41, 59, 0.60);
+            --glass-hover: rgba(30, 41, 59, 0.90);
+            --border-glow: rgba(34, 211, 238, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Water Effect */
+        .water-effect {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(34,211,238,0.08), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59,130,246,0.08), transparent 40%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        /* --- LIST STYLING --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .list-item {
+            background: var(--glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list-item:hover {
+            transform: translateX(5px);
+            background: var(--glass-hover);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Left side: Icon + Text */
+        .item-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .item-icon {
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .category-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            opacity: 0.8;
+        }
+
+        .question-text {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Right side: Meta Data */
+        .item-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            min-width: 100px;
+            margin-left: 20px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+        }
+
+        .date-tag {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        .marks-tag {
+            font-size: 0.85rem;
+            color: var(--neon-purple);
+            font-weight: bold;
+            background: rgba(129, 140, 248, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Search Hover Icon */
+        .search-indicator {
+            position: absolute;
+            right: 20px;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: 0.2s;
+            transform: translateX(-10px);
+        }
+
+        .list-item:hover .search-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .list-item:hover .item-meta {
+            opacity: 0; /* Hide meta on hover */
+        }
+
+        /* --- SEARCH MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 20px;
+            width: 95%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
+
+        .search-header {
+            background: #1e293b;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--neon-cyan);
+        }
+        .search-header h3 { color: var(--neon-cyan); margin-left: 10px; }
+        
+        .close-btn {
+            font-size: 28px; color: var(--neon-cyan);
+            cursor: pointer; transition: 0.2s; padding: 0 10px;
+        }
+        .close-btn:hover { color: white; }
+
+        .search-frame {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: white; 
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container { padding: 30px 15px; }
+            h1 { font-size: 1.8rem; }
+            .list-item { flex-direction: column; align-items: flex-start; }
+            .item-content { width: 100%; }
+            .item-meta { 
+                flex-direction: row; 
+                width: 100%; 
+                margin-left: 0; 
+                margin-top: 15px; 
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                padding-top: 10px;
+                justify-content: space-between;
+            }
+            .list-item:hover .item-meta { opacity: 1; } 
+            .search-indicator { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="water-effect"></div>
+
+    <div class="container">
+        <h1>🛣️ Highway Engineering</h1>
+        
+        <!-- List Container -->
+        <div class="list-container" id="questionList">
+            <!-- Items injected by JS -->
+        </div>
+    </div>
+
+    <!-- DEDICATED SEARCH MODAL -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <div class="search-header">
+                <h3>Google Search Results</h3>
+                <span class="close-btn" onclick="closeSearch()">&times;</span>
+            </div>
+            <div style="padding: 10px; text-align: center; color: #94a3b8; font-size: 0.9em; background: #0f172a;">
+                If the screen is white, the site refused connection. <a id="fallbackLink" href="#" target="_blank" style="color: var(--neon-cyan);">Click here to open in new tab</a>.
+            </div>
+            <iframe id="googleFrame" class="search-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOURCE: Highway Engineering ---
+        const questions = [
+            // Alignment & Geometric Design
+            { id: 1, cat: "Alignment", icon: "🛣️", date: "2080/10/15", marks: "[5]", q: "What are the basic requirements of road alignment? Explain the types of road based on functional classification. (*)" },
+            { id: 2, cat: "Alignment & SE", icon: "📐", date: "2079/11/30", marks: "[10]", q: "What are the basic requirements of road alignment? What do you mean by superelevation? How is it different from camber? Write down the significance of superelevation." },
+            { id: 3, cat: "Alignment", icon: "🛣️", date: "2082/01/06", marks: "[5]", q: "Define highway alignment. What are the factors affecting highway alignment?" },
+            { id: 4, cat: "Geometric Design", icon: "📐", date: "2081/02/05", marks: "[5]", q: "Mention the different design aspects to be considered in the design of horizontal alignment of a road." },
+            { id: 5, cat: "Design Speed", icon: "🏎️", date: "2080/10/15", marks: "[5]", q: "Explain how radius of horizontal curve, superelevation and maximum gradient vary with design speed (Nepal Road Standard)." },
+            { id: 6, cat: "Geometric Design", icon: "📐", date: "2080/10/15", marks: "[10]", q: "What are the factors to control the geometric design of a highway? Calculate the rate of superelevation for a national highway whose design speed is 120 km/hr." },
+            { id: 7, cat: "Sight Distance", icon: "👀", date: "2080/05/12", marks: "[5]", q: "List the various geometric elements to be considered in highway design. What are the factors on which the stopping sight distance depends?" },
+            { id: 8, cat: "Sight Distance", icon: "🧮", date: "2080/10/15", marks: "[10]", q: "Calculate the safe stopping distance for design speed 60 km/hr for a two-way traffic on a two-lane road (f=0.37, t=2.5s)." },
+            { id: 9, cat: "Superelevation", icon: "⤴️", date: "2081/02/05", marks: "[5]", q: "Why superelevation is provided over a curve of the road? Give the formula for it." },
+            { id: 10, cat: "Camber", icon: "🌧️", date: "2082/02/24", marks: "[5]", q: "What is the importance of camber in road pavement? How is it provided?" },
+            { id: 11, cat: "Extra Widening", icon: "↔️", date: "2081/02/05", marks: "[10]", q: "Explaining the need of extra-widening width, find the total pavement width required for a four lane highway on a horizontal radius of 250 m..." },
+            { id: 12, cat: "Gradient", icon: "📉", date: "2079/12/14", marks: "[5]", q: "Describe longitudinal gradient in a road alignment on the basis of Nepal Road Standards." },
+            
+            // Road Classification & Cross Section
+            { id: 13, cat: "Classification", icon: "📋", date: "2081/09/03", marks: "[10]", q: "Explain the classification of roads as per Nepal Road Standard, 2070. Describe the special consideration for alignment of Hill Roads." },
+            { id: 14, cat: "Classification", icon: "📋", date: "2081/01/2", marks: "[10]", q: "Describe the types of roads based on construction method. Explain the special consideration for alignment of Hill Roads." },
+            { id: 15, cat: "Cross Section", icon: "🏗️", date: "2081/04/19", marks: "[10]", q: "Draw a cross section of a Highway of Nepal and define all the elements." },
+            { id: 16, cat: "Cross Section", icon: "🏗️", date: "2079/12/04", marks: "[10]", q: "What are the basic design controls and design criteria for roads in Nepal? Draw a neat sketch of typical cross section of road with pavement structures." },
+            
+            // Hill Roads
+            { id: 17, cat: "Hill Roads", icon: "🏔️", date: "2081/02/19", marks: "[10]", q: "What are the design and construction problems of hill road? What are special considerations for road alignment in mountainous area?" },
+            { id: 18, cat: "Drainage", icon: "💧", date: "2081/02/19", marks: "[5]", q: "How do you provide longitudinal and cross drainages in hill roads? Explain." },
+            { id: 19, cat: "Hill Structures", icon: "🧱", date: "2082/02/31", marks: "[10]", q: "Explain the special structures used in hill road. Describe the different layers in pavement structure with their function." },
+            
+            // Pavement & Construction
+            { id: 20, cat: "Pavement", icon: "🛣️", date: "2080/12/12", marks: "[10]", q: "What are the components of flexible pavement? Describe construction procedure of asphalt road." },
+            { id: 21, cat: "Pavement", icon: "🛣️", date: "2081/02/23", marks: "[10]", q: "Describe the types of pavement. What are the components of pavement of road structure? Explain." },
+            { id: 22, cat: "Pavement", icon: "🛣️", date: "2082/02/03", marks: "[5]", q: "List the components of road pavement? Explain with diagram." },
+            { id: 23, cat: "Construction", icon: "🚧", date: "2080/10/15", marks: "[10]", q: "Describe in detail the construction procedure of surface dressing road. How is quality control of work carried out?" },
+            { id: 24, cat: "WBM", icon: "🪨", date: "2079/12/14", marks: "[10]", q: "How do you construct WBM roads? What is its suitability? Discuss in detail." },
+            
+            // Drainage & History
+            { id: 25, cat: "Drainage", icon: "🚿", date: "2079/12/04", marks: "[5]", q: "Define highway drainage and explain the importance of highway drainage." },
+            { id: 26, cat: "Drainage", icon: "🚿", date: "2082/05/17", marks: "[5]", q: "Discuss the importance of an effective highway drainage system and outline the key components. Explain how improper drainage can affect safety." },
+            { id: 27, cat: "History", icon: "📜", date: "2082/02/09", marks: "[10]", q: "Briefly explain the historic development of roads in Nepal and classification of roads." }
+        ];
+
+        // --- RENDER LIST ---
+        const listContainer = document.getElementById('questionList');
+
+        questions.forEach(item => {
+            // Create Search Query Logic: Clean text + context
+            const cleanQuery = item.q.replace(/[^a-zA-Z0-9 ]/g, "").substring(0, 100);
+            const finalQuery = `${cleanQuery} civil engineering highway`;
+
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            // Click triggers search directly
+            listItem.onclick = () => openSearch(finalQuery);
+            
+            listItem.innerHTML = `
+                <div class="item-content">
+                    <div class="item-icon">${item.icon}</div>
+                    <div class="text-group">
+                        <span class="category-label">${item.cat}</span>
+                        <div class="question-text">${item.q}</div>
+                    </div>
+                </div>
+                <div class="item-meta">
+                    <span class="date-tag">${item.date}</span>
+                    <span class="marks-tag">${item.marks}</span>
+                </div>
+                <div class="search-indicator">&#128269;</div>
+            `;
+            listContainer.appendChild(listItem);
+        });
+
+        // --- SEARCH MODAL LOGIC ---
+        function openSearch(query) {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            const fallback = document.getElementById('fallbackLink');
+            
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&igu=1`;
+            
+            frame.src = searchUrl;
+            fallback.href = searchUrl; 
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSearch() {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            
+            modal.classList.remove('active');
+            frame.src = ""; // Stop loading
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Close on outside click
+        window.onclick = function(e) {
+            if (e.target.id === 'searchModal') {
+                closeSearch();
+            }
+        }
+    </script>
+</body>
+</html>

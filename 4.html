@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanics of Structure - Smart List</title>
+    <!-- MathJax for Formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* --- THEME: DEEP OCEAN --- */
+        :root {
+            --bg-deep: #020617;
+            --bg-surface: #1e293b;
+            --neon-cyan: #22d3ee;
+            --neon-blue: #3b82f6;
+            --neon-purple: #818cf8;
+            --text-bright: #f1f5f9;
+            --text-dim: #94a3b8;
+            --glass: rgba(30, 41, 59, 0.60);
+            --glass-hover: rgba(30, 41, 59, 0.90);
+            --border-glow: rgba(34, 211, 238, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-bright);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Water Effect */
+        .water-effect {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(34,211,238,0.08), transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(59,130,246,0.08), transparent 40%);
+            z-index: -1;
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+
+        /* --- LIST STYLING --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .list-item {
+            background: var(--glass);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list-item:hover {
+            transform: translateX(5px);
+            background: var(--glass-hover);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Left side: Icon + Text */
+        .item-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .item-icon {
+            font-size: 1.8rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .text-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .category-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--neon-cyan);
+            opacity: 0.8;
+        }
+
+        .question-text {
+            color: var(--text-bright);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Right side: Meta Data */
+        .item-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            min-width: 100px;
+            margin-left: 20px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 20px;
+        }
+
+        .date-tag {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        .marks-tag {
+            font-size: 0.85rem;
+            color: var(--neon-purple);
+            font-weight: bold;
+            background: rgba(129, 140, 248, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Search Hover Icon */
+        .search-indicator {
+            position: absolute;
+            right: 20px;
+            color: var(--neon-cyan);
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: 0.2s;
+            transform: translateX(-10px);
+        }
+
+        .list-item:hover .search-indicator {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .list-item:hover .item-meta {
+            opacity: 0; /* Hide meta on hover */
+        }
+
+        /* --- SEARCH MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid var(--neon-cyan);
+            border-radius: 20px;
+            width: 95%;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.1);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
+
+        .search-header {
+            background: #1e293b;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--neon-cyan);
+        }
+        .search-header h3 { color: var(--neon-cyan); margin-left: 10px; }
+        
+        .close-btn {
+            font-size: 28px; color: var(--neon-cyan);
+            cursor: pointer; transition: 0.2s; padding: 0 10px;
+        }
+        .close-btn:hover { color: white; }
+
+        .search-frame {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: white; 
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container { padding: 30px 15px; }
+            h1 { font-size: 1.8rem; }
+            .list-item { flex-direction: column; align-items: flex-start; }
+            .item-content { width: 100%; }
+            .item-meta { 
+                flex-direction: row; 
+                width: 100%; 
+                margin-left: 0; 
+                margin-top: 15px; 
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                padding-top: 10px;
+                justify-content: space-between;
+            }
+            .list-item:hover .item-meta { opacity: 1; } 
+            .search-indicator { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="water-effect"></div>
+
+    <div class="container">
+        <h1>📏 Mechanics of Structure</h1>
+        
+        <!-- List Container -->
+        <div class="list-container" id="questionList">
+            <!-- Items injected by JS -->
+        </div>
+    </div>
+
+    <!-- DEDICATED SEARCH MODAL -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <div class="search-header">
+                <h3>Google Search Results</h3>
+                <span class="close-btn" onclick="closeSearch()">&times;</span>
+            </div>
+            <div style="padding: 10px; text-align: center; color: #94a3b8; font-size: 0.9em; background: #0f172a;">
+                If the screen is white, the site refused connection. <a id="fallbackLink" href="#" target="_blank" style="color: var(--neon-cyan);">Click here to open in new tab</a>.
+            </div>
+            <iframe id="googleFrame" class="search-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA SOURCE: Mechanics of Structure (Strength of Materials + Fluid Mechanics) ---
+        const questions = [
+            // SFD, BMD & Beams
+            { id: 1, cat: "SFD & BMD", icon: "📉", date: "2080/05/12", marks: "[5]", q: "Draw shear force and bending moment diagram of a beam loaded with 4 kN/m uniformly distributed load having length 4 m. The support condition of beam is one end hinge and other end roller." },
+            { id: 2, cat: "SFD & BMD", icon: "📉", date: "2081/03/05", marks: "[10]", q: "Calculate Shear Force and Bending Moment of simply supported beam of span (L) = 4 and carries uniformly distributed load (udl) = 5 KN/m. Sketch shear force and B.M. diagram with calculated value." },
+            { id: 3, cat: "SFD & BMD", icon: "📉", date: "2081/09/03", marks: "[5]", q: "Draw the bending moment and shear force diagrams for a simply supported beam of length, L, carrying a uniformly distributed loading of 'w' KN/m throughout the span." },
+            { id: 4, cat: "SFD & BMD", icon: "📉", date: "2082/02/24", marks: "[5]", q: "Draw the bending moment diagram for a simply supported beam of 5 m span subjected to a uniformly distributed load of 4 KN/m and a concentrated load of 30 KN at the center." },
+            { id: 5, cat: "Theory", icon: "📐", date: "2079/12/04", marks: "[5]", q: "Define shear force and Bending Moment, discuss its relationship. (*)" },
+            { id: 6, cat: "Theory", icon: "📐", date: "2081/02/19", marks: "[5]", q: "Differentiate between Shear Force and Bending Moment. Calculate the maximum bending moment of simply supported beam of span (l) having uniformly distributed load (w) per unit length." },
+            { id: 7, cat: "Theory", icon: "📐", date: "2082/02/09", marks: "[5]", q: "Describe with illustrations how the shear force and bending moment occur in a simply supported beam with uniformly distributed loading." },
+            { id: 8, cat: "Loads", icon: "🏗️", date: "2081/08/03", marks: "[5]", q: "Explain the different types of loads acting on a beam? Write." },
+            { id: 9, cat: "Bending Theory", icon: "📜", date: "2081/02/05", marks: "[10]", q: "Prove the bending equation for a homogeneous section M/I = σ/y = E/R with usual notations." },
+            { id: 10, cat: "CG & BMD", icon: "🎯", date: "2082/05/17", marks: "[5]", q: "What is center of gravity (CG) of a body? Draw bending moment diagram and shear force diagram of a simply supported beam carrying a point load (W) at the center of span (L)." },
+            
+            // Fluid Mechanics (Grouped in Source)
+            { id: 11, cat: "Fluid Properties", icon: "💧", date: "2081/03/05", marks: "[5]", q: "Describe viscosity. Calculate the specific weight, specific mass, specific volume and specific gravity of a liquid having a volume of 5 m³ and weight of 40 KN." },
+            { id: 12, cat: "Fluid Properties", icon: "💧", date: "2081/04/19", marks: "[5]", q: "Define dynamic viscosity of a liquid. Explain four types of hydraulic coefficients." },
+            { id: 13, cat: "Fluid Properties", icon: "💧", date: "2081/08/03", marks: "[5]", q: "Describe briefly mass density, specific weight, specific volume, specific gravity and viscosity in fluid mechanics." },
+            { id: 14, cat: "Fluid Energy", icon: "⚡", date: "2079/11/30", marks: "[5]", q: "Introduce pressure energy, kinetic energy and potential energy in pipe flow." },
+            { id: 15, cat: "Bernoulli's", icon: "🔄", date: "2080/05/12", marks: "[10]", q: "Name the different forms of energy of flowing liquid. Explain the principle of conservation of energy and the relationship between Hydraulic Gradient Line (HGL) and Total Energy Line (TEL)." },
+            { id: 16, cat: "Pipe Flow", icon: "🚰", date: "2082/02/03", marks: "[5]", q: "What are head losses in fluid flow through pipes? Differentiate between major and minor head losses." },
+            
+            // General Mechanics
+            { id: 17, cat: "Stress/Strain", icon: "🔩", date: "2081/02/05", marks: "[5]", q: "Write short notes on Poisson's ratio and Hook's law." }
+        ];
+
+        // --- RENDER LIST ---
+        const listContainer = document.getElementById('questionList');
+
+        questions.forEach(item => {
+            // Create Search Query Logic: Clean text + context
+            const cleanQuery = item.q.replace(/[^a-zA-Z0-9 ]/g, "").substring(0, 100);
+            const finalQuery = `${cleanQuery} civil engineering mechanics`;
+
+            const listItem = document.createElement('div');
+            listItem.className = 'list-item';
+            // Click triggers search directly
+            listItem.onclick = () => openSearch(finalQuery);
+            
+            listItem.innerHTML = `
+                <div class="item-content">
+                    <div class="item-icon">${item.icon}</div>
+                    <div class="text-group">
+                        <span class="category-label">${item.cat}</span>
+                        <div class="question-text">${item.q}</div>
+                    </div>
+                </div>
+                <div class="item-meta">
+                    <span class="date-tag">${item.date}</span>
+                    <span class="marks-tag">${item.marks}</span>
+                </div>
+                <div class="search-indicator">&#128269;</div>
+            `;
+            listContainer.appendChild(listItem);
+        });
+
+        // --- SEARCH MODAL LOGIC ---
+        function openSearch(query) {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            const fallback = document.getElementById('fallbackLink');
+            
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}&igu=1`;
+            
+            frame.src = searchUrl;
+            fallback.href = searchUrl; 
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeSearch() {
+            const modal = document.getElementById('searchModal');
+            const frame = document.getElementById('googleFrame');
+            
+            modal.classList.remove('active');
+            frame.src = ""; // Stop loading
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Close on outside click
+        window.onclick = function(e) {
+            if (e.target.id === 'searchModal') {
+                closeSearch();
+            }
+        }
+    </script>
+</body>
+</html>
