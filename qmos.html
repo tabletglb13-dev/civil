@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanics of Materials & Structures Exam (386 Questions)</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration & Library -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* DARK MODE THEME CONFIGURATION */
+        :root {
+            --primary-color: #3b82f6;      /* Bright Blue */
+            --primary-dark: #60a5fa;       /* Lighter Blue for hover in dark mode */
+            --bg-color: #0f172a;           /* Very Dark Blue/Gray (Dim Background) */
+            --card-bg: #1e293b;            /* Dark Gray Card */
+            --text-color: #f1f5f9;         /* Bright White/Gray Text */
+            --text-light: #94a3b8;         /* Muted Text */
+            
+            /* Success/Correct Answer Colors (Dark Mode) */
+            --success-bg: #064e3b;         
+            --success-border: #34d399;
+            --success-text: #d1fae5;
+            
+            /* Error/Wrong Answer Colors (Dark Mode) */
+            --error-bg: #7f1d1d;
+            --error-border: #f87171;
+            --error-text: #fecaca;
+            
+            /* Score Pill Colors */
+            --score-bg: #134e4a;
+            --score-border: #2dd4bf;
+            --score-text: #ccfbf1;
+            
+            /* UI Elements */
+            --header-bg: rgba(15, 23, 42, 0.95);
+            --border-color: #334155;
+            --option-hover: #334155;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: var(--header-bg); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-dark); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .left-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .stats-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .home-btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .home-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-pill { 
+            background: #1e1b4b; /* Dark Indigo */
+            color: #c7d2fe; 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid #4338ca;
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid var(--border-color);
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: var(--text-color);
+        }
+
+        /* Options Styling */
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.02);
+            color: var(--text-color);
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: var(--option-hover); 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text); 
+            font-weight: 500;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text);
+            opacity: 0.9;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sticky Header -->
+<div class="sticky-header">
+    <h1>Mechanics of Materials & Structures</h1>
+    <div class="header-controls">
+        <div class="left-controls">
+            <a href="#" class="home-btn" onclick="location.reload()">🔄 Reset</a>
+        </div>
+        <div class="stats-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions will be injected here by JavaScript -->
+    </div>
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    // --- State Variables for Score ---
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    // Full Data set extracted from the uploaded PDF Answer Key
+    const quizData = [
+    { id: 1, q: "Limit with in which Hook's law holds good is", options: ["Elastic limit", "Plastic limit", "Yield point", "Proportional limit"], a: 3 },
+    { id: 2, q: "The magnitude of shear stress induces in a shaft due to applied torque varies", options: ["From maximum at the centre to zero at the circumference", "From zero at centre to maximum at circumference", "From maximum at centre to minimum at circumference and not zero", "From minimum at the centre and not zero to maximum at the circumferences"], a: 1 },
+    { id: 3, q: "Polar moment of inertia of the cross section of a shaft of diameter d is", options: ["πd³/32", "πd⁴/32", "πd³/16", "πd⁴/16"], a: 1 },
+    { id: 4, q: "A hollow shaft of the same cross-sectional areas that of a solid shaft can", options: ["Resists less torque", "Resist more torque", "Resist equal torque", "All of the above"], a: 1 },
+    { id: 5, q: "The flexural rigidity of a beam is", options: ["EI", "E/I", "I/E", "E/I²"], a: 0 },
+    { id: 6, q: "A beam is said to be loaded in pure bending when", options: ["Bending moment and shear force are constant but not zero", "Bending moment is changing linearly", "Bending moment and shear force both are changing linearly", "Bending moment is constant"], a: 1 },
+    { id: 7, q: "A high carbon steel specimen as compared with mild steel specimen", options: ["is more ductile", "is stronger", "has a more defined yield point", "has more Poisson's ratio"], a: 0 },
+    { id: 8, q: "Load required to produce unit deflection is known as", options: ["toughness", "stiffness", "flexibility", "none of these"], a: 1 },
+    { id: 9, q: "Which one of the following features improves the fatigue strength of a metallic material?", options: ["Increasing the temperature", "Scratching the surface", "Overstressing", "Under stressing"], a: 3 },
+    { id: 10, q: "1 kgf/cm² when converted into SI unit is", options: ["0.0981 MPa", "0.981 Pa", "10⁴ Pa", "1 Pa"], a: 0 },
+    { id: 11, q: "To express the stress-strain relations for a homogeneous isotropic, linearly elastic material, minimum number of material constant needed is", options: ["Two", "Three", "Six", "Nine"], a: 0 },
+    { id: 12, q: "Deflection of the free end of a cantilever beam, subjected to a concentrated load at the middle of is span is given by", options: ["Pl³/3EI", "Pl³/8EI", "Pl³/24EI", "5 Pl³/48EI"], a: 2 },
+    { id: 13, q: "Shear centre", options: ["always coincides with the centroid of the beam cross-section", "always lies within the boundaries of the cross-section", "is a point in the plane of the beam cross- section through which the resultant of shear forces must pass", "is a point in the beam cross-section representing zero shear stress."], a: 2 },
+    { id: 14, q: "The maximum eccentricity of compressive load acting on a short strut of diameter d without producing tension at the base section is", options: ["d/2", "d/4", "d/6", "d/8"], a: 3 },
+    { id: 15, q: "The rigidity modulus G in terms of modulus of elasticity E and Poisson's ratio v is given by", options: ["2E/(1+v)", "E/2(1-v)", "E/2(1+v)", "E/(1-v)"], a: 2 },
+    { id: 16, q: "A bar is subjected to a uniaxial load p. having length = L, area of cross-section A and E is modulus of elasticity. The strain energy stored in the bar is given by", options: ["PL/AE", "PL²/AE", "P²L/AE", "P²L/2AE"], a: 3 },
+    { id: 17, q: "The shear forces on a beam produces", options: ["linear transverse deformation", "rotation on the beam", "vertical displacement", "horizontal displacement"], a: 0 },
+    { id: 18, q: "Maximum shear stress theory of failure was postulated by", options: ["St. Venant", "Rankine", "Castiglione", "Tresca"], a: 3 },
+    { id: 19, q: "The maximum deflection of a cantilever beam of span L due to concentrated load P at the free end is", options: ["PL³/2EI", "PL²/2EI", "PL³/3EI", "PL³/4EI"], a: 2 },
+    { id: 20, q: "The maximum stress used in the analysis of bending beyond elastic limit is", options: ["Ultimate stress", "Allowable stress", "Yield stress", "none of the above"], a: 2 },
+    { id: 21, q: "A compressive member always tends to buckle in the direction of", options: ["Axis of load", "Minimum cross-section", "Least radius of gyration", "Perpendicular to the axis of load."], a: 2 },
+    { id: 22, q: "The maximum bending moment due to a moving load on a simply supported beam occurs", options: ["At the mid span", "At the supports", "Under the load", "anywhere on the beam."], a: 2 },
+    { id: 23, q: "A simply supported beam carries two equal concentrated loads W at distance L/3 from either support. The maximum BM is", options: ["WL/3", "WL/4", "5WL/8", "2/5WL"], a: 0 },
+    { id: 24, q: "The Maximum deflection of a simply supported beam of length L with central concentrated load W is", options: ["WL²/48EI", "WL²/24EI", "WL³/48EI", "WL²/8EI"], a: 2 },
+    { id: 25, q: "Euler's formula states that the buckling load P for a column of length L, both ends hinged and whose least moment of inertia and modulus of elasticity of the material of column are I and E respectively is given by", options: ["P = πEI/L²", "P = π²EI/L²", "P = πL²/EI", "P = πEI/L²"], a: 1 },
+    { id: 26, q: "Strain energy in a member may be equated to", options: ["Average resistance x displacement", "½ stress x strain x area of its cross-section", "½ stress x strain x volume of the member", "½ (stress)² x volume of member/Young's Modulus"], a: 3 },
+    { id: 27, q: "The work done on a unit volume of material as a simple tensile force is gradually increased from zero to the value causing rupture is called", options: ["Modulus of resilience", "Modulus of toughness", "Tangent modulus", "None of the above"], a: 1 },
+    { id: 28, q: "Poisson's ratio, µ is defined as", options: ["Ratio of transverse strain to axial strain", "Modulus of ratio of transverse strain to transverse strain", "Modulus of ratio of axial strain", "None of the above"], a: 0 },
+    { id: 29, q: "The point of contraflexure in a loaded beam is the point where", options: ["The bending moment is maximum", "The bending moment changes sign", "The shear force changes sign", "None of the above"], a: 1 },
+    { id: 30, q: "A rod of length L and area of cross- section A, whose material has a modulus of elasticity of thermal expansion α is subjected to a change of temperature ΔT. The change in length is", options: ["L α ΔT", "L α ΔT/E", "L α ΔT/AE", "None of the above"], a: 0 },
+    { id: 31, q: "The moment of inertia of a rectangular lamina of sides b and d about its centroidal axis parallel to the side d is given by", options: ["bd³/12", "db³/12", "bd³/36", "None of the above"], a: 1 },
+    { id: 32, q: "Stress developed in an elastic body due to external force", options: ["does not depend on elastic constant", "depends on elastic constants", "depends partly", "none of the above"], a: 0 },
+    { id: 33, q: "Modulus of resilience is defined by", options: ["Strain energy stored in an elastic body", "Strain energy per unit volume of the elastic body", "Percentage of elongation of a ductile metal", "Any of the above"], a: 1 },
+    { id: 34, q: "In a beam of I-Section the maximum shear forces is carried by", options: ["The upper flange", "The web", "The lower flange", "any of these"], a: 1 },
+    { id: 35, q: "In a short column with eccentric loading, the neutral axis", options: ["Passes through the centroid of the section", "Passes through the point of application of load", "Does not pass through the centroid of the section", "None of the above"], a: 0 },
+    { id: 36, q: "In a long column, with one end fixed and the other free, if slenderness ratio increases, critical stress", options: ["Remains constant", "Increases", "Decreases", "Any of these."], a: 2 },
+    { id: 37, q: "A material having identical properties in all directions is called:", options: ["Elastic", "Homogeneous", "Isotropic", "Any of these"], a: 2 },
+    { id: 38, q: "The ratio of the deformation of a bar due to its own weight, to the deformation due to axial load equal to its weight is:", options: ["1", "½", "2", "4"], a: 1 },
+    { id: 39, q: "A cantilever beam is loaded uniformly throughout its length. The shape of the shear force will be", options: ["right angle triangle", "An isosceles triangle", "A rectangle", "None of these"], a: 0 },
+    { id: 40, q: "Two prismatic beams have same length. The one having larger............ will be stronger in flexure:", options: ["Moment of inertia", "Section modulus", "Area of cross-section", "None of these."], a: 1 },
+    { id: 41, q: "The modulus of elasticity for mild steel is approximately equal to", options: ["10 kN/mm²", "80 kN/mm²", "100 kN/mm²", "210 kN/mm²"], a: 3 },
+    { id: 42, q: "In a cantilever carrying a load whose intensity varies uniformly from zero at the free end to w per unit run at the fixed end, the S.F. changes following a", options: ["Linear law", "Parabolic law", "Cubic law", "none of the above"], a: 1 },
+    { id: 43, q: "At the point of application of a concentrated load on a beam there is", options: ["Sudden change of slope of B.M.", "Maximum B.M", "Point of contraflexure", "Maximum deflection."], a: 0 },
+    { id: 44, q: "The ratio of the ultimate to the working load is called", options: ["load factor", "collapse factor", "strength factor", "work factor"], a: 0 },
+    { id: 45, q: "The buckling load will be maximum for a column, if", options: ["One end of the column is clamped and the other end is free", "Both ends of the column are clamped", "Bothe ends of the column are hinged", "One end of the column is hinged and the other end is free"], a: 1 },
+    { id: 46, q: "Which one of following materials is highly elastic?", options: ["Rubber", "Brass", "Steel", "Glass"], a: 2 },
+    { id: 47, q: "Two beams of equal cross-sectional area are subjected to equal bending moment. If one beam has square cross-section and the other has circular section, then", options: ["Both beams will be equally strong", "Circular section beam will be stronger", "square section beam will be stronger", "The strength of the beam will depend on the nature of loading."], a: 1 },
+    { id: 48, q: "Strain rosetters are used to", options: ["measure shear strain", "measure linear strain", "measures volumetric strain", "relieve strain"], a: 1 },
+    { id: 49, q: "The property by which an amount of energy is absorbed by material without plastic deformation, is called", options: ["Toughness", "Impact strength", "Ductility", "Resilience"], a: 3 },
+    { id: 50, q: "Which of the following is a proper sequence?", options: ["Proportional limit, elastic limit, yielding, failure", "Elastic limit, proportional limit, yielding, failure", "Yielding, proportional limit, elastic limit, failure", "None of the above"], a: 0 },
+    { id: 51, q: "The unit of modulus of elasticity is same as those of", options: ["Stress, strain and pressure", "Stress, force and modulus of rigidity", "Strain, force and pressure", "Stress, pressure and modulus of rigidity"], a: 3 },
+    { id: 52, q: "The maximum stress produced in a bar of tapering section is at", options: ["smaller end", "larger end", "middle", "anywhere"], a: 0 },
+    { id: 53, q: "When a bar is subjected to a change of temperature and its deformation is prevented, the stress induced in the bar is", options: ["tensile stress", "compressive stress", "shear stress", "thermal stress"], a: 3 },
+    { id: 54, q: "A steel bar of 5 mm is heated from 15°C to 40°C and it is free to expand. The bar will induce", options: ["no stress", "shear stress", "tensile stress", "compressive stress"], a: 0 },
+    { id: 55, q: "When a body is subjected to three mutually perpendicular stresses, of equal intensity, the ratio direct stress to the corresponding volumetric strain is known as", options: ["Young's modulus", "modulus of rigidity", "Bulk modulus", "Poisson's ratio"], a: 2 },
+    { id: 56, q: "The units of moment of inertia of an area are", options: ["kg m²", "m⁴", "kg/m²", "m³"], a: 1 },
+    { id: 57, q: "The units of moment of inertia of mass are", options: ["m⁴", "kg m²", "kg/m²", "kg/m"], a: 1 },
+    { id: 58, q: "When a load on the free end of a cantilever beam is increased, failure will occur", options: ["at the free end", "at the fixed end", "in the middle of the beam", "at a distance 2l/3 from free end"], a: 1 },
+    { id: 59, q: "The shear force of a cantilever beam of length l carrying a uniformly distributed load of w per unit length is .......... at the free end.", options: ["zero", "wl/4", "2l/2", "wl"], a: 0 },
+    { id: 60, q: "The shear force of a cantilever beam of length l carrying a uniformly distributed load of w per unit length is .......... at the fixed end.", options: ["zero", "wl/4", "wl/2", "wl"], a: 3 },
+    { id: 61, q: "The shear force of a cantilever beam of length l and carrying a uniformly distributed load of w per unit length will be", options: ["a right angled triangle", "an isosceles triangle", "an equilateral triangle", "a rectangle"], a: 0 },
+    { id: 62, q: "The shear force and bending moment are zero at the free end of a cantilever beam, if it carries a", options: ["point load at the free and", "point load at the middle of its length", "uniformly distributed load over the whole length", "none of the above"], a: 2 },
+    { id: 63, q: "The maximum bending moment of a simply supported beam of span l and carrying a point load W at the centre of beam, is", options: ["Wl/4", "Wl/2", "Wl", "Wl²/4"], a: 0 },
+    { id: 64, q: "The bending moment for a simply supported beam loaded in its centre is", options: ["a right-angled triangle", "an isosceles triangle", "an equilateral triangle", "a rectangle"], a: 1 },
+    { id: 65, q: "The shear force in the centre of a simply supported beam carrying a uniformly distributed load of w per unit length, is", options: ["zero", "wl²/2", "wl²/4", "wl²/8"], a: 0 },
+    { id: 66, q: "The bending moment in the centre of a simply supported beam carrying a uniformly distributed load of w per unit length is", options: ["zero", "wl²/2", "wl²/4", "wl²/8"], a: 3 },
+    { id: 67, q: "The shear force at the centre of a simply supported beam with gradually varying load from zero at both ends to w per meter at the centre, is", options: ["zero", "wl/4", "wl/2", "wl²/2"], a: 0 },
+    { id: 68, q: "In simply supported beam carrying a uniformly distributed load w per unit length, the point of contraflexure", options: ["lies in the centre of the beam", "lies at the ends of the beam", "depends upon the length of beam", "does not exist"], a: 3 },
+    { id: 69, q: "When there is a sudden increase or decrease in shear force between any two points, it indicates that there is a", options: ["point load at the two points", "no loading between the two points", "uniformly distributed load between the two points", "uniformly varying load between the two points"], a: 0 },
+    { id: 70, q: "In a simple bending theory, one of the assumptions is that the material of the beam is isotropic. This assumption means that the", options: ["normal stress remains constant in all directions", "normal stress varies linearly in the material", "elastic constants are same in all the directions", "elastic constants vary linearly in the material"], a: 2 },
+    { id: 71, q: "When a beam is subjected to bending moment, the stress at any point is ......... the distance of the point from the neutral axis.", options: ["equal to", "directly proportional to", "inversely proportional to", "independent of"], a: 1 },
+    { id: 72, q: "When a cantilever beam is loaded at its free and, the maximum compressive stress shall develop at", options: ["bottom fibre", "top fibre", "neutral axis", "centre of gravity"], a: 0 },
+    { id: 73, q: "A beam of uniform strength has", options: ["same cross-section throughout the beam", "same bending stress at every section", "same bending moment at every section", "same shear stress at every section"], a: 1 },
+    { id: 74, q: "At the neutral axis of a beam", options: ["the layers are subjected to maximum bending stress", "the layers are subjected to minimum bending stress", "the layers are subjected to compression", "the layers do not undergo any strain"], a: 3 },
+    { id: 75, q: "At the neutral axis of a beam, the shear stress is", options: ["zero", "minimum", "maximum", "infinity"], a: 2 },
+    { id: 76, q: "The maximum deflection of a fixed beam carrying a central point load lies at", options: ["fixed ends", "centre of beam", "l/3 from fixed ends", "none of these"], a: 1 },
+    { id: 77, q: "The product of Young's modulus (E) and moment of inertia (I) is known as", options: ["modulus of rigidity", "bulk modulus", "flexural rigidity", "torsional rigidity"], a: 2 },
+    { id: 78, q: "A simply supported beam 'A' of length l, breadth b and depth d carries a central load W. Another beam 'B' of the same dimensions carries a central load equal to 2W. The deflection of beam 'B' will be ........... as that of beam 'A'.", options: ["one-fourth", "one-half", "double", "four times"], a: 2 },
+    { id: 79, q: "When a shaft is subjected to a twisting moment, every cross-section of the shaft will be under", options: ["tensile stress", "compressive stress", "shear stress", "bending stress"], a: 2 },
+    { id: 80, q: "The moment of inertia of a rectangle of base b and height h about the base of the rectangle is", options: ["bh³/12", "bh³/6", "bh³/3", "bh³/2"], a: 2 },
+    { id: 81, q: "The moment of inertia of a rectangular section about its neutral axis, is given by", options: ["1/3 bh²", "1/12 bh³", "1/12 bh²", "1/36 bh³"], a: 1 },
+    { id: 82, q: "The moment of inertia of circular sections, about its axis, is given by", options: ["πD⁴/32", "πD⁴/64", "πD⁴/16", "πD⁴/8"], a: 1 },
+    { id: 83, q: "The maximum deflection of a beam of length (L) simply supported at its ends with a central load W will be", options: ["WL³/48EI", "WL²/48EI", "W²L/48EI", "WL/48EI"], a: 0 },
+    { id: 84, q: "When a column is subjected to an eccentric load, the stress induced in the column will be", options: ["direct stress only", "bending stress only", "shear stress only", "direct and bending stress both"], a: 3 },
+    { id: 85, q: "The load at which the column just buckles, is known as", options: ["buckling load", "critical load", "crippling load", "any one of these"], a: 3 },
+    { id: 86, q: "Compression members always tend to buckle in the direction of the", options: ["axis of load", "perpendicular to the axis of load", "minimum cross section", "least radius of gyration"], a: 3 },
+    { id: 87, q: "A column that fails due to direct stress, is called", options: ["short column", "long column", "weak column", "medium column"], a: 0 },
+    { id: 88, q: "The buckling load for a given column depends upon", options: ["area of cross-section of the column", "length and least radius of gyration of the column", "modulus of elasticity for the material of the column", "all of the above"], a: 3 },
+    { id: 89, q: "The slenderness ratio is the ratio of", options: ["area of column to least radius of gyration", "length of column to least radius of gyration", "least radius of gyration to area of column", "least radius of gyration to length of column"], a: 1 },
+    { id: 90, q: "Euler's formula holds good only for", options: ["short columns", "long columns", "both short and long columns", "weak columns"], a: 1 },
+    { id: 91, q: "The stress at which the extension of the material takes place more quickly as compared to the increase in load, is called", options: ["elastic limit", "yield point", "ultimate point", "breaking point"], a: 1 },
+    { id: 92, q: "The stress developed in the material without any permanent set is called", options: ["elastic limit", "yield stress", "ultimate stress", "breaking stress"], a: 0 },
+    { id: 93, q: "The tensile test is carried on ....... materials.", options: ["ductile", "brittle", "malleable", "plastic"], a: 0 },
+    { id: 94, q: "The compression test is carried on .......... materials.", options: ["ductile", "brittle", "malleable", "plastic"], a: 1 },
+    { id: 95, q: "Factor of safety is defined as the ratio of", options: ["ultimate stress to working stress", "working stress to ultimate stress", "breaking stress to ultimate stress", "ultimate stress to breaking stress"], a: 0 },
+    { id: 96, q: "The radius of gyration of a section of area A and least moment of inertia I about the centroidal axis, is", options: ["A/I", "I/A", "√(I/A)", "√(A/I)"], a: 2 },
+    { id: 97, q: "As the elastic limit reaches, tensile strain", options: ["increases more rapidly", "decreased more rapidly", "increases in proportion to the stress", "decreases in proportion to the stress"], a: 0 },
+    { id: 98, q: "The stress necessary to initiate yielding is considerably", options: ["more than that necessary to continue it", "less than the necessary to continue it", "more than that necessary to stop it", "less than that necessary to stop it"], a: 0 },
+    { id: 99, q: "The phenomenon of slow extension of materials having constant load, i.e. increasing with the time is called", options: ["creeping", "yielding", "breaking", "none of these"], a: 0 },
+    { id: 100, q: "Modular ratios of two materials is the ratio of", options: ["linear stress to linear strain", "shear stress to shear strain", "their modulus of elasticities", "their modulus of rigidities"], a: 2 },
+    { id: 101, q: "When equal and opposite forces applied to a body, tend to elongate is, the stress so produced, is called", options: ["shear stress", "compressive stress", "tensile stress", "transverse stress"], a: 2 },
+    { id: 102, q: "In a bar of large length when held vertically and subjected to a load at its lower end, its own-weight produces additional stress. The maximum stress will be", options: ["at the lower cross-section", "at the build-in upper cross-section", "at the central cross section", "at every point of the bar"], a: 1 },
+    { id: 103, q: "If the stress produced by a prismatic bar is equal to the working stress, the area of the cross-section of the prismatic bar, becomes", options: ["zero", "infinite", "maximum", "minimum"], a: 1 },
+    { id: 104, q: "The ratio of elongations of a conical bar due to its own weight and that of a prismatic bar of the same length is,", options: ["1/2", "1/3", "1/4", "1/5"], a: 1 },
+    { id: 105, q: "If all the dimensions of a bar are increased in the proportion n:1, the proportion with which the maximum stress produced in the prismatic bar by its own weight, will increase in the ratio", options: ["1 : n", "n : 1", "1 : 1/n", "1/n : 1"], a: 1 },
+    { id: 106, q: "Along the principal plane subjected to maximum principal stress", options: ["maximum shear stress acts", "minimum shear stress acts", "no shear stress acts", "none of these"], a: 2 },
+    { id: 107, q: "A bending moment may be defined as:", options: ["Arithmetic sum of the moments of all the forces on either side of the section", "Arithmetic sum of the forces on either side of the section", "Algebraic sum of the moments of all the forces on either side of the section", "none of these"], a: 2 },
+    { id: 108, q: "A simply supported beam of span L carries a uniformly distributed load W. the maximum bending moment M is", options: ["WL²/2", "WL²/4", "WL²/8", "WL²/12"], a: 2 },
+    { id: 109, q: "A simply supported beam of span L carries a concentrated load W at its mid-span. The maximum bending moment M is", options: ["WL/2", "WL/4", "WL/8", "WL/12"], a: 1 },
+    { id: 110, q: "A simply supported beam carries two equal concentrated loads W at distances L/3 from either support. The maximum bending moment M is", options: ["WL/3", "WL/4", "5WL/8", "3WL/12"], a: 0 },
+    { id: 111, q: "The shape of the bending moment over the length of a beam, having no external load, is always", options: ["linear", "parabolic", "cubical", "circular"], a: 0 },
+    { id: 112, q: "The shape of the bending moment over the length of a beam, carrying a uniformly distributed load is always", options: ["linear", "parabolic", "cubical", "circular"], a: 1 },
+    { id: 113, q: "The shape of the bending moment over the length of a beam, carrying a uniformly increasing load, is always", options: ["linear", "parabolic", "cubical", "circular"], a: 2 },
+    { id: 114, q: "For a simply supported beam with a central load, the bending moment is", options: ["least at the centre", "least at the supports", "maximum at the supports", "maximum at the center"], a: 3 },
+    { id: 115, q: "For a cantilever with a uniformly distributed load W over its entire length L, the maximum bending moment is", options: ["WL", "1/2 WL", "1/3 WL", "1/2 W²L"], a: 1 },
+    { id: 116, q: "The bending moment is maximum on a section where shearing force", options: ["is maximum", "is minimum", "is equal", "changes sign"], a: 3 },
+    { id: 117, q: "For a beam of uniform strength keeping its depth constant, the width will vary in proportion to", options: ["bending moment M", "√M", "M²", "none of these"], a: 0 },
+    { id: 118, q: "A beam is said to be of uniform strengths if", options: ["B. M. is same throughout the beam", "shear stress is same throughout the beam", "deflection is same throughout the beam", "bending stress is same at every section along its longitudinal axis"], a: 3 },
+    { id: 119, q: "In a continuous bending moment curve the point where it changes sign, is called", options: ["point of inflexion", "point of contraflexture", "point of virtual hinge", "all the above"], a: 3 },
+    { id: 120, q: "In a simply supported beam L with a triangular load W varying from zero at one end to the maximum value at the other end, the maximum bending moment is", options: ["WL/3", "WL/9√3", "WL/4", "WL²/9√3"], a: 3 },
+    { id: 121, q: "Along the neutral axis of a simply supported beam", options: ["fibres do not undergo strain", "fibres undergo minimum strain", "fibres undergo maximum strain", "none of these"], a: 0 },
+    { id: 122, q: "The radius of gyration of a rectangular section is not proportional to", options: ["square root of the moment of inertia", "square root of the inverse of the area", "square root of the moment of inertia divided by area of the section", "None of above"], a: 3 },
+    { id: 123, q: "The ratio of the moment of inertia of a circular plate and that of a square plate for equal depth is", options: ["less than one", "equal to one", "more than one", "equal to 3π/16"], a: 3 },
+    { id: 124, q: "The section modulus of a rectangular section is proportional to", options: ["area of the section", "square of the area of the section", "product of the area and depth", "half moment of inertia of the section"], a: 0 },
+    { id: 125, q: "The shear force on a simply supported beam is proportional to", options: ["displacement of the neutral axis", "sum of the forces", "sum of the transverse forces", "algebraic sum of the transverse force of the section"], a: 3 },
+    { id: 126, q: "Simple bending equation is", options: ["M/I = R/E = σ/Y", "I/M = E/R = Y/σ", "M/I = E/R = σ/Y", "M/I = R/E = Y/σ"], a: 2 },
+    { id: 127, q: "A reinforced concrete beam is assumed to be made of", options: ["homogeneous material", "heterogeneous material", "isotropic material", "none of these"], a: 1 },
+    { id: 128, q: "If a constant section beam is subjected to a uniform bending moment throughout, its length bends to", options: ["a circular arc", "a parabolic arc", "a catenary", "none of these"], a: 0 },
+    { id: 129, q: "The maximum deflection of a simply supported beam of length L with a central load W, is", options: ["WL²/48EI", "W²L/24EI", "WL³/48EI", "WL²/8EI"], a: 2 },
+    { id: 130, q: "The ratio of the maximum deflections of a beam simply supported at its ends with an isolated central load and that of with a uniformly distributed load over its entire length is", options: ["1", "15/14", "24/15", "2/3"], a: 2 },
+    { id: 131, q: "The ratio of the maximum deflection of a cantilever beam with an isolated load at its free end and with a uniformly distributed load over its entire length is,", options: ["1", "15/14", "3/8", "8/3"], a: 3 },
+    { id: 132, q: "Maximum deflection of a cantilever due to pure bending moment M at its free end, is", options: ["ML²/3EI", "ML²/4EI", "ML²/6EI", "ML²/2EI"], a: 3 },
+    { id: 133, q: "A cantilever carries is uniformly distributed load W over its whole length and a force W acts at its free end upward. The net deflection of the free end will be", options: ["zero", "5/24 WL³/EI upward", "5/24 WL³/EI downward", "none of these"], a: 1 },
+    { id: 134, q: "The moment for a cantilever whose free end is subjected to a bending moment, will be a", options: ["triangle", "rectangle", "parabola", "cubic parabola"], a: 1 },
+    { id: 135, q: "The moment for a cantilever which is subjected to a uniformly distributed load will be a", options: ["triangle", "rectangle", "parabola", "cubic parabola"], a: 2 },
+    { id: 136, q: "When a rectangular beam is loaded longitudinally, shear develops on", options: ["bottom fibre", "top fibre", "middle fibre", "every-horizontal plane"], a: 3 },
+    { id: 137, q: "When a rectangular beam is loaded transversely, the maximum compressive stress develops on", options: ["bottom fibre", "top fibre", "neutral axis", "every cross-section"], a: 1 },
+    { id: 138, q: "If the shear force along a section of a beam is zero, the bending moment at the section is", options: ["zero", "maximum", "minimum", "average of maximum-minimum"], a: 2 },
+    { id: 139, q: "Hooke's law states that stress and strain are", options: ["directly proportional", "inversely proportional", "curvilinear related", "none of these"], a: 0 },
+    { id: 140, q: "If the depth of a simply supported beam carrying an isolated load at its centre, is doubled, the deflection of the beam at the centre will be changed by a factor of", options: ["2", "1/2", "8", "1/8"], a: 3 },
+    { id: 141, q: "If the width b and depth d of a beam simply supported with a central load are interchanged, the deflection at the centre of the beam will be changed in the ratio of", options: ["b/d", "d/b", "(d/b)²", "(d/b)²"], a: 3 },
+    { id: 142, q: "The deflection of any rectangular beam simply supported is", options: ["directly proportional to its weight", "inversely proportional to its width", "inversely proportional to the cube of its depth", "directly proportional to the cube of its length"], a: 2 },
+    { id: 143, q: "Stress in a beam due to simple bending, is", options: ["directly proportional", "inversely proportional", "curvilinear related", "none of these"], a: 0 },
+    { id: 144, q: "For a beam, if fundamental equations of statics are not sufficient to determine all the reactive forces at the supports, the structure is said to be", options: ["determinate", "statically determinate", "statically indeterminate", "none of these"], a: 2 },
+    { id: 145, q: "If the beam is supported so that there are only three unknown reactive elements at the supports. These can be determined by using the following fundamental equation of statics", options: ["ΣH = 0", "ΣV = 0", "ΣH = 0; ΣH = 0", "ΣH = 0; ΣV = 0; ΣM = 0"], a: 3 },
+    { id: 146, q: "A long vertical member, subjected to an axial compressive load, is called", options: ["a column", "a strut", "a stanchion", "all the above"], a: 2 },
+    { id: 147, q: "The ratio of the effective length of a column and minimum radius of gyration of its cross-sectional area, is known", options: ["buckling factor", "slenderness ratio", "crippling factor", "none of these"], a: 1 },
+    { id: 148, q: "A column is said to be of medium size if its slenderness ratio is between", options: ["20 and 32", "32 and 120", "120 and 160", "160 and 180"], a: 1 },
+    { id: 149, q: "Columns of given length, cross-section and material have different values of buckling loads for different end conditions. The strongest column is one whose", options: ["one end is fixed and other end is hinged", "both ends are hinged or pin jointed", "one end if fixed and the other end entirely free", "both the ends are fixed"], a: 3 },
+    { id: 150, q: "The equivalent length of a column fixed at both ends, is", options: ["0.5 l", "0.7 l", "l", "2 l"], a: 0 },
+    { id: 151, q: "The equivalent length of a column fixed at one end and free at the other end, is", options: ["0.5l", "0.7 l", "l", "2 l"], a: 3 },
+    { id: 152, q: "The range within which a load can be applied on a rectangular column, to avoid any tensile stress, is", options: ["one-half of the base", "one-fifth of the base", "one-fourth of the base", "one-fifth of the base"], a: 1 },
+    { id: 153, q: "To ascertain the maximum permissible eccentricity of loads on circular columns, the rule generally followed, is", options: ["middle half rule of columns", "middle third rule of columns", "middle fourth rule of columns", "none of these"], a: 2 },
+    { id: 154, q: "The reaction at the supports will be vertical to the plane of the support if the frame structure rests on", options: ["roller supports", "free supports", "hinged supports", "all the above"], a: 3 },
+    { id: 155, q: "Reactions at the supports of a structure can be determined by equating the algebraic sum of", options: ["horizontal forces to zero", "vertical forces to zero", "moment about any point to zero", "all the above"], a: 3 },
+    { id: 156, q: "If two forces acting at a joint are not along the straight line, then for the equilibrium of the joint", options: ["one of the force must be zero", "each force must be zero", "forces must be equal and of the same sign", "forces must be equal in magnitude but opposite in sign"], a: 1 },
+    { id: 157, q: "Stress in members of statically determinate simple frames, can be determined by", options: ["method of joints", "method of sections", "graphical solution", "all the above"], a: 3 },
+    { id: 158, q: "A member is balanced at its end by two inclined members carrying equal forces. For equilibrium the angle between the inclined bars must be", options: ["3°", "45°", "60°", "120°"], a: 3 },
+    { id: 159, q: "Ties are load carrying members of a frame, which are subjected to", options: ["transverse loads", "axial tension loads", "axial compressive loads", "torsional loads"], a: 1 },
+    { id: 160, q: "Struts are load carrying members of a frame structure which are subjected to", options: ["axial tension loads", "axial compressive loads", "torsional loads", "transverse loads"], a: 1 },
+    { id: 161, q: "The ratio of the moments of resistance of a solid circular shaft of diameter D and a hollow shaft (external diameter D and internal diameter d), is", options: ["D⁴ / (D⁴-d⁴)", "D³ / (D³-d³)", "(D⁴-d⁴) / D⁴", "(D³-d³) / D³"], a: 0 },
+    { id: 162, q: "A member which does not regain its original shape after removed of load producing deformation is said", options: ["plastic", "elastic", "rigid", "none of these"], a: 0 },
+    { id: 163, q: "Strain energy of any member may be defined as work done on it", options: ["to deform it", "to resists elongation", "to resist shortening", "all the above"], a: 3 },
+    { id: 164, q: "In a loaded beam, the point of contraflexture occurs at a section where", options: ["bending moment is minimum", "bending moment is zero or changes sign", "bending moment is maximum", "shearing force is maximum"], a: 1 },
+    { id: 165, q: "The areas of cross-section of a square beam and a circular beam subjected to equal bending moments, are same", options: ["circular beam is more economical", "square beam is more economical", "both the beams are equally strong", "both the beams are equally economical"], a: 1 },
+    { id: 166, q: "The stress in the wall of a cylinder in a direction normal to its longitudinal axis, due to a force acting along the circumference, is known as", options: ["yield stress", "longitudinal stress", "hoop stress", "circumferential stress"], a: 2 },
+    { id: 167, q: "In a square beam loaded longitudinally, shear develops", options: ["on middle fibre along horizontal plane", "on lower fibre along horizontal plane", "on top fibre along vertical plane", "equally on each fibre along horizontal plane"], a: 3 },
+    { id: 168, q: "In a beam, the neutral plane", options: ["may be its centre", "passes through the C.G. of the area of cross-section", "does not change during deformation", "none of these"], a: 2 },
+    { id: 169, q: "The point of contraflexture occurs in", options: ["cantilever beams only", "continuous beams only", "over hanging beams only", "all types of beams"], a: 2 },
+    { id: 170, q: "A diagram which shows the variations of the axial load for all sections of the span of a beam, is called", options: ["bending moment", "shear force", "thrust", "stress"], a: 2 },
+    { id: 171, q: "Beams of uniform strength are preferred to those of uniform section because these are economical for", options: ["large spans", "heavy weights", "light weights", "short spans"], a: 0 },
+    { id: 172, q: "The value of Poisson's ratio always remains", options: ["greater than one", "less than one", "equal to one", "none of these"], a: 1 },
+    { id: 173, q: "The B. M. of a cantilever beam shown in the given figure, at point A is", options: ["zero", "8 Tm", "12 Tm", "20 Tm"], a: 0 },
+    { id: 174, q: "The section modulus of a rectangular section is proportional to", options: ["product of area and width", "product of area and width", "square of area of the section", "area of the section"], a: 3 },
+    { id: 175, q: "The bending moment at E for the structure shown in figure is", options: ["zero", "10 Tm", "20 Tm", "40 Tm"], a: 0 },
+    { id: 176, q: "The neutral axis of a beam cross-section must", options: ["pass through the centroid of the section", "be equidistant from the top of bottom films", "be an axis of symmetry of the section", "none of these"], a: 0 },
+    { id: 177, q: "During a tensile test on a ductile material", options: ["nominal stress at fracture is higher than the ultimate stress", "true stress at fracture is higher than the ultimate stress", "true stress at fracture is the same as the ultimate stress", "none of these"], a: 1 },
+    { id: 178, q: "A perfectly elastic body is", options: ["that body which recovers its original shape completely after removal of force", "a body of such a material with a lot of extensibility", "a body made of rubber only", "a body whose cross-sectional dimensions are very small."], a: 0 },
+    { id: 179, q: "In the case of partially elastic body that part of the work done by the external forces during deformation is dissipated in the form of heat, which is developed in the body during", options: ["non-elastic deformation", "elastic deformation", "50% of total deformation", "last 25 % of deformation."], a: 0 },
+    { id: 180, q: "The law \"Stress is proportional to strain within certain limits\" is formulated by", options: ["Thomas Young", "Poisson", "Mohr", "Robert Hook"], a: 3 },
+    { id: 181, q: "A member with a cross section of 'A' mm² is subjected to a force to a force of 'P' Newton. it is L mm long and of Young's Modulus' E' N/mm². The linear strain will be", options: ["PL/AE", "PA/LE", "P/AE", "AP/LE"], a: 2 },
+    { id: 182, q: "Young's modulus is the ratio of the normal stress to the", options: ["normal strain within elastic limit", "reciprocal of normal strain within elastic limit", "normal strain within proportional limit", "normal strain at yield point."], a: 2 },
+    { id: 183, q: "In a composite bar the load distribution among different materials of which it is made is based on the assumption that all the materials will have", options: ["equal areas", "same Young's Modulus", "same strain", "same stress."], a: 2 },
+    { id: 184, q: "The stress due to temperature change in a member depends on", options: ["length of the member", "area of cross section", "supporting conditions at the two ends", "none of the above."], a: 2 },
+    { id: 185, q: "The percentage reduction in area of a member from a direct tension test indicates", options: ["ductility", "elasticity", "malleability", "brittleness."], a: 0 },
+    { id: 186, q: "The equation connecting Young's Modulus (E) Poisson's ration (1/m) and Modulus of Rigidity (C), is", options: ["C = 2E(1+1/m)", "E = 2C (1–2/m)", "E = 3C (1+1/m)", "E = 2C(1+ 1/m)"], a: 3 },
+    { id: 187, q: "Modulus of Rigidity is the ratio of", options: ["shear stress to shear strain", "normal stress to normal strain", "Poisson's ratio to ultimate strength in compression", "lateral stress to lateral strain."], a: 0 },
+    { id: 188, q: "A tie is a member which", options: ["connects two joints", "is subjected to axial tension primarily", "does not suffer any stress irrespective of loading conditions", "suffers two equal and opposite forces at the two ends."], a: 1 },
+    { id: 189, q: "A strut is a member which", options: ["connects to joints", "is subjected two shear force predominantly", "is subjected to axial compressive force predominantly", "is subjected to bending moment and shear force along with any axial force."], a: 2 },
+    { id: 190, q: "When a column is resting on a base plate, the stresses along the surfaces of contact are", options: ["compressive stresses", "shear stresses", "tensile stresses", "bearing stresses"], a: 3 },
+    { id: 191, q: "An isotropic material is the one which", options: ["has same structure at all the points", "has Young's Modulus equal to Modulus of Rigidity", "has the elastic constants, identical in all the directions", "obeys Hooke's law up to failure."], a: 2 },
+    { id: 192, q: "The actual breaking stress of a ductile material from a tension test will be", options: ["greater than ultimate strength", "equal to ultimate strength", "equal to nominal breaking stress", "less than the ultimate strength but greater than nominal breaking stress."], a: 0 },
+    { id: 193, q: "A horizontal beam with both the ends hinged will be statically determinate for this type of loading", options: ["Purely vertical loading", "purely inclined loads", "any general loading", "inclined loads with moments."], a: 0 },
+    { id: 194, q: "A beam is supported over three rollers lying in the same plane. The beam is stable for", options: ["any general loading", "loading with no component in the direction of the beam", "loading with no component perpendicular to the direction of beam", "only when no load except self weight acts."], a: 1 },
+    { id: 195, q: "A simply supported beam is subjected to a UDL of intensity w/m throughout the length of the span. The B.M. will be a", options: ["triangle with wl²/ 8 max. ordinate", "rectangle with uniform ordinate wl²/8", "parabola with wl²/8 max. ordinate", "parabola with wl/4 max. ordinate."], a: 2 },
+    { id: 196, q: "The slope of curve of S.F. at any section will be equal to", options: ["the slope of loading at that section", "the ordinate of loading at that section", "the area of loading from end to that section", "the bending moment at that section."], a: 1 },
+    { id: 197, q: "The slope of curve of B.M. at any section will be equal to", options: ["the slope of loading at that section", "the slope of S.F. at that section", "the ordinate of S.F. at that section", "the area of S.F. starting from any one end."], a: 2 },
+    { id: 198, q: "To difference between B.M values at any two sections will be equal to", options: ["the area of S.F. between those two sections", "the difference in slopes of S.F. at the same sections", "the area of loading between the two sections", "the moment of area of loading between the two sections taken about mid-point between the two sections."], a: 0 },
+    { id: 199, q: "The difference between S.F. values at any two sections will be equal to", options: ["the area of B.M. between the two sections", "the difference between the slopes of the curve of loading at the two sections", "the ordinate of S.F. at one section plus the slope of the loading multiplied by the distance between the two sections.", "the area of the loading between those tow sections."], a: 3 },
+    { id: 200, q: "A cantilever beam is subjected to a uniformly varying load with zero intensity at the free end and with the maximum intensity of w/m at the fixes end. The maximum bending moment will be", options: ["w l²/6", "w l³/4", "w l²/6", "2/3w l 2."], a: 0 },
+    { id: 201, q: "A simply supported beam is subjected to a uniformly varying load with zero intensity at the two ends increasing to w/m at the centre. The maximum S.F. is", options: ["W l /2", "w l /4", "wL²/2", "w l² /4."], a: 1 },
+    { id: 202, q: "A simply supported beam is subjected to a uniformly varying load with zero intensity at the two ends increasing to w/m at the centre. The max. B.M. will occur at", options: ["l/3 from centre", "l/2 from ends", "at the two ends", "none of these."], a: 1 },
+    { id: 203, q: "A simply supported beam is subjected to a uniformly varying load with zero intensity at the two ends increasing to w/m at the centre. The maximum B.M. will be equal to", options: ["w l²/12", "w l²/24", "w l²/6", "w² l /8."], a: 0 },
+    { id: 204, q: "Which of the following end conditions permits the displacement in any direction and also rotation?", options: ["fixed end", "hinged end", "free end", "roller end."], a: 2 },
+    { id: 205, q: "Points of contraflexture ate the points where", options: ["the S.F. is zero", "the B.M. is zero", "the beam is supported", "where the B.M. changes its sign."], a: 3 },
+    { id: 206, q: "A cantilever of span l is subjected to bending moment M at the free end. The S.F. will be", options: ["a triangle with maximum ordinate at the fixed end", "a rectangle with ordinate M", "a parabola with maximum ordinate of ML²/2 at the fixed end", "no shear force at all."], a: 3 },
+    { id: 207, q: "A beam is said to have been subjected to a pure bending moment. when", options: ["S.F. is maximum", "the load is applied as a UDL throughout the span", "S.F. in a length is zero", "the load is applied at the mid span section only."], a: 2 },
+    { id: 208, q: "The slope of the B.M. changes its sign when", options: ["B.M changes its sign", "S.F. is maximum", "S.F. changes its sign", "rate of loading changes suddenly."], a: 2 },
+    { id: 209, q: "The minimum moment of resistance of a beam with material of allowable stress σ, is given by", options: ["σ x I / distance of farthest fibre from neutral axis", "σ x I / y", "σ x I / distance of neare exteme fibre", "σ x I x ratio of distances of the two extreme fibres."], a: 0 },
+    { id: 210, q: "The assumption that the cross sections plane before bending remains plane even after bending means", options: ["the strains in the fibers are proportional to their distances from neutral axis", "the bending moment will be resisted by the central core of the section", "the stresses in the fibers are proportional to their distances from neutral axis", "the neutral axis lies at mid height."], a: 0 },
+    { id: 211, q: "The moment of inertia of a rectangular section b × d about the base is", options: ["1/12 bd³", "1/3 bd³", "1/36 bd³", "bd²/6"], a: 1 },
+    { id: 212, q: "In the case of T section, the maximum bending stress will occur at", options: ["neutral axis", "extreme fibre in the flange", "extreme fibre in the web", "junction of web and flange."], a: 2 },
+    { id: 213, q: "Which of the following sections is the most efficient in carrying bending moments?", options: ["rectangular section", "circular sections", "I-section", "T-section."], a: 2 },
+    { id: 214, q: "The maximum shear stress will always occur at", options: ["neutral axis", "the top extreme fibre", "the bottom extreme fibre", "a fibre in the cross-section depending on configuration."], a: 3 },
+    { id: 215, q: "The ration of maximum shear stress to average shear stress in the case of a rectangular section is", options: ["4/2", "3/2", "1", "2"], a: 1 },
+    { id: 216, q: "In an I section almost all the shear force is taken by", options: ["web", "top flange", "bottom flange", "half the depth of each flange"], a: 0 },
+    { id: 217, q: "Longitudinal cracks observed in timber beams are due to", options: ["high bending stresses", "application of concentrated loads over the beams", "shear failure between layers", "timber not being strong in compression."], a: 2 },
+    { id: 218, q: "The flexure formula is valid only for", options: ["static loads", "dynamic loads", "static loads with no residual stresses", "dynamic load with no residual stresses."], a: 2 },
+    { id: 219, q: "A cantilever AB is subjected to a concentrated load at the free end the slope and deflection at the free end are WL²/2EI and WL³/3EI. If the same load is applied at mid span point, the deflection at the free end will be", options: ["5 wL³ / 384 EI", "5 wL³ / 48 EI", "wL³ / 6EI", "wL³ / 16EI"], a: 1 },
+    { id: 220, q: "A cantilever is subjected to moment M at the free end. The deflection at free end is", options: ["ML² / 2EL", "ML² / 3EL", "ML³ / 2EI", "ML³ / 3EI"], a: 0 },
+    { id: 221, q: "A simply supported beam is subjected to a central concentrated load. The slope at the two ends is given by", options: ["WL² / 6EL", "WL³ / 48EI", "WL² / 48EI", "WL² / 16EI"], a: 3 },
+    { id: 222, q: "The expression EId⁴y/dx⁴ at any section for a beam is equal to", options: ["load intensity at the section", "S.F. at the section", "B.M. at the section", "slope at the section"], a: 0 },
+    { id: 223, q: "A brittle material will", options: ["fail after giving ample warning", "fail suddenly", "never fail", "never be used for structural purposes."], a: 1 },
+    { id: 224, q: "With the increase in the carbon content, the ductility of the steel will", options: ["increase", "decrease", "not be affected", "difficult to tell."], a: 1 },
+    { id: 225, q: "Which of the following materials will have the highest Young's Modulus?", options: ["brass", "copper", "mild steel", "timber."], a: 2 },
+    { id: 226, q: "At ordinary temperatures, how is the yield point affected with rate of loading?", options: ["not greatly influenced", "very greatly influenced", "not influenced at all", "difficult to tell."], a: 0 },
+    { id: 227, q: "How does the elastic limit with increase in temperature?", options: ["will increase", "will not change", "will decrease", "none of the above."], a: 2 },
+    { id: 228, q: "The moment of resistance developed in a beam subjected to bending moment will, at any instant, be", options: ["equal to bending moment applied at that instant", "greater than bending moment applied", "less than bending moment applied", "always the full strength of the beam"], a: 0 },
+    { id: 229, q: "The effect of the size of the specimen on ultimate strength will be more serious for", options: ["ductile materials", "brittle materials", "hard materials", "none of the above."], a: 1 },
+    { id: 230, q: "The lower yield point is more significant than upper yield point because", options: ["it is less than upper yield point", "it is less influenced by shape of the specimen", "if occurs before upper yield point", "strain is more at this point."], a: 1 },
+    { id: 231, q: "When a cylindrical specimen of a ductile material is subjected to compression", options: ["it ultimately assumes the shape of a flat disc", "it fails by fracture like a brittle material", "if fails immediately after starting of loading", "diameter of the specimen decreases."], a: 0 },
+    { id: 232, q: "The impact tests are used to determine", options: ["ultimate crushing strength", "toughness", "ductility", "tenacity"], a: 1 },
+    { id: 233, q: "Toughness is", options: ["ability to absorb energy during plastic deformation", "higher ultimate strength", "stress at yield", "strain energy at yield."], a: 0 },
+    { id: 234, q: "The brittle materials have low toughness because", options: ["they have large plastic deformation before fracture", "they have only small plastic deformation before fracture", "they can absorb high impacts", "they fail very progressively."], a: 1 },
+    { id: 235, q: "The Euler crippling load for a column with both ends hinged is", options: ["π²EI / l²", "4π²EI / l²", "π²EI / 4 l²", "2π²EI / l²"], a: 0 },
+    { id: 236, q: "The Euler crippling load for a column with both ends fixed is", options: ["π²EI / l²", "4π²EI / l²", "π²EI / 4 l²", "2π²EI / l²"], a: 1 },
+    { id: 237, q: "In the Euler's theory for long columns it is assumed that", options: ["the failure occurs by crushing of the material", "the failure occurs by bucking only", "the column shortens so much that is will become a short column", "the column is having initial curvature and the load is eccentrically applied."], a: 1 },
+    { id: 238, q: "Euler's formulae for columns can be used if the slenderness ratio is", options: ["< 100", "0", "> 120", "> 120 but less than 180"], a: 2 },
+    { id: 239, q: "Identify the correct relationship that exists between the modulus of elasticity E , modulus of rigidity C, and bulk modulus K.", options: ["E = 3k+C / 9kC", "E = 3KC / 3k+C", "E = 9KC / 3K +C", "E = K/C"], a: 2 },
+    { id: 240, q: "The moment of inertia of a rectangular section about the base is", options: ["twice the moment of inertia about the centroidal axis", "three times the moment of inertia about the centroidal axis", "four times the moment of inertia about the centroidal axis", "none of the above."], a: 2 },
+    { id: 241, q: "If M, I and R denote the bending moment, the moment of inertia and the radius of curvature of the beam, which of the following equations is correct", options: ["1/R = d²y/dx² = EI/M", "1/R = d²y/dx² = M/EI", "R = d²y/dx² = M/EI", "R = d²y/dx² = EI/M"], a: 1 },
+    { id: 242, q: "A rectangular beam carries a maximum bending moment of M. If its depth is doubled, its moment carrying capacity will be", options: ["M", "2M", "3M", "4M"], a: 3 },
+    { id: 243, q: "A simply supported beam of span L carrying a UDL registers a deflection of y cm at the centre. If the span of the beam is doubled, the deflection at the centre for the same UDL would be", options: ["2y", "4y", "8y", "16y"], a: 3 },
+    { id: 244, q: "In which of the following cases will the shear fore as well as bending moment at the free end of a cantilever beam be equal to zero?", options: ["when it carries a concentrated load at mid span", "when it carries a concentrated load at the end", "when it carries a UDL over the entire span", "none of the above"], a: 2 },
+    { id: 245, q: "The property of a material enabling it to resist deformation under stress is called", options: ["toughness", "stiffness", "strength", "brittleness"], a: 1 },
+    { id: 246, q: "The unit of stress in S.I. units is", options: ["kg/cm²", "kg/mm²", "N/mm²", "N/cm²"], a: 2 },
+    { id: 247, q: "The unit of stress in M.K.S. units is", options: ["kg/cm²", "kg/cm", "N/m²", "kg/m"], a: 0 },
+    { id: 248, q: "The unit of strain is", options: ["millimeter", "no unit", "kg/cm³", "kg/cm²"], a: 1 },
+    { id: 249, q: "The shape of bending moment diagram of a beam carrying uniformly distributed load is", options: ["linear", "parabola", "cubical", "circular"], a: 1 },
+    { id: 250, q: "When a bar is lengthened or shortened by a load, it at the same time becomes narrower or wider. The ratio of this strain in the direction of width to the simultaneous strain in the direction of the length is called", options: ["Modulus of rigidity", "Poisson's ratio", "Euler's ratio", "Hooke's ratio"], a: 1 },
+    { id: 251, q: "Poisson's ratio is the same as", options: ["Linear strain / Lateral strain", "Lateral strain / Linear strain", "1 / Linear strain x Lateral strain", "Linear strain x Lateral strain"], a: 1 },
+    { id: 252, q: "The relation between the modulus of rigidity 'G' and the Modulus of Elasticity 'E' is given in terms of Poisson's ratio (µ)as", options: ["G = 2E (1 + µ)", "E = 2K (1 + µ)", "E = 3K (1 – 2µ)", "K = 2E (1–2µ)"], a: 2 },
+    { id: 253, q: "At the point of contraflexture", options: ["bending moment is minimum", "bending moment is maximum", "bending moment and shear force both are either zero or change sign", "only bending moment is either zero of changes sign"], a: 3 },
+    { id: 254, q: "The shear force is generally associated with", options: ["normal thrust", "bending moment", "rupture of beam", "none of the above"], a: 1 },
+    { id: 255, q: "If shear force is zero along a section, the bending moment at that section will be", options: ["zero", "minimum", "maximum", "either minimum or maximum"], a: 3 },
+    { id: 256, q: "The rate of change of bending moment is equal to", options: ["shear force", "deflection", "slope", "Poisson's ratio × deflection"], a: 0 },
+    { id: 257, q: "A beam extending beyond the supports is called", options: ["simply supported beam", "cantilever beam", "overhanging beam", "continuous beam"], a: 2 },
+    { id: 258, q: "In which case the bending moment will be of triangular shape?", options: ["A cantilever with free end subjected to a bending moment.", "A cantilever subjected to uniformly distributed load.", "A cantilever carrying concentrated load at its free end.", "A cantilever a carrying uniformly distributed load."], a: 2 },
+    { id: 259, q: "Inclined loads generally cause", options: ["thrust in the beam", "twisting of the beam", "points of contraflexure", "all the above"], a: 0 },
+    { id: 260, q: "Free body diagram is the diagram of", options: ["the of the body or a part of the body in isolated equilibrium", "the of a body freed from all the forces that have been acting", "the of a body with no supports at all", "none of the above"], a: 0 },
+    { id: 261, q: "The bending moment in a cable carrying a system of loads will be", options: ["maximum at the centre", "minimum at the centre", "zero at all points", "none of the above"], a: 2 },
+    { id: 262, q: "A rubber ball is dropped from a height of 4.9 metres, if there is no loss of velocity after rebouncing, then the ball will rise up to a height of", options: ["13.7 m", "4.9 m", "2.45 m", "1.225 m"], a: 1 },
+    { id: 263, q: "At right angles to the direction of application' of a force (F) the work done will be", options: ["Zero", "Maximum", "Minimum", "Same"], a: 0 },
+    { id: 264, q: "A train moving with a speed of 60 kilometre per hour crosses another train running with the speed of 80 kilometer per hour. If a man is sitting in the first train, then the speed of second train for him will be", options: ["60 km/hour", "140 km/hour", "20 km/hour", "40 km/hour"], a: 1 },
+    { id: 265, q: "The unit of work done by a force of one gram in moving a body through one centimeter is known as", options: ["Newton", "Dyne", "Pounds", "Kg-wt"], a: 3 },
+    { id: 266, q: "At a place where the value of g is 980 cm/sec², the length of seconds pendulum will be 100 cm. If at any other place, the value of g is doubled then the length of seconds pendulum should be", options: ["25 cm", "50 cm", "200 cm", "300 cm"], a: 2 },
+    { id: 267, q: "A structure which offers negligible or zero resistance on bending at any point is known as", options: ["Beam", "Girder", "Lintel", "Cable or string"], a: 3 },
+    { id: 268, q: "If a body of mass 'm' is moving with a velocity 'v' then the kinetic energy stored by the body will be", options: ["mv/g", "mv²/2g", "mv²/2g", "mv²/3g"], a: 2 },
+    { id: 269, q: "The tension in a string will be maximum at", options: ["Support ends", "Two-third of span", "Midway of the string", "One-sixth of the span"], a: 2 },
+    { id: 270, q: "If two bodies of mass 20 kg and 10 kg are hung to the ends of a rope passing over a pulley then Tension in the string will be", options: ["3.27 kg. f", "6.67 kg. f", "13.33 kg.f", "26.66 kg. f"], a: 2 },
+    { id: 271, q: "When a simply supported beam carries a uniformly distributed load of w kilogramme per meter run and span of the beam is 'l' meters, then the left-hand support reaction will be equal to", options: ["Wl/3", "Wl/2 (upward)", "Wl/5", "Wl (downward)"], a: 1 },
+    { id: 272, q: "Out of the following which is least elastic?", options: ["Iron", "Silver", "Copper", "Rubber"], a: 3 },
+    { id: 273, q: "A structure consisting of a number of members, connected to each other to support external loads, without going any geometrical distortion is known as", options: ["Beam", "Truss", "Lintel", "Cable"], a: 1 },
+    { id: 274, q: "A body of mass 'm' moving with a constant velocity 'v' hits another body of the same mass moving with the same velocity v, but in opposite direction and sticks to it, then the velocity of the compound body after collision will be", options: ["V", "V²", "2V", "V/2"], a: 3 },
+    { id: 275, q: "The simplest geometrical form of a truss is", options: ["Triangle", "Parallelogram", "Trapezium", "None of these"], a: 0 },
+    { id: 276, q: "A man is drawing water from a well by a leaking bucket, when the bucket is full it weighs 30 kg and when it arrives at the top it weighs 24 kg. If the depth of the well is 20m, then the work done will be", options: ["400 kg. m", "480 kg. m", "540 kg. m", "2/0 Kg"], a: 2 },
+    { id: 277, q: "When only two forces acting at a joint are not along the same straight line, then for the equilibrium of the joint, each force must be", options: ["Tensile in nature", "Compressive in nature", "Same", "Equal to zero"], a: 2 },
+    { id: 278, q: "One horse power in metric system is equal to", options: ["75 kg-meter/second", "150 kg.m/second", "75 kg. m/minute", "450 kg.m/hour"], a: 0 },
+    { id: 279, q: "Thrust is induced incase of", options: ["vertical load", "incclined load", "both of above", "none of above"], a: 1 },
+    { id: 280, q: "Rate of change of B.M. is equal to", options: ["shear force", "slope", "deflection", "none of above"], a: 0 },
+    { id: 281, q: "If a body is projected with some velocity and this velocity is resolved into horizontal and vertical velocities, then neglecting losses due to friction, the velocity which remains constant will be", options: ["Horizontal", "Resultant", "Parabolic", "None of these"], a: 0 },
+    { id: 282, q: "The sum of kinetic and potential energy of a falling body", options: ["Changes from point to point", "Is constant at all points", "Is maximum at starting", "None of these"], a: 1 },
+    { id: 283, q: "A projectile is projected at an angle to the vertical. In order to keep its horizontal range maximum, its angle with the vertical should be", options: ["10°", "30°", "45°", "60°"], a: 2 },
+    { id: 284, q: "The forces which do not meet at a point are called", options: ["Non-coplaner forces", "Parallel forces", "None-concurrent forces", "None of these"], a: 2 },
+    { id: 285, q: "The number of vibrations or oscillations per second is known as", options: ["Time period", "Cycles", "Beat", "Frequency"], a: 3 },
+    { id: 286, q: "The forces whose lines of action do not lie in the same plane, are called", options: ["None-coplaner forces", "Vertical forces", "Non-concurrent forces", "Resultant forces"], a: 0 },
+    { id: 287, q: "The maximum displacement of a body, from its mean position is known as", options: ["Amplitude", "Frequency", "Beat", "Cycles"], a: 0 },
+    { id: 288, q: "The forces, whose lines of action does not lie in the same plane but are meeting at one point, are known as", options: ["Coplaner concurrent forces", "Non-coplaner concurrent forces", "Coplaner concurrent forces", "Non-coplaner"], a: 1 },
+    { id: 289, q: "If the motion of piston of a steam engine, in which the ratio of the length of the connecting rod to the crank is very large then it will be an example of", options: ["Curvilinear", "Rotary motion", "Linear motion", "Simple harmonic motion"], a: 3 },
+    { id: 290, q: "Coplaner concurrent forces means the lines of action of forces", options: ["Lie in the same plane", "Lie in the same plane but the forces are not meeting at one point", "Lie in the same plane and forces arc meeting at one point", "None of the above"], a: 2 },
+    { id: 291, q: "The working of a rocket is based on", options: ["Newton's law", "Law of conservation of momentum", "Law of conservation of masses", "none of above"], a: 1 },
+    { id: 292, q: "The statement-if three forces acting at a point can be represented in magnitude and direction by the sides of a triangle taken in order, the forces are in equilibrium—is known as", options: ["Concurrent-forces", "Law of polygon of forces", "Law of triangle of forces", "Coplaner forces."], a: 2 },
+    { id: 293, q: "The moment of a forces, which causes turning effect on a body, is known as", options: ["Rotational force", "Centrifugal force", "Centripetal forces", "Torque"], a: 3 },
+    { id: 294, q: "A frame, which has got less number of members than given by the formula (2j-3), is called a", options: ["Perfect frame", "Incoherent frame", "Portal", "None of the above"], a: 0 },
+    { id: 295, q: "The mass moment of inertia of a solid body about a line is equal to the product of mass of the body and", options: ["Square root of distance from the line", "Square of the distance form the line", "Cube of the distance from the line", "None of above"], a: 1 },
+    { id: 296, q: "The resultant of two forces each equal to P/4 and acting at right angles is", options: ["P²/2", "P/2", "2P", "2P/3"], a: 1 },
+    { id: 297, q: "If 'm' is the total mass of a uniform thin rod of length 'l' then its moment of inertia about one of the ends, perpendicular to the length will be", options: ["M l²/3", "M l²/6", "M l²/12", "4M l²/3"], a: 0 },
+    { id: 298, q: "Two forces of magnitudes 4 and 5 kg act at an angle of 60°, the resultant force is equal to", options: ["20 kgf", "6 kgf", "7 kgf", "9 kgf"], a: 1 },
+    { id: 299, q: "If 'w' is the angular velocity of a body and 'I' is the mass moment of inertia of the body about its centroidal point, then kinetic energy of the whole body will be", options: ["Lw²/g", "Lw/2g", "I² w / g", "I w² / 2g"], a: 3 },
+    { id: 300, q: "If a body is moving with a uniform acceleration (f), then the distance traveled by a body after time 't' is equal to", options: ["Ut + 1/2 ft²", "Ut + 1 ft²", "Ut + 2 ft²", "None of the above"], a: 0 },
+    { id: 301, q: "The locus of a point on the periphery of a wheel rolling on a straight line will be", options: ["Curve", "Cycloid", "Parabola", "Ellipse"], a: 1 },
+    { id: 302, q: "Rate of change of angular velocity is called", options: ["Acceleration", "Angular acceleration", "Kinetic energy", "Centrifugal force"], a: 1 },
+    { id: 303, q: "When the distance between a driver and the follower is very small, then generally the system adopted is", options: ["Robe drive", "Chain drive", "Belt drive", "Gear drive"], a: 3 },
+    { id: 304, q: "The time taken by a ball (of weight 500 gm) to return back to earth, if it is thrown vertically upwards with a velocity 4.9 m/sec is equal to", options: ["1/2 sec", "1 sec", "2 sec", "4 sec"], a: 1 },
+    { id: 305, q: "Generally, for transmission of power two or more than two gears are used, and out of these two wheels, the wheel having smaller diameter is known as", options: ["Rack", "Pinion", "Annular", "Gear"], a: 1 },
+    { id: 306, q: "The maximum height attained by a ball (of weight 500 gm) which is thrown vertically upwards with a velocity 4.9 m/sec is equal to", options: ["100 cm", "200 cm", "122.5 cm", "245 cm"], a: 2 },
+    { id: 307, q: "A gear without teeth is known as", options: ["Gear without teeth", "Pulley", "Spur", "Wheel"], a: 0 },
+    { id: 308, q: "A tower is of height 100 m. A stone is thrown up from the foot of tower with a velocity of 20 m/see and at the same time another stone is dropped from the top of the tower. The two stones will meet after", options: ["2 sec", "5 sec", "10 sec", "7.5 sec"], a: 1 },
+    { id: 309, q: "The number of reaction components at hinge on roller support is", options: ["1", "2", "3", "4"], a: 0 },
+    { id: 310, q: "In case of H-section, the maximum shear stress will occur at", options: ["top fibres", "N. A.", "bottom fibres", "junction of web uflange"], a: 0 },
+    { id: 311, q: "The angle of projection for maximum range of a projectile is", options: ["45°", "30°", "60°", "75°"], a: 0 },
+    { id: 312, q: "If magnitude and direction of a load does not change w. r. t. time, this type of load is called", options: ["point load", "static load", "dynamic load", "wind load"], a: 1 },
+    { id: 313, q: "One Newton is equal to", options: ["10 dyne", "10⁵ dyne", "10⁵ dyne", "10⁶ dyne"], a: 2 },
+    { id: 314, q: "The energy passed by a moving body by virtue of its motion is known as", options: ["kinetic energy", "potential energy", "kinetic and potential energy", "none of above"], a: 0 },
+    { id: 315, q: "Joule is expressed in S.I. units as", options: ["N m/s", "N m²/s", "N m", "mN²"], a: 2 },
+    { id: 316, q: "The diagram showing the variation of BM along the span of beam is called", options: ["BMD", "SFD", "thrust diagram", "all of above"], a: 0 },
+    { id: 317, q: "One metric horse power is equal to", options: ["746 watts", "736 watts", "756 watts", "75 watts"], a: 1 },
+    { id: 318, q: "A beam of uniform strength will have at every cross-section same", options: ["deflection", "stiffness", "BM", "bending stress"], a: 3 },
+    { id: 319, q: "Momentum of a body is given by", options: ["Mass x velocity", "Mass x change of velocity", "Moment x distance", "Mass x acceleration"], a: 0 },
+    { id: 320, q: "In S.I. units, the unit of moment is", options: ["Kg-m", "Newton-metre (N-m)", "N-m/sec", "Dyne"], a: 1 },
+    { id: 321, q: "The sag tie in a truss is mainly used to reduce", options: ["Tension", "Compressio", "Moment and deflection", "Load on the truss"], a: 2 },
+    { id: 322, q: "The junction between flange and web of a section is known as", options: ["Flange angle", "Web angle", "Fillet", "None of these"], a: 2 },
+    { id: 323, q: "The plate used as a connecting piece at the intersection of two or more structural members in a roof truss is called as", options: ["Template", "Gusset plate", "Base plate", "None of these."], a: 1 },
+    { id: 324, q: "The density of steel used in the structural members should be", options: ["1 gm/m.m³", "6.4 gm/mm³", "7.9 gm/mm³", "9.7 gm/m.m³"], a: 2 },
+    { id: 325, q: "The plate used at the bottom of a steel column to connect it with the foundation is called as", options: ["Shoe plate", "Gusset plate", "Base plate", "None of these"], a: 2 },
+    { id: 326, q: "The tensile strength of steel used in mild steel sections ranges in between", options: ["1400 to 1800 kg/cm²", "1400 to 1800 kg/m.m²", "4200 to 5400 kg/cm²", "5400 to 6000 kg/cm²."], a: 2 },
+    { id: 327, q: "The pitch of a truss is defined as the ratio of", options: ["Height of the truss to the span", "Height of the truss to one-half of the span", "Height of the truss to one fourth of principal rafter", "None of the above"], a: 0 },
+    { id: 328, q: "If the percentage of carbon is increased in steel, then the property which will decrease in steel will be", options: ["Strength", "Hardness", "Corrosiveness", "Ductility"], a: 3 },
+    { id: 329, q: "The least dimension in case of a 'circular column of diameter D is taken as", options: ["0.5 D", "0.6 D", "0.88 D", "0.75 D"], a: 2 },
+    { id: 330, q: "Generally in bridges, rivets used are of the diameter ranging in between", options: ["12 to 16 mm", "16 to 22 mm", "22 to 25 mm", "25 to 50 mm"], a: 2 },
+    { id: 331, q: "The mechanism method and the statical method give", options: ["Lower bounds on the strength of structure", "Upper and lower bounds respectively on the strength of structure", "Upper bound on the strength of structure", "None of these"], a: 1 },
+    { id: 332, q: "When the welding between metals is done in a plastic stage by applying some external pressure, then that type of welding is known as", options: ["Fusion welding", "Pressure welding", "Thermit welding", "None of these"], a: 1 },
+    { id: 333, q: "For frames with large degree of indeterminacies the mechanism method is", options: ["Not preferred", "Simpler as compared to statical method", "Complicated as compared to statical method", "None of the above"], a: 1 },
+    { id: 334, q: "Generally, for structural steel connections, the process of welding adopted is", options: ["Carbon arc welding", "Oxy-hydrogen welding", "Plain welding", "Metal arc welding"], a: 3 },
+    { id: 335, q: "The effect of axial force and shear force on the plastic moment capacity of a section are", options: ["To decrease the plastic moment", "To increase the plastic moment", "The plastic moment capacity remains unchanged", "None of these"], a: 3 },
+    { id: 336, q: "As compared to riveting, welding is preferred these days because it is", options: ["A silent process", "More economical", "More efficient", "All the above are correct"], a: 3 },
+    { id: 337, q: "If a structure is statically indeterminate to second degree then the maximum number of plastic hinges required are", options: ["2", "1", "3", "Infinite"], a: 2 },
+    { id: 338, q: "Which of the following sections will have large shape factor", options: ["Rectangle", "I-section", "Circular section", "Diamond"], a: 3 },
+    { id: 339, q: "The plastic section modulus for a rectangular section of width b and depth d is", options: ["bd²/2", "bd²/4", "bd²/6", "bd³/8"], a: 1 },
+    { id: 340, q: "Load factor is defined as", options: ["Ultimate load / Yield load", "Yield load / Safe load", "Ultimate load / Working load", "None of the above"], a: 2 },
+    { id: 341, q: "The C.G. of a hollow cone lies on the central axis above base at a distance of", options: ["1/3 of the total height", "1/2 of the total height", "1/4 of the total height", "1/5 of the total height."], a: 0 },
+    { id: 342, q: "Angle of repose is", options: ["Less than angle of friction", "More than angle of friction", "Equal to angle of friction", "None of these"], a: 1 },
+    { id: 343, q: "The C.G. of a hollow pyramid lies on the central axis above base at a distance of", options: ["1/6 of the total height", "1/3 of the total height", "1/2 of the total height", "1/5 of the total height."], a: 1 },
+    { id: 344, q: "The C.G. of a hollow cylinder lies on the vertical axis above base at a distance of", options: ["1/8th of the total height", "1/4th of the total height", "Half of the total height", "1/5the of the total height"], a: 2 },
+    { id: 345, q: "Limit of proportionality depends upon", options: ["area of c/s", "type of loading", "type of material", "none of above"], a: 2 },
+    { id: 346, q: "Force is a", options: ["Scalar quantity", "Non-linear quantity", "Vector quantity", "None of these"], a: 2 },
+    { id: 347, q: "If the number of members provided is more than the requirement, then the frame is called as", options: ["Perfect frame", "Redundant frame", "Portal", "None of these"], a: 1 },
+    { id: 348, q: "Coplaner forces are those forces when all the forces Acting on a body", options: ["Lie in parallel planes", "Lie in perpendicular planes", "Lie in one plane", "Lie in space"], a: 2 },
+    { id: 349, q: "The section modulus of a circular section about an axis through its CG is", options: ["πd³/16", "πd³/32", "πd³/64", "πd³/192"], a: 1 },
+    { id: 350, q: "Dead load of a member is", options: ["remains constant", "occurs due to dead body", "come all of sudden", "come due to self weight of the object"], a: 0 },
+    { id: 351, q: "A cable with a uniformly distributed load per horizontal metre run will take the following shape", options: ["straight line", "parabola", "hyperbola", "elliptical"], a: 1 },
+    { id: 352, q: "The C.G. of a plane lamina will not be at its geometrical centre in the case of a", options: ["right angled triangle", "equilateral triangle", "square", "circle"], a: 0 },
+    { id: 353, q: "The C.G. of a right circular solid cone of height h lies at the following distance from the base", options: ["h/2", "h/3", "h/6", "h/4"], a: 3 },
+    { id: 354, q: "The M.I. of hollow circular section about a central axis perpendicular to section as compared to its M.I. about horizontal axis is", options: ["same", "double", "half", "four times"], a: 2 },
+    { id: 355, q: "The necessary condition for forces to be in equilibrium is that these should be", options: ["coplanar", "meet at one point", "both (a) and (b) above", "all be equal"], a: 2 },
+    { id: 356, q: "The algebraic sum of moments of the forces forming couple about any point in their plane is", options: ["equal to the moment of the couple", "constant", "both of above are correct", "both of above are wrong"], a: 0 },
+    { id: 357, q: "The ratio of limiting friction and normal reaction is known as", options: ["coefficient of friction", "angle of friction", "angle of repose", "sliding friction"], a: 0 },
+    { id: 358, q: "The possible loading in various members of framed structures are", options: ["compression or tension", "buckling or shear", "shear or tension", "all of the above"], a: 0 },
+    { id: 359, q: "For the frame shown in the below figure, the maximum bending moment in the column is,", options: ["zero", "400 kNm", "100 kNm", "200 kNm"], a: 1 },
+    { id: 360, q: "In the slope-deflection equations, the deformations are considered to be caused by", options: ["bending moment", "shear force", "axial force", "both A & B"], a: 0 },
+    { id: 361, q: "For no torsion the plane of bending should", options: ["pass through centre of gravity of the section", "be parallel to one of the principal axis", "pass through shear centre of section", "pass through neutral axis of the section"], a: 3 },
+    { id: 362, q: "A cantilever of span L has a load P acting at the free end. The bending moment at free and will be", options: ["PL²", "0", "PL", "2PL"], a: 1 },
+    { id: 363, q: "Deflection of the free end of a cantilever beam, subjected to a concentrated load at the middle of is span is given by", options: ["Pl³/3EI", "Pl³/8EI", "Pl³/24EI", "5 Pl³/48EI"], a: 3 },
+    { id: 364, q: "A material having identical properties in all directions is called:", options: ["Elastic", "Homogeneous", "Isotropic", "Any of these"], a: 2 },
+    { id: 365, q: "The ratio of the deformation of a bar due to its own weight, to the deformation due to axial load equal to its weight is:", options: ["1", "1/2", "2", "4"], a: 1 },
+    { id: 366, q: "For structural Analysis, Maxwell's reciprocal theorem can be applies to", options: ["plastic structure", "elastic structure", "symmetrical structure", "all of the above"], a: 1 },
+    { id: 367, q: "The stiffness factor at the near end of a member with far end fixed is", options: ["4EI/l", "3EI/l", "EI/l", "EI"], a: 0 },
+    { id: 368, q: "In the Euler's theory for long column it is assumed that", options: ["Failure occurs by crushing of the material", "Failure occurs by buckling", "Column shorter so much", "Column will have eccentricity"], a: 1 },
+    { id: 369, q: "The ratio of the largest load in a test to the original cross-sectional area of the test:", options: ["elastic limit", "ultimate stress", "yield stress", "breaking area of the test"], a: 1 },
+    { id: 370, q: "The bending moment at a section tends to bend or deflect the beam and the internal stresses resist its bending, the resistance offered by the internal stresses to the bending, is called", options: ["compressive stress", "shear stress", "bending stress", "elastic modulus"], a: 2 },
+    { id: 371, q: "If a rod is simultaneously pulled at both of its ends, it will be a case of:", options: ["horizontal loading", "axial loading", "vertical loading", "transverse loading"], a: 3 },
+    { id: 372, q: "A reinforced concrete beam will crack if tensile stressed up in the concrete below the neutral axis is:", options: ["less than the permissible stress", "more than the permissible stress", "equal to the permissible stress", "any one of the above"], a: 1 },
+    { id: 373, q: "Slenderness ratio is defined as ratio of effective height to", options: ["Volume", "Least lateral dimension", "Surface area", "None of the above"], a: 1 },
+    { id: 374, q: "Gener.... .... modulus is equal to", options: ["Share stress / Shear strain", "Share stress / Sere strain", "Share stress / Plasticity", "Share stress / Tenrile strain"], a: 0 },
+    { id: 375, q: "Hook's law holds good up to", options: ["Yield point", "Elastic limit", "Plastic limit", "Breaking point"], a: 1 },
+    { id: 376, q: "Bending moment near mid-span of single span beam will be as", options: ["Wt/n", "Wt/0", "Wt/100", "Wt/500"], a: 0 },
+    { id: 377, q: "Elasticity of a body is defined", options: ["The property by which a body returns to its original form after removal of load", "The property by which a body don't returns to its original shape after removal of load", "The property by which a body undergoes deformation even after removal of load", "All of the above"], a: 0 },
+    { id: 378, q: "The moment of resistance of an under reinforced section is computed on the basis of:", options: ["compressive force developed in concrete", "tensile force developed in steel", "both of the above", "none of the above"], a: 1 },
+    { id: 379, q: "Poisson's ration is the ratio of", options: ["Young's modulus to modulus of rigidity", "Lateral stress to longitudinal stress", "Lateral strain to longitudinal strain", "Lateral elongation to longitudinal elongation"], a: 2 },
+    { id: 380, q: "A simply supported beam is subjected to uniformly varying load with zero intensity at two ends increasing to w/m at the cent-- The maximum shear for-- is", options: ["Wl²/4", "Wl/4", "Wl/2", "Wl²/2"], a: 1 },
+    { id: 381, q: "The moment of inertia of a rectangular section b*d, about the base is", options: ["bd²/6", "bd³/3", "bd³/12", "bd³/36"], a: 1 },
+    { id: 382, q: "When a bar is colled to -5°C, it will develop", options: ["no stress", "shear stress", "tensile stress", "compressive stress"], a: 2 },
+    { id: 383, q: "A localised compressive stress at the area of contact between two member is known as", options: ["tensile stress", "bending stress", "crushing stress", "shear stress"], a: 2 },
+    { id: 384, q: "The total strain energy stored in a body is termed as", options: ["resilience", "proof resilience", "impact energy", "modulus of resilience"], a: 0 },
+    { id: 385, q: "The strain energy stored in a body when suddenly loaded is", options: ["equal to", "one-half", "twice", "four times"], a: 3 },
+    { id: 386, q: "A beam supported on more than two supports is called", options: ["simply supported beam", "fixed beam", "overhanging beam", "continuous beam"], a: 3 }
+    ];
+
+    const totalQuestions = quizData.length;
+
+    /**
+     * Checks the selected answer against the key, highlights the correct/wrong options,
+     * disables the radio buttons for the question, and updates the score.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Score Logic
+        // Increment attempted
+        attemptedCount++;
+        
+        // Check if correct
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        // Update Display
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // 3. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+
+        // Render MathJax content
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    // Scroll To Top Functionality
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
