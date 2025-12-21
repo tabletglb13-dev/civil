@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineering: Structural Design Exam (391 Questions)</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- MathJax Configuration & Library -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* THEME VARIABLES */
+        :root {
+            /* Dark Mode (Default) */
+            --primary-color: #3b82f6;
+            --primary-dark: #60a5fa;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-light: #94a3b8;
+            --border-color: #334155;
+            --option-bg: rgba(255, 255, 255, 0.02);
+            --option-hover: #334155;
+            
+            --success-bg: #064e3b;         
+            --success-border: #34d399;
+            --success-text: #d1fae5;
+            
+            --error-bg: #7f1d1d;
+            --error-border: #f87171;
+            --error-text: #fecaca;
+            
+            --score-bg: #134e4a;
+            --score-border: #2dd4bf;
+            --score-text: #ccfbf1;
+            
+            --header-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        /* Light Mode Class */
+        .light-theme {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --option-bg: #f1f5f9;
+            --option-hover: #e2e8f0;
+
+            --success-bg: #dcfce7;         
+            --success-border: #22c55e;
+            --success-text: #14532d;
+            
+            --error-bg: #fee2e2;
+            --error-border: #ef4444;
+            --error-text: #7f1d1d;
+            
+            --score-bg: #ccfbf1;
+            --score-border: #14b8a6;
+            --score-text: #0f766e;
+            
+            --header-bg: rgba(248, 250, 252, 0.95);
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: var(--header-bg); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-color); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .theme-btn:hover {
+            background-color: var(--option-hover);
+        }
+
+        .info-pill { 
+            background: var(--card-bg);
+            color: var(--primary-dark); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: var(--text-color);
+        }
+
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: var(--option-bg);
+            color: var(--text-color);
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: var(--option-hover); 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text) !important; 
+            font-weight: 600;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text) !important;
+            opacity: 0.9;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+            .question-text { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sticky-header">
+    <h1>Structural Design (391 Questions)</h1>
+    <div class="header-controls">
+        <div class="control-group">
+            <a href="#" class="btn" onclick="location.reload()">🔄 Reset</a>
+            <button class="btn theme-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light</button>
+        </div>
+        <div class="control-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions injected via JS -->
+    </div>
+</div>
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    // --- State Variables ---
+    let correctCount = 0;
+    let attemptedCount = 0;
+    let isLightMode = false;
+
+    // --- DATA ---
+    // Answers mapped from Page 26 of the PDF
+    // 0=a, 1=b, 2=c, 3=d
+    const quizData = [
+{id:1,q:"The analysis of a structure is",options:["deciding the material of the member","Calculating the magnitude and nature of various straining actions at salient points of the structure","deciding the dimensions of the member","planning of the structure."],a:1},
+{id:2,q:"The design of a structure is",options:["the planning of the structure","deciding the material and proportions of the various members of the structure","the calculation of straining actions at salient points","none of the above."],a:1},
+{id:3,q:"The minimum length of bar which must be embedded in concrete beyond any section to develop bond is",options:["development length","lap length","splice length","curved length"],a:0},
+{id:4,q:"The main reinforcement in R.C.C. cantilever members is placed at",options:["top fibre","side fibres","bottom fibre","top and bottom fibres"],a:0},
+{id:5,q:"An additional longitudinal reinforcement in webs of beams should be placed if the depth of the web is more than 750 mm at",options:["top fibre","side fibres","bottom fibres","top and bottom fibres."],a:1},
+{id:6,q:"The minimum percentage of tension reinforcement in R.C.C. beams is",options:["$\\frac{85}{f_y}$","0.4","4","$\\frac{40s_v}{f_y d}$"],a:0},
+{id:7,q:"The maximum allowable percentage of tension reinforcement in R.C.C. beams is",options:["$\\frac{85}{f_y}$","0.4","4","$\\frac{40s_v}{f_y d}$"],a:2},
+{id:8,q:"The maximum allowable percentage of compression reinforcement in R.C.C. beams is",options:["$\\frac{85}{f_y}$","0.4","4","$\\frac{40s_v}{f_y d}$"],a:2},
+{id:9,q:"The minimum percentage of high yield strength deformed reinforcement bars (HYSD) provided in R.C.C. slabs is",options:["0.4","0.15","0.12","0.2"],a:2},
+{id:10,q:"The maximum diameter of the reinforcement bars in R.C.C. beams is limited to",options:["28 mm","40 mm","one-eighth of the least dimension of the beams","one-tenth of the depth of beams."],a:2},
+{id:11,q:"The effective width of flange in R.C.C; T-beams should be restricted to",options:["$\\frac{l_0}{6} + b_w + 6D_f$","$\\frac{l_0}{12} + b_w + 3D_f$","$\\frac{l_0}{3}$","c/c distance of the beams."],a:0},
+{id:12,q:"The minimum distance over which a bar should be extended (curtailment) beyond which it is no longer needed for bending in R.C.C. beams is",options:["Effective depth of beam or 12 $\\phi$, whichever is greater","48 times the diameter of the bar","1.5 times the depth or 24 times the diameter of the bar whichever is greater","$\\frac{\\phi \\sigma_s}{4 \\tau_{bd}}$"],a:0},
+{id:13,q:"The tension reinforcement in a R.C.C. beam can be cut off at a point when it is no longer needed if",options:["enough bond length is available","the shear at the cut-off point does not exceed two-thirds","bending moment is zero","all the above."],a:1},
+{id:14,q:"The minimum amount of bottom reinforcement that should be continued over the centre length of the beam in R.C.C. continuous beam is",options:["50%","40%","33 $\\frac{1}{3}$%","25%"],a:3},
+{id:15,q:"Steel is efficiently used in",options:["under reinforced section","over reinforced section","all of above","none of above"],a:0},
+{id:16,q:"The minimum amount of negative moment reinforcement in R.C.C. beams that should extend beyond the point of inflection is",options:["one-third of the total","one-fourth of the total","zero","half of the total."],a:0},
+{id:17,q:"The splicing of the reinforcement bars in R.C.C. beams can be done at a section where",options:["shear force is zero","bending moment is zero","BM is less than half the maximum B.M. on the beam","BM is more than half the maximum B.M. on the beam."],a:2},
+{id:18,q:"Lap splices in tension reinforcement are permitted for bars",options:["larger than 36 mm","less than 36 mm","less than 25 mm","all diameter bars."],a:1},
+{id:19,q:"The lap length of a direct, tension reinforcement bar in a R.C.C. beams should be more than",options:["30 times the diameter of the bar","2 $\\times L_d$ or 30 times the diameter of the bar","48 times the diameter of the bar","24 times the diameter of the bar or development length."],a:1},
+{id:20,q:"When bars of two different diameters are to be spliced the lap length is calculated on the basis of",options:["diameter of the larger bar","diameter of the smaller bar","mean diameter of the bars","three-fourths diameter of the larger bar."],a:1},
+{id:21,q:"The minimum vertical space of the main reinforcement in R.C.C. beams is",options:["diameter of the larger bar or 5 mm more than the nominal maximum size of coarse aggregate","diameter of the larger bar or two-third the nominal maximum size of coarse aggregate","5 mm more than the diameter of the bar","15 mm."],a:1},
+{id:22,q:"The maximum horizontal distance between parallel main deformed reinforcement in beams is",options:["215 mm to 300 mm","125 mm to 235 mm","105 mm to 195 mm","50 mm to 165 mm"],a:1},
+{id:23,q:"The maximum horizontal distance between parallel main reinforcement bars in solid slabs is",options:["5d or 450 mm whichever is smaller","3d or 450 mm whichever is less","200 mm or 3d whichever is more","200 mm or 5d whichever is more."],a:1},
+{id:24,q:"The minimum cover to the main bars in R.C.C. beam must be",options:["15 mm or diameter of the bar","25 mm or diameter of the bar","40 mm or diameter of the bar","25 mm or size of the coarse aggregate."],a:1},
+{id:25,q:"The minimum cover to the main reinforcement in RCC solid slabs is",options:["15 mm or diameter of the bar","25 mm or diameter of the bar","40 mm or diameter of the bar","25 mm or size of the coarse aggregate."],a:0},
+{id:26,q:"The final deflection due to all loads including the effects of temperature, creep and shrinkage should not normally exceed",options:["$\\frac{span}{250}$ or 20 mm whichever is less","$\\frac{span}{250}$","$\\frac{span}{350}$ or 20 mm whichever is less","$\\frac{span}{350}$"],a:1},
+{id:27,q:"The deflection including the effects of temperature, creep and shrinkage occurring after erection of partitions and the application of finishes should not normally exceed",options:["$\\frac{span}{250}$ or 20 mm whichever is less","$\\frac{span}{250}$","$\\frac{span}{350}$ or 20 mm whichever is less","$\\frac{span}{350}$"],a:2},
+{id:28,q:"For the simply supported beams and slabs the basic value of span to effective depth ratio is",options:["7","10","20","26"],a:2},
+{id:29,q:"For simply supported two way slabs small span with Fe 415, the span to overall depth ratio is limited",options:["20","25","30","35"],a:3},
+{id:30,q:"A compression member is termed as column or strut if the ratio of its effective length to the least lateral dimension is more than",options:["1","2","3","no limit."],a:2},
+{id:31,q:"The effective length of a column with both ends effectively held in position, but not restrained against rotation is",options:["2 $\\ell$","1.2 $\\ell$","$\\ell$","0.65 $\\ell$"],a:2},
+{id:32,q:"A column is regarded as long column if the ratio if its effective length to least lateral radius of gyration is more than",options:["150","100","60","40"],a:3},
+{id:33,q:"The minimum number of longitudinal steel bars in R.C.C. rectangular columns must be",options:["2","4","6","8"],a:1},
+{id:34,q:"The minimum number of longitudinal steel bars in R.C.C. circular columns must be",options:["2","4","6","8"],a:2},
+{id:35,q:"Spacing of longitudinal bars measured along the periphery of a circular R.C.C. column shall not exceed",options:["150 mm","75 mm","250 mm","300 mm."],a:3},
+{id:36,q:"The diameter of transverse reinforcement of columns should be equal to one fourth of the diameter of the main rods but not less than",options:["5 mm","6mm","8mm","10mm"],a:1},
+{id:37,q:"The allowable compressive stress in a reinforcement concrete wall compared to that of R.C.C. columns",options:["is equal","is less","is more","bears no relation."],a:2},
+{id:38,q:"The maximum diameter of the nominal reinforcement in R.C.C. walls up to 150 mm thick should be",options:["8mm","12mm","16mm","20mm"],a:2},
+{id:39,q:"The stress-strain curve for concrete up-to elastic yield point will be in the shape of",options:["a zigzag line","parabolic line","nearly a straight line","semi-circular line."],a:2},
+{id:40,q:"The primary compression failure in R.C.C. beam is caused in",options:["under-reinforced beams","balanced beams","over-reinforced beams","all types of beams."],a:2},
+{id:41,q:"The ratio of the allowable ultimate crushing stress of R.C.C. beams in bending to that of 150 mm cube strength is",options:["0.40","0.67","0.85","1.0"],a:1},
+{id:42,q:"The allowable bond stress in tension for plain bars in the limit state method for M 15 grade concrete is",options:["0.6 N/mm$^2$","1.2N/mm$^2$","1.0 N/mm$^2$","15 N/mm$^2$"],a:2},
+{id:43,q:"All columns shall be designed for an eccentricity not less than",options:["10mm","20mm","30mm","40mm"],a:1},
+{id:44,q:"The surface width of cracks shall not generally exceed",options:["0.1 mm","0.2 mm","0.3 mm","0.4 mm."],a:2},
+{id:45,q:"The nominal shear stress in beams of M 15 grade concrete (even with shear reinforcement) under no circumstances shall exceed",options:["2.5 N/mm$^2$","1.5N/mm$^2$","0.5 N/mm$^2$","no limit."],a:0},
+{id:46,q:"The entrained air in concrete",options:["increases the strength","decreases the workability","increases the workability","none of the above."],a:2},
+{id:47,q:"The minimum horizontal distance between two main reinforcement bars should be",options:["Diameter of the larger bar or 5 mm more than the nominal maximum size of coarse aggregate","5 mm more than the nominal size of the aggregate","5 mm more than the diameter of the bar","None of these"],a:0},
+{id:48,q:"The width of lintel is generally taken as equal to",options:["2/3 of the depth of lintel","Thickness of the supporting wall","20 cm or 2/3 depth of the lintel whichever is more","None of these"],a:1},
+{id:49,q:"The minimum vertical spacing of the main reinforcement in R.C.C. beams is",options:["Diameter of the larger bar or 5 mm more than the nominal maximum size of coarse aggregate","Diameter of the larger bar or two-thirds the nominal maximum size of coarse aggregate","5 mm more than the diameter of the bar","20 mm"],a:1},
+{id:50,q:"In a T-beam, for design purposes the value of flange should be the least of",options:["12 X thickness of the slab X breadth of the rib","1/3 of the effective span of the T-beam","Centre to centre distance between adjacent beam ribs","All the above are correct"],a:3},
+{id:51,q:"In an over-reinforced concrete section, the failure starts at",options:["tension face","compression face","neutral axis","diagonals"],a:1},
+{id:52,q:"The width of rib in a T-beam should be sufficient to accommodate the required tensile steel bars and to give lateral stability to the structure. It should be at least equal to",options:["1/2 of the depth of T-beam","1/2 of the depth of the rib","1/3 of the depth of the slab","None of these"],a:0},
+{id:53,q:"The algebraic sum of the vertical forces on either side of the section of a loaded beam is called:",options:["Bending moment","shear force","Deformed force","Shear stress"],a:1},
+{id:54,q:"Generally in freely supported T-beams, the overall depth of the beam for design purpose will be taken as",options:["1.12 to 1/15 of the span","1/15 to 1/20 of the span","1/20 to 1/24 of the span","Half of the span"],a:1},
+{id:55,q:"For cantilever beams and slabs, the basic value of the span to effective depth ratio is",options:["7","10","15","25"],a:0},
+{id:56,q:"For one-way slab, the ratio is between length and breadth of the slab should be",options:["Less than 1.0","Between 1.0 + 1.5","Less than 2","More than 2"],a:3},
+{id:57,q:"In a singly reinforced beam, the effective depth is measured from its compression edge to",options:["tensile edge","tensile reinforcement","neutral axis of the beam","longitudinal central axis."],a:1},
+{id:58,q:"If d and n are the effective depth and depth of the neutral axis respectively of a singly reinforced beam, the lever arm of the beam, is",options:["d","n","d + n/3","d - n/3"],a:3},
+{id:59,q:"The section of a reinforced beam where most distant concrete fiber in compression and tension in steel attains permissible stresses simultaneously, is called",options:["balanced section","economic section","critical section","all the above"],a:3},
+{id:60,q:"In a singly reinforced beam, if the permissible stress in concrete reaches earlier than that in steel, the beam section is called",options:["under-reinforced section","over reinforced section","economic section","critical section."],a:1},
+{id:61,q:"As the percentage of steel increases",options:["depth of neutral axis decreased","depth of neutral axis increases","lever arm increases","lever arm decreases"],a:1},
+{id:62,q:"By over-reinforcing a beam, the moment of resistance can be increased not more than",options:["10 %","15 %","20%","25%"],a:3},
+{id:63,q:"Distribution of shear intensity over a rectangular section of a beam, follows:",options:["a circular curve","a straight line","a parabolic curve","an elliptical curve"],a:2},
+{id:64,q:"Spacing of stirrups in a rectangular beam, is",options:["kept constant throughout the length","decreased towards the centre of the beam","increased at the ends","increased at the centre of the beam."],a:3},
+{id:65,q:"Dimensions of a beam need be changed if the shear stress is more than",options:["10kg/cm$^2$","15kg/cm$^2$","20kg/cm$^2$","25kg/cm$^2$"],a:2},
+{id:66,q:"The maximum shear stress in concrete of a reinforced cement concrete beam is",options:["$\\frac{\\text{Shear force}}{\\text{Lever arm} \\times \\text{Width}}$","$\\frac{\\text{Lever arm}}{\\text{Shear force} \\times \\text{Width}}$","$\\frac{\\text{Width}}{\\text{Lever arm} \\times \\text{Shear force}}$","$\\frac{\\text{Shear force} \\times \\text{width}}{\\text{Lever arm}}$"],a:0},
+{id:67,q:"The radius of a bar bend to form a hook, should not be less than",options:["twice the diameter","thrice the diameter","four times the diameter","five times the diameter"],a:0},
+{id:68,q:"Lapped splices in tensile reinforcement are generally not used for bars of size larger than",options:["18mm diameter","24 mm diameter","30 mm diameter","36 mm diameter"],a:3},
+{id:69,q:"Steel bars are generally connected together to get greater length than the standard length by providing",options:["straight bar splice","hooked splice","dowel splice","all the above."],a:3},
+{id:70,q:"The length of lap in tension reinforcement should not be less than the bar diameter actual tension / (four times the permissible average bond stress) if it is more than",options:["18 bar diameters","24 bar diameters","30 bar diameters","36 bar diameters"],a:2},
+{id:71,q:"Minimum spacing between horizontal parallel reinforcement of the same size should not be less than",options:["one diameter","2.5 diameters","3 diameters","4 diameters"],a:0},
+{id:72,q:"Minimum spacing between horizontal parallel reinforcement of different sized, should not be less than",options:["one diameter of thinner bar","one diameter of thicker bar","sum of the diameters of thinner and thicker bars","twice the diameter of thinner bar"],a:1},
+{id:73,q:"The minimum thickness of the cover at the end of a reinforcing bar should not be less than twice the diameter of the bar subject to a minimum of",options:["10mm","15mm","20 mm","25 mm"],a:3},
+{id:74,q:"A part of the slab may be considered as the flange of the T - beam if",options:["flange has adequate reinforcement transverse to beam","it is built integrally with the beam","It is effectively bonded together with the beam","all the above."],a:3},
+{id:75,q:"Though the effective depth of a T-beam is the distance between the top compression edge to the centre of the tensile reinforcement, for heavy loads, it is taken as",options:["1/8 th of span","1/10 th of span","1/12 th span","1/16 th of span"],a:2},
+{id:76,q:"A T-beam behaves as a rectangular beam of a width equal to its flange if its neutral axis",options:["remains within the flange","remains below the slab","coincides the geometrical centre of the beam","none of these."],a:0},
+{id:77,q:"Columns may be made of plain concrete if their unsupported lengths do not exceed their least lateral dimension",options:["two times","three times","four times","five times"],a:2},
+{id:78,q:"The main reinforcement in a simply supported RCC member is placed at",options:["top fibre","side fibre","bottom fibre","top and bottom fibre"],a:2},
+{id:79,q:"A column is regarded as long column if the ratio of its effective length and lateral dimension, exceeds",options:["10","15","20","25"],a:1},
+{id:80,q:"In a simply supported slab, alternate bars are curtailed at",options:["1/4th of the span","1/5th of the span","1/6th of the span","1/7th of the span"],a:3},
+{id:81,q:"The floor slab of a building is supported on reinforced cement floor beams. The ratio of the end and intermediate spans is kept",options:["0.7","0.8","0.9","0.6"],a:2},
+{id:82,q:"The maximum ratio of span to depth of a slab simply supported and spanning in two directions, is",options:["25","30","35","40"],a:2},
+{id:83,q:"The amount of reinforcement for main bars in a slab, is based upon",options:["minimum bending moment","maximum bending moment","maximum, shear force","minimum shear force."],a:1},
+{id:84,q:"The percentage of minimum reinforcement of the gross sectional area in slabs, is",options:["0.10 %","0.12 %","0.15 %","0.18 %"],a:2},
+{id:85,q:"In a slab, the pitch of the main reinforcement should not exceed its effective depth",options:["three times","four times","five times","two times"],a:0},
+{id:86,q:"For design purpose, the weight of RCC is taken as",options:["2200kg/m$^3$","2300kg/m$^3$","2400kg/m$^3$","2500kg/m$^3$"],a:2},
+{id:87,q:"An under-reinforced section means",options:["steel is provided at the underside only","Steel provided is insufficient","Steel provided on one face only","steel will yield first."],a:3},
+{id:88,q:"An R.C.C. beam not provided with shear reinforcement may develop cracks in its bottom inclined roughly to the horizontal at",options:["35$^o$","45$^o$","55$^o$","60$^o$"],a:1},
+{id:89,q:"The shear reinforcement in R.C.C. is provided to resist",options:["vertical shear","horizontal shear","diagonal compression","diagonal tension"],a:3},
+{id:90,q:"In the zone of R.C.C. beam where shear stress is less than 5kg/cm$^2$, nominal reinforcement is provided at a pitch of",options:["one-half lever arm of the section","one-third lever arm of the section","lever arm of the section","one and half lever arm of the section."],a:1},
+{id:91,q:"The load stress of a section can be reduced by",options:["decreasing the lever arm","increasing the total perimeter of bars","replacing smaller bars by greater number of greater bars","replacing larger bars by greater number of small bars"],a:2},
+{id:92,q:"The live load to be considered for an inaccessible roof, is",options:["Nil","75kg/m$^2$","150kg/cm$^2$","200 kg/m$^2$"],a:1},
+{id:93,q:"The live load to be considered for an accessible roof, is",options:["Nil","75kg/m$^3$","150kg/m$^2$","200 kg/cm$^2$"],a:2},
+{id:94,q:"An R.C.C. roof slab is designed as a two-way slab if",options:["it supports live loads in both directions","the ratio of spans in two directions is less than 2","the slab is continuous over two supports","the slab is discontinuous at edges."],a:1},
+{id:95,q:"The allowable tensile stress in mild steel stirrups, reinforced cement concrete, is",options:["1400 kg/cm$^2$","1200kg/cm$^2$","2600 kg/cm$^2$","2300 kg/cm$^2$"],a:0},
+{id:96,q:"The minimum number of main steel bars provided in R.C.C",options:["rectangular columns is 4","circular columns is 6","octagonal columns is 8","all the above."],a:3},
+{id:97,q:"Design of R.C.C. simply supported beams carrying U.D.L is based on the resultant B.M. at",options:["supports","mid span","every section","quarter span"],a:3},
+{id:98,q:"Design of R.C.C. cantilever beams, is based on the resultant force at",options:["fixed end","free end","mid span","mid span and fixed support."],a:0},
+{id:99,q:"Steel beam theory is used for",options:["design of simple steel beams","steel beams encased in concrete","doubly reinforced beams ignoring compressive stress in concrete","beams if shear exceeds 4 times allowable shear stress."],a:2},
+{id:100,q:"A R.C.C. lintel is spanning an opening of 2 m span in a brick wall. The height of the roof is 2.9 m above the floor level and that of the opening is 2.1 m above the floor level. The lintel is to be designed for self-weight plus",options:["triangular load of the wall","UDL of wall","UDL of wall + load from the roof","triangular load + load from the roof."],a:2},
+{id:101,q:"The minimum clear cover for R.C.C columns shall be",options:["greater of 40 mm or diameter","smaller of 40 mm or diameter","greater of 25 mm or diameter","smaller of 25 mm or diameter"],a:0},
+{id:102,q:"The steel generally used in R.C.C. work, is",options:["stainless","mild steel","high carbon steel","high tension steel."],a:1},
+{id:103,q:"The diameter of main bars in R.C.C. columns, shall not be less than",options:["6 mm","8mm","20mm","12mm"],a:3},
+{id:104,q:"An R.C.C column is treated as short column if its slenderness ratio is less than",options:["30","35","40","50"],a:2},
+{id:105,q:"The Young's modulus of elasticity of steel, is",options:["150 KN/mm$^2$","200 KN/mm$^2$","250 KN/mm$^2$","275 KN/mm$^2$"],a:3},
+{id:106,q:"For all practical purposes, the modulus of elasticity of steel is assumed",options:["200 kN/mm$^2$","225 kN/mm$^2$","250 kN/mm$^2$","275 kN/mm$^2$"],a:0},
+{id:107,q:"Side face reinforcement shall be provided in the beam when depth of the web in a beam exceeds",options:["50cm","75cm","100cm","120cm."],a:1},
+{id:108,q:"Generally acceptable nominal size of aggregates for reinforced concrete, is",options:["10 mm","15 mm","20 mm","25 mm"],a:2},
+{id:109,q:"The average 28 days compressive strength of at least three 15 cm concrete cubes prepared with available water as compared to the average strength of three similar concrete cubes prepared with distilled water, should be at least",options:["70%","80%","90%","95%"],a:2},
+{id:110,q:"In a two way slab, main reinforcement is provided along",options:["width of slab","depth of slab","diagonal of slab","length and width of slab"],a:3},
+{id:111,q:"The maximum area of tension reinforcement in beams shall not exceed",options:["0.15%","1.5%","4%","1%"],a:2},
+{id:112,q:"The grade of concrete generally not used in the reinforced concrete, is",options:["M 10","M 15","M 20","M 40"],a:0},
+{id:113,q:"The characteristic strength of concrete is the strength of material if its test result is not less than",options:["2%","3%","4%","5%"],a:3},
+{id:114,q:"If $f_{ck}$ is characteristic compressive strength of concrete, the flexural and split tensile strength $f_{cr} = a\\sqrt{f_{ck}}$ N/mm$^2$ where the value of a is,",options:["0.4","0.5","0.6","0.7"],a:3},
+{id:115,q:"If $f_{ck}$ is the characteristic cube strength of concrete in N/mm$^2$, the modulus of elasticity of structural concrete $E_c = a\\sqrt{f_{ck}}$ where the value of a, is",options:["5900","5800","5700","5600"],a:2},
+{id:116,q:"Creep of concrete is assumed proportional to the stress if the stress does not exceed ... of the characteristic compressive strength",options:["15%","20%","25%","33%"],a:3},
+{id:117,q:"For concreting of heavily reinforced sections without vibration, the workability of concrete should be",options:["very low","low","medium","high"],a:3},
+{id:118,q:"For nominal mix concrete M 20, the required quantity of water per 50 kg, of cement, is",options:["60 litres","45 litres","34 litres","30 litres"],a:3},
+{id:119,q:"For simply supported beams, the maximum permitted deflection, is",options:["1/325 of the span","1/350 of the span","1/375 of the span","1/400 of the span"],a:0},
+{id:120,q:"To achieve uniform colour and consistency of the concrete by using ordinary Portland cement, the mixing time may be",options:["$\\frac{1}{2}$ to 1 minute","1 to $1\\frac{1}{2}$ minutes","$1\\frac{1}{2}$ to 2 minutes","2 to $2\\frac{1}{2}$ minutes"],a:2},
+{id:121,q:"The tolerances for the form work of column and beams range from",options:["- 3 mm to + 6 mm","- 4 mm to + 8 mm","- 6 mm to + 12 mm","- 8 mm to + 12 mm"],a:2},
+{id:122,q:"The cover to the main reinforced may be reduced up to one third of the specified cover but not less than",options:["5 mm","7 mm","10 mm","15 mm"],a:0},
+{id:123,q:"The deflection of beams may be decreased by",options:["increasing the depth of beam","increasing the span","decreasing the depth of beam","increasing the width of beam"],a:0},
+{id:124,q:"The maximum compressive strength on 15cm cubes of $M_{20}$ grade concrete at 7 days, should be a minimum of",options:["7 N/mm$^2$","10 N/mm$^2$","15 N/mm$^2$","20 N/mm$^2$"],a:1},
+{id:125,q:"The minimum compressive strength on 15cm cubes of $M_{30}$ grade concrete at 7 days, should be a minimum of",options:["7 N/mm$^2$","10 N/mm$^2$","20 N/mm$^2$","30 N/mm$^2$"],a:2},
+{id:126,q:"The ratio of minimum compressive strength on 15 cm cubes prepared with the concrete of M 20 grade and M 40 grade, at 7 days should be at least",options:["$\\frac{1}{3}$","$\\frac{1}{2}$","$\\frac{3}{2}$","2.0"],a:1},
+{id:127,q:"The test strength of the sample is taken as the average of the strength of",options:["2 specimens","3 specimens","4 specimens","5 specimens"],a:1},
+{id:128,q:"The individual part of the structures is subjected to a loads test for 24 hours by applying a load equal to full dead load of the structure plus",options:["imposed load","1.15 times imposed load","1.25 times imposed load","1.3 times imposed load"],a:2},
+{id:129,q:"The structure which is subjected to an imposed load after 72 hours for a period of 24 hours, is deemed to be unacceptable if it fails to recover the net deflection less than",options:["90%","85%","80%","75%"],a:2},
+{id:130,q:"The area of the concrete in compression plus the area of reinforcement transferred on the basis of modular ratio, is called",options:["transferred section","equivalent section","cracked section","none of these"],a:2},
+{id:131,q:"For design purpose, the moment at the support where two unequal spans or spans not equally loaded meet is",options:["lesser value","greater value","average of two values","none of these"],a:2},
+{id:132,q:"The effective depth of a shallow beam is the distance between",options:["maximum compression and tension fibres","neutral axis and maximum compression fibre","neutral axis and maximum tension fibre","maximum compression fibre and the centroid of the tension reinforcement"],a:3},
+{id:133,q:"If the main reinforcement of the slab is parallel to a T-beam, the transverse reinforcement at mid span of the slab is provided at least .... of main reinforcement",options:["40%","50%","60%","70%"],a:2},
+{id:134,q:"In case of continuous beams, the distance between the points of zero moment, may be obtained as",options:["0.5L","0.6L","0.7L","0.8L"],a:2},
+{id:135,q:"The maximum deflection of a structure should not normally exceed lesser of the span/350or",options:["10 mm","15 mm","20 mm","25 mm"],a:2},
+{id:136,q:"For spans up to 10 m, the safe span to depth ratio for",options:["cantilever is 7","simply supported beams is 20","continuous beams is 26","all the above"],a:3},
+{id:137,q:"A column of rectangular section is considered short, if both the slenderness ratios are less than",options:["8","10","12","16"],a:2},
+{id:138,q:"The reinforcing bars in beams are not bundled in contact if the diameter of the bars, exceeds",options:["20 mm","35 mm","30 mm","36 mm"],a:3},
+{id:139,q:"The development length of each bar of three bars bundled together is increased by",options:["10%","20%","33%","50%"],a:2},
+{id:140,q:"In limit state method, the design bond stress of M 30 grade concrete for plain bars in tension, is",options:["1.0 N/mm$^2$","1.2 N/mm$^2$","1.4 N/mm$^2$","1.5 N/mm$^2$"],a:3},
+{id:141,q:"For deformed reinforcing bars, the permissible design bond stress may be increased by",options:["20 %","30 %","40 %","60 %"],a:3},
+{id:142,q:"The anchorage value of standard U-type hook of a reinforcing bar of diameter d in tension, is",options:["4 d","8 d","12 d","16 d"],a:3},
+{id:143,q:"In compression members, the lap length of a bar should not be less than",options:["16 $\\phi$","20 $\\phi$","24 $\\phi$","30$\\phi$"],a:2},
+{id:144,q:"In adverse circumstances, the reinforced concrete member immersed in sea water or subjected to sea spray, the maximum permissible cover for the reinforcing bars, should not exceed",options:["45 mm","55 mm","65 mm","75 mm"],a:3},
+{id:145,q:"The value of the constant K in the formula $A_s = \\frac{K.db}{f_s}$ for determining the minimum area of tension reinforcement in a beam is",options:["0.95","0.90","0.85","0.80"],a:2},
+{id:146,q:"The maximum area of compression reinforcement in a beam of cross section B $\\times$ D is limited to",options:["0.02 BD","0.03 BD","0.04 BD","0.05 BD"],a:2},
+{id:147,q:"What is minimum period for which the lean concretes in foundation be left met without construction of masonry over it ?",options:["15 days","12 days","9 days","7 days"],a:3},
+{id:148,q:"The maximum spacing of shear reinforcement should not exceed 0.75 d subject to a minimum of",options:["300 mm","350 mm","400 mm","450 mm"],a:3},
+{id:149,q:"The maximum characteristic strength of the stirrups reinforcement, is taken",options:["350 N/mm$^2$","375 N/mm$^2$","295 N/mm$^2$","415 N/mm$^2$"],a:3},
+{id:150,q:"If D is the overall thickness of the slab, the diameter of the reinforcing bars should not exceed",options:["$\\frac{1}{4}$ D","$\\frac{1}{6}$ D","$\\frac{1}{7}$ D","$\\frac{1}{8}$ D"],a:3},
+{id:151,q:"The minimum diameter of longitudinal reinforcement of a column should not be less than",options:["6 mm","8 mm","10 mm","12 mm"],a:3},
+{id:152,q:"Minimum diameter of the lateral ties should not be less than",options:["4 mm","5 mm","6 mm","10 mm"],a:1},
+{id:153,q:"A simply supported beam shall be deemed to be a deep beam if the ratio of its effective span to overall depth, is",options:["2.0","2.5","less than 2","less than 2.5"],a:0},
+{id:154,q:"A continuous beam shall be deemed to be a deep beam if the ratio of its effective span to overall depth, is",options:["2.0","2.5","less than 2","less than 2.5"],a:1},
+{id:155,q:"If the ratio of effective span to overall depth of a simply supported beam is less than 1, the lever arm is",options:["0.3 l","0.4 l","0.5 l","0.6 l"],a:3},
+{id:156,q:"The flat slab is a reinforced concrete slabs with or without drops and is supported",options:["on columns without column head","on columns with column head","on beams","None of these"],a:2},
+{id:157,q:"The slenderness effect of a wall is considered if the effective height of the wall exceeds the thickness",options:["8 times","10 times","12 times","16 times"],a:2},
+{id:158,q:"The ratio of the effective length to the least radius of gyration of a tie member of a roof truss, which gets subjected to reversal of stress shall not exceed",options:["180","200","240","350"],a:3},
+{id:159,q:"Maximum area of tension reinforcement in beams shall not exceed",options:["0.04 bD","0.02 bD","0.08 bD","0.10 bD"],a:0},
+{id:160,q:"For a RCC column effectively held in position and restrained against rotation at one end and at the other restrained against rotations but not held in position, the effective length is",options:["1.20","0.80","1.00","1.50"],a:0},
+{id:161,q:"A tor steel bar has about ......more yield stress than ordinary mild strel",options:["10%","50%","35%","20%"],a:1},
+{id:162,q:"The pitch of bars of distribution steel in solid slab should not exceed .... times the effective depth of slab",options:["3d","2 d","5d","6 d"],a:2},
+{id:163,q:"According to thumb rule, the thickness of a slab should be taken at the rate of",options:["3 cm per meter span","4 cm per meter","5 cm per meter","none of these"],a:1},
+{id:164,q:"The longitudinal shearing stresses acting on the surface between the steel and concrete are called",options:["compressive stress","tensile stress","bond stress","none of the above"],a:2},
+{id:165,q:"The cube strength of the concrete used for the prestressed member should not be less than",options:["10N/mm$^2$","25N/mm$^2$","50N/mm$^2$","35N/mm"],a:3},
+{id:166,q:"A reinforced concrete beam is assumed to be made of",options:["homogeneous material","heterogeneous material","isotropic material","none of the above"],a:1},
+{id:167,q:"M25 grade of concrete approximates",options:["1: 3: 6 mix","1: 1: 2 mix","1: 2: 4 mix","1: 1.5: 3 mix"],a:1},
+{id:168,q:"For a continuous floor slab supported on beams, the ratio of end span length and intermediate span length is",options:["0.60","0.70","0.80","0.90"],a:3},
+{id:169,q:"The cover provided in the column having size less than 200 x 200mm",options:["15mm","20mm","25mm","40mm"],a:2},
+{id:170,q:"A simply supported beam deflects by 5 mm when it is subjected to a concentrated load of 10 kN at its centre. What will be deflection in a 1/10 model of the beam if the model is subjected to a 1 kN load at its centre ?",options:["5 mm","0.5 mm","0.05 mm","0.005mm"],a:0},
+{id:171,q:"The deformation of a spring produced by a unit load is called",options:["stiffness","flexibility","influence coefficient","unit strain"],a:1},
+{id:172,q:"For a single point load W moving on a symmetrical three hinged parabolic arch of span L, the maximum sagging moment occurs at a distance x from ends. The value of x is",options:["0.211 L","0.25 L","0.234 L","0.5 L"],a:0},
+{id:173,q:"Muller Breslau's principle for obtaining influence lines is applicable to",options:["trusses","statically determinate beams and frames","statically indeterminate structures, the material of which is elastic and follows Hooke's law","any statically indeterminate structure"],a:0},
+{id:174,q:"Consider the following statements: Sinking of an intermediate support of a continuous beam",options:["reduces the negative moment at support.","increases the negative moment at support.","reduces the positive moment at support.","increases the positive moment at the center of span of these statements. i and iv are correct","i and iii are correct","ii and iii are correct","ii and iv are correct"],a:0},
+{id:175,q:"A load W is moving from left to right support on a simply supported beam of span T. The maximum bending moment at 0.4 1 from the left support is",options:["0.16 Wl","0.20 Wl","0.24 Wl","0.25 Wl"],a:2},
+{id:176,q:"When a load crosses a through type Pratt truss in the direction left to right, the nature of force in any diagonal member in the left half of the span would",options:["change from compression to tension","change from tension to compression","always be compression","always be tension"],a:0},
+{id:177,q:"Bending compressive and tensile stresses respectively are calculated based on",options:["net area and gross area","gross area and net area","net area in both cases","gross area in both cases"],a:1},
+{id:178,q:"If the thickness of thinnest outside plate is 10 mm, then the maximum pitch of rivets in tension will be taken as",options:["120 mm","160 mm","200 mm","300 mm"],a:1},
+{id:179,q:"The heaviest I-sectionfor same depth is",options:["ISMB","ISLB","ISHB","ISWB"],a:2},
+{id:180,q:"Which of the following types of riveted joint is free from bending stresses ?",options:["lap joint","butt joint with single cover plate","butt joint with double cover plates","none of the above"],a:2},
+{id:181,q:"The difference between gross diameter and nominal diameter for the rivets up to 25 mm diameter is",options:["1.0 mm","1.5 mm","2.0 mm","2.5 mm"],a:1},
+{id:182,q:"The ratio of Young's modulus of elasticity for steel to that for concrete is known as",options:["specific ratio","modular ratio","poison's ratio","elasticity ratio"],a:1},
+{id:183,q:"Compared to mild steel, the steel used for prestressing of concrete beams has :",options:["higher proof stress and higher modulus of elasticity","higher proof stress and lower modulus of elasticity","higher modulus of elasticity and same proof stress","Same modulus of elasticity and higher proof stress"],a:3},
+{id:184,q:"The total compressive force at the time of failure of a concrete beam section of width 'b' without considering the partial safety factor of the material is",options:["036 $f_{ck}$ b $X_u$","0.54 $f_{ck}$ b $X_u$","066 $f_{ck}$ b $X_u$","0.8 $f_{ck}$ b $X_u$"],a:0},
+{id:185,q:"The lateral ties in a reinforced concrete rectangular column under axial compression are used to",options:["avoid the buckling of the longitudinal steel under compression","Provide adequate shear capacity","provide adequate confinement to concrete","reduce the axial deformation of the column"],a:0},
+{id:186,q:"As compared to field rivets, the shop rivets are",options:["stronger","weaker","equally strong","any of the above"],a:0},
+{id:187,q:"If the thickness of plate to be connected by a rivet is 16 mm, then suitable size of rivet as per Unwin's formula will be",options:["16 mm","20 mm","24 mm","27 mm"],a:2},
+{id:188,q:"In a combined footing if shear stress exceeds 5 kg/cm2, the nominal stirrups provided are:",options:["6 legged","8 legged","10 legged","12 legged"],a:3},
+{id:189,q:"In a reinforced concrete section, if the area of the steel is more than that required for a balanced section, the moment of the section as compared to that of balanced section.",options:["Will remain the same","will be less","will be more","depends on the other factors"],a:2},
+{id:190,q:"R.C.C. structure is said to be double reinforced section when",options:["reinforcement is provided on tension side and middle of the structure","reinforcement if provided on compression side and middle of the section","the structure is reinforced both by M.S. bars and steel mesh","reinforcement is placed on tension and compression sided of the structure."],a:3},
+{id:191,q:"When R.C.C. ;beam is subjected to bending. and the topmost layer elongates and the bottom one shortens, then that beam is called",options:["fixed beam","simply supported beam","doubly reinforced beam","cantilever beam"],a:3},
+{id:192,q:"In a doubly reinforced rectangular beam, the allowable stress in compression steel is",options:["equal to the permissible stress in tension in steel","more than the permissible stress in tension in steel","less than the permissible stress in tension in steel","not related to the permissible stress."],a:2},
+{id:193,q:"The side face reinforcement, if required, in a T- beam will be",options:["0.1% of the web area","0.15 % of the web area","0.2 % to 0.3% of the web area depending upon the breadth of the web","half the longitudinal reinforcement"],a:0},
+{id:194,q:"Deep beams are designed for",options:["shear force only","bending moment only","both shear force and bending moment","bearing"],a:1},
+{id:195,q:"The shear reinforcement in a RCC beam is provided to resist",options:["diagonal tension","flexural shear","shear in concrete","punching shear"],a:0},
+{id:196,q:"The maximum deflection due to load in RCC beams in buildings is limited to",options:["span/100","span/250","span/350","span/500"],a:2},
+{id:197,q:"When in section, the depth of actual neutral axis is more than the depth of critical neutral axis, then the section will be called as",options:["balanced section","over reinforced section","under reinforced section","critical section"],a:1},
+{id:198,q:"In the case of freely supported beams the effective span should be",options:["the clear distance between supports","the clear distance between supports + thickness of both the supports","the distance between centre of supports","the distance between centre of supports + thickness of both of the supports"],a:2},
+{id:199,q:"A flat slab is supported on",options:["beam","column","beam and column","column monolithically built with slab"],a:3},
+{id:200,q:"In R.C.C. beams, the minimum distance between two parallel main steel bars should also be",options:["less than the size of coarse aggregate","6 mm greater than the maximum size of the coarse aggregate","greater than the maximum size of the coarse aggregate","greater by 10 mm from the minimum size of the coarse aggregate used."],a:1},
+{id:201,q:"Maximum diameter of the reinforced bars in RCC slabs is",options:["20 mm","16 mm","span/100","thickness of slab/8"],a:3},
+{id:202,q:"In a R.C.C. beam if reinforcement has to be provided in compression zone, then its position value of shear stress is",options:["C.G of the section","The centre of the compression zone","the top of the compression zone or beam section","The centre of tension zone"],a:2},
+{id:203,q:"The concrete compression members, whose unsupported length is more than four times the least dimensions, is generally termed as",options:["strut","column","tie member","retaining wall"],a:1},
+{id:204,q:"The minimum percentage of reinforcement in RCC short columns is",options:["0.8 %","2.5 %","6.0%","8.0%"],a:0},
+{id:205,q:"The effective length of a RCC column of one storey restrained at both ends in position but not in direction is",options:["0.5L","0.75 L","L","1.5L"],a:2},
+{id:206,q:"A column can be made of plain concrete if the unsupported length does not exceed the lateral dimension by",options:["four times","six times","eight times","twelve times"],a:0},
+{id:207,q:"In a rectangular column with width 'b' loaded eccentrically, there is no tension if the eccentricity is less than",options:["b/6","b/2","b/3","b/4"],a:0},
+{id:208,q:"When a load acts along the longitudinal axis but its point of application does not coincide with the centre of gravity of the column, then the load will be called as",options:["axial load","eccentric load","tensile load","concentric load"],a:1},
+{id:209,q:"To support 12 legged stirrups at the top and bottom in R.C.C. structures, the minimum total number of bars required are",options:["12","24","7","14"],a:3},
+{id:210,q:"To minimize the cracks formed due to tensile stressed, the minimum value of stress in concrete should be",options:["50 kg/cm$^2$","40 kg/cm$^2$","25 kg/cm$^2$","12 kg/cm$^2$"],a:3},
+{id:211,q:"The span of a bridge is considered to be economical when the cost of main girders and cross girders of one span equals the cost of piers of",options:["all the spans","two spans","one span","only one pier"],a:0},
+{id:212,q:"In a R.C.C. bridge the maximum size of reinforcement shall not exceed",options:["12mm","25 mm","45 mm","60 mm"],a:2},
+{id:213,q:"Shear span is defined as the zone where",options:["bending moment is zero","shear force is zero","shear force is constant","bending moment is constant"],a:3},
+{id:214,q:"Which one of the following statements is correct ?",options:["web shear cracks start due to high diagonal tension in case of beams with their webs and high prestressing force","shear design for a prestressed concrete beam is based on elastic theory","in the zone where bending moment is dominant and shear is insignificant, cracks occur at 20$^o$ to 30$^o$","after diagonal cracking, the mechanics of shear transfer in a prestressed concrete member is very much different from that in reinforced concrete members"],a:3},
+{id:215,q:"Deflection's can be controlled by using the appropriate",options:["aspect ratio","modular ratio","span/ depth ratio","water cement ratio"],a:2},
+{id:216,q:"Pick out the incorrect statement.",options:["about 10 percent more cement is consumed in making concrete if hand mixing is done","5 percent voids in cement concrete reduce strength upto 30 percent.","Curing of O.P.C is done for 7 days.","in high pressure steam curing bond strength in increased."],a:3},
+{id:217,q:"In a simply supported reinforced concrete beam, the reinforcement is placed",options:["below the neutral axis","above the neutral axis","at the neutral axis","any one of these"],a:0},
+{id:218,q:"In a singly reinforced beam, the effective depth is measured from the compression edge to the",options:["tensile edge","centre of tensile reinforcement","neutral axis of the beam","none of these"],a:1},
+{id:219,q:"If $\\sigma_{cb}$ is the permissible stress in compression due to bending in concrete in N/mm$^2$, the modular ration (m) is of the order of",options:["$\\frac{280}{3\\sigma_{cb}}$","$\\frac{280}{4\\sigma_{cb}}$","19","23"],a:0},
+{id:220,q:"In a two-way slab, the torsional reinforcement is provided at",options:["top","bottom","both at top and bottom","none of above"],a:2},
+{id:221,q:"In a beam section, if the steel reinforcement is of such a magnitude that the permissible stresses in concrete and steel are developed simultaneously, the section is known as",options:["balanced section","critical section","economical section","any one of these"],a:3},
+{id:222,q:"The section in which concrete is not fully stressed to its permissible value when stress in steel reaches its maximum value, is called",options:["under-reinforced section","over-reinforced section","critical section","balanced section"],a:0},
+{id:223,q:"The moment of resistance of an under-reinforced section is computed on the basis of",options:["compressive force developed in concrete","tensile force developed in steel","both (a) and (b)","none of these"],a:1},
+{id:224,q:"The centre to centre spacing of vertical stirrups, in a rectangular beam, is",options:["increased towards the centre of the span of the beam","decreased towards the centre of the span of the beam","increased at the ends","none of these"],a:0},
+{id:225,q:"The spacing of vertical stirrups in a rectangular beam is",options:["maximum near the supports","minimum near the supports","maximum near the centre","minimum near the centre"],a:1},
+{id:226,q:"When the steel bars are embedded in concrete, the concrete after setting, adheres to the surface of the bars and thus resist any force that tends to pull or push this rod. The intensity of this adhesive force is called",options:["bond stress","shear stress","compressive stress","none"],a:0},
+{id:227,q:"Minimum percentage of main reinforcement in RCC wall when it is not carrying any load is",options:["0.4","0.15","0.1","no such limit"],a:1},
+{id:228,q:"The maximum spacing of vertical reinforcement in R.C.C. wall should not exceed ....... the thickness of wall.",options:["equal to","1.5 times","2 times","3 times"],a:3},
+{id:229,q:"A doubly reinforced beam is considered less economical than a singly reinforced beam because",options:["shear reinforcement is more","compressive steel is under-stressed","steel required is more than concrete","concrete is not stressed to its full value"],a:0},
+{id:230,q:"If the area of tensile steel reinforcement is doubled, the moment of resistance of the beam increases only by about",options:["12 %","22 %","32 %","42 %"],a:1},
+{id:231,q:"A T-beam behaves like a rectangular beam of width equal to its flange, if neutral axis",options:["remains outside the flange","remains within the flange","remains below the slab","both (a) and (b)"],a:1},
+{id:232,q:"The purpose of lateral ties in short reinforced concrete columns is to",options:["facilitate construction","facilitate compaction of concrete","avoid buckling of longitudinal bars","increase the load carrying capacity of the column"],a:2},
+{id:233,q:"The area of longitudinal steel reinforcement in a column should not be",options:["less than 0.8 % of the area of concrete section required for direct load alone","more than 6 % of the gross sectional area of column","either (a) or (b)","both (a) and (b)"],a:3},
+{id:234,q:"For a longitudinal reinforcing bar in a column, the cover should not be less than",options:["10 mm","20 mm","30 mm","40 mm"],a:3},
+{id:235,q:"The analysis of slab spanning in one direction is done by assuming it to be a beam of",options:["1 m length","1m width","1 m$^2$ area","none of these"],a:1},
+{id:236,q:"In a slab, the transverse reinforcement is provided at ...... to the span of the slab.",options:["45$^o$","60$^o$","75$^o$","90$^o$"],a:3},
+{id:237,q:"For bridge slabs, the amount of transverse reinforcement is taken as",options:["0.15% of gross concrete area","0.3% of gross concrete area","0.45% of gross concrete area","0.6% of gross concrete area"],a:1},
+{id:238,q:"According to IS: 456-1978, the deflection of reinforced concrete slab or beam, for the purpose of design, is limited to .....of span.",options:["0.2%","0.25%","0.4%","0.45%"],a:2},
+{id:239,q:"A reinforced concrete slab is 75 mm thick. The maximum size of reinforcement bar that can be used is",options:["6 mm diameter","8 mm diameter","10mm diameter","12 mm diameter"],a:1},
+{id:240,q:"The shrinkage in a concrete slab",options:["cases shear cracks","causes tension cracks","causes compression cracks","does not cause any cracking"],a:1},
+{id:241,q:"If plain bars are used the area of distribution reinforcement in slabs should not be less than",options:["0.12% of the gross area of concrete","0.15% of the gross area of concrete","0.18% of the gross area of concrete","0.21% of the gross area of concrete"],a:1},
+{id:242,q:"In a simply supported slab, alternate bars are curtailed at",options:["one-fifth of the span","one-sixth of the span","one-seventh of the span","one-eighth of the span"],a:1},
+{id:243,q:"Weight of steel per cubic metre is taken to be",options:["7850kg","300 kg","1200kg","800kg"],a:0},
+{id:244,q:"A strut is a",options:["flexible member","compression member","torsion member","tension member"],a:1},
+{id:245,q:"When a column is subjected to an eccentric load, the stress induced in the column will be",options:["direct stress only","bending stress only","shear stress only","direct and bending stress both"],a:3},
+{id:246,q:"The load at which the column just buckles, is known as",options:["buckling load","critical load","crippling load","any one of these"],a:3},
+{id:247,q:"Compression members always tend to buckle in the direction of the",options:["axis of load","perpendicular to the axis of load","minimum cross section","least radius of gyration"],a:3},
+{id:248,q:"A column that fails due to direct stress, is called",options:["short column","long column","weak column","medium column"],a:0},
+{id:249,q:"The buckling load for a given column depends upon",options:["area of cross-section of the column","length and least radius of gyration of the column","modulus of elasticity for the material of the column","all of the above"],a:3},
+{id:250,q:"The slenderness ratio is the ratio of",options:["area of column to least radius of gyration","length of column to least radius of gyration","least radius of gyration to area of column","least radius of gyration to length of column"],a:1},
+{id:251,q:"Euler's formula holds good only for",options:["short columns","long columns","both short and long columns","weak columns"],a:1},
+{id:252,q:"For design purpose, the width of one-way slab is always taken as",options:["1 mm","100 mm","1000 mm","2000 mm"],a:2},
+{id:253,q:"The ratio of the effective length of a column and minimum radius of gyration of its cross-sectional area, is known",options:["buckling factor","slenderness ratio","crippling factor","none of these"],a:1},
+{id:254,q:"A column is said to be of medium size if its slenderness ratio is between",options:["20 and 32","32 and 120","120 and 160","160 and 180"],a:1},
+{id:255,q:"Columns of given length, cross-section and material have different values of buckling loads for different end conditions. The strongest column is one whose",options:["one end is fixed and other end is hinged","both ends are hinged or pin jointed","one end if fixed and the other end entirely free","both the ends are fixed"],a:3},
+{id:256,q:"The equivalent length of a column fixed at both ends, is",options:["0.5 l","0.7 l","l","2 l"],a:0},
+{id:257,q:"The equivalent length of a column fixed at one end and free at the other end, is",options:["0.5l","0.7 l","l","2 l"],a:3},
+{id:258,q:"The range within which a load can be applied on a rectangular column, to avoid any tensile stress, is",options:["one-half of the base","one-fifth of the base","one-fourth of the base","one-fifth of the base"],a:1},
+{id:259,q:"To ascertain the maximum permissible eccentricity of loads on circular columns, the rule generally followed, is",options:["middle half rule of columns","middle third rule of columns","middle fourth rule of columns","none of these"],a:1},
+{id:260,q:"The Euler crippling load for a column with both ends hinged is",options:["$\\frac{\\pi^2 EI}{l^2}$","$\\frac{4 \\pi^2 EI}{l^2}$","$\\frac{\\pi^2 EI}{4 l^2}$","$\\frac{2 \\pi^2 EI}{l^2}$"],a:0},
+{id:261,q:"The Euler crippling load for a column with both ends fixed is",options:["$\\frac{\\pi^2 EI}{l^2}$","$\\frac{4 \\pi^2 EI}{l^2}$","$\\frac{\\pi^2 EI}{4 l^2}$","$\\frac{2 \\pi^2 EI}{l^2}$"],a:1},
+{id:262,q:"In the Euler's theory for long columns it is assumed that",options:["the failure occurs by crushing of the material","the failure occurs by bucking only","the column shortens so much that is will become a short column","the column is having initial curvature and the load is eccentrically applied."],a:1},
+{id:263,q:"Euler's formulae for columns can be used if the slenderness ratio is",options:["< 100","0","> 120"," > 120 but less than 180"],a:2},
+{id:264,q:"A structural member subjected to compressive stress in a direction parallel to its longitudinal axis, is generally known as",options:["column","stanchion","post","all the above"],a:3},
+{id:265,q:"The maximum axial load which is just sufficient to keep a column in a small deflected shape, is called",options:["crippling load","buckling load","critical load","all the above"],a:3},
+{id:266,q:"If flexural rigidity of a column whose length is L and the loaded end is free, is EI, the critical load will be",options:["$P_c = \\frac{\\pi EI}{4\\ell^2}$","$P_c = \\frac{\\pi^2 EI}{4\\ell^2}$","$P_c = \\frac{\\pi^2 EI}{4\\ell^2 \\times l}$","$P_c = \\frac{\\pi (EI)^2}{4\\ell^2}$"],a:1},
+{id:267,q:"Effective length of a column effectively held in position and restrained in direction at both ends, is",options:["L","0.67 L","0.85 L","1.5L"],a:1},
+{id:268,q:"Effective length of a column is the length between the points of",options:["maximum moments","zero shear","zero moment","none of the above"],a:2},
+{id:269,q:"The deflection of beams may be decreased by",options:["increasing the depth of beam","increasing the span","decreasing the depth of beam","increasing the width of beam"],a:0},
+{id:270,q:"Maximum spacing of the vertical reinforcement in RCC wall is",options:["450 mm","600 mm","five times the thickness of wall","three times the thickness of wall"],a:0},
+{id:271,q:"Long columns are those columns, whose length is more than 30 times the least dimension of the column or the slenderness ratio should be more than",options:["32","120","30","80"],a:1},
+{id:272,q:"An electric pole is 10 meter high from the ground level. Its effective length for design purposes will be",options:["7.07 metre","10 metre","20 metre","12 metre"],a:2},
+{id:273,q:"A axially loaded column is one having its resultant acting at the ....of the column section",options:["CG","Center","Centroid","N.A."],a:2},
+{id:274,q:"Doubly reinforced beams are reinforced in",options:["Tension side only","Compression side only","Compression as well as tension","none of these"],a:2},
+{id:275,q:"The compression bars must be anchored to tensile bars by means of",options:["Bent bars","Stirrups","Binder","above (b) and (c)"],a:3},
+{id:276,q:"The design criterion in RCC wall is very similar to",options:["slab","Retaining wall","plates","column"],a:3},
+{id:277,q:"A continuous beam is deemed to be a deep beam when the ratio of effective span to overall depth (l/D) is less than",options:["1.0","2.0","2.5","3.0"],a:2},
+{id:278,q:"The ratio of linear stress to the linear strain is called",options:["Modulus of elasticity","modulus of rigidity","Buck modulus","Poisson's ratio"],a:0},
+{id:279,q:"Minimum thickness of load bearing RCC wall should be",options:["1 cm","10 cm","15 cm","20 cm"],a:1},
+{id:280,q:"The strength of concrete after one year as compared to 28 days strength is about",options:["10 to 15% more","15 to 20% more","20 to 25% more","5 to 10% more"],a:2},
+{id:281,q:"In reinforced concrete footing on soil, the minimum thickness at edge should not be less than",options:["1 cm","15 cm","18 cm","25 cm"],a:1},
+{id:282,q:"As compared to ordinary Portland cement, high alumina cement has",options:["Higher initial setting time but lower final setting time","Lower initial setting time but higher final setting time","Higher initial and final setting times","None of these"],a:0},
+{id:283,q:"The slab is designed as one way if the ratio of long span to short span is",options:["Less than 1","Between 1 and 1.8","Between 1.5 and 1.8","Greater than 2"],a:3},
+{id:284,q:"Modulus of rupture of concrete is a measure of",options:["Flexural tensile strength","Direct tensile strength","Compressive strength","Both flexural and tensile strength"],a:0},
+{id:285,q:"A higher modular ratio shows",options:["Higher compressive strength of concrete","Lower compressive strength of concrete","Higher tensile strength of steel","None of these"],a:1},
+{id:286,q:"Poisson's ratio for concrete",options:["Remains unchanged","Increases with richer mixes","Decrease with richer mixes","None of these"],a:1},
+{id:287,q:"The average permissible stress in bond for plain bars in tension is",options:["Increased by 15% for bars in compression","Increased by 25% for bars in compression","Decreased by 10% for bars in compression","Decreased by 15% for bars in compression"],a:1},
+{id:288,q:"1% of voids in a concrete mix would reduce its strength by about",options:["5%","30%","15%","20%"],a:0},
+{id:289,q:"The minimum diameter of longitudinal bars in a column is",options:["4 mm","8 mm","12 mm","16 mm"],a:2},
+{id:290,q:"The fineness modulus of fine aggregate is in the range of",options:["2.0 to 3.5","4.5 to 5.0","5.0 to 7.0","7.0 to 10.0"],a:0},
+{id:291,q:"The load carrying capacity of a helically reinforced column as compared to that of tied column is about",options:["5% less","10% less","5% more","20% more"],a:2},
+{id:292,q:"The factor of safety for",options:["Steel and concrete are same","Steel is lower than that for concrete","Steel is higher than that for concrete","No relation"],a:1},
+{id:293,q:"Maximum percentage reinforcement in case of slabs is limited to",options:["1","4","8","12"],a:1},
+{id:294,q:"Diagonal tension in a beam",options:["Is maximum at neutral axis","Decreases below the neutral axis and increases above the neutral axis","Increases below the neutral axis and decreases above the neutral axis","None of these"],a:2},
+{id:295,q:"Which of the following R.C. retaining walls is suitable for heights beyond 6 m?",options:["L-shaped wall","T-shaped wall","Counterfort type","None of these"],a:2},
+{id:296,q:"For the design of retaining walls, the minimum factor of safety against overturning is taken as",options:["1.5","2.0","3.0","4.0"],a:1},
+{id:297,q:"For a circular slab carrying a uniformly distributed load, the ratio of the maximum negative to maximum positive radial moment, is",options:["1","2","3","4"],a:1},
+{id:298,q:"To minimize the effect of differential settlement, the area of a footing should be designed for",options:["Dead load only","Dead load + live load","Dead load + fraction of live load","None of these"],a:2},
+{id:299,q:"Shrinkage in concrete increases its",options:["Tensile strength","Flexural strength","Bond strength","Shear strength"],a:2},
+{id:300,q:"While designing the pile as a column, the end conditions are nearly",options:["Both ends hinged","Both ends fixed","One end fixed and other end hinged","None of these"],a:2},
+{id:301,q:"Tensile strength of concrete is nearly",options:["5 percent of its compressive strength","10 percent of its compressive strength","30 percent of its compressive strength","60 percent of its compressive strength"],a:0},
+{id:302,q:"The recommended value of modular ratio for reinforced brick work is",options:["15","30","40","60"],a:2},
+{id:303,q:"For RCC slab the slump should be",options:["125-50 mm","100-25 mm","750-150 mm","150-200 mm"],a:0},
+{id:304,q:"The load factors for live load and dead load are taken respectively as",options:["1.5 and 2.2","2.2 and 1.5","1.5 and 2.5","2.5 and 2.2"],a:1},
+{id:305,q:"If the initial setting time of cement is 10 minutes, it can be classified as",options:["Low heat cement","Quick setting cement","Rapid hardening cement","None of these"],a:1},
+{id:306,q:"In a combined footing if shear stress exceeds 5 kg/cm$^2$, the nominal stirrups provided are:",options:["6 legged","8 legged","10 legged","12 legged"],a:3},
+{id:307,q:"Water cement ratio in concrete is not influenced by the method of",options:["Batching","Mixing","Proportioning","Placing"],a:3},
+{id:308,q:"If concrete grade is M-20 then what would be the modular ratio ?",options:["7.08","9.08","13","13.33"],a:3},
+{id:309,q:"The coefficient of thermal expansion of cement concrete is",options:["$3 \\times 10^{-2}$ per$^o$ C","$3 \\times 10^{-4}$ per$^o$ C","$3 \\times 10^{-6}$ per$^o$ C","$3 \\times 10^{-8}$ per$^o$ C"],a:2},
+{id:310,q:"The limiting value of span to depth ratio will be least in case of",options:["Simply supported one way slab","Simply supported two way slabs","Continuous slab spanning in one direction","Cantilever slabs"],a:3},
+{id:311,q:"Surface vibrator is effective only when the thickness of concrete does not exceed",options:["2cm","10cm","15cm","20cm"],a:3},
+{id:312,q:"A RCC column 4 meters along and 30cm square is reinforced with four bars 40mm diameter longitudinally. If the compressive, stress in concrete is not to exceed 49.2 kg/sq cm and m = 15, the safe axial load for the column would be approximately",options:["200 tons","100 tons","50 tons","10 tons"],a:2},
+{id:313,q:"A surface vibrator for concrete compaction is preferred in all of the following except",options:["Road pavements","Columns","RCC slabs","RCC lintels"],a:1},
+{id:314,q:"The main reinforcement in a simply supported R.C.C. member is placed at",options:["Top fiber","Side fibers","Bottom fiber","None of these"],a:2},
+{id:315,q:"When semi-circular hooks or standard hooks are used as anchors, then these hooks provide bond length (in terms of rod diameter) equivalent to the rod length of",options:["8 d","10 d","16 d","20 d"],a:2},
+{id:316,q:"The main reinforcement in R.C.C. cantilever members is placed at",options:["Top fiber","Side fibers","Bottom fiber","None of these"],a:0},
+{id:317,q:"If the modular ratio is 'm', steel ratio is 'r', the critical neutral axis constant 'K' is given by",options:["$\\frac{m}{m-r}$","$\\frac{m}{m+r}$","$\\frac{m+r}{m}$","$\\frac{m^2}{r}$"],a:1},
+{id:318,q:"In R.C.C. beams, the end cover of concrete should not be less than",options:["13 mm","20 mm","25 mm","60 mm"],a:2},
+{id:319,q:"By over-reinforcing the section in tension, the moment of resistance of beam can be increased by not more than",options:["10%","15%","20%","25%"],a:3},
+{id:320,q:"Lever arm is the distance in between",options:["Centers of tensile and compressive zones","Centre of gravities of tensile and compressive zones","Centre of tensile zone and top fiber of compressive zone","Centre of compressive zone and bottom of tensile zone"],a:1},
+{id:321,q:"The steel beam theory of doubly reinforced beams assumes that",options:["Tension is resisted by tension steel only","Stress in tension steel equal the stress in compression steel","Compression is resisted by compression steel only","All the above"],a:3},
+{id:322,q:"In under reinforced beam sections, the maximum permissible stress is first achieved by",options:["Concrete","Steel","None of these","Both of these simultaneously"],a:1},
+{id:323,q:"The maximum diameter of the reinforcement bars in R.C.C. slab is",options:["20 mm","16 mm","30 mm","Thickness of slab/8"],a:3},
+{id:324,q:"In case of freely supported beams the effective span should be",options:["The clear distance between supports","The clear distance between supports + thickness of both the supports","The distance between centres of supports","None of these"],a:2},
+{id:325,q:"The maximum diameter of the reinforcement bars in R.C.C. beams is limited to",options:["28 mm","40 mm","One-eighth of the least dimension of the beams","None of these"],a:2},
+{id:326,q:"Keeping stiffness in consideration, for normal loading conditions, depth of the beam should be",options:["1/10 of the clear span","1/20 of the clear span","1/20 of the effective span","1/50 of the clear span"],a:2},
+{id:327,q:"The minimum number of torsional longitudinal reinforcement bars to be provided in R.C.C. beams is",options:["2","4","6","7"],a:1},
+{id:328,q:"In a simply supported singly reinforced beam, its width should vary in between",options:["1/2 to 3/4 depth of the beam","1/2 to 1 of depth of the beam","1/10 to 1/12 of clear span of the beam","None of these"],a:0},
+{id:329,q:"A flat slab is supported on",options:["Beams","Columns","Walls","Columns monolithically built with slab"],a:3},
+{id:330,q:"In a beams, if high-yield strength deformed bars are used as reinforcement, then the minimum limit of steel in tension should be",options:["0.5% of the gross cross-sectional area of the beam","0.3% of the gross cross-sectional area of the beam","0.2% of the gross cross-sectional area of the beam","1.0% of the gross cross-sectional area of the beam"],a:2},
+{id:331,q:"Enlarged head of a supporting column of a flat slab, is known as",options:["Column head","Drop panel","Capital","None of these"],a:2},
+{id:332,q:"The diameter to bars used for stirrups, distribution steel or anchor bars should not be less than",options:["25 mm","20 mm","10 mm","5 mm"],a:3},
+{id:333,q:"Thickened part of the flat slab over its supporting column in known as",options:["Column head","Drop panel","Capital","None of these"],a:1},
+{id:334,q:"The depth of neutral axis of an under reinforced concrete section is:",options:["equal to that of the balanced section","Less than that of the balanced section","equal to that of the over reinforce section","more that that of the balanced section"],a:1},
+{id:335,q:"The diameter of the column head supporting a flat slab is about",options:["0.25 times the span","2.5 times and diameter of the column","4 times the diameter of the column","2 times the diameter of column"],a:0},
+{id:336,q:"In a cantilever beam, tensile reinforcement is provided",options:["On the top of the beam","On the bottom of the beam","In the middle of the beam","One-third from top of the beam"],a:0},
+{id:337,q:"The effective width of a column strip of a flat slab is taken as",options:["One-fourth the width of the panel","Half the width of the panel","Half the diameter of the column","1/3rd the diameter of the column"],a:1},
+{id:338,q:"The permissible value of local bond stress for M 150 (1:2:4) cement concrete is",options:["5 kg/cm$^2$","10 kg/cm$^2$","20 kg/cm$^2$","30 kg/cm$^2$"],a:1},
+{id:339,q:"If W is the load per unit area on a circular slab of radius R, then the maximum radial moment at the centre of a simply supported slab is equal to",options:["$\\frac{WR^2}{16}$","$\\frac{2WR^2}{16}$","$\\frac{3WR^2}{16}$","$\\frac{6WR^2}{16}$"],a:2},
+{id:340,q:"For normal loading conditions on a simply supported beam the breadth of the beam can be assumed as nearly",options:["1/12 of span of the beam","1/15 of span of the beam","1/20 of span of the beam","1/30 of span of the beam"],a:3},
+{id:341,q:"The minimum amount of bottom reinforcement that should be continued over the entire length of the beam in R.C.C. continuous beams is",options:["20%","40%","33 1/3%","25%"],a:3},
+{id:342,q:"For M 150 (1:2:4) cement concrete the permissible value of shear stress is",options:["5 kg/cm$^2$","10 kg/cm$^2$","20 kg/cm$^2$","None of these"],a:0},
+{id:343,q:"The minimum amount of negative moment reinforcement in R.C.C. beams that should extended beyond the point of inflection is",options:["One-third of the total","One-fourth of the total","One-sixth of the total","Half of the total"],a:0},
+{id:344,q:"In a R.C.C. beam if reinforcement has to be provided in compression zone, then its position should be at",options:["C.G. of the section","The centre of the compression zone","The top of the compression zone or beam section","The centre of tension zone"],a:2},
+{id:345,q:"Lap splices in tension reinforcement is permitted for bars",options:["Larger than 36 mm","Less than 36mm","Less than 25 mm","None of these"],a:1},
+{id:346,q:"The percentage of steel in compression should not exceed by",options:["1.0%","1.5%","2.5%","4%"],a:3},
+{id:347,q:"Distribution reinforcement in a simply supported slab is provided to distribute",options:["Load","Temperature stress","Shrinkage stress","All of above"],a:3},
+{id:348,q:"In a two-way slab, main reinforcement is provided along",options:["Width of the slab","Depth of the slab","Diagonal of the slab","Length and width of the slab"],a:3},
+{id:349,q:"A compression member is termed as column or strut if the ratio of its effective length to the least lateral dimension is more than",options:["1","2","3","5"],a:2},
+{id:350,q:"According to thumb rule, the thickness of a slab should be taken at the rate of",options:["3 cm per meter span","4 cm per meter span","5 cm per meter span","None of these"],a:1},
+{id:351,q:"A column is regarded as long column if the ratio of its effective length to least lateral radius of gyration is more than",options:["150","125","60","25"],a:2},
+{id:352,q:"For design purposes, the width of one-way slab is always taken as",options:["1 mm","100 mm","1000 mm","2000 mm"],a:2},
+{id:353,q:"The minimum percentage of longitudinal reinforcement in R.C.C. columns is",options:["0.6","0.8","0.1","1.2"],a:1},
+{id:354,q:"Concrete is generally reinforced by the bars made of",options:["Cast iron","High carbon steel","Low carbon steel","Mild steel"],a:3},
+{id:355,q:"M 25 grade of concrete approximates",options:["1 : 3 : 6 mix","1 : 1 : 2 mix","1 : 2 : 4 mix","None of these"],a:1},
+{id:356,q:"In R.C.C., steel is used because it can provide",options:["Tensile strength","Compressive strength","Bond strength","None of these"],a:0},
+{id:357,q:"The minimum quantity of cement content needed in one cu.m. of a reinforced concrete which is not directly exposed to weather is about",options:["200 kg","250 kg","300 kg","400 kg"],a:1},
+{id:358,q:"The maximum shear stress permitted in reinforced concrete members depends upon",options:["Grade of concrete","Percentage of longitudinal tensile reinforcement","Shear reinforcement provided","None of these"],a:0},
+{id:359,q:"Prestressed concrete means",options:["Compressive stress induced in concrete before loading","Compressive stress induced in steel before loading","Tensile stress induced in steel before loading","None of these"],a:0},
+{id:360,q:"The ratio of the allowable bond stress in deformed bars to that of plain bars is about",options:["1.2","1.3","1.4","1.5"],a:2},
+{id:361,q:"Most commonly adopted type of shear reinforcement in a RCC section in Nepal is in the form of:",options:["vertical stirrups","inclined stirrups","inclined bars","spiral ties"],a:0},
+{id:362,q:"Working stress design assumes",options:["Elastic stress-strain relation","Linear stress-strain relation","Elastic and linear stress-strain relation","None of these"],a:2},
+{id:363,q:"Working loads may be defined as",options:["Maximum loads consisting of dead and live loads","A set of critical loads in service conditions","All loads that occur during service conditions","Maximum live loads"],a:1},
+{id:364,q:"The column or the strut is the member whose effective length is greater than",options:["The least lateral dimension","2 times the least lateral dimension","3 times the least lateral dimension","5 times the least lateral dimension"],a:2},
+{id:365,q:"Minimum thickness of load bearing RCC wall should be",options:["1 cm","10 cm","15 cm","20 cm"],a:1},
+{id:366,q:"The ratio of diameter of reinforcing for and slab thickness is",options:["$\\frac{1}{5}$","$\\frac{1}{6}$","$\\frac{1}{7}$","$\\frac{1}{8}$"],a:3},
+{id:367,q:"In a beam, spacing of shear reinforcement is kept .... at centre as compare to end",options:["Minimum","Maximum","Constant","None of above"],a:1},
+{id:368,q:"Singly and doubly reinforced beam are decided based on",options:["B. M.","S. F.","Both of above","None of above"],a:0},
+{id:369,q:"The compressive strength of concrete M25 under bending compression is",options:["6 N/mm$^2$","7 N/mm$^2$","8.5 N/mm$^2$","25 N/mm$^2$"],a:2},
+{id:370,q:"Increased depth of a beam cause",options:["Economy in steel","Economy of concrete","Increased stiffness of the section","All of above"],a:2},
+{id:371,q:"In reinforced concrete, pedestal is defined as compression member, whose effective length does not exceed its least dimension by",options:["12 times","3 times","16 times","8 times"],a:1},
+{id:372,q:"The permissible bending tensile stress in concrete for the vertical wall of an R.C. water tank made of M 25 concrete is",options:["8.5 N/mm$^2$","6 N/mm$^2$","2.5 N/mm$^2$","1.8 N/mm$^2$"],a:3},
+{id:373,q:"The cylinder strength of the concrete is less than the cube strength because of",options:["the difference in the shape of the cross section of the specimens","the difference in the slenderness ratio of the specimens","the friction between the concrete specimens and the steel plate of the testing machine","the cubes are tested without capping but the cylinders are tested with capping"],a:1},
+{id:374,q:"Dispersion of load through the flange to web is considered as dispersed uniformly at an angle $\\theta^o$ is",options:["10$^o$","15$^o$","20$^o$","30$^o$"],a:3},
+{id:375,q:"The lever arm in a singly reinforced beam is equal to",options:["$\\frac{d-n}{3}$","$\\frac{2d-n}{3}$","$d - \\frac{n}{3}$","$\\frac{4d-n}{3}$"],a:2},
+{id:376,q:"In a beam section, if the steel reinforcement is of such a magnitude that the permissible stresses in concrete and steel are developed simultaneously, the section is known as",options:["balanced section","critical section","economical section","any one of these"],a:3},
+{id:377,q:"The section in which concrete is not fully stressed to its permissible value when stress in steel reaches its maximum value, is called",options:["under-reinforced section","over-reinforced section","critical section","balanced section"],a:0},
+{id:378,q:"The minimum amount of bottom reinforcement that should be continued over the centre length of the beam in R.C.C. continuous beam is",options:["50 %","40 %","33 $\\frac{1}{3}$%","25%"],a:3},
+{id:379,q:"Steel is efficiently used in",options:["under reinforced section","over reinforced section","all of above","none of above"],a:0},
+{id:380,q:"The minimum amount of negative moment reinforcement in R.C.C. beams that should extend beyond the point of inflection is",options:["one-third of the total","one-fourth of the total","zero","half of the total."],a:2},
+{id:381,q:"The radius of a bar bend to form a hook, should not be less than",options:["twice the diameter","thrice the diameter","four times the diameter","five times the diameter"],a:0},
+{id:382,q:"For heavily reinforced concrete member, the nominal maximum size of the aggregates should be restricted to",options:["5 mm less than the minimum clear distance between the main bars","5 mm less than the minimum cover to the reinforcement","smaller of (a) and (b)","greater of (a) and (b)"],a:2},
+{id:383,q:"For M 150 mix concrete, local bond stress, is",options:["5 kg/cm$^2$","10 kg/cm$^2$","15 kg/cm$^2$","20 kg/cm$^2$"],a:1},
+{id:384,q:"Dimensions of a beam need be changed if the shear stress is more than",options:["5 kg/cm$^2$","10 kg/cm$^2$","15 kg/cm$^2$","20 kg/cm$^2$"],a:3},
+{id:385,q:"1% of voids in a concrete mix would reduce its strength by about",options:["5%","10%","15%","20%"],a:0},
+{id:386,q:"The minimum clear cover for RCC columns shall be",options:["Greater of 40mm or diameter","Smaller of 40mm or diameter","Smaller of 25mm of diameter","Greater of 25mm or diameter"],a:3},
+{id:387,q:"The objective of providing foundation to a structure is to",options:["Distribute the load of superstructure over a large bearing area","Prevent the lateral movement of the supporting material","All of the above","All of the above"],a:3},
+{id:388,q:"Generally the length of lap in reinforcement for in compression shall not be less than",options:["24-bar diameters","5-bar diameters only","3-bars diameters only","7-diameters only"],a:0},
+{id:389,q:"The distribution bars resist against .........",options:["Deformation","Shortening","Cracking","elongation"],a:2},
+{id:390,q:"The factor of safety for",options:["steel and concrete are same","steel is lower than that for concrete","steel is higher than that for concrete","none of the above"],a:1},
+{id:391,q:"In a beam section if the steel reinforcement is of such a magnitude that the permissible stresses in concrete and steel are developed simultaneously, the section is known as :",options:["balanced section","critical section","economical section","any one of the above"],a:3}
+    ];
+
+    const totalQuestions = quizData.length;
+
+    /**
+     * Checks the selected answer against the key.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Score Logic
+        // Increment attempted
+        attemptedCount++;
+        
+        // Check if correct
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        // Update Display
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // 3. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+
+        // Render MathJax content
+        if (window.MathJax) {
+            window.MathJax.typesetPromise();
+        }
+    }
+
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        
+        isLightMode = !isLightMode;
+        
+        if (isLightMode) {
+            body.classList.add('light-theme');
+            btn.innerText = '🌙 Dark';
+        } else {
+            body.classList.remove('light-theme');
+            btn.innerText = '☀️ Light';
+        }
+    }
+
+    // Scroll To Top Functionality
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
