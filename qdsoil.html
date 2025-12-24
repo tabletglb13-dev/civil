@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Mechanics - 350 MCQ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --text-sub: #64748b;
+            --border: #e2e8f0;
+            --success-bg: #dcfce7;
+            --success-text: #166534;
+            --error-bg: #fee2e2;
+            --error-text: #991b1b;
+            --nav-attempted: #3b82f6;
+            --nav-correct: #22c55e;
+            --nav-wrong: #ef4444;
+        }
+
+        body.dark-mode {
+            --primary: #60a5fa;
+            --primary-dark: #3b82f6;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-sub: #94a3b8;
+            --border: #334155;
+            --success-bg: #064e3b;
+            --success-text: #d1fae5;
+            --error-bg: #7f1d1d;
+            --error-text: #fecaca;
+        }
+
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding-bottom: 80px; }
+
+        /* Sticky Header */
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            padding: 0.75rem 1rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            background: var(--bg);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+        }
+        .stat-item span { color: var(--primary); }
+
+        .btn {
+            background: var(--primary); color: white; border: none; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--primary-dark); }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn-outline:hover { background: var(--bg); }
+        .btn-reset { background: var(--error-bg); color: var(--error-text); border: 1px solid var(--error-text); }
+        .btn-reset:hover { background: var(--error-text); color: white; }
+
+        /* Main Container */
+        .container { max-width: 900px; margin: 1.5rem auto; padding: 0 1rem; }
+
+        /* Navigation Grid */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+            gap: 6px;
+            margin-bottom: 2rem;
+            padding: 10px;
+            background: var(--card);
+            border-radius: 8px;
+            max-height: 120px;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+        .nav-item {
+            font-size: 0.75rem; text-align: center; padding: 4px; border-radius: 4px;
+            background: var(--bg); cursor: pointer; border: 1px solid var(--border);
+            user-select: none;
+        }
+        .nav-item.attempted { background: var(--nav-attempted); color: white; border-color: var(--nav-attempted); }
+        .nav-item.correct { background: var(--nav-correct); color: white; border-color: var(--nav-correct); }
+        .nav-item.wrong { background: var(--nav-wrong); color: white; border-color: var(--nav-wrong); }
+
+        /* Question Card */
+        .question-card {
+            background: var(--card); border-radius: 12px; padding: 1.5rem;
+            margin-bottom: 1.5rem; border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .q-header { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-sub); font-weight: 600; }
+        .q-text { font-size: 1.05rem; font-weight: 500; margin-bottom: 1.25rem; line-height: 1.5; }
+
+        .options-list { list-style: none; padding: 0; margin: 0; }
+        .option-item {
+            display: flex; align-items: center; padding: 10px 14px; margin-bottom: 8px;
+            border: 2px solid var(--border); border-radius: 8px; cursor: pointer; transition: 0.15s;
+            font-size: 0.95rem;
+        }
+        .option-item:hover { background: var(--bg); border-color: var(--primary); }
+        
+        /* States */
+        .option-item.selected { border-color: var(--primary); background: var(--bg); }
+        .option-item.correct { background: var(--success-bg); border-color: var(--success-text); color: var(--success-text); }
+        .option-item.wrong { background: var(--error-bg); border-color: var(--error-text); color: var(--error-text); opacity: 0.8; }
+        .option-item.correct-answer { background: var(--success-bg); border-color: var(--success-text); color: var(--success-text); font-weight: 600; }
+
+        .marker {
+            width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--text-sub);
+            margin-right: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: bold; flex-shrink: 0;
+        }
+        .option-item.selected .marker { border-color: var(--primary); color: var(--primary); }
+        .option-item.correct .marker { border-color: var(--success-text); color: var(--success-text); }
+        .option-item.wrong .marker { border-color: var(--error-text); color: var(--error-text); }
+
+        /* Scroll Top */
+        #scrollTop {
+            position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px;
+            background: var(--primary); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: 0.3s;
+            z-index: 900;
+        }
+        #scrollTop.visible { opacity: 1; pointer-events: auto; }
+
+        @media (max-width: 600px) {
+            .header-top { flex-direction: row; }
+            .stats-bar { font-size: 0.75rem; padding: 6px; overflow-x: auto; white-space: nowrap; gap: 10px; }
+            .question-card { padding: 1rem; }
+            .q-text { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sticky-header">
+    <div class="header-top">
+        <h1 class="header-title">Soil Mechanics (350 Q)</h1>
+        <div class="header-actions">
+            <button class="btn btn-outline" onclick="toggleTheme()" title="Toggle Dark Mode">🌗</button>
+            <button class="btn btn-reset" onclick="confirmReset()">Reset</button>
+        </div>
+    </div>
+    <div class="stats-bar">
+        <div class="stat-item">Q: <span id="totalAttempted">0</span>/<span id="totalCount">350</span></div>
+        <div class="stat-item">Score: <span id="scoreCount">0</span></div>
+        <div class="stat-item">Accuracy: <span id="accuracy">0%</span></div>
+        <div class="stat-item">Wrong: <span id="wrongCount" style="color:var(--error-text)">0</span></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="nav-grid" id="navGrid"></div>
+    <div id="quizContainer"></div>
+</div>
+
+<div id="scrollTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+
+<script>
+    // --- VERIFIED KEY MAP (0=a, 1=b, 2=c, 3=d, 4=e) ---
+    const keyMap = [
+        // 1-50
+        0, 1, 3, 0, 3, 3, 2, 2, 3, 3, 
+        1, 2, 1, 1, 0, 3, 1, 0, 3, 2, 
+        0, 3, 2, 2, 3, 3, 3, 0, 2, 0, 
+        0, 2, 2, 2, 3, 3, 0, 2, 2, 0, 
+        3, 1, 0, 3, 2, 3, 3, 2, 0, 1, 
+        // 51-100
+        0, 3, 2, 0, 0, 1, 0, 1, 0, 3, 
+        2, 1, 2, 1, 3, 1, 0, 2, 0, 2, 
+        2, 2, 3, 0, 2, 2, 1, 1, 0, 1, 
+        3, 1, 2, 2, 0, 3, 2, 1, 2, 1, 
+        3, 2, 0, 0, 3, 1, 3, 1, 3, 2, 
+        // 101-150
+        1, 0, 1, 0, 2, 0, 2, 3, 1, 3, 
+        2, 0, 1, 1, 1, 1, 0, 0, 2, 1, 
+        3, 1, 1, 2, 3, 0, 1, 1, 2, 2, 
+        0, 1, 3, 1, 1, 0, 2, 0, 0, 1, 
+        3, 1, 3, 1, 2, 1, 1, 2, 3, 2, 
+        // 151-200
+        3, 0, 1, 2, 3, 3, 1, 3, 1, 0, 
+        1, 0, 2, 1, 2, 0, 2, 3, 2, 2, 
+        3, 1, 2, 2, 3, 0, 1, 3, 2, 1, 
+        3, 2, 2, 3, 0, 2, 3, 1, 1, 1, 
+        0, 0, 2, 1, 2, 1, 2, 2, 2, 1, 
+        // 201-250
+        3, 1, 0, 1, 3, 0, 0, 0, 3, 0, 
+        0, 0, 1, 1, 2, 1, 1, 1, 3, 1, 
+        2, 4, 1, 3, 2, 0, 1, 3, 2, 1, 
+        2, 1, 0, 0, 1, 2, 3, 1, 0, 1, 
+        3, 1, 1, 2, 0, 1, 3, 2, 2, 3, 
+        // 251-300
+        1, 0, 3, 1, 0, 4, 0, 0, 2, 2, 
+        0, 1, 1, 2, 3, 1, 0, 2, 2, 1, 
+        3, 1, 0, 0, 2, 0, 1, 1, 2, 2, 
+        2, 1, 3, 3, 1, 1, 1, 1, 2, 3, 
+        2, 1, 1, 1, 3, 3, 2, 1, 2, 1, 
+        // 301-350
+        1, 3, 3, 1, 2, 3, 0, 3, 0, 2, 
+        3, 1, 1, 0, 4, 0, 2, 2, 1, 0, 
+        2, 2, 0, 1, 2, 3, 1, 2, 2, 1, 
+        3, 2, 3, 1, 1, 3, 0, 1, 2, 0, 
+        3, 3, 0, 3, 3, 2, 2, 2, 3, 2
+    ];
+
+    // --- QUESTIONS DATA ---
+    const questions = [
+        {i:1, q:"Who coined the term soil Mechanics?", o:["terzaghi","cassagrande","newmark","rankine"]},
+        {i:2, q:"Which is the correct definition of soil in geotechnical engineer's point of view?", o:["soil is the top surface of the earth where plants can grow","soil is the unconsolidated material consisting particles produced by disintegration of rock which may or may not contain organic matter","soil is the relatively thin surface zone which can contain moisture","none of the above"]},
+        {i:3, q:"Pick up the correct sequence of geological cycle for the formation of soil", o:["transportation - upheaval - deposition - weathering","transportation - deposition - weathering - upheaval","weathering - upheaval - deposition - transportation","weathering - transportation - deposition - upheaval"]},
+        {i:4, q:"The finest size of soil particle is", o:["clay","silt","sand","cobble"]},
+        {i:5, q:"Chemical weathering occurs because of", o:["oxidation","carbonation","hydration","all of the above"]},
+        {i:6, q:"Physical weathering occurs due to", o:["temperature changes","wedging action of ice","spreading of roots of plants","all of the above"]},
+        {i:7, q:"Hygroscopic water can be removed by", o:["gravity flow","free flow","heating","all of the above"]},
+        {i:8, q:"If the soil stays at a place above the parent rock where it is produced, then it is called", o:["stationary soil","static soil","residual soil","immobile soil"]},
+        {i:9, q:"An agent responsible for the transportation of soil is", o:["wind","water","gravity","all of the above"]},
+        {i:10, q:"Cohesionless soils are formed due to", o:["oxidation of rocks","leaching action of water on rocks","blowing of hot and cold wind","physical disintegration of rocks"]},
+        {i:11, q:"Peat is composed of", o:["clay and sand","decayed vegetable matter","inorganic silt and silty clay","synthetic chemicals"]},
+        {i:12, q:"Honey combed structure is found in", o:["gravels","coarse sands","fine silts and clays","highly plastic slays"]},
+        {i:13, q:"Soil transported by water and deposited at the bottom of the lake is known as", o:["alluvial soil","lacustrine soil","loess","dune sand"]},
+        {i:14, q:"To what category do the gravel and sand belonging?", o:["cohesive soil","cohesionless soil","marine soil","expansive soil"]},
+        {i:15, q:"Agent of transportation for alluvial soils is", o:["water","gravity","wind","ice"]},
+        {i:16, q:"Soil in which some of the intermediate size particles are missing is known as", o:["poorly graded soil","non-uniform soil","ill proportioned soil","skip graded soil"]},
+        {i:17, q:"Soil which contains the particles of different sizes in good proportion is called", o:["uniform soil","well graded soil","consistent soil","none of the above"]},
+        {i:18, q:"The types of soil, which contains particles of almost same size", o:["uniform soil","uniformly graded soil","skip graded soil","gap graded soil"]},
+        {i:19, q:"For a well graded soil the co-efficient of curvature will be between", o:["1 and 10","2 and 8","3 and 7","1 and 3"]},
+        {i:20, q:"Generally soils is considered as", o:["single phase system","two phase system","three phase system","none of the above"]},
+        {i:21, q:"Three phase system is concerned with", o:["partially saturated soil","saturated soil","dry soil","all of the above"]},
+        {i:22, q:"Which of the following statements is true?", o:["in a dry soil all the voids are filled with air","in a saturated soil all the voids are filled with water","in a partly saturated soil the voids are occupied by both air and water","all of the above"]},
+        {i:23, q:"Degree of saturation of a soil is generally", o:["above 100%","below zero","between 0% and 100%","none of the above"]},
+        {i:24, q:"The basis for all soil classification systems is", o:["permeability characteristics","specific gravity of solids","grain size and plasticity characteristics","none of the above"]},
+        {i:25, q:"Soils are basically", o:["organic materials","inorganic materials","mineral materials","organic and inorganic materials"]},
+        {i:26, q:"Weathering of soils is caused by", o:["periodical temperature changes","impact and splitting action of flowing water","impact and splitting action of plants and animals","all of the above"]},
+        {i:27, q:"'Talus' is the soil transported by", o:["wind","water","glacier","gravitational force"]},
+        {i:28, q:"'Loess' is silty clay formed by the action of", o:["wind","water","glacier","gravitational force"]},
+        {i:29, q:"'Drift' is the material picked up, mixed, disintegrated, transported and red positioned", o:["wind","gravitational force","glacier water","all of the above"]},
+        {i:30, q:"Cohesionless soil is", o:["sand","silt","clay","clay and silt"]},
+        {i:31, q:"Soil having more cohesion than sand", o:["silt","gravel","clay","none of the above"]},
+        {i:32, q:"The behaviour of silt is normally governed by", o:["mass energy","surface energy","mass and surface energy","none of the above"]},
+        {i:33, q:"Silts have the following property", o:["plasticity","limited plasticity","limited or no plasticity","elasticity"]},
+        {i:34, q:"The maximum size of clay particle is", o:["0.1mm","0.3mm","0.002mm","0.005mm"]},
+        {i:35, q:"The specific gravity of sandy soils/ gravel is", o:["<1.5","<2.0",">2.0",">2.5"]},
+        {i:36, q:"Specific gravity of soil is", o:["same for calys and sands","determined by hydrometer","less than 2.0 for most soils","more than 2.5 for most soils"]},
+        {i:37, q:"Core-cutter method is used for", o:["determining density of soil","obtaining samples for direct shear test","determining bearing capacity of soil","compacting soil"]},
+        {i:38, q:"In hydrometer analysis the principle used is", o:["newton's law","darcy's law","stoke's law","rehbann's law"]},
+        {i:39, q:"The bulk density of soil can be defined as", o:["ratio of the weight of the solids to the volume of solids","ratio of uni weight of soil to that of water","unit weight of soil","unit weight of soil under saturated condition"]},
+        {i:40, q:"The dry density of soil can be defined as", o:["weight of solids to the total volume of the soil","weight of the soil to the volume of the soil","unit weight of the soil to the unit weight of water","none of the above"]},
+        {i:41, q:"The density of soil can be increased by", o:["by reducing the air voids","by elastic compression of soil grains","by expelling water from soil pores","all of the above"]},
+        {i:42, q:"The relation between dry density(γd), bulk density (γ) and water content (w) is", o:["γ = γd / (1+w)","γd = γ / (1+w)","w = γ / (1+γd)","w = γ / (1-γd)"]},
+        {i:43, q:"Saturated soil is concerned with", o:["two phase system","three phase system","one phase system","all of the above"]},
+        {i:44, q:"The saturated density of soil can be expressed as", o:["weight of soil in water to its volume","weight of soil minus weight of equivalent water to volume of soil","weight of soil less weight of water in voids to the volume of solids plus voids in the soil","unit weight of saturated soil"]},
+        {i:45, q:"A pycnometer is used to determine", o:["specific gravity and dry density","water content and void ratio","water content and specific gravity","dry density and void ratio"]},
+        {i:46, q:"The water content of soils can be accurately determined by", o:["calcium carbide","sand bath","alcohol method","oven drying method"]},
+        {i:47, q:"The percentage of the porosity of loose sand is in the range of", o:["5 to 15%","15 to 30%","30 to 40%","40 to 50%"]},
+        {i:48, q:"Hydrometer readings are corrected for", o:["temperature correction","meniscus correction","for both a) and b) of above","none of the above"]},
+        {i:49, q:"The thickness of adsorbed layers of soil is measured in", o:["angustroms","cm","mm","micron"]},
+        {i:50, q:"Particle size range is measured by", o:["effective size","uniformity coefficient","coefficient of curvature","none of the above"]},
+        {i:51, q:"The void ratio of soil is", o:["the ratio of voids to solids in volume","the ratio of voids to gross volume","the ratio of solids to voids in volume","mthe ratio of solid volume to gross volume"]},
+        {i:52, q:"Theoretically, the void ratio in soils can have the following values", o:[">1","<1",">0.5","all of the above"]},
+        {i:53, q:"Void ratio, e of a soil can", o:["never be greater than one","be equal to zero","be greater than zero","be between 0 and 1"]},
+        {i:54, q:"The soil sample contains volume of void 0.2 and volume of soil solid is 0.30 then find the void ratio & porosity of soil", o:["0.67, 0.40","2, 0.67","0.67, 0.80","0.80, 0.67"]},
+        {i:55, q:"The ratio of volume of air voids to the volume of voids, is known", o:["air content","wet porosity","percentage voids","degree of saturation"]},
+        {i:56, q:"The relation between dry density (ρd), bulk density (ρ) and water content (w) is", o:["ρ = ρd / (1+w)","ρd = ρ / (1+w)","w = ρ / (1+ρd)","w = ρd / (1+ρ)"]},
+        {i:57, q:"Water content is defined as the ratio of", o:["weight of water to weight of solids","weight of solids to weight of water","total amount of water in soil","all of the above"]},
+        {i:58, q:"The ratio of volume of air voids to the total volume of the given soil mass is known as", o:["air content","percentage of air voids","percentage voids","degree of saturation"]},
+        {i:59, q:"The ratio of volume of voids to the total volume of the given soil mass is known as", o:["porosity","void ratio","specific gravity","water content"]},
+        {i:60, q:"The ratio of weight of water to the weight of solids in a given mass of soil, is known as", o:["void ratio","porosity","specific gravity","water content"]},
+        {i:61, q:"The degree of saturation in soils can be defined as the ratio of", o:["water by weight to the dry soil weight","volume of water to the gross volume of soil","volume of water to volume of voids in soil","weight of the water to wt. of soil"]},
+        {i:62, q:"The relationship between void ratio (e) and porosity ratio (n) is", o:["n = e / (1-e)","e = n / (1-n)","e = (1+n) / (1-e)","n = (1+e) / (1-e)"]},
+        {i:63, q:"The functional equation for specific gravity (G) water content (w), void ratio (e) and degree of saturation (Sr) is", o:["w = SrG/e","e = Srw/G","e = wG/Sr","G = Srw/e"]},
+        {i:64, q:"The fundamental relation between percentage Air voids na, specific gravity (G), water content (w) and dry density (γd) is", o:["γd = (1-na)Gγw / (1+WG)","γd = (1-na)Gγw / (1+w)","γd = (1+WG)γw / naG","γd = (1-W)Gna / (1+γw)"]},
+        {i:65, q:"The ratio of the difference between the void ratio of the soil in its loosest & its natural state and fully dense state is termed as", o:["degree of density","density index","relative density","any of the above"]},
+        {i:66, q:"The water content of soils is defined as the ratio of", o:["volume of water to that of voids","weight of water to the dry soil weight","volume of water to the gross volume of soil","weight of water to that of the soil"]},
+        {i:67, q:"A soil sample contains a degree of saturation is 30%, find the percentage of air voids", o:["70%","30%","60%","50%"]},
+        {i:68, q:"Which one is wrong?", o:["e = Vv / Vs","n = Vv / V","s = Vw / Vv","w = Ww / Ws"]},
+        {i:69, q:"A soil sample have following characteristics- S=50%, G=2.6, W=30%, find the void ratio, e", o:["1.56","2.56","0.56","5.61"]},
+        {i:70, q:"Which method is quickest to find the water content of soils?", o:["oven dry method","alcohol method","calcium carbide method","sand bath method"]},
+        {i:71, q:"Three phase diagram of soil represents", o:["solids, pebbles & clay","dust, fine sand & coarse sand","solids, water & air","solid volume & mass"]},
+        {i:72, q:"A fully saturated soil is called", o:["one phase system","two phase system with soil and air","two phase system with soil and water","three phase system"]},
+        {i:73, q:"The degree of saturation, Sr of soil in percentage has value", o:["Sr>0","Sr≤0","0<S<100","0≤S≤100"]},
+        {i:74, q:"The percentage voids (n) has value", o:["0<n<100","S<0","n>0","n≤0"]},
+        {i:75, q:"If the volume of voids is equal to the volume of solids in a soil, then the values of porosity and voids ratio respectively are", o:["1.0 and 0","0 and 1","0.5 and 1","1 and 0.5"]},
+        {i:76, q:"If in a partially saturated soil, the degree of saturation is 40%, then air content of the soil is", o:["40%","50%","60%","100%"]},
+        {i:77, q:"If the water content of a fully saturated soil mass is 100%, then the voids will be", o:["less than specific gravity of soil","equal to specific gravity of soil","greater than specific gravity of soil","independent of specific gravity of soil"]},
+        {i:78, q:"If the sand in situ is in densest state, then its relative density is", o:["equal to zero","equal to one","between 0 and 1","greater than 1"]},
+        {i:79, q:"The effective size of particle of soil is given by", o:["D10","D20","D30","D60"]},
+        {i:80, q:"D10 represents the size in mm such that 10% of the particles are finer than this size.", o:["10% of the soil is coarser than this value","10% of the soil is finer than this value","this value has no bearing on particle size distribution","none of the above"]},
+        {i:81, q:"A decrease in water content results in a reduction of the volume of a soil in", o:["liquid state","plastic state","semi liquid state","all of the above"]},
+        {i:82, q:"The minimum water content at which the soil just begins to crumble when rolled into threads 3 mm in diameter is known as", o:["shrinkage limit","plastic limit","liquid limit","consistency limit"]},
+        {i:83, q:"The maximum water content at which a reduction in water content does not cause a decrease in volume of soil mass is known as", o:["liquid limit","plastic limit","shrinkage limit","ductile limit"]},
+        {i:84, q:"Plasticity index is obtained as the difference between", o:["liquid limit and shrinkage limit","shrinkage limit and plastic limit","liquid limit and plastic limit","none of the above"]},
+        {i:85, q:"The ratio of plasticity index to clay fraction is known as", o:["activity ratio or number","flow index","liquidity index","toughness index"]},
+        {i:86, q:"The slope of the flow curve obtained in liquid limit test is called", o:["liquidity index","plasticity index","toughness index","flow index"]},
+        {i:87, q:"The ratio of plasticity index to flow index is called", o:["activity ratio","liquidity index","toughness index","shrinkage index"]},
+        {i:88, q:"In a soil if the water content is equal to the liquid limit, its relative consistency is", o:["1","0","10","5"]},
+        {i:89, q:"The difference between plastic limit and shrinkage limit is called", o:["fluidity index","relative consistency","plasticity index","shrinkage index"]},
+        {i:90, q:"The water content at which the soil changes from liquid state to plastic state is known as", o:["plastic limit","liquid limit","shrinkage limit","none of the above"]},
+        {i:91, q:"The difference of range of water between liquid limit and plastic limit is called:", o:["fluidity index","relative consistency","shrinkage index","plasticity index"]},
+        {i:92, q:"The coefficient of curvature is defined as", o:["D60/D10","D10/D60","D30^2 / (D10 x D60)","none of the above"]},
+        {i:93, q:"The uniformity coefficient of soil is", o:["D60/D10","D10/D60","D30/D10","none of the above"]},
+        {i:94, q:"Inorganic soils with low plasticity is denote by", o:["ML","CH","MH","SH"]},
+        {i:95, q:"The change of moisture content of soils, changes", o:["angle of repose","cohesive strength","amount of compaction required","any of the above"]},
+        {i:96, q:"The property of the soil which allows to flow water through the soil is known as", o:["capillary","permeability","fluidity","viscosity"]},
+        {i:97, q:"Cohesion of soil may", o:["not effected due to the moisture content","increases as the moisture content increases","decreases as the moisture content decreases","more in well compacted solids"]},
+        {i:98, q:"As moisture content of soil increases, cohesion of soil", o:["increases","decreases","constant","all of the above"]},
+        {i:99, q:"Permeability of soil varies,", o:["inversely as square of grain size","inversely as of grain size","directly as of grain size","square of grain size"]},
+        {i:100, q:"The law which states that the velocity of flow through porous medium is directly proportional to the hydraulic gradient is", o:["newton's law","stoke's law","darcy's law","reynold's law"]},
+        {i:101, q:"Piping in soils is due to", o:["low exit gradient","erosion of subsoil by high velocity of seepage flow","leakage of water through pipes laid in dams","passage of water through well-connected pores in soil."]},
+        {i:102, q:"Units of co-efficient of permeability", o:["cm/sec","sec/cm","cm/sec^2","sec^2/cm"]},
+        {i:103, q:"Which of the following soils has largest permeability?", o:["sand","gravel","silt","clay"]},
+        {i:104, q:"Falling head permeability test is preferable when soil sample is", o:["clayey","silty sand","sandy","sandy gravel"]},
+        {i:105, q:"If the coefficient of permeability of a soil is 0.08 cm/sec, that soil will be", o:["clay","silt","sand","gravel"]},
+        {i:106, q:"The quantity of seepage of water in soil is,", o:["proportional to the coefficient of permeability","proportional to the head of the water at down stream","inversely proportional to the coefficient of permeability","inversely proportional head of the water at down streams"]},
+        {i:107, q:"The quantity of water seeping through a soil is", o:["proportional to the head of water down stream","proportional to the head of water up stream","proportional to the total head loss","none of the above"]},
+        {i:108, q:"The permeability of a soil deposit-in-situ can be best obtained by", o:["falling head permeameter","constant head permeameter","pumping test","none of the above"]},
+        {i:109, q:"Quick sand is a", o:["type of sand","condition in which a cohesionless soil losses its strength because of upward flow of water","moist sand containing small particles","condition which occurs in coarse sand"]},
+        {i:110, q:"In a sand stratum of 1.5m thickness specific gravity 2.67 and voids ratio 0.67 the head required for quick condition is equal to", o:["3.0m","2.5m","2.0m","1.5m"]},
+        {i:111, q:"The critical exit gradient of the seepage of water in a soil is", o:["(1-e)/(G-1)","(G+1)/(1+e)","(G-1)/(1+e)","none of the above"]},
+        {i:112, q:"The critical exit gradient may occur when", o:["Flow is in upward direction","seepage pressure is in upward direction","effective pressure is zero","all of the above"]},
+        {i:113, q:"The critical exit gradient of the seepage of water in soils", o:["increases with a decrease in the specific gravity","increases with increase in the specific gravity","decreases with increase in the liquid limit","none of the above"]},
+        {i:114, q:"The critical exit gradient of the seepage of water in soils is", o:["directly proportional to the void ratio","increases with a decrease in void ratio","increases with a decrease in specific gravity","inversely proportional to the specific gravity"]},
+        {i:115, q:"The direction of seepage is", o:["parallel to equipotential line","perpendicular to equipotential line","perpendicular to stream lines","none of the above"]},
+        {i:116, q:"The seepage force in the soil is", o:["parallel to equipotential line","perpendicular to equipotential line","perpendicular to flow line","none of the above"]},
+        {i:117, q:"The seepage force is proportional to", o:["exit gradient","head of water upstream","head of water at downstream","none of the above"]},
+        {i:118, q:"The seepage force is proportional to", o:["head loss","flow net","head at upstream","equipotential gradient"]},
+        {i:119, q:"Flow net can be used for the determination of", o:["seepage flow rate","hydrostatic pressure","seepage pressure","exit gradient","all of the above"]},
+        {i:120, q:"Flow path/flow channel is", o:["the space between two adjacent flow lines","direction of flow","the space between two equipotential line","none of the above"]},
+        {i:121, q:"Flow lines and equipotential lines are", o:["parallel to each other","perpendicular to each other","not intersecting lines","intersecting lines at 90°"]},
+        {i:122, q:"In a flow net, which of the following statement is true?", o:["Flow lines and equipotential lines intersect at oblique angles","flow lines and equipotential lines intersect orthogonally","flow rate through each flow channel is different","the head along each flow line is constant"]},
+        {i:123, q:"A phreatic line is defined as the line within a dam section below which there are", o:["positive equipotential lines","positive hydrostatic pressure","negative hydrostatic pressure","negative equipotential lines"]},
+        {i:124, q:"If Nf, Nd and H are total flow channels, total number of potential drops and total hydraulic head difference respectively, the discharge, q through complete flow is given by", o:["q = √H (Nf/Nd)","q = KH (Nd/Nf)","q = KH (Nf/Nd)","q = KH √(Nf/Nd)"]},
+        {i:125, q:"The u/s face of an earthen dam is", o:["an equipotential line","phreatic line","flow line","none of the above"]},
+        {i:126, q:"The phreatic line is", o:["the u/s face of the earth dam","d/s face of the earth dam","the top flow line","none of the above"]},
+        {i:127, q:"Electrical analogy method is used to", o:["find electrical conductivity of soil","draw flow net","find the depth to water table","find the water content in a soil"]},
+        {i:128, q:"The top flow line in the case of seepage flow through an earthen dam has the shape of", o:["parabola","ellipse","hyperbola","none of the above"]},
+        {i:129, q:"In an earthen dam the phreatic line is", o:["straight line","circular line","parabolic","Zigzag"]},
+        {i:130, q:"A dam is", o:["one dimensional structure","two dimensional structure","three dimensional structure","none of the above"]},
+        {i:131, q:"If s is the focal length of the Kozeny's parabola and k is the co-efficient of permeability, the seepage flow rate per unit length of the dam is given as", o:["q = k.s","q = s/k","q = k.√s","q =k/s"]},
+        {i:132, q:"The modified co-efficient of permeability k' in the case of an anisotropic soil is given by", o:["k' = kx.kz","k' = √(kx.kz)","k' = (kx.kz)^1.5","k' = (kx.kz)^2"]},
+        {i:133, q:"The seepage flow through a porous medium is generally", o:["trubulent","super critical","transitional","laminar"]},
+        {i:134, q:"The seepage velocity, vs and the Dracy's velocity, v are related as", o:["vs = v/n","vs = v","vs = vn","vs = v/e"]},
+        {i:135, q:"The pressure-void ratio curve will be", o:["linear when plotted on ordinary paper","linear when plotted on semi-log paper","linear when plotted on log-log paper","none of the above"]},
+        {i:136, q:"Standard Proctor test is used for", o:["optimum moisture content (OMC)","void ratio","coefficient of consolidation","pavement thickness"]},
+        {i:137, q:"Compaction of soil is aimed at", o:["decreasing dry density","increasing porosity","decreasing void ratio","decreasing shear strength"]},
+        {i:138, q:"The maximum dry density occurs at a particular water content which is known as", o:["optimum moisture content","maximum moisture content","low moisture content","water content"]},
+        {i:139, q:"Compaction is done to remove........from soil.", o:["air","water","soil","none of the above"]},
+        {i:140, q:"For the same soil, increase in compaction effort", o:["does not affect OMC","increases OMC","decreases OMC","decreases more dry density"]},
+        {i:141, q:"The process of compaction may involve", o:["rolling","tamping","vibration","any of the above"]},
+        {i:142, q:"The types of compaction suitable in congested area for cohesive as well as cohesionless soil is", o:["roller","rammer","vibrator","vibrofloatation"]},
+        {i:143, q:"The types of compaction suitable for cohesionless soil having large thickness is", o:["roller","rammer","vibrator","vibrofloatation"]},
+        {i:144, q:"The most effective method for compacting sand is by using", o:["pneumatic rollers","sheep foot rollers","steel tyred rollers","vibration"]},
+        {i:145, q:"Moisture content for optimum moisture content of silt is", o:["5%","10%","15%","20%"]},
+        {i:146, q:"Plasticity needle/ proctor needle is used to determine", o:["plastic limit of the soil used in compaction","penetration resistance to control field compaction","penetration value of bitumen used in road construction","swelling index of black cotton soil"]},
+        {i:147, q:"In the modified proctor test the drop height of the rammer is", o:["30cm","45cm","60cm","75cm"]},
+        {i:148, q:"The process of improving the engineering properties of the soil and thus making it more stable is known as", o:["compaction","consolidation","stabilization","none of the above"]},
+        {i:149, q:"Mechanical stabilization is done by", o:["cement","lime","bitumen","proper grading"]},
+        {i:150, q:"Cement stabilizer is suitable for", o:["RCC","masonry","soil stabilization","all of the above"]},
+        {i:151, q:"The admixture used in soil stabilization is", o:["cement","lime","bitumen","any of the above"]},
+        {i:152, q:"Clays containing organic matter are made suitable for stabilization, by first adding a small percentage of", o:["hydrated lime","cement","calcium chloride","resins"]},
+        {i:153, q:"If the shearing stress is zero on two planes, then the angle between the two planes is", o:["45°","90°","135°","180°"]},
+        {i:154, q:"The compression resulting from long term static load and resulting expulsion of water is known as", o:["compaction","inverse swelling","consolidation","none of the above"]},
+        {i:155, q:"Consolidation theory was enunciated by", o:["rankine","westerguard","skempton","terzaghi"]},
+        {i:156, q:"Consolidation is process involving", o:["sudden compression of soil","tilting and failure of structure","abnormal sinking of foundation","gradual expulsion of pore water"]},
+        {i:157, q:"Rate of consolidation", o:["increases with decrease in temperature","increases with increase in temperature","independent of temperature","none of the above"]},
+        {i:158, q:"When a static load is applied, the consolidation is fast in case of", o:["clays","silty clays","sandy silts","sands"]},
+        {i:159, q:"Square root of times fitting method is used for calculating", o:["compression index","co-efficient of consolidation","co-efficient of compressibility","co-efficient of volume compressibility"]},
+        {i:160, q:"Empirical relationship between the compression index Cc and liquid limit (LL) of normally loaded clays of low to medium sensitivity is", o:["Cc=0.009 (LL-10%)","Cc=0.009(10%-LL)","Cc=0.09{...}","Cc=0.1(LL-25%)"]},
+        {i:161, q:"The relationship between the time factor Tv, co-efficient of consolidation Cv, the length of drainage path d, and time t is given by", o:["Tv = (Cv . d^2)/t","Tv = (Cv . t)/d^2","Tv = (Cv . t)/d","Tv = (Cv . t^2)/d^2"]},
+        {i:162, q:"Compression of soils occurs rapidly if voids are occupied by", o:["air","water","partly air and partly water","none of the above"]},
+        {i:163, q:"The ratio of settlement at any time t, to the final settlement is called", o:["percentage settlement","partial settlement","degree of consolidation","residual consolidation"]},
+        {i:164, q:"A clay deposit subjected to pressure in the past which is more than the present over burden pressure is known as", o:["normally consolidated soil","over consolidated soil","under consolidated soil","none of the above"]},
+        {i:165, q:"A clay deposit which is not fully consolidated under the existing over burden pressure is known as", o:["normally consolidated soil","over consolidated soil","under consolidated soil","none of the above"]},
+        {i:166, q:"A soil, which is fully consolidated under the existing over burden pressure, is known as", o:["normally consolidated soil","over consolidated soil","under consolidated soil","none of the above"]},
+        {i:167, q:"Over consolidation may be due to", o:["the weight of ice sheet or glacier which is melted away","weight of the land slide which is removed","both (a) and (b) of above","none of the above"]},
+        {i:168, q:"Bleeder wells are required to", o:["increase discharge from main well","store drainage water","collect seepage water in dams","relieve pressure in impervious layers"]},
+        {i:169, q:"The difference between total pressure and pore water pressure is known as", o:["major principal stress","minor principal stress","effective stress","none of the above"]},
+        {i:170, q:"The effective stress in a soil is equal to", o:["force per natural area","force per unit effective area","stress shared by the particles of the soil","stress shared by the pore water"]},
+        {i:171, q:"The neutral stress in a soil mass, is", o:["force per neutral area","force per unit effective of the soil","stress shared by the particles of the soil","stress shared by the pore water"]},
+        {i:172, q:"The total stress in a soil is", o:["force per neutral area","force per unit effective area","stress taken by the particles of the soil","stress taken by pure water"]},
+        {i:173, q:"The strength of a soil is generally identified by", o:["direct tensile stress","net stress","ultimate shear stress","direct ultimate compressive stress"]},
+        {i:174, q:"The shear strength of a soil", o:["is directly proportional to the depth of the soil","is directly proportional to the angle of repose of soil","increases with normal stress","decrease with an increase in the normal stress"]},
+        {i:175, q:"The shear strength of a soil is", o:["directly proportional to the cohesion of soil","directly proportional to the angle of friction of the soil","directly proportional to the normal stress","all of the above"]},
+        {i:176, q:"Shear strength of a soil is unique function of", o:["effective stress only","total stress only","both total and effective stress","none of the above"]},
+        {i:177, q:"The shear strength of a soil is proportional", o:["directly to the angle of internal friction","directly to the tangent of the angle of internal friction","inversely to the angle of internal friction","none of the above"]},
+        {i:178, q:"For the determination of shear strength in laboratory, the test done is", o:["unconfined shear test","triaxial shear test","direct shear test","all of the above"]},
+        {i:179, q:"Which of the following is responsible for the shear resistance in soils?", o:["intergranular friction","cohesion and adhesion between the soil particles","both (a) and (b) of above","none of the above"]},
+        {i:180, q:"In an undrained plastic clay the shear strength is due to", o:["internal friction","cohesion","inter-granular friction","none of the above"]},
+        {i:181, q:"Shearing strength of cohesionless soil depends upon", o:["dry density","void ratio","loading rate","normal stress"]},
+        {i:182, q:"Undrained shear strength Cu of saturated clay tested in unconfined compression is given in terms of unconfined compressive strength qu as", o:["Cu = 1/2 qu","Cu = qu","Cu = 2 qu","Cu = 2/3 qu"]},
+        {i:183, q:"For testing a saturated clay for shear strength, the test recommended, is", o:["direct shear test","triaxial compression test","unconfined compression test","all of the above"]},
+        {i:184, q:"On wetting, cohesive soils,", o:["loose permeability","gain shear strength","loose elasticity","decrease their shear strength"]},
+        {i:185, q:"Cohesive soils are generally /normally", o:["plastic and also compressible","elastic and also compressible","plastic but incompressible","none of the above"]},
+        {i:186, q:"The length/diameter ratio of cylindrical specimens used in triaxial test, is generally", o:["1","1.5","2","2.5"]},
+        {i:187, q:"The triaxial apparatus is usually used for", o:["unconsolidated-untrained test","consolidated-untrained test","drained test","all of the above"]},
+        {i:188, q:"The vane shear test is used for the in-situ determination of the undrained strength of the intact fully saturated", o:["sands","clays/cohesive","gravels","highly organic soils"]},
+        {i:189, q:"The value Nφ = tan² (45 + φ/2) is called", o:["bearing capacity factor","flow value","friction factor","stability number"]},
+        {i:190, q:"The failure plane", o:["carries maximum shear stress","does not carry maximum shear stress","carries minimun shear stress","none of the above"]},
+        {i:191, q:"The shear strength of cohesive soil is equal to", o:["C = q/2","C = 0.5 q tanφ","C = q","C = q tanφ"]},
+        {i:192, q:"The angle of internal friction of clay is about", o:["5-20°","24-30°","27-33°","30-35°"]},
+        {i:193, q:"Angle of internal friction of silty sand", o:["5-20°","24-30°","27-33°","30-35°"]},
+        {i:194, q:"The angle of internal friction of granular soils containing less then 5% silt is equal to", o:["25+0.15 Dd","30+0.15 Dd","30-0.15Dd","25-0.15Dd"]},
+        {i:195, q:"In Mohr's stress circle the radius of circle is when σ1 and σ3 are major principal stress and τtau is the shear stress on these planes is", o:["(σ1 - σ3)/2 + τ","√((σ1 - σ3)/2 + τ)","√(((σ1 - σ3)/2)^2 + τ^2)","√(((σ1 - σ3)/2)^2 + τ^2) / 2"]},
+        {i:196, q:"The tendency of dense sand to expand on application of shearing load in known as", o:["thixotropy","dilatancy","remoulding less","degree of sensitivity"]},
+        {i:197, q:"The angle between maximum shear stress plane and horizontal plane is equal to", o:["15°","30°","45°","50°"]},
+        {i:198, q:"The difference between the undisturbed shear strength and remoulded shear strength is known as", o:["thixotropy","dilatancy","remoulding less","degree of sensitivity"]},
+        {i:199, q:"The principle stress is maximum on", o:["minor principal plane","intermediate principal plane","major principal plane","none of these"]},
+        {i:200, q:"The curve A, B and C shown in fig below are respectively the stress-strain curves for stress of", o:["dense sand, clay and loose sand","dense sand, loose sand and clay","loose sand, dense sand and clay","clay, loose sand and dense sand"]},
+        {i:201, q:"Angle of Internal friction is minimum for", o:["angular grained loose soil","angular grained dense soil","round drained loose soil","clay"]},
+        {i:202, q:"For a soil layer with double drainage and thickness H, the drainage path is equal to", o:["2H","H/2","H^2","none of the above"]},
+        {i:203, q:"Westerguard's theory is more appropriate for", o:["layered soils","homogeneous deposits","anisotropic soils","normally consolidated homogeneous soils"]},
+        {i:204, q:"Absorbed water in soil is", o:["same as free water","the water chemically combined in crystal structure of the soil material","having free movement through the soil by gravity","water absorbed from atmosphere by forces of attraction"]},
+        {i:205, q:"The angle of internal friction depends upon", o:["particle shape and roughness","normal direct pressure","the amount of interlocking","all of the above"]},
+        {i:206, q:"Number of blow required to penetrate the sampler & cone for a depth of ........ & ......... is known as penetration number", o:["30cm & 20cm","20cm & 30cm","40 cm & 50 cm","50cm & 40cm"]},
+        {i:207, q:"An isobar is a line which connect the points of equal stress", o:["below GL","above GL","at GL","all of the above"]},
+        {i:208, q:"The shape & structure of isobar is like a/an", o:["onion","potato","pumpkin","turnip"]},
+        {i:209, q:"Which of the following soils will have least value of safe load?", o:["sandstone","limestone","moorum","soft chalk"]},
+        {i:210, q:"The active earth pressure of a soil can be defined as lateral pressure exerted by the soil when", o:["the retaining wall tends to move away from the back fill","the wall moves into the soil","the wall moves relative to the back fill","any of the above"]},
+        {i:211, q:"The lateral earth pressure of the soil moves towards the retaining wall indicates", o:["active earth pressure","passive earth pressure","constant","all of the above"]},
+        {i:212, q:"Active earth pressure is", o:["always less than passive earth pressure","always greater than passive earth pressure","sometimes greater than passive earth pressure","equal to passive earth pressure."]},
+        {i:213, q:"Passive earth pressure is defined as", o:["retaining wall tends to move away from the back fill","retaining wall tends to move towards the back fill","retaining wall is in stationary position","all of the above"]},
+        {i:214, q:"Total lateral earth pressure is proportional to", o:["depth of soil","square of depth of soil","angle of internal friction of soil","none of the above"]},
+        {i:215, q:"The passive earth pressure of a soil can be defined as lateral pressure exerted by the soil when the retaining wall tends to", o:["move away from the back fill","no movement relative to the back fill","move into the soil","any of the above"]},
+        {i:216, q:"Earth pressure at rest can be defined as lateral pressure exerted by the soil when the retaining wall tends to", o:["move away from the backfill","no movement relative to the backfill","move into the soil","all of the above"]},
+        {i:217, q:"The active earth pressure is proportional to", o:["tan(45°-φ/2)","tan²(45°- φ/2)","tan²(45°+φ/2)","tan(45°+φ/2)"]},
+        {i:218, q:"The passive earth pressure is proportional to", o:["tan(45°-φ/2)","tan²(45°-φ/2)","tan²(45°+φ/2)","tan(45°+φ/2)"]},
+        {i:219, q:"The earth pressure at rest is proportional to (where μ poisson's ratio)", o:["tan(45°-φ/2)","tan²(45°-φ/2)","tan²(45°+φ/2)","μ / (1-μ)"]},
+        {i:220, q:"Coefficient of earth pressure at rest is", o:["less than active earth pressure but greater than passive earth pressure","greater than active earth pressure but lesser than passive earth pressure","greater than both active and passive earth pressure","lesser than both active and passive earth pressure"]},
+        {i:221, q:"The coefficient of the active earth pressure Ka is equal", o:["(1-tanφ)/(1+tanφ)","(1+tanφ)/(1-tanφ)","(1-sinφ)/(1+sinφ)","(1+sinφ)/(1-sinφ)"]},
+        {i:222, q:"The assumption of Rankine's theory of earth pressure is", o:["the soil is semi finite, homogeneous, dry and cohesionless","ground surface is a plane which may be inclined or horizontal","back of the wall is vertical and smooth","wall yields about the base","all of the above"]},
+        {i:223, q:"The active earth pressure of a soil is given by", o:["Hc = (4c/γ) tan(45+φ)","Hc = (γh²/2) tan²(45-φ)","Hc = (γh²/2) tan²(45+φ)","Hc = (μγ/2(1-μ)) h²"]},
+        {i:224, q:"The earth pressure at rest is given by", o:["Hc = (4c/γ) tan(45+φ)","Hc = (γh²/2) tan²(45-φ)","Hc = (γh²/2) tan²(45+φ)","Hc = (μγ/2(1-μ)) h²"]},
+        {i:225, q:"The passive earth pressure is proportional to", o:["Hc = (4c/σ) tan(45+φ)","Hc = (4c/σ) tan²(45-φ)","Hc = (γh²/2) tan²(45+φ)","none"]},
+        {i:226, q:"The critical vertical depth Hc of free standing soil can be upto", o:["Hc = (4c/γ) tan(45+φ)","Hc = (γh²/2) tan²(45-φ)","Hc = (γh²/2) tan²(45+φ)","Hc = (μγ/2(1-μ)) h²"]},
+        {i:227, q:"Which sequence is correct regarding different coefficient of friction in increasing order", o:["Kp-Ka-Ko","Ka-Ko-Kp","Ko-Kp-Ka","Kp-Ko-Ka"]},
+        {i:228, q:"If the coefficient of passive earth pressure kp is 1/3 then the coefficient of active earth pressure is", o:["1/3","1","3","3/2"]},
+        {i:229, q:"The base width of retaining wall is B. what is the maximum permissible eccentricity if the wall should not fail in tension?", o:["B/3","2B/3","B/6","B/2"]},
+        {i:230, q:"In the case of a backfill with a sloping surface, the total active pressure on the wall of height H acts at", o:["H/3 above the base parallel to the base","H/3 above the base parallel to the sloping surface","H/2 above the base parallel to the base","H/2 above the base parallel to the sloping surface"]},
+        {i:231, q:"Compared to dry backfill submerged backfill will exert", o:["same earth pressure","less earth pressure","more earth pressure","terzaghi"]},
+        {i:232, q:"California Bearing Ratio test is used", o:["to find the bearing capacity of the soil","to find the thickness of a flexible pavement","to find the ratio of ultimate bearing capacity to net bearing capacity","none of the above"]},
+        {i:233, q:"The position of the back fill lies above a horizontal plane at the elevation of the top of the structure is known as", o:["surcharge","surcharge angle","extra load","failure load"]},
+        {i:234, q:"The lateral pressure exerted by a uniform surcharge of intensity q per unit area is", o:["q times the lateral pressure within the surface","q/γ , where γ is the density of backfill","1/q times the lateral pressure within the surface","none of the above"]},
+        {i:235, q:"Earth pressure acting at a height of ............in case of inclined surcharge.", o:["h/2 from the base of the wall","h/3 from the base of the wall","h/4 from the base of the wall","h/5 from the base of the wall"]},
+        {i:236, q:"In Rankine's earth pressure theory, the following assumption is made", o:["wall face is rough and vertical","backfill is cohesive soil","wall face is smooth and vertical","elastic equilibrium is satisfied"]},
+        {i:237, q:"The assumption of Rankine's theory of earth pressure is", o:["the soil is semi finite, homogeneous, dry and cohesionless","ground surface is a plane which may be inclined or horizontal","back of the wall is vertical and smooth","all of the above"]},
+        {i:238, q:"Distribution of earth pressure with depth is", o:["parabolic","hydrostatic","non-linear but increasing","volume controlled."]},
+        {i:239, q:"Wedge shape failure is assumed by", o:["coulomb","rankine","poncelet","terzaghi"]},
+        {i:240, q:"If the resultant force at the face of retaining wall is much more than frictional resistances at the bottom, the failure will be due to", o:["crushing","sliding","upthrust","overturing"]},
+        {i:241, q:"If the resultant force at the bottom of retaining wall lies out-side the middle third, the failure will be due to", o:["crushing","sliding","upthrust","overturing"]},
+        {i:242, q:"In the case of retaining walls, surcharge is", o:["excess moisture in wall","extra load on the wall","additional load carrying capacity of wall","extra load on the horizontal backfill"]},
+        {i:243, q:"In cohesive soils, depth of vertical cut up to which no lateral support is required to given by", o:["2c/γ","4c/γ","2γ/c","4γ/c"]},
+        {i:244, q:"One of the graphical methods for earth pressure determination is", o:["newmark's influence chart method","mohr diagram method","culman's method","taylor's method"]},
+        {i:245, q:"Sheet pile walls are used as", o:["retaining walls for water front construction","load bearing pile foundations","seepage preventing devices","uplift preventing devices"]},
+        {i:246, q:"Sheet piles are held in position by", o:["self seight of sheet pile","tie rods which are anchored","embedding bottom of sheet pile","adjusting water level on one side"]},
+        {i:247, q:"As sheet pile walls are embedded in soil, for the design of", o:["active earth pressure only","earth pressure at rest only","passive earth pressure only","active and passive earth pressure both considered"]},
+        {i:248, q:"The bearing capacity of soil", o:["depends on the size of the footing","load intensity","depends on the load","rate of loading"]},
+        {i:249, q:"The most suitable method for increasing the bearing capacity of black cotton soil is", o:["watering surface of soil","compacting the soil","replacement of black cotton soil by sand","increasing the depth"]},
+        {i:250, q:"Black cotton soil is not suitable for foundations because of its", o:["black colour","low bearing capacity","cohesive particles","swelling and shrinkage nature"]},
+        {i:251, q:"Bearing capacity of soil primarily depends upon", o:["air void","water content","chemical","rate of loading"]},
+        {i:252, q:"The bearing capacity of a soil depends on", o:["grain size of the soil","load intensity","on the load","rate of loading"]},
+        {i:253, q:"The bearing capacity of a weak soil may be improved by", o:["increasing the depth of foundation","compacting the soil by ramming","removing the poor soil and filling the gap with sand, gravel etc.","all of the above"]},
+        {i:254, q:"Cohesive soils are", o:["good for embankment as they have high shear strength","poor for backfills because of large lateral pressure","good for backfills because of poor shear strength","low lateral pressure"]},
+        {i:255, q:"The internal molecular attraction of a soil, is known as cohesion", o:["decreases as the moisture content increases","increases as the moisture content decreases","is more in well compacted clays","depends upon the external applied load"]},
+        {i:256, q:"The bearing capacity of a soil depends upon", o:["size of the particles","shape of the particles","cohesive properties of particles","internal frictional resistance of particles","all of the above"]},
+        {i:257, q:"Bearing capacity of soil is determined by", o:["plate load test","standard cone test","both (a) and (b) of above","none of the above"]},
+        {i:258, q:"The soil having minimum/least bearing capacity is", o:["moist clay","sandy soil","rock soil","silt clay"]},
+        {i:259, q:"The safe B.C. of a soil can be defined as", o:["ultimate load on the bearing area","load intensity beyond which the soil should not be loaded","load at which the soil fails","load beyond which the soil"]},
+        {i:260, q:"The ultimate B.C. of a soil can be defined as", o:["ultimate load on the bearing area","safe load on the bearing area","load at which the soil fails","load beyond which the soil should not be loaded"]},
+        {i:261, q:"The ultimate bearing capacity of a soil for a general shear failure is given by", o:["q = cNc + γDfNq + 0.5γBNγ","q = 1.2cNc + γDfNq + 0.4γBNγ","q = 0.67cNc + γDfNq + 0.5γBNγ","none of the above"]},
+        {i:262, q:"The ultimate B.C. of the soil for local shear failure is given by", o:["q = cNc + γDfNq + 0.5γBNγ","q = 0.67cNc + γDfNq + 0.5γBNγ","q = 1.2cNc + γDfNq + 0.4γBNγ","none of the above"]},
+        {i:263, q:"The ultimate B.C. of the soil for square footing is", o:["q = cNc + γDfNq + 0.5γBNγ","q = 1.2cNc + γDfNq + 0.4γBNγ","q = 0.67cNc + γDfNq + 0.5γBNγ","none of the above"]},
+        {i:264, q:"The bearing capacity factors Nc, Nq and Ny are functions of", o:["cohesion only","angle of internal friction","both (a) and (b) of above","none of the above"]},
+        {i:265, q:"Terzaghi's analysis assumes", o:["soil is homogeneous and isotropic","elastic zone has straight boundaries inclined at φ=φ to the horizontal...","failure zones do not extend above the horizontal plane through the base of the footing","all of the above"]},
+        {i:266, q:"According to Terzaghi's theory, the ultimate B.C., at ground surface for a purely cohesive soil and for a smooth base of a strip footing is", o:["2.57c","5.14c","10.28c","12.0c"]},
+        {i:267, q:"The ultimate bearing capacity of frictionless soils is", o:["4.5c to 6c","2c to 4c","c to 3c","2c to 5c"]},
+        {i:268, q:"The rise of water table below the foundation influences the bearing capacity of soil mainly by reducing", o:["effective angle of shearing resistance","cohesion and effective unit weight of soil","effective unit weight of soil and effective angle of shearing resistance","cohesion and effective angle of shearing resistance"]},
+        {i:269, q:"Rise of water table in cohesionless soils upto ground surface reduces the net ultimiate bearing capacity approximately by", o:["90%","80%","50%","40%"]},
+        {i:270, q:"The reduction factor to the bearing capacity of soil due to water table at a depth equal to the width of footing below the footing is", o:["0.25","0.50","0.75","1.00"]},
+        {i:271, q:"The reduction factor to the bearing capacity of soil due to water table at a depth equal to half of the width of footing below the footing is", o:["0.25","0.50","0.75","1.00"]},
+        {i:272, q:"The reduction factor to the bearing capacity of soil due to water table just below the footing is", o:["0.25","0.50","0.75","1.00"]},
+        {i:273, q:"Raising of water table in shallow foundations, near foundation level", o:["reduces bearing capacity","increases bearing capacity","does not affect bearing capacity","increases and then decreases bearing capacity"]},
+        {i:274, q:"The maximum pressure which a soil can carry without shear failure is called", o:["safe bearing capacity","net bearing capacity","net ultimate bearing capacity","ultimate bearing capacity"]},
+        {i:275, q:"The minimum net pressure intensity causing shear failure of soil, is called", o:["safe bearing capacity","net bearing capacity","net ultimate bearing capacity","ultimate bearing capacity"]},
+        {i:276, q:"Negative skin friction is to be considered when", o:["fill settles relative to pile","pile settles relative to fill","fill and pile settle together","water table rises"]},
+        {i:277, q:"Negative skin friction", o:["increases the load carrying capacity of pile","decreases the load carrying capacity of pile","neither increase nor decrease the load carrying capacity of pile","all of the above"]},
+        {i:278, q:"Contribution due to skin friction is maximum in", o:["sands","soft clays","piles resting on rock","none of the above"]},
+        {i:279, q:"The load carrying capacity of pile...........due to skin friction.", o:["increases","decreases","constant","none of the above"]},
+        {i:280, q:"Allowable bearing pressure for a foundation depends on", o:["allowable settlement only","ultimate bearing capacity of soil only","both allowable settlement & ultimate bearing capacity of soil","none of the above"]},
+        {i:281, q:"Well foundation in sandy soils derive their bearing capacity from", o:["skin friction","point bearing","uplift","skin friction & point bearing"]},
+        {i:282, q:"The bottom plug in well foundation is used", o:["to seal off the water","for stable resting","to transfer load from the steining to the soil","create a working place in the well"]},
+        {i:283, q:"The well in well foundation", o:["normally left empty","filled with earth and consolidated","filled with water","filled with sand and consolidated"]},
+        {i:284, q:"The minimum depth of building foundation on", o:["sandy soil is 80 cm to 100 cm","clay soils is 90cm to 160cm","rocky soils is 5cm to 50cm","all of the above"]},
+        {i:285, q:"The well foundation are normally used under", o:["industrial buildings","structures on river beds","tall buildings","off shore wells"]},
+        {i:286, q:"Minimum depth of a footing carrying a heavy load is given by", o:["d = (3W/4fL)(L-1)","d = (4W/3fL)(L-1)","d = (L-1)√(4W/fL)","d = (L-1)√(W/3fL)"]},
+        {i:287, q:"According to Rankine's analysis, minimum depth of foundation is equal to", o:["(q/γ) ((1+sinφ)/(1-sinφ))^2","(q/γ) ((1-sinφ)/(1+sinφ))^2","(q/γ) ((1+sinφ)/(1-sinφ))","(q/γ) ((1-sinφ)/(1+sinφ))"]},
+        {i:288, q:"Raft foundation is type of", o:["deep foundation","shallow foundation","none of the above","foundation under water"]},
+        {i:289, q:"A foundation may be classified as shallow if", o:["depth is less than 6 m","depth is less than its width","depth is less than 1 m","none of the above"]},
+        {i:290, q:"A foundation may be classified as deep if", o:["depth to width ratio is more than 2","depth to width ratio is less than 2","length to width ratio is more than 2","length to width ratio is between 1 and 2"]},
+        {i:291, q:"A foundation may be classified as spread foundation if", o:["depth to width ratio is more than 2","depth to width ratio is less than 2","length to width ratio is more than 2","length to width ratio is between 1 and 2"]},
+        {i:292, q:"A foundation may be classified as continuous foundation if", o:["depth to width ratio is more than two","length to width ratio is more than two","depth to width ratio is equal to two","length to width ratio is less than two"]},
+        {i:293, q:"A foundation may be classified as strip foundation if", o:["length is very large","length is very large compared with uniform width","load is applied at long intervals","none of the above"]},
+        {i:294, q:"Combined footing is generally used when", o:["no. of columns are more than two and are spaced far apart","no. of columns are two and are spaced close to each other","no. of columns are two and are spaced far apart","none of the above"]},
+        {i:295, q:"A grillage foundation is used under", o:["heavy load bearing wall","set of columns","combined footing","heavily loaded isolated column"]},
+        {i:296, q:"Pile foundations are normally used", o:["in soft clayey soil","in loose sandy soil","in heavy loaded situations","when required bearing area is not available"]},
+        {i:297, q:"Pile foundations are enormously used", o:["bridge foundations","machine foundations","tall buildings","towers"]},
+        {i:298, q:"Minimum number of piles needed to support a wall is", o:["1","2","3","4"]},
+        {i:299, q:"Minimum number of piles needed to support a column is", o:["1","2","3","4"]},
+        {i:300, q:"Negative skin friction ........load carrying capacity of the pile.", o:["increases","decreases","constant","none of the above"]},
+        {i:301, q:"The permissible settlement in case of isolated foundation on clayey soils is", o:["25 mm","45 mm","65 mm","85 mm"]},
+        {i:302, q:"The maximum differential settlement in case of foundation on clayey soils", o:["10 mm","20 mm","30 mm","40 mm"]},
+        {i:303, q:"For normally consolidated clay deposits stability analysis of slope by the following method is appropriate", o:["friction circle method","swedish circular arc method","stices method","none of the above"]},
+        {i:304, q:"Base failure refer to failure surface which", o:["is above the toe of the slope","includes toe of the slope","is below the toe of the slope","none of the above"]},
+        {i:305, q:"Toe failure is most likely in the case of", o:["steep slopes","gentle slopes","all inclinations","very steep slopes"]},
+        {i:306, q:"The structure which derives its stability due to self-weight is", o:["sheet pile wall","bulk head","cantilever retaining wall","masonry retaining wall"]},
+        {i:307, q:"Stability of slopes can be increased by", o:["adopting gentle slopes","adopting great heights","storing water on one side","constructing on clay deposits"]},
+        {i:308, q:"A plane inclined at an angle to the horizontal at which the soil is expected to stay in the absence of any lateral support is known as", o:["natural slope line","the stable line","repose line","all of the above"]},
+        {i:309, q:"The critical height in the stability of soil is the", o:["maximum height at which stability of slope is possible","minimum height at which stability of slope is possible","maximum vertical height of the soil in an open excavation","none of the above"]},
+        {i:310, q:"Stability analysis shall be made considering", o:["total stresses","normal stresses","effective stresses","shear stresses"]},
+        {i:311, q:"Berms are used to", o:["increase the weight of dam","reduce seepage losses","increase shear strength","increase factor of safety"]},
+        {i:312, q:"Factor of safety of slopes is defined as", o:["FS = total stress / effective stress","FS = shear strength / shear stress","FS = overturning moment / resisting moment","FS = shear stress / normal stress"]},
+        {i:313, q:"Factor of safety of embankments shall be", o:["at least 1.0","at least 1.5","at least 2.0","at least 2.5"]},
+        {i:314, q:"Overturning moment due to pressure of soil is 10 KN-m while resisting moment is 5 KN-m. Find the factor of safety", o:["2","1","0.5","none of the above"]},
+        {i:315, q:"The assumption of coulomb's theory is", o:["back fill is dry, homogeneous, isotropic and cohesion less","rupture plane is linear and passes through toe of wall","sliding wedge acts as a rigid body...","position and direction of the resultant pressure, are known","all of the above"]},
+        {i:316, q:"A wall constructed to retain the earth from slippage on the hill side of the roadway is called", o:["breast wall","retaining wall","parapet wall","wing wall"]},
+        {i:317, q:"A vertical wall is subjected with a liquid pressure on its one side, the total pressure on the wall acts at a distance of ............. from the liquid surface :", o:["H/3","H/2","2H/3","3H/4"]},
+        {i:318, q:"Which of the following is not the purpose of a foundation?", o:["to distribute the weight of structure","to load the sub stratum evenly","to provide a level surface for building construction","to increase the safe bearing capacity of soil"]},
+        {i:319, q:"Moisture content of saturated soil equals to", o:["0%","100%","50%","90%"]},
+        {i:320, q:"Consolidation test of a soil sample is carried out to determine", o:["the void ratio in soil","the decrease in total volume","the liquid limit of soil","the plastic limit of soil"]},
+        {i:321, q:"Bearing capacity of soils depends on", o:["physical characteristics of soil particles","moisture content of soil","both of above","none of above"]},
+        {i:322, q:"The wall constructed to resist horizontal pressure is", o:["main wall","partition wall","retaining wall","all of above"]},
+        {i:323, q:"Cohesion is defined as", o:["attraction of molecules of same material","attraction of molecules of different materials","both of the above","none of the above"]},
+        {i:324, q:"The soil transported by wind and deposited is called", o:["lacustrine soil","aeolian soil","marine soil","alluvial soil"]},
+        {i:325, q:"The force exerted by flowing water on the sediment particles to course their motion is called", o:["eddy force","buoyant force","tractive force","kinematic force"]},
+        {i:326, q:"For a properly designed footing, the bearing stress must be less than the bearing capacity, which is the bearing stress that causes a ......... failure within the foundation soil.", o:["tensile","expected","unexpected","shear"]},
+        {i:327, q:"Angle of internal friction is minimum for", o:["angular grained loose soil","angular grained dense soil","round grained loose soil","clay"]},
+        {i:328, q:"The shear resistance between particles is provided by .......... bonding at the points of contact.", o:["terzhagi's","pairwise","adhesive","broken"]},
+        {i:329, q:"When water content in a soil is reduced beyond the shrinkage limit, the soil will be", o:["solid state","liquid state","semi solid state","plastic state"]},
+        {i:330, q:"A 'shear stress' is a stress which is applied .......to a face of material.", o:["perpendicularity","parallel","softly","with a bang"]},
+        {i:331, q:"Uniformity coefficient of a soil is", o:["always less than 1","always equal than 1","equal to or less than 1","equal or greater than 1"]},
+        {i:332, q:"Most of the shear tests are done in equipment which are", o:["stress controlled","strain controlled","drainage controlled","volume controlled"]},
+        {i:333, q:"The angle between the horizontal and the slope of a heap produced by pouring clean dry sand from a small height is known as", o:["the angle of equilibrium","the angle of bulk","the angle of rest","the angle of repose"]},
+        {i:334, q:"Cohesive soils:", o:["bear high shear strength","are more plastic","are good for backfill","are strong against landslide"]},
+        {i:335, q:"The coefficient of earth pressure for a loose sand having an angle of internal friction of 30° is", o:["0.5","1/3","3","1"]},
+        {i:336, q:"Over consolidated soils caused due to:", o:["erosion of over burden","melting of ices sheets after glaciations","permanentrise of water table","all of the above"]},
+        {i:337, q:"The angle of repose of soil is defined as the angle that an inclined plane makes with the horizontal when a body placed on it just sliding is......", o:["maximum","minimum","average","vertical"]},
+        {i:338, q:"Specific gravity of solid particles is determined in a laboratory with", o:["shrinkage Limit Method","gas Jar Method","density Bottle Method","all of the above"]},
+        {i:339, q:"If a solid suffers a change in volume by application of external loads but recovers its volume immediately after load is removed , such a soil is termed as", o:["Compressive soils","Plastics","Elastics soils","Perfect soils"]},
+        {i:340, q:"The angle between the directions of the failure and the major principal plane, is equal to", o:["90°+ effective angle of shearing resistance","90°+ half of the angle of shearing resistance","45°+ half of the angle of shearing resistance","45°- half of the angle of shearing resistance"]},
+        {i:341, q:"If the failure of a finite slope occurs through the toe, it is known as", o:["slope failure","base failure","face failure","toe failure"]},
+        {i:342, q:"Terzaghi's theory of one dimensional consolidation assumes", o:["soil is homogeneous and fully saturated","water and soil particles are in compressible","deformation of the soil is entirely due to change in volume","all of the above"]},
+        {i:343, q:"The angle of internal friction for cohesive soils is equal to", o:["zero","30°","45°","15°"]},
+        {i:344, q:"If you are asked to classify soils into 3 categories, which of the following categorizations would you prefer ?", o:["Clayey, Silty and Sandy","Clayey, Sandy and Granular","Clayey, Silty and Loamy","Coarse-grained, fine-grained and highly organic"]},
+        {i:345, q:"If the volume of voids is equal to the volume of solids in a soil mass, then the values of porosity and voids ratio respectively are", o:["1.0 and 0.0","0.0 and 1.0","0.5 and 1.0","1.0 and 0.5"]},
+        {i:346, q:"The value of net allowable bearing pressure is", o:["Net safe bearing capacity","Net safe settlement pressure","Minimum of net safe bearing capacity and net safe settlement pressure","Gross safe bearing capacity"]},
+        {i:347, q:"For a well graded soil, the co-efficient of curvature will be between", o:["1 and 10","2 and 8","3 and 7","1 and 3"]},
+        {i:348, q:"The ratio of the unit weight of soil solids to that of water is called", o:["void ratio","porosity","specific gravity","degree of saturation"]},
+        {i:349, q:"The bearing capacity of soil depends upon:", o:["shape and size of the particles","cohesive properties of particles","internal frictional resistance of particles","all of the above"]},
+        {i:350, q:"The shearing strength of a cohesionless soil depends upon:", o:["dry density","rate of loading","confining pressure","nature of loading"]}
+    ];
+
+    // --- APP LOGIC ---
+    let attempted = new Set();
+    let score = 0;
+    let wrong = 0;
+
+    function init() {
+        const grid = document.getElementById('navGrid');
+        const container = document.getElementById('quizContainer');
+        
+        // 1. Render Navigation Grid
+        questions.forEach((q, idx) => {
+            const div = document.createElement('div');
+            div.className = 'nav-item';
+            div.innerText = q.i;
+            div.id = `nav-${idx}`;
+            div.onclick = () => document.getElementById(`q-${idx}`).scrollIntoView({behavior: 'smooth', block: 'center'});
+            grid.appendChild(div);
+        });
+
+        // 2. Render Questions
+        questions.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.id = `q-${index}`;
+            
+            const qHeader = document.createElement('div');
+            qHeader.className = 'q-header';
+            qHeader.innerText = `Question ${item.i}`;
+            
+            const qText = document.createElement('div');
+            qText.className = 'q-text';
+            qText.innerText = item.q;
+            
+            const optsList = document.createElement('ul');
+            optsList.className = 'options-list';
+            
+            item.o.forEach((opt, optIdx) => {
+                const li = document.createElement('li');
+                li.className = 'option-item';
+                li.id = `opt-${index}-${optIdx}`;
+                li.onclick = () => checkAnswer(index, optIdx);
+                
+                const marker = String.fromCharCode(97 + optIdx); // a, b, c, d, e
+                li.innerHTML = `<div class="marker">${marker}</div><div>${opt}</div>`;
+                optsList.appendChild(li);
+            });
+
+            card.appendChild(qHeader);
+            card.appendChild(qText);
+            card.appendChild(optsList);
+            container.appendChild(card);
+        });
+
+        document.getElementById('totalCount').innerText = questions.length;
+    }
+
+    function checkAnswer(qIdx, selectedOptIdx) {
+        if (attempted.has(qIdx)) return;
+        
+        attempted.add(qIdx);
+        const correctOptIdx = keyMap[qIdx];
+        const isCorrect = (selectedOptIdx === correctOptIdx);
+        
+        const selectedEl = document.getElementById(`opt-${qIdx}-${selectedOptIdx}`);
+        const correctEl = document.getElementById(`opt-${qIdx}-${correctOptIdx}`);
+        const navEl = document.getElementById(`nav-${qIdx}`);
+
+        selectedEl.classList.add('selected');
+
+        if (isCorrect) {
+            score++;
+            selectedEl.classList.add('correct');
+            navEl.classList.add('correct');
+        } else {
+            wrong++;
+            selectedEl.classList.add('wrong');
+            // Show correct answer
+            correctEl.classList.add('correct-answer');
+            navEl.classList.add('wrong');
+        }
+
+        updateStats();
+    }
+
+    function updateStats() {
+        document.getElementById('totalAttempted').innerText = attempted.size;
+        document.getElementById('scoreCount').innerText = score;
+        document.getElementById('wrongCount').innerText = wrong;
+        
+        const acc = attempted.size > 0 ? Math.round((score / attempted.size) * 100) : 0;
+        document.getElementById('accuracy').innerText = acc + "%";
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    function confirmReset() {
+        if(confirm("Are you sure you want to reset all progress?")) {
+            location.reload();
+        }
+    }
+
+    // Scroll Observer for Go Top Button
+    window.addEventListener('scroll', () => {
+        const btn = document.getElementById('scrollTop');
+        if (window.scrollY > 400) btn.classList.add('visible');
+        else btn.classList.remove('visible');
+    });
+
+    // Run
+    init();
+
+</script>
+
+</body>
+</html>

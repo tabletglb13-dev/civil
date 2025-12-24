@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structural Design - Home</title>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --glass-surface: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-highlight: rgba(255, 255, 255, 0.6);
+            --text-white: #ffffff;
+            --text-dim: #d1d5db;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-white);
+            min-height: 100vh;
+            /* Deep Water / Crystal Gradient Background */
+            background: linear-gradient(125deg, #0f2027, #203a43, #2c5364, #2980b9);
+            background-size: 300% 300%;
+            animation: waterFlow 20s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes waterFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* --- HOME BUTTON --- */
+        .home-btn-container {
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .home-btn span { margin-left: 8px; }
+
+        /* --- HEADER (Crystal Panel) --- */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            border-radius: 24px;
+            
+            /* Crystal Glass Effect */
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-top: 1px solid var(--glass-highlight);
+            border-left: 1px solid var(--glass-highlight);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glossy shine overlay on header */
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, #ffffff, #bce0ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            margin: 15px 0 0;
+            font-weight: 300;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- TILE GRID --- */
+        .tile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            /* Centering the two tiles if the screen is wide */
+            justify-content: center;
+        }
+
+        /* --- CRYSTAL TILES --- */
+        .tile {
+            text-decoration: none;
+            color: var(--text-white);
+            position: relative;
+            
+            /* The Crystal Look */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 80px;
+        }
+
+        .tile:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25), 
+                        inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .tile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+
+        .tile:hover::before {
+            left: 150%;
+            transition: 0.7s;
+        }
+
+        .tile-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tile-content {
+            flex-grow: 1;
+        }
+
+        .tile-content h3 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tile-content span {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            display: block;
+            margin-top: 4px;
+            font-weight: 300;
+        }
+
+        .tile-arrow {
+            margin-left: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .tile:hover .tile-arrow {
+            opacity: 1;
+            background: #ffffff;
+            color: #2c5364;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 20px; }
+            .tile { padding: 20px; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- HOME BUTTON -->
+    <div class="home-btn-container">
+        <a href="index.html" class="home-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+        </a>
+    </div>
+
+    <header>
+        <h1>Soil Mechanics</h1>
+        <p>500+ MCQ question </p>
+    </header>
+
+    <!-- DASHBOARD: CRYSTAL GRID -->
+    <div class="tile-grid">
+        
+        <!-- Tile 1 -->
+        <a href="soilEf.html" class="tile" target="_blank">
+            <div class="tile-icon">⛰️</div>
+            <div class="tile-content">
+                <h3>Set 1</h3>
+                <span>Structural Design Part I</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+        <!-- Tile 2 -->
+        <a href="qdsoil.html" class="tile" target="_blank">
+            <div class="tile-icon">⛰️</div>
+            <div class="tile-content">
+                <h3>Set 2</h3>
+                <span>Structural Design Part II</span>
+            </div>
+            <div class="tile-arrow">➜</div>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
