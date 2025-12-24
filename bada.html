@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सार्वजनिक बडापत्र (Public Charter) - Lok Sewa Notes</title>
+    
+    <!-- Google Fonts for Nepali and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --highlight: #2563eb;
+            --sidebar-bg: rgba(255, 255, 255, 0.65);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .dark-mode {
+            --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            --glass-bg: rgba(17, 25, 40, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #e5e7eb;
+            --text-muted: #9ca3af;
+            --highlight: #60a5fa;
+            --sidebar-bg: rgba(17, 25, 40, 0.85);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Mukta', 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Classes */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Navigation Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--highlight);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-links li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+            color: var(--highlight);
+        }
+
+        .nav-links i {
+            width: 30px;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-mcq {
+            background: linear-gradient(45deg, #ff6b6b, #ee5253);
+            color: white;
+        }
+
+        .btn-home {
+            background: linear-gradient(45deg, #48dbfb, #0abde3);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            margin-left: 0;
+            transition: margin-left 0.4s;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .menu-toggle {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Sections */
+        section {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--highlight);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(var(--highlight), 0.1);
+            border-left: 4px solid var(--highlight);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        li::before {
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--highlight);
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+            border-left: 2px solid var(--glass-border);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--highlight);
+            border-radius: 50%;
+        }
+
+        strong {
+            color: var(--highlight);
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            section { padding: 1.5rem; }
+            .sidebar { width: 100%; left: -100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar glass" id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">लोकसेवा तयारी</span>
+            <button class="close-btn" onclick="toggleSidebar()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#origin" onclick="toggleSidebar()"><i class="fa-solid fa-globe"></i> उत्पत्ति (Origin)</a></li>
+            <li><a href="#intro" onclick="toggleSidebar()"><i class="fa-solid fa-book-open"></i> परिचय</a></li>
+            <li><a href="#importance" onclick="toggleSidebar()"><i class="fa-solid fa-star"></i> महत्व</a></li>
+            <li><a href="#necessity" onclick="toggleSidebar()"><i class="fa-solid fa-hand-holding-heart"></i> आवश्यकता</a></li>
+            <li><a href="#dates" onclick="toggleSidebar()"><i class="fa-solid fa-calendar-days"></i> प्रमुख तिथिहरू</a></li>
+            <li><a href="#facts" onclick="toggleSidebar()"><i class="fa-solid fa-lightbulb"></i> MCQ Key Facts</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="qbada.html" class="action-btn btn-mcq"><i class="fa-solid fa-clipboard-question"></i> Take MCQ Test</a>
+            <a href="index.html" class="action-btn btn-home"><i class="fa-solid fa-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+        
+        <!-- Top Bar -->
+        <div class="top-bar glass">
+            <button class="menu-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i> Menu</button>
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+
+        <h1>सार्वजनिक बडापत्र (Public Charter)</h1>
+
+        <!-- 1. Origin Section -->
+        <section id="origin" class="glass">
+            <h2>१. नागरिक बडापत्रको उत्पत्ति (Origin) – [MCQ Critical]</h2>
+            <ul>
+                <li>सुरुवात गर्ने देश: <strong>बेलायत (United Kingdom)</strong></li>
+                <li>सुरुवात भएको वर्ष: <strong>सन् १९९१ (July 22, 1991)</strong></li>
+                <li>अवधारणा ल्याउने प्रधानमन्त्री: <strong>जोन मेजर (John Major)</strong> (कन्जरभेटिभ पार्टी)</li>
+                <li>कार्यक्रमको नाम: <strong>Citizen's Charter (नागरिक बडापत्र)</strong></li>
+                <li>पुनर्नामकरण: सन् १९९८ मा टोनी ब्लेयर (Tony Blair) को सरकारले यसलाई <strong>"Service First"</strong> (सेवा नै मुख्य) कार्यक्रममा परिमार्जन गरेको थियो।</li>
+                <li>अन्य देशमा विस्तार:
+                    <ul style="margin-top: 5px;">
+                        <li style="border:none;"><strong>फ्रान्स:</strong> सन् १९९२ (Service Charter का नाममा)</li>
+                        <li style="border:none;"><strong>बेल्जियम:</strong> सन् १९९२</li>
+                        <li style="border:none;"><strong>मलेसिया:</strong> सन् १९९३ (Client's Charter का नाममा)</li>
+                        <li style="border:none;"><strong>भारत:</strong> सन् १९९७</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 2. Introduction Section -->
+        <section id="intro" class="glass">
+            <h2>२. सार्वजनिक बडापत्र : परिचय (Introduction)</h2>
+            <ul>
+                <li><strong>परिभाषा:</strong> सार्वजनिक निकायले सेवाग्राहीलाई उपलब्ध गराउने सेवाको प्रकृति, गुणस्तर, समय, लागत र प्रक्रियाको सुनिश्चितता गर्दै सेवाग्राहीसमक्ष गरेको <strong>लिखित प्रतिबद्धता (Written Commitment)</strong> नै सार्वजनिक बडापत्र हो।</li>
+                <li><strong>मूल मर्म:</strong> "शासक र रैती" (Ruler and Subject) को सम्बन्धलाई <strong>"सेवा प्रदायक र सेवाग्राही" (Provider and Client)</strong> को सम्बन्धमा रूपान्तरण गर्नु।</li>
+                <li><strong>कानुनी हैसियत:</strong> यो केवल सूचना पाटी होइन, यो <strong>सेवाग्राहीको अधिकारपत्र</strong> हो।</li>
+                <li><strong>उपनाम:</strong> यसलाई सार्वजनिक निकायको <strong>"ऐना" (Mirror)</strong> पनि भनिन्छ।</li>
+            </ul>
+        </section>
+
+        <!-- 3. Importance Section -->
+        <section id="importance" class="glass">
+            <h2>३. सार्वजनिक बडापत्रको महत्व (Importance)</h2>
+            <ul>
+                <li><strong>पारदर्शिता (Transparency):</strong> सेवा प्रवाहको प्रक्रिया खुला र स्पष्ट पार्न।</li>
+                <li><strong>जवाफदेहिता (Accountability):</strong> कर्मचारीलाई नतिजाप्रति जिम्मेवार बनाउन।</li>
+                <li><strong>निश्चितता (Certainty):</strong> सेवा प्राप्त हुने समय र लागतको यकिन गर्न।</li>
+                <li><strong>सशक्तिकरण (Empowerment):</strong> नागरिकलाई "सेवा माग्ने" होइन "अधिकार खोज्ने" बनाउन।</li>
+                <li><strong>सुशासन (Good Governance):</strong> जनमुखी प्रशासनको प्रत्याभूति दिलाउन।</li>
+            </ul>
+        </section>
+
+        <!-- 4. Necessity Section -->
+        <section id="necessity" class="glass">
+            <h2>४. सार्वजनिक बडापत्रको आवश्यकता (Necessity)</h2>
+            <ul>
+                <li>सेवाग्राहीको <strong>सूचनाको हक</strong> सुनिश्चित गर्न।</li>
+                <li>प्रशासनिक <strong>ढिलासुस्ती (Red Tapism)</strong> अन्त्य गर्न।</li>
+                <li>बिचौलियाको अन्त्य गरी <strong>भ्रष्टाचार न्यूनीकरण</strong> गर्न।</li>
+                <li>सेवा प्रवाहमा <strong>मानकीकरण (Standardization)</strong> कायम गर्न।</li>
+                <li>जनताको समय र लागत बचत गर्न।</li>
+            </ul>
+        </section>
+
+        <!-- 5. Major Dates Section -->
+        <section id="dates" class="glass">
+            <h2>५. प्रमुख तिथिहरू (Major Dates) – [Very Important for MCQ]</h2>
+            
+            <div class="highlight-box">
+                <h3>विश्व सन्दर्भ:</h3>
+                <div class="timeline-item"><strong>सन् १९९१:</strong> बेलायतमा जोन मेजरद्वारा अवधारणा सुरु।</div>
+                <div class="timeline-item"><strong>सन् १९९२:</strong> फ्रान्स र बेल्जियममा लागु।</div>
+                <div class="timeline-item"><strong>सन् १९९३:</strong> मलेसियामा लागु।</div>
+            </div>
+
+            <div class="highlight-box" style="border-left-color: #e74c3c;">
+                <h3>नेपालको सन्दर्भ:</h3>
+                <div class="timeline-item"><strong>वि.सं. २०५६:</strong> नेपालमा पहिलो पटक "निमुखालाई न्याय र गरिबलाई आय" कार्यक्रम अन्तर्गत बडापत्रको अभ्यास सुरु (हुलाक र मालपोत कार्यालयबाट सांकेतिक रूपमा)।</div>
+                <div class="timeline-item"><strong>वि.सं. २०६१/१२/०२:</strong> मन्त्रिपरिषद्को निर्णयबाट सबै सरकारी कार्यालयमा बडापत्र राख्ने कार्य <strong>अनिवार्य</strong>।</div>
+                <div class="timeline-item"><strong>वि.सं. २०६४:</strong> <strong>सुशासन (व्यवस्थापन तथा सञ्चालन) ऐन, २०६४</strong> को <strong>दफा २५</strong> द्वारा कानुनी वैधता प्रदान।</div>
+                <div class="timeline-item"><strong>वि.सं. २०६५:</strong> सुशासन नियमावली, २०६५ को <strong>नियम १४</strong> मा बडापत्रमा खुलाउनुपर्ने विषयवस्तु (८ बुँदा) उल्लेख।</div>
+                <div class="timeline-item"><strong>वि.सं. २०६९/१०/०१:</strong> <strong>"क्षतिपूर्ति सहितको नागरिक बडापत्र सञ्चालन निर्देशिका, २०६९"</strong> जारी।</div>
+                <div class="timeline-item"><strong>वि.सं. २०७०/०१/०२:</strong> क्षतिपूर्ति सहितको नागरिक बडापत्र <strong>कार्यान्वयन</strong> सुरु (निश्चित कार्यालयहरूमा)।</div>
+            </div>
+        </section>
+
+        <!-- 6. MCQ Facts Section -->
+        <section id="facts" class="glass">
+            <h2>६. MCQ KEY FACTS (One-Liners Exam Capsule)</h2>
+            <ul>
+                <li>नागरिक बडापत्रको अवधारणा सबैभन्दा पहिले <strong>बेलायत</strong> बाट सुरु भएको हो।</li>
+                <li>नेपालमा बडापत्रको कानुनी आधार <strong>सुशासन (व्यवस्थापन तथा सञ्चालन) ऐन, २०६४</strong> हो।</li>
+                <li>सुशासन ऐनको <strong>दफा २५</strong> ले बडापत्र राख्नुपर्ने अनिवार्य व्यवस्था गरेको छ।</li>
+                <li>नागरिक बडापत्रका ६ सिद्धान्तहरू (Six Principles) <strong>बेलायत</strong> (सन् १९९१) ले प्रतिपादन गरेको थियो।</li>
+                <li>नेपालमा क्षतिपूर्ति सहितको नागरिक बडापत्र निर्देशिका <strong>२०६९ साल</strong> मा जारी भएको हो।</li>
+                <li>बडापत्रको मुख्य उद्देश्य सार्वजनिक सेवालाई <strong>पारदर्शी र जवाफदेही</strong> बनाउनु हो।</li>
+                <li>स्थानीय तहमा बडापत्रको व्यवस्था <strong>स्थानीय सरकार सञ्चालन ऐन, २०७४</strong> ले गरेको छ।</li>
+                <li>सार्वजनिक बडापत्रमा <strong>गुनासो सुन्ने अधिकारी</strong> को नाम र पद अनिवार्य उल्लेख हुनुपर्छ।</li>
+            </ul>
+            <div style="margin-top: 20px; font-style: italic; text-align: center; color: var(--text-muted);">
+                नोट: परीक्षार्थीले विशेषगरी <strong>१९९१ (बेलायत)</strong>, <strong>२०५६ (नेपालमा सुरुवात)</strong>, <strong>२०६४ (सुशासन ऐन)</strong> र <strong>२०६९ (क्षतिपूर्ति निर्देशिका)</strong> कण्ठस्थ पार्नुहोला।
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Sidebar Toggle Logic
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuBtn = document.querySelector('.menu-toggle');
+            
+            if (!sidebar.contains(event.target) && !menuBtn.contains(event.target) && sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Dark Mode Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('theme-btn');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+    </script>
+</body>
+</html>

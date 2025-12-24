@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Service Charter (सार्वजनिक बडापत्र) MCQ</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* THEME VARIABLES */
+        :root {
+            /* Dark Mode (Default) */
+            --primary-color: #3b82f6;
+            --primary-dark: #60a5fa;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-light: #94a3b8;
+            --border-color: #334155;
+            --option-bg: rgba(255, 255, 255, 0.02);
+            --option-hover: #334155;
+            
+            --success-bg: #064e3b;         
+            --success-border: #34d399;
+            --success-text: #d1fae5;
+            
+            --error-bg: #7f1d1d;
+            --error-border: #f87171;
+            --error-text: #fecaca;
+            
+            --score-bg: #134e4a;
+            --score-border: #2dd4bf;
+            --score-text: #ccfbf1;
+            
+            --header-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        /* Light Mode Class */
+        .light-theme {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-light: #64748b;
+            --border-color: #e2e8f0;
+            --option-bg: #f1f5f9;
+            --option-hover: #e2e8f0;
+
+            --success-bg: #dcfce7;         
+            --success-border: #22c55e;
+            --success-text: #14532d;
+            
+            --error-bg: #fee2e2;
+            --error-border: #ef4444;
+            --error-text: #7f1d1d;
+            
+            --score-bg: #ccfbf1;
+            --score-border: #14b8a6;
+            --score-text: #0f766e;
+            
+            --header-bg: rgba(248, 250, 252, 0.95);
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        .container { 
+            max-width: 850px; 
+            margin: 30px auto; 
+            padding: 0 20px 60px 20px; 
+        }
+
+        /* Sticky Header */
+        .sticky-header { 
+            position: sticky; 
+            top: 0; 
+            background: var(--header-bg); 
+            backdrop-filter: blur(10px);
+            z-index: 1000; 
+            padding: 15px 20px; 
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        h1 { 
+            font-size: 1.4rem; 
+            color: var(--primary-color); 
+            margin: 0 0 10px 0; 
+            text-align: center; 
+        }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            max-width: 850px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        .theme-btn:hover {
+            background-color: var(--option-hover);
+        }
+
+        .info-pill { 
+            background: var(--card-bg);
+            color: var(--primary-dark); 
+            padding: 5px 12px; 
+            border-radius: 15px; 
+            font-weight: 600; 
+            font-size: 0.85em;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .score-pill {
+            background: var(--score-bg);
+            color: var(--score-text);
+            border-color: var(--score-border);
+        }
+
+        /* Question Cards */
+        .question-card { 
+            background: var(--card-bg); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            margin-bottom: 25px; 
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .question-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--primary-color);
+        }
+
+        .question-text { 
+            font-size: 1.15em; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            color: var(--text-color);
+        }
+
+        .options { list-style: none; padding: 0; margin: 0; }
+        .options li { margin-bottom: 12px; }
+
+        .options label { 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            padding: 12px 15px; 
+            border: 2px solid var(--border-color); 
+            border-radius: 10px; 
+            transition: all 0.2s ease;
+            background-color: var(--option-bg);
+            color: var(--text-color);
+        }
+
+        .options label:hover:not(.correct-opt):not(.wrong-opt) { 
+            background-color: var(--option-hover); 
+            border-color: var(--primary-color);
+        }
+
+        .options input[type="radio"] { 
+            margin-right: 15px; 
+            width: 18px; 
+            height: 18px; 
+            accent-color: var(--primary-color);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        
+        /* Result Highlights */
+        .correct-opt { 
+            background-color: var(--success-bg) !important; 
+            border-color: var(--success-border) !important; 
+            color: var(--success-text) !important; 
+            font-weight: 600;
+        }
+
+        .wrong-opt { 
+            background-color: var(--error-bg) !important; 
+            border-color: var(--error-border) !important; 
+            color: var(--error-text) !important;
+            opacity: 0.9;
+        }
+
+        /* Scroll To Top Button */
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.1rem; }
+            .header-controls { justify-content: center; }
+            .container { padding: 0 15px 60px 15px; }
+            .info-pill { font-size: 0.75em; padding: 4px 10px; }
+            .question-text { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="sticky-header">
+    <h1>सार्वजनिक बडापत्र (Public Charter) - Lok Sewa</h1>
+    <div class="header-controls">
+        <div class="control-group">
+            <a href="#" class="btn" onclick="location.reload()">🔄 Reset</a>
+            <button class="btn theme-btn" onclick="toggleTheme()" id="theme-btn">☀️ Light</button>
+        </div>
+        <div class="control-group">
+            <div class="info-pill">Total: <span id="total-q">0</span></div>
+            <div class="info-pill score-pill">Score: <span id="score-display">0 / 0</span></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <!-- Questions injected via JS -->
+    </div>
+</div>
+
+<button id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+    // --- State Variables ---
+    let correctCount = 0;
+    let attemptedCount = 0;
+    let isLightMode = false;
+
+    // --- DATA ---
+    // Answers: 0=a, 1=b, 2=c, 3=d
+    const quizData = [
+        // 1. Origin
+        {id:1,q:"सार्वजनिक बडापत्र (Citizen's Charter) को अवधारणा सबैभन्दा पहिले कुन देशबाट सुरु भएको हो?",options:["अमेरिका (USA)","फ्रान्स (France)","बेलायत (UK)","जापान (Japan)"],a:2},
+        {id:2,q:"सार्वजनिक बडापत्रको अवधारणा कुन वर्षमा सुरु भएको हो?",options:["सन् १९९०","सन् १९९१","सन् १९९२","सन् १९९३"],a:1},
+        {id:3,q:"बेलायतमा नागरिक बडापत्रको सुरुवात कुन मितिमा भएको थियो?",options:["July 22, 1991","June 15, 1991","August 10, 1992","January 1, 1990"],a:0},
+        {id:4,q:"नागरिक बडापत्रको अवधारणा ल्याउने प्रधानमन्त्री को हुन्?",options:["टोनी ब्लेयर (Tony Blair)","मार्गरेट थ्याचर (Margaret Thatcher)","जोन मेजर (John Major)","डेभिड क्यामरुन (David Cameron)"],a:2},
+        {id:5,q:"नागरिक बडापत्र सुरुवात गर्दा जोन मेजर कुन पार्टीको प्रतिनिधित्व गर्दथे?",options:["लेबर पार्टी (Labour Party)","कन्जरभेटिभ पार्टी (Conservative Party)","लिबरल डेमोक्र्याट (Liberal Democrat)","ग्रीन पार्टी (Green Party)"],a:1},
+        {id:6,q:"नागरिक बडापत्र कार्यक्रमलाई सन् १९९८ मा टोनी ब्लेयरको सरकारले के नाममा पुनर्नामकरण गर्यो?",options:["Service First","Citizen First","Public Rights","Service Charter"],a:0},
+        {id:7,q:"फ्रान्समा 'Service Charter' को नाममा यो अवधारणा कहिले लागु भयो?",options:["सन् १९९१","सन् १९९२","सन् १९९३","सन् १९९५"],a:1},
+        {id:8,q:"बेल्जियममा नागरिक बडापत्र कहिले लागु भयो?",options:["सन् १९९०","सन् १९९१","सन् १९९२","सन् १९९४"],a:2},
+        {id:9,q:"मलेसियामा 'Client's Charter' का नाममा यो अवधारणा कहिले सुरु भयो?",options:["सन् १९९१","सन् १९९२","सन् १९९३","सन् १९९५"],a:2},
+        {id:10,q:"छिमेकी राष्ट्र भारतमा नागरिक बडापत्रको अवधारणा कहिले भित्रियो?",options:["सन् १९९५","सन् १९९७","सन् २०००","सन् १९९१"],a:1},
+
+        // 2. Introduction & Principles
+        {id:11,q:"सार्वजनिक बडापत्र भन्नाले सार्वजनिक निकायले सेवाग्राहीसमक्ष गरेको कस्तो प्रतिबद्धता हो?",options:["मौखिक प्रतिबद्धता","लिखित प्रतिबद्धता (Written Commitment)","सांकेतिक प्रतिबद्धता","नैतिक प्रतिबद्धता मात्र"],a:1},
+        {id:12,q:"सार्वजनिक बडापत्रको मूल मर्म 'शासक र रैती' को सम्बन्धलाई कस्तो सम्बन्धमा रूपान्तरण गर्नु हो?",options:["मालिक र नोकर","सेवा प्रदायक र सेवाग्राही (Provider and Client)","दाता र माग्ने","सरकार र जनता"],a:1},
+        {id:13,q:"सार्वजनिक बडापत्रलाई सार्वजनिक निकायको के उपनामले चिनिन्छ?",options:["तस्बिर (Picture)","ऐना (Mirror)","ढोका (Door)","पुस्तिका (Book)"],a:1},
+        {id:14,q:"नागरिक बडापत्रका ६ सिद्धान्तहरू (Six Principles) कुन देशले प्रतिपादन गरेको थियो?",options:["अमेरिका","बेलायत","फ्रान्स","जापान"],a:1},
+        
+        // 3. Importance & Necessity
+        {id:15,q:"सार्वजनिक बडापत्रले सेवा प्रवाहमा पारदर्शिता (Transparency) कसरी कायम गर्छ?",options:["गोपनीयता राखेर","सेवा प्रवाहको प्रक्रिया खुला र स्पष्ट पारेर","शुल्क बढाएर","कर्मचारी थपेर"],a:1},
+        {id:16,q:"सार्वजनिक बडापत्रको मुख्य उद्देश्य मध्ये सुशासन (Good Governance) को प्रत्याभूति दिलाउनु के हो?",options:["पारदर्शिता","जवाफदेहिता","जनमुखी प्रशासन","माथिका सबै"],a:3},
+        {id:17,q:"सार्वजनिक बडापत्रले नागरिकलाई कस्तो बनाउन मद्दत गर्छ?",options:["सेवा माग्ने","अधिकार खोज्ने (Empowered)","चुप लाग्ने","निरीह"],a:1},
+        {id:18,q:"सार्वजनिक बडापत्रले सेवा प्रवाहमा के को अन्त्य गर्न मद्दत गर्छ?",options:["बिचौलिया (Middlemen)","प्रशासनिक ढिलासुस्ती (Red Tapism)","भ्रष्टाचार","माथिका सबै"],a:3},
+        {id:19,q:"नागरिकको 'सूचनाको हक' सुनिश्चित गर्न कुन साधन उपयोगी छ?",options:["नागरिकता","सार्वजनिक बडापत्र","राहदानी","भोटर कार्ड"],a:1},
+
+        // 4. Nepal Context - History & Dates
+        {id:20,q:"नेपालमा सार्वजनिक बडापत्रको अभ्यास पहिलो पटक कहिले सुरु भयो?",options:["वि.सं. २०५०","वि.सं. २०५५","वि.सं. २०५६","वि.सं. २०६१"],a:2},
+        {id:21,q:"नेपालमा बडापत्रको सुरुवात कुन कार्यक्रम अन्तर्गत भएको थियो?",options:["गाउँ फर्क अभियान","निमुखालाई न्याय र गरिबलाई आय","आफ्नो गाउँ आफै बनाऔं","सुशासन अभियान"],a:1},
+        {id:22,q:"सुरुवातमा नेपालका कुन कार्यालयहरूबाट बडापत्रको सांकेतिक अभ्यास थालियो?",options:["जिल्ला प्रशासन कार्यालय","हुलाक र मालपोत कार्यालय","अदालत","भन्सार कार्यालय"],a:1},
+        {id:23,q:"नेपाल सरकार मन्त्रिपरिषद्को निर्णयबाट सबै सरकारी कार्यालयमा बडापत्र राख्ने कार्य कहिले अनिवार्य गरियो?",options:["वि.सं. २०५६/०१/०१","वि.सं. २०६१/१२/०२","वि.सं. २०६४/१०/१५","वि.सं. २०६५/०१/०१"],a:1},
+        
+        // 5. Legal Provisions
+        {id:24,q:"नेपालमा सार्वजनिक बडापत्रलाई कानुनी वैधता प्रदान गर्ने मुख्य ऐन कुन हो?",options:["निजामती सेवा ऐन, २०४९","सुशासन (व्यवस्थापन तथा सञ्चालन) ऐन, २०६४","स्थानीय स्वायत्त शासन ऐन, २०५५","सूचनाको हक सम्बन्धी ऐन, २०६४"],a:1},
+        {id:25,q:"सुशासन (व्यवस्थापन तथा सञ्चालन) ऐन, २०६४ को कुन दफाले बडापत्र राख्नुपर्ने अनिवार्य व्यवस्था गरेको छ?",options:["दफा २०","दफा २२","दफा २५","दफा ३०"],a:2},
+        {id:26,q:"सुशासन (व्यवस्थापन तथा सञ्चालन) नियमावली, २०६५ को कुन नियममा बडापत्रमा खुलाउनुपर्ने विषयवस्तु उल्लेख छ?",options:["नियम १०","नियम १२","नियम १४","नियम १६"],a:2},
+        {id:27,q:"सुशासन नियमावली, २०६५ अनुसार बडापत्रमा कतिवटा विषयवस्तु (बुँदा) खुलाउनुपर्ने व्यवस्था छ?",options:["६ वटा","८ वटा","१० वटा","१२ वटा"],a:1},
+        {id:28,q:"स्थानीय तहमा बडापत्रको व्यवस्था कुन ऐनले गरेको छ?",options:["स्थानीय स्वायत्त शासन ऐन, २०५५","संविधान","स्थानीय सरकार सञ्चालन ऐन, २०७४","सार्वजनिक खरिद ऐन"],a:2},
+
+        // 6. Compensation (Kshatipurti)
+        {id:29,q:"'क्षतिपूर्ति सहितको नागरिक बडापत्र सञ्चालन निर्देशिका' कहिले जारी भयो?",options:["वि.सं. २०६५","वि.सं. २०६७","वि.सं. २०६९","वि.सं. २०७०"],a:2},
+        {id:30,q:"क्षतिपूर्ति सहितको नागरिक बडापत्र निर्देशिकाको पूर्ण मिति कुन हो?",options:["२०६९/१०/०१","२०६९/०१/०१","२०७०/०१/०२","२०६८/१२/१५"],a:0},
+        {id:31,q:"नेपालमा क्षतिपूर्ति सहितको नागरिक बडापत्रको कार्यान्वयन (Implementation) कहिले देखि सुरु भयो?",options:["२०६९/१०/०१","२०७०/०१/०२","२०७०/०४/०१","२०७१/०१/०१"],a:1},
+        {id:32,q:"क्षतिपूर्ति सहितको नागरिक बडापत्र अनुसार सेवाग्राहीले तोकिएको समयमा सेवा नपाए कसले क्षतिपूर्ति तिर्नुपर्छ?",options:["सरकारले","सम्बन्धित कार्यालय प्रमुखले","सेवा दिन इन्कार वा ढिलाइ गर्ने कर्मचारीले","स्थानीय तहले"],a:2},
+
+        // 7. Content of Charter
+        {id:33,q:"सार्वजनिक बडापत्रमा तलका मध्ये कुन कुरा उल्लेख हुनुपर्दछ?",options:["सेवाको प्रकृति र प्रक्रिया","लाग्ने दस्तुर र समय","सेवा दिने र गुनासो सुन्ने अधिकारी","माथिका सबै"],a:3},
+        {id:34,q:"सार्वजनिक बडापत्रमा 'गुनासो सुन्ने अधिकारी' को कुन विवरण अनिवार्य उल्लेख हुनुपर्छ?",options:["घरको ठेगाना","नाम र पद","तलब स्केल","शैक्षिक योग्यता"],a:1},
+        
+        // 8. One-Liners & Facts
+        {id:35,q:"सार्वजनिक बडापत्रको मुख्य कानुनी हैसियत के हो?",options:["यो केवल सूचना पाटी हो","यो सेवाग्राहीको अधिकारपत्र हो","यो कर्मचारीको डायरी हो","यो राजनीतिक घोषणापत्र हो"],a:1},
+        {id:36,q:"नागरिक बडापत्रको अवधारणा कुन राजनीतिक दलको सरकारले ल्याएको थियो (बेलायतमा)?",options:["लेबर पार्टी","कन्जरभेटिभ पार्टी","सोसलिस्ट पार्टी","डेमोक्र्याटिक पार्टी"],a:1},
+        {id:37,q:"सेवा प्रवाहमा मानकीकरण (Standardization) कायम गर्नु बडापत्रको के हो?",options:["परिचय","आवश्यकता","इतिहास","कानुन"],a:1},
+        {id:38,q:"'Service First' कार्यक्रम कसले ल्याएका थिए?",options:["जोन मेजर","टोनी ब्लेयर","गार्डन ब्राउन","बोरिस जोनसन"],a:1}
+    ];
+
+    const totalQuestions = quizData.length;
+
+    /**
+     * Checks the selected answer against the key.
+     */
+    function checkAnswer(questionIndex, selectedValue) {
+        const item = quizData[questionIndex];
+        const selectedVal = parseInt(selectedValue);
+
+        // 1. Disable all radio buttons for this question
+        const questionCard = document.getElementById(`q-card-${questionIndex}`);
+        const inputs = questionCard.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => input.disabled = true);
+        
+        // 2. Score Logic
+        // Increment attempted
+        attemptedCount++;
+        
+        // Check if correct
+        if (selectedVal === item.a) {
+            correctCount++;
+        }
+        
+        // Update Display
+        document.getElementById('score-display').innerText = `${correctCount} / ${attemptedCount}`;
+
+        // 3. Highlight Logic
+        
+        // Always show correct answer in green
+        const correctLabel = document.getElementById(`lbl-${questionIndex}-${item.a}`);
+        if (correctLabel) {
+             correctLabel.classList.add('correct-opt'); 
+        }
+
+        // Highlight selected answer (if wrong) in red
+        if (selectedVal !== item.a) {
+            const wrongLabel = document.getElementById(`lbl-${questionIndex}-${selectedVal}`);
+            if (wrongLabel) {
+                wrongLabel.classList.add('wrong-opt');
+            }
+        }
+    }
+
+
+    function loadQuiz() {
+        const container = document.getElementById('quiz-container');
+        let html = '';
+        quizData.forEach((item, index) => {
+            const optionsHtml = item.options.map((opt, i) => `
+                <li>
+                    <label id="lbl-${index}-${i}">
+                        <input type="radio" name="q${index}" value="${i}" onchange="checkAnswer(${index}, this.value)">
+                        <span>${String.fromCharCode(97 + i)}. ${opt}</span>
+                    </label>
+                </li>
+            `).join('');
+
+            html += `
+            <div class="question-card" id="q-card-${index}">
+                <div class="question-text">${item.id}. ${item.q}</div>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            </div>`;
+        });
+        container.innerHTML = html;
+        
+        document.getElementById('total-q').innerText = totalQuestions;
+    }
+
+    function toggleTheme() {
+        const body = document.body;
+        const btn = document.getElementById('theme-btn');
+        
+        isLightMode = !isLightMode;
+        
+        if (isLightMode) {
+            body.classList.add('light-theme');
+            btn.innerText = '🌙 Dark';
+        } else {
+            body.classList.remove('light-theme');
+            btn.innerText = '☀️ Light';
+        }
+    }
+
+    // Scroll To Top Functionality
+    const scrollBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            scrollBtn.style.display = "flex";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    };
+
+    scrollBtn.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Initialize
+    loadQuiz();
+
+</script>
+
+</body>
+</html>
